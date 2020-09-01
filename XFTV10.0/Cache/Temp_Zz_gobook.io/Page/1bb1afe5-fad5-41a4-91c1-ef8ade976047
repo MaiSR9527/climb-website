@@ -1,0 +1,306 @@
+<!DOCTYPE HTML>
+<html lang="en-US" >
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+        <title>首页 | </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GoBook 0.1">
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+        
+    
+</head>
+<body>
+
+<link rel="stylesheet" href="./gitbook/style.css">
+
+<div class="book" data-level="0" data-basepath="." data-revision="1419950039633">
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        <li>
+            <a href="./" target="blank" class="custom-link">返回书本首页</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+        <ul>
+<li><a href="./chapter-01/index.html">开始</a></li>
+<li><a href="./chapter-02/index.html">路由</a>
+
+<ul>
+<li><a href="./chapter-02/1-router-match.html">路由匹配</a></li>
+<li><a href="./chapter-02/2-router-body.html">路由执行体</a></li>
+<li><a href="./chapter-02/3-group-router.html">路由分组</a></li>
+</ul></li>
+<li><a href="./chapter-03/index.html">上下文</a></li>
+<li><a href="./chapter-04/index.html">中间件机制</a></li>
+<li><a href="./chapter-05/index.html">日志</a></li>
+<li><a href="./chapter-06/index.html">静态文件</a></li>
+<li><a href="./chapter-07/index.html">返回值</a></li>
+<li><a href="./chapter-08/index.html">压缩</a></li>
+<li><a href="./chapter-09/index.html">模板渲染</a>
+
+<ul>
+<li><a href="./chapter-09/1-std-renders.html">标准库模板</a></li>
+<li><a href="./chapter-09/2-pongo2-renders.html">pongo2模板</a></li>
+</ul></li>
+<li><a href="./chapter-10/index.html">Session</a>
+
+<ul>
+<li><a href="./chapter-10/1-memory.html">Memory Store</a></li>
+<li><a href="./chapter-10/2-nodb.html">Nodb Store</a></li>
+<li><a href="./chapter-10/3-redis.html">Redis Store</a></li>
+<li><a href="./chapter-10/4-ssdb.html">Ssdb Store</a></li>
+<li><a href="./chapter-10/5-ledis.html">Ledis Store</a></li>
+<li><a href="./chapter-10/6-tracker.html">Tracker</a></li>
+</ul></li>
+<li><a href="./chapter-11/index.html">Flash</a></li>
+<li><a href="./chapter-12/index.html">Events</a></li>
+<li><a href="./chapter-13/index.html">Xsrf</a></li>
+<li><a href="./chapter-14/index.html">Binding</a></li>
+<li><a href="./chapter-15/index.html">调试中间件</a></li>
+<li><a href="./chapter-16/index.html">验证码</a></li>
+<li><a href="./chapter-17/index.html">Basic Auth</a></li>
+<li><a href="./chapter-18/index.html">Cache</a></li>
+<li><a href="./chapter-19/index.html">多Tango实例</a>
+
+<ul>
+<li><a href="./chapter-19/1-mutliple-path.html">多子路径实例</a></li>
+<li><a href="./chapter-19/2-multiple-vhosts.html">域名虚拟主机实例</a></li>
+</ul></li>
+<li><a href="./chapter-20/index.html">自定义错误处理</a></li>
+<li><a href="./chapter-21/index.html">常见问题</a></li>
+<li><a href="./chapter-22/index.html">案例</a></li>
+<li><a href="./chapter-23/index.html">更新日志</a></li>
+</ul>
+
+    </li>
+        <li class="divider"></li>
+        <li>
+            <a href="http://gobook.io/" target="blank" class="gitbook-link">GoBook出品</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+
+            <div class="buttons">
+                <button type="button" id="reduce-font-size" class="button size-2">A</button>
+                <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+            </div>
+
+            <div class="buttons font-family-list">
+                <button type="button" data-font="0" class="button">Serif</button>
+                <button type="button" data-font="1" class="button">Sans</button>
+            </div>
+
+            <div class="buttons color-theme-list">
+                <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+                <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+                <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+        </div>
+    </div>
+
+    
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="./" >首页</a>
+    </h1>
+</div>
+
+    <div class="page-wrapper" tabindex="-1">
+        <div class="page-inner">
+            <section class="normal" id="section-gitbook_2">
+            <h1>Tango</h1>
+
+<p>Tango 是一个微内核易扩展的Go语言Web框架，他兼有Beego的效率和Martini的中间件设计。</p>
+
+<h2>最近更新</h2>
+
+<ul>
+<li>[2016-2-1] 新增 session-ssdb，支持将ssdb作为session的后端存储</li>
+<li>[2015-10-23] 更新<a href="https://gitea.com/tango/renders">renders</a>插件，解决模板修改后需要刷新两次才能生效的问题</li>
+</ul>
+
+<h2>简介</h2>
+
+<p>安装Tango：</p>
+
+<pre><code>go get gitea.com/lunny/tango
+</code></pre>
+
+<p>一个经典的Tango例子如下：</p>
+
+<pre><code class="language-go">package main
+
+import (
+    &quot;errors&quot;
+    &quot;gitea.com/lunny/tango&quot;
+)
+
+type Action struct {
+    tango.JSON
+}
+
+func (Action) Get() interface{} {
+    if true {
+        return map[string]string{
+            &quot;say&quot;: &quot;Hello tango!&quot;,
+        }
+    }
+    return errors.New(&quot;something error&quot;)
+}
+
+func main() {
+    t := tango.Classic()
+    t.Get(&quot;/&quot;, new(Action))
+    t.Run()
+}
+</code></pre>
+
+<p>然后在浏览器访问<code>http://localhost:8000</code>, 将会得到一个json返回</p>
+
+<pre><code class="language-Json">{&quot;say&quot;:&quot;Hello tango!&quot;}
+</code></pre>
+
+<p>如果将上述例子中的 <code>true</code> 改为 <code>false</code>, 将会得到一个json返回</p>
+
+<pre><code class="language-Json">{&quot;err&quot;:&quot;something error&quot;}
+</code></pre>
+
+<p>这段代码因为拥有一个内嵌的<code>tango.JSON</code>，所以返回值会被自动的转成Json。具体返回可以参见以下文档。</p>
+
+<h2>特性</h2>
+
+<ul>
+<li>强大而灵活的路由设计</li>
+<li>兼容已有的<code>http.Handler</code></li>
+<li>模块化设计，可以很容易写出自己的中间件</li>
+<li>高性能的依赖注入方式</li>
+</ul>
+
+<h2>中间件</h2>
+
+<p>中间件让你像AOP编程那样来操作你的Controller。</p>
+
+<p>目前已有很多 <a href="https://gitea.com/tango">中间件 - gitea.com/tango</a>，可以帮助你快速完成工作:</p>
+
+<ul>
+<li><a href="https://gitea.com/lunny/tango/wiki/ZH_Recovery">recovery</a> - recover after panic</li>
+<li><a href="https://gitea.com/lunny/tango/wiki/ZH_Compress">compress</a> - Gzip &amp; Deflate compression</li>
+<li><a href="https://gitea.com/lunny/tango/wiki/ZH_Static">static</a> - Serves static files</li>
+<li><a href="https://gitea.com/lunny/tango/wiki/ZH_Logger">logger</a> - Log the request &amp; inject Logger to action struct</li>
+<li><a href="https://gitea.com/lunny/tango/wiki/ZH_Params">param</a> - get the router parameters</li>
+<li><a href="https://gitea.com/lunny/tango/wiki/ZH_Return">return</a> - Handle the returned value smartlly</li>
+<li><a href="https://gitea.com/lunny/tango/wiki/ZH_Context">context</a> - Inject context to action struct</li>
+<li><a href="https://gitea.com/tango/session">session</a> - <a href="https://drone.io/gitea.com/tango/session/latest"><img src="https://drone.io/gitea.com/tango/session/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/session"><img src="http://gocover.io/_badge/gitea.com/tango/session" alt="" />
+</a> Session manager</li>
+<li><a href="https://gitea.com/tango/xsrf">xsrf</a> - <a href="https://drone.io/gitea.com/tango/xsrf/latest"><img src="https://drone.io/gitea.com/tango/xsrf/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/xsrf"><img src="http://gocover.io/_badge/gitea.com/tango/xsrf" alt="" />
+</a> Generates and validates csrf tokens</li>
+<li><a href="https://gitea.com/tango/binding">binding</a> - <a href="https://drone.io/gitea.com/tango/binding/latest"><img src="https://drone.io/gitea.com/tango/binding/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/binding"><img src="http://gocover.io/_badge/gitea.com/tango/binding" alt="" />
+</a> Bind and validates forms</li>
+<li><a href="https://gitea.com/tango/renders">renders</a> - <a href="https://drone.io/gitea.com/tango/renders/latest"><img src="https://drone.io/gitea.com/tango/renders/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/renders"><img src="http://gocover.io/_badge/gitea.com/tango/renders" alt="" />
+</a> Go template engine</li>
+<li><a href="https://gitea.com/tango/dispatch">dispatch</a> - <a href="https://drone.io/gitea.com/tango/dispatch/latest"><img src="https://drone.io/gitea.com/tango/dispatch/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/dispatch"><img src="http://gocover.io/_badge/gitea.com/tango/dispatch" alt="" />
+</a> Multiple Application support on one server</li>
+<li><a href="https://gitea.com/tango/tpongo2">tpongo2</a> - <a href="https://drone.io/gitea.com/tango/tpongo2/latest"><img src="https://drone.io/gitea.com/tango/tpongo2/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/tpongo2"><img src="http://gocover.io/_badge/gitea.com/tango/tpongo2" alt="" />
+</a> <a href="https://github.com/flosch/pongo2">Pongo2</a> teamplte engine support</li>
+<li><a href="https://gitea.com/tango/captcha">captcha</a> - <a href="https://drone.io/gitea.com/tango/captcha/latest"><img src="https://drone.io/gitea.com/tango/captcha/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/captcha"><img src="http://gocover.io/_badge/gitea.com/tango/captcha" alt="" />
+</a> Captcha</li>
+<li><a href="https://gitea.com/tango/events">events</a> - <a href="https://drone.io/gitea.com/tango/events/latest"><img src="https://drone.io/gitea.com/tango/events/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/events"><img src="http://gocover.io/_badge/gitea.com/tango/events" alt="" />
+</a> Before and After</li>
+<li><a href="https://gitea.com/tango/flash">flash</a> - <a href="https://drone.io/gitea.com/tango/flash/latest"><img src="https://drone.io/gitea.com/tango/flash/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/flash"><img src="http://gocover.io/_badge/gitea.com/tango/flash" alt="" />
+</a> Share data between requests</li>
+<li><a href="https://gitea.com/tango/debug">debug</a> - <a href="https://drone.io/gitea.com/tango/debug/latest"><img src="https://drone.io/gitea.com/tango/debug/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/debug"><img src="http://gocover.io/_badge/gitea.com/tango/debug" alt="" />
+</a> show detail debug infomaton on log</li>
+<li><a href="https://gitea.com/tango/basicauth">basicauth</a> - <a href="https://drone.io/gitea.com/tango/basicauth/latest"><img src="https://drone.io/gitea.com/tango/basicauth/status.png" alt="Build Status" />
+</a> <a href="http://gocover.io/gitea.com/tango/basicauth"><img src="http://gocover.io/_badge/gitea.com/tango/basicauth" alt="" />
+</a> basicauth middleware</li>
+</ul>
+
+<h2>获得帮助</h2>
+
+<ul>
+<li><a href="https://gitea.com/lunny/tango/wiki/ZH_Home">Wiki</a></li>
+<li><a href="https://gowalker.org/gitea.com/lunny/tango">API文档</a></li>
+<li><a href="https://groups.google.com/forum/#!forum/go-tango">中文论坛</a></li>
+<li><a href="https://groups.google.com/forum/#!forum/go-tango">英文论坛</a></li>
+</ul>
+
+<h2>案例</h2>
+
+<ul>
+<li><a href="https://github.com/go-tango/wego">Wego</a></li>
+<li><a href="https://github.com/go-xorm/dbweb">DBWeb</a></li>
+<li><a href="http://godaily.org">Godaily</a> - <a href="https://github.com/godaily/news">github</a></li>
+<li><a href="https://github.com/gofxh/blog">FXH Blog</a></li>
+<li><a href="https://github.com/go-tango/gos">Gos</a></li>
+<li><a href="http://gobook.io">Gobook</a> - <a href="https://github.com/gobook">github</a></li>
+</ul>
+
+            </section>
+        </div>
+    </div>
+</div>
+
+        
+
+    </div>
+</div>
+
+<script src="./gitbook/app.js"></script>
+
+    
+
+    <script src="./gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+
+
+
+    </body>
+</html>

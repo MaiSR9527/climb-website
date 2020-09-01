@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="slene, Unknown">
+
+<title>XSRF 过滤 - beego: 简约 &amp; 强大并存的 Go 应用框架</title>
+
+
+
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<link rel="stylesheet" href="static/css/bootstrap-1409586500.css">
+	<link rel="stylesheet" href="static/css/bootstrap-theme-1409586500.css">
+	<link rel="stylesheet" href="static/css/font-awesome.min-1409586500.css">
+	<link rel="stylesheet" href="static/css/prettify-1409586500.css">
+	<link rel="stylesheet" href="static/css/select2-1409586500.css">
+	<script>/* end */</script>
+<!--[if IE 7]>
+<script>/* Beego Compress group `ie7` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/font-awesome-ie7.min.css?ver=1409586500" />
+	<script>/* end */</script>
+<![endif]-->
+<script>/* Beego Compress group `app` begin */</script>
+	<link rel="stylesheet" href="static/css/base-1409586500.css">
+	<link rel="stylesheet" href="static/css/markdown-1409586500.css">
+	<link rel="stylesheet" href="static/css/main-1409586500.css">
+	<script>/* end */</script>
+
+<!--[if lt IE 9]>
+	<script>/* Beego Compress group `ie9` begin */</script>
+	<script type="text/javascript" src="/static_source/js/html5shiv.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/respond.min.js?ver=1409586500"></script>
+	<script>/* end */</script>
+<![endif]-->
+		
+	</head>
+	<body id="front">
+		<noscript>请启用您浏览器的 JavaScript 选项！</noscript>
+		<div id="wrapper">
+			<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" data-toggle="clingify">
+        <div class="row">
+            <div class="navbar-header">
+                
+                <span class="visible-xs">
+                    <a id="docs-collapse-btn" class="navbar-btn" data-toggle="jpanel-menu" data-target="#docs-collapse">
+                        <span class="sr-only">Toggle docs menu</span>
+                        <i class="icon icon-angle-right"></i>
+                    </a>
+                </span>
+                
+                <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="hidden-xs logo" href="index.html">
+                    <img style="height:32px;width:102px;" src="static/picture/beego_purple.png">
+                </a>
+                <div class="visible-xs text-center">
+                    <a class="navbar-brand" href="index.html">
+                        Beego
+                    </a>
+                    
+                    <span class="nav-github">
+                        <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    </span>
+                    
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" role="navigation" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="quickstart.html">快速入门</a></li>
+                    <li><a href="community.html">开发者社区</a></li>
+                    <li class="active"><a href="index1.html">开发文档</a></li>
+                    <li><a href="video.html">视频教程</a></li>
+                    <li><a href="products.html">产品案例</a></li>
+                    <li><a href="blog.html">官方博客</a></li>
+                </ul>
+                <div class="hidden-sm hidden-xs nav-lang pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-xs btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="hidden-sm hidden-xs nav-github pull-right">
+                    <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    <span rel="show-github" data-user="astaxie" data-repo="beego" data-type="fork"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+			<div id="main">
+				
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-2 col-sm-3">
+            <div id="docs-collapse" class="collapse navbar-collapse docs-sidenav">
+                
+                    
+                    
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index1.html">beego 简介</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="contributing.html">为 beego 贡献</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="releases.html">发布版本</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="upgrade.html">升级指南</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index5.html">beego 安装升级</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="bee1.html">Bee 工具的使用</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index6.html">快速入门</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="new.html">新建项目</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="router1.html">路由设置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="controller.html">Controller 运行机制</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="model.html">model 逻辑</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="view1.html">view 编写</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="static.html">静态文件处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index7.html">beego 的 MVC 架构</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                controller 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="config.html">参数配置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="router.html">路由设置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="controller1.html">控制器函数</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class="active item" href="">XSRF 过滤</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="params.html">请求数据处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="session.html">session 控制</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="filter.html">过滤器</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="flash.html">flash 数据</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="urlbuilding.html">URL构建</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="jsonxml.html">多种格式数据输出</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="validation.html">表单数据验证</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="errors.html">错误处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="logs.html">日志处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                model 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="overview.html">概述</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="orm.html">ORM 使用</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="object.html">CRUD 操作</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="query.html">高级查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="rawsql.html">原生 SQL 查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="querybuilder.html">构造查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="transaction.html">事务处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="models.html">模型定义</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="cmd.html">命令模式</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="test.html">测试用例</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="custom_fields.html">自定义字段</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="faq.html">FAQ</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                view 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="tutorial.html">模板语法指南</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="view.html">模板处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="template.html">模板函数</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="static1.html">静态文件处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="page.html">模板分页处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index4.html">beego 的模块设计</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="session1.html">session 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="grace.html">grace 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="cache.html">cache 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="logs1.html">logs 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="httplib.html">httplib 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="context.html">context 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="toolbox.html">toolbox 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="config1.html">config 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="i18n.html">i18n 模块</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index8.html">beego 高级编程</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="monitor.html">进程内监控</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="docs.html">API 自动化文档</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index9.html">应用部署</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="beego.html">独立部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="supervisor.html">supervisor 部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="nginx.html">Nginx 部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="apache.html">apache 部署</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index10.html">beego 第三方库</a>
+                            
+                            </div>
+                            
+    
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index3.html">应用例子</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="chat.html">在线聊天室</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="shorturl.html">短域名服务</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="todo.html">Todo 列表</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                beego实用库
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="captcha.html">验证码</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="page1.html">分页</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index11.html">FAQ</a>
+                            
+                            </div>
+                            
+    
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+    
+
+                
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-9">
+            <div class="box">
+				<div>
+					<script>
+					  (function() {
+					    var cx = '014389342508982455625:6zv6mwcpcck';
+					    var gcse = document.createElement('script');
+					    gcse.type = 'text/javascript';
+					    gcse.async = true;
+					    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					        '//www.google.com/cse/cse.js?cx=' + cx;
+					    var s = document.getElementsByTagName('script')[0];
+					    s.parentNode.insertBefore(gcse, s);
+					  })();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+                <div class="cell slim page-box">
+                    <p>
+                        <a href="javascript:window.open('https://github.com/beego/beedoc/blob/master/zh-CN/mvc/controller/xsrf.md');" class="pull-right btn btn-info" target="_blank">到 GitHub 上改进本页面</a>
+                        <span class="clearfix"></span>
+                    </p>
+                    <div class="markdown docs-markdown">
+                        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="Blackfriday Markdown Processor v1.1">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1>跨站请求伪造</h1>
+
+<p><a href="javascript:window.open('http://en.wikipedia.org/wiki/Cross-site_request_forgery');">跨站请求伪造(Cross-site request forgery)</a>， 简称为 XSRF，是 Web 应用中常见的一个安全问题。前面的链接也详细讲述了 XSRF 攻击的实现方式。</p>
+
+<p>当前防范 XSRF 的一种通用的方法，是对每一个用户都记录一个无法预知的 cookie 数据，然后要求所有提交的请求（POST/PUT/DELETE）中都必须带有这个 cookie 数据。如果此数据不匹配 ，那么这个请求就可能是被伪造的。</p>
+
+<p>beego 有内建的 XSRF 的防范机制，要使用此机制，你需要在应用配置文件中加上 <code>enablexsrf</code> 设定：</p>
+
+<pre><code>enablexsrf = true
+xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o
+xsrfexpire = 3600
+</code></pre>
+
+<p>或者直接在 main 入口处这样设置：</p>
+
+<pre><code>beego.EnableXSRF = true
+beego.XSRFKEY = &quot;61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o&quot;
+beego.XSRFExpire = 3600  //过期时间，默认1小时
+</code></pre>
+
+<p>如果开启了 XSRF，那么 beego 的 Web 应用将对所有用户设置一个 <code>_xsrf</code> 的 cookie 值（默认过期 1 小时），如果 <code>POST PUT DELET</code> 请求中没有这个 cookie 值，那么这个请求会被直接拒绝。如果你开启了这个机制，那么在所有被提交的表单中，你都需要加上一个域来提供这个值。你可以通过在模板中使用 专门的函数 <code>XSRFFormHTML()</code> 来做到这一点：</p>
+
+<p>过期时间上面我们设置了全局的过期时间 <code>beego.XSRFExpire</code>，但是有些时候我们也可以在控制器中修改这个过期时间，专门针对某一类处理逻辑：</p>
+
+<pre lang="go"><code>func (this *HomeController) Get(){
+    this.XSRFExpire = 7200
+    this.Data[&quot;xsrfdata&quot;]=template.HTML(this.XSRFFormHTML())
+}
+</code></pre>
+
+<h3>在表单中使用</h3>
+
+<p>在 Controller 中这样设置数据：</p>
+
+<pre lang="go"><code>func (this *HomeController) Get(){
+    this.Data[&quot;xsrfdata&quot;]=template.HTML(this.XSRFFormHTML())
+}
+</code></pre>
+
+<p>然后在模板中这样设置：</p>
+
+<pre><code>&lt;form action=&quot;/new_message&quot; method=&quot;post&quot;&gt;
+  {{ .xsrfdata }}
+  &lt;input type=&quot;text&quot; name=&quot;message&quot;/&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Post&quot;/&gt;
+&lt;/form&gt;
+</code></pre>
+
+<h3>在 JavaScript 中使用</h3>
+
+<p>如果你提交的是 AJAX 的 POST 请求，你还是需要在每一个请求中通过脚本添加上 _xsrf 这个值。下面是在 AJAX 的 POST 请求，使用了 jQuery 函数来为所有请求都添加 _xsrf 值：</p>
+
+<p>jQuery cookie插件：<a href="javascript:window.open('https://github.com/carhartl/jquery-cookie');">https://github.com/carhartl/jquery-cookie</a><br>
+base64 插件：<a href="javascript:window.open('http://phpjs.org/functions/base64_decode/');">http://phpjs.org/functions/base64_decode/</a></p>
+
+<pre lang="js"><code>jQuery.postJSON = function(url, args, callback) {
+   var xsrf, xsrflist;
+   xsrf = $.cookie(&quot;_xsrf&quot;);
+   xsrflist = xsrf.split(&quot;|&quot;);
+   args._xsrf = base64_decode(xsrflist[0]);
+    $.ajax({url: url, data: $.param(args), dataType: &quot;text&quot;, type: &quot;POST&quot;,
+        success: function(response) {
+        callback(eval(&quot;(&quot; + response + &quot;)&quot;));
+    }});
+};
+</code></pre>
+
+<h4>扩展 jQuery</h4>
+
+<p>通过扩展 ajax 给每个请求加入 xsrf 的 header</p>
+
+<p>需要你在 html 里保存一个 <code>_xsrf</code> 值</p>
+
+<pre lang="go"><code>func (this *HomeController) Get(){
+    this.Data[&quot;xsrf_token&quot;] = this.XSRFToken()
+}
+</code></pre>
+
+<p>放在你的 head 中</p>
+
+<pre lang="html"><code>&lt;head&gt;
+    &lt;meta name=&quot;_xsrf&quot; content=&quot;{{.xsrf_token}}&quot; /&gt;
+&lt;/head&gt;
+</code></pre>
+
+<p>扩展 ajax 方法，将 <code>_xsrf</code> 值加入 header，扩展后支持 jquery post/get 等内部使用了 ajax 的方法</p>
+
+<pre lang="js"><code>var ajax = $.ajax;
+$.extend({
+    ajax: function(url, options) {
+        if (typeof url === 'object') {
+            options = url;
+            url = undefined;
+        }
+        options = options || {};
+        url = options.url;
+        var xsrftoken = $('meta[name=_xsrf]').attr('content');
+        var headers = options.headers || {};
+        var domain = document.domain.replace(/\./ig, '\\.');
+        if (!/^(http:|https:).*/.test(url) || eval('/^(http:|https:)\\/\\/(.+\\.)*' + domain + '.*/').test(url)) {
+            headers = $.extend(headers, {'X-Xsrftoken':xsrftoken});
+        }
+        options.headers = headers;
+        return ajax(url, options);
+    }
+});
+</code></pre>
+
+<p>对于 PUT 和 DELETE 请求（以及不使用将 form 内容作为参数的 POST 请求）来说，你也可以在 HTTP 头中以 X-XSRFToken 这个参数传递 XSRF token。</p>
+
+<p>如果你需要针对每一个请求处理器定制 XSRF 行为，你可以重写 Controller 的 CheckXSRFCookie 方法。例如你需要使用一个不支持 cookie 的 API， 你可以通过将 <code>CheckXSRFCookie()</code> 函数设空来禁用 XSRF 保护机制。然而如果 你需要同时支持 cookie 和非 cookie 认证方式，那么只要当前请求是通过 cookie 进行认证的，你就应该对其使用 XSRF 保护机制，这一点至关重要。</p>
+
+<h2>支持controller 级别的屏蔽</h2>
+
+<p>XSRF 之前是全局设置的一个参数,如果设置了那么所有的 API 请求都会进行验证,但是有些时候API 逻辑是不需要进行验证的,因此现在支持在controller 级别设置屏蔽:</p>
+
+<pre><code>type AdminController struct{
+    beego.Controller
+}
+
+func (a *AdminController) Prepare() {
+    a.EnableXSRF = false
+}
+</code></pre>
+
+</body>
+</html>
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var disqus_url = 'http://beego.me/docs/' + 'mvc\/controller\/xsrf.md?lang=zh-CN';
+            </script>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+     
+    var disqus_shortname = 'beego'; 
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="javascript:window.open('http://disqus.com/?ref_noscript');">comments powered by Disqus.</a></noscript>
+<a href="javascript:window.open('http://disqus.com/');" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+</div>
+
+		    </div>
+		    <div class="wrapper-push"></div>
+		</div>
+		<footer id="footer">
+    <div class="container">
+        <div class="row footer-wrap">
+            <div class="col-md-12 desc">
+                <div class="pull-right">
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                        <a class="btn btn-success" href="donate.html"><i class="icon-dollar"></i> 捐赠我们</a>
+                    
+                    
+                </div>
+                
+                <p>
+                    <a href="about.html"><strong>关于</strong></a>
+                    |
+                    <a href="team.html"><strong>团队</strong></a>
+                    |
+                    <a target="_blank" href="javascript:window.open('https://github.com/astaxie/beego');" target="_blank"><strong><i class="icon-github-sign"></i> Github</strong></a>
+                    - 26ms.
+                </p>
+
+                <p>
+                    版权所有 © 2012-2014 Beego 授权许可遵循 <a href="javascript:window.open('http://www.apache.org/licenses/LICENSE-2.0.html');">apache 2.0 licence</a> Logo由 <a target="_blank" href="javascript:window.open('http://mdong.org/');">Tengfei</a> 设计
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39123845-1', 'beego.me');
+  ga('send', 'pageview');
+
+</script>
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<script type="text/javascript" src="static/js/jquery.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jquery.extend-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/bootstrap-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/lib.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/prettify-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jStorage-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jquery.jpanelmenu.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jRespond.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jquery.clingify.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/imagesloaded.pkgd.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/masonry.pkgd.min-1409586500.js"></script>
+	<script>/* end */</script>
+<script>/* Beego Compress group `app` begin */</script>
+	<script type="text/javascript" src="static/js/main-1409586500.js"></script>
+	<script>/* end */</script>
+	</body>
+</html>
+
+
+

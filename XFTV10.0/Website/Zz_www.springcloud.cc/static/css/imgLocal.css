@@ -1,0 +1,110 @@
+.header{
+	height: 63px;
+	background: url(../image/T15yB4XbJlXXXXXXXX-4-63.jpg) repeat-x top left;
+}
+.header h1{
+	width: 400px;
+	height: 63px;
+	margin: 0 auto;
+	background: url(../image/T1t5l4XghoXXXXXXXX-400-63.png) repeat-x top left;
+}
+
+.img_text .middle_text .m_top{
+	background: url(../image/T1pyR4XntiXXXXXXXX-120-11.png) no-repeat bottom center;
+	padding-bottom: 12px;
+	width: 120px;
+	margin-bottom: 12px;
+}
+.img_text .middle_text .m_bottom{
+	background: url(../image/T1ox04XjBrXXXXXXXX-120-11.png) no-repeat bottom center;
+	padding-bottom: 12px;
+	width: 120px;
+}
+
+.footer button{
+    background: url(../image/T1CjV4XepkXXXXXXXX-116-54.png) no-repeat scroll 0 0 transparent;
+    width: 58px;
+	border: none;
+    height: 27px;
+    line-height: 29px;
+    overflow: hidden;
+    vertical-align: middle;
+	margin-left: 5px;
+	background-position: -58px 0;
+}
+
+.login-box .msg p.error {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) no-repeat scroll -319px -449px #FFF2F2;
+    border-color: #FF8080;
+    line-height: 18px;
+    padding: 2px 10px 2px 23px;
+}
+
+.login-box .mobile-num {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) no-repeat scroll 164px -164px #FFFFFF;
+    width: 174px;
+}
+
+.login-box .submit button {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) no-repeat scroll 0 -100px transparent;
+    border: 0 none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0;
+    height: 27px;
+    line-height: 100px;
+    margin-right: 6px;
+    overflow: hidden;
+    text-indent: -9999px;
+    vertical-align: middle;
+    width: 86px;
+}
+
+.login-box ul.entries {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) repeat-x scroll 0 -258px transparent;
+    height: 18px;
+    margin: 8px 0 0;
+    padding: 8px 0 0 80px;
+}
+.login-box ul.entries li {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) no-repeat scroll -337px -224px transparent;
+    float: left;
+    padding: 0 10px;
+}
+
+.install-plugin-popup .hd {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) no-repeat scroll 0 0 transparent;
+    height: 32px;
+    padding-left: 10px;
+}
+.install-plugin-popup h3 {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) no-repeat scroll right 0 transparent;
+    color: #FFFFFF;
+    font-size: 14px;
+    height: 32px;
+    line-height: 32px;
+}
+
+.install-plugin-popup .bd ul li {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) no-repeat scroll 0 -40px transparent;
+    line-height: 20px;
+    padding-left: 8px;
+}
+.install-plugin-popup .bd strong {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) no-repeat scroll -326px -62px transparent;
+    color: #FF6600;
+    display: block;
+    font-size: 12px;
+    padding-left: 15px;
+}
+
+.long-login-help {
+    background: url(../image/T1cPJ4XXhaXXXXXXXX-339-755.png) no-repeat scroll -325px -367px transparent;
+    display: inline-block;
+    font-size: 0;
+    height: 12px;
+    overflow: hidden;
+    text-indent: -1000px;
+    vertical-align: middle;
+    width: 12px;
+}

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="slene, Unknown">
+
+<title>快速入门 - beego: 简约 &amp; 强大并存的 Go 应用框架</title>
+
+
+
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<link rel="stylesheet" href="static/css/bootstrap-1409586500.css">
+	<link rel="stylesheet" href="static/css/bootstrap-theme-1409586500.css">
+	<link rel="stylesheet" href="static/css/font-awesome.min-1409586500.css">
+	<link rel="stylesheet" href="static/css/prettify-1409586500.css">
+	<link rel="stylesheet" href="static/css/select2-1409586500.css">
+	<script>/* end */</script>
+<!--[if IE 7]>
+<script>/* Beego Compress group `ie7` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/font-awesome-ie7.min.css?ver=1409586500" />
+	<script>/* end */</script>
+<![endif]-->
+<script>/* Beego Compress group `app` begin */</script>
+	<link rel="stylesheet" href="static/css/base-1409586500.css">
+	<link rel="stylesheet" href="static/css/markdown-1409586500.css">
+	<link rel="stylesheet" href="static/css/main-1409586500.css">
+	<script>/* end */</script>
+
+<!--[if lt IE 9]>
+	<script>/* Beego Compress group `ie9` begin */</script>
+	<script type="text/javascript" src="/static_source/js/html5shiv.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/respond.min.js?ver=1409586500"></script>
+	<script>/* end */</script>
+<![endif]-->
+		
+	</head>
+	<body id="front">
+		<noscript>请启用您浏览器的 JavaScript 选项！</noscript>
+		<div id="wrapper">
+			<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" data-toggle="clingify">
+        <div class="row">
+            <div class="navbar-header">
+                
+                <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="hidden-xs logo" href="index.html">
+                    <img style="height:32px;width:102px;" src="static/picture/beego_purple.png">
+                </a>
+                <div class="visible-xs text-center">
+                    <a class="navbar-brand" href="index.html">
+                        Beego
+                    </a>
+                    
+                    <span class="nav-github">
+                        <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    </span>
+                    
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" role="navigation" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">首页</a></li>
+                    <li class="active"><a href="">快速入门</a></li>
+                    <li><a href="community.html">开发者社区</a></li>
+                    <li><a href="index1.html">开发文档</a></li>
+                    <li><a href="video.html">视频教程</a></li>
+                    <li><a href="products.html">产品案例</a></li>
+                    <li><a href="blog.html">官方博客</a></li>
+                </ul>
+                <div class="hidden-sm hidden-xs nav-lang pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-xs btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="hidden-sm hidden-xs nav-github pull-right">
+                    <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    <span rel="show-github" data-user="astaxie" data-repo="beego" data-type="fork"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+			<div id="main">
+				
+<div class="container main-container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box">
+				<div class="cell slim page-box markdown">
+					<div class="page-header">
+					    <h1>
+					    	快速入门
+					    	<a href="javascript:window.open('https://github.com/beego/beedoc/blob/master/zh-CN/quickstart.md');" class="pull-right btn btn-info" target="_blank">到 GitHub 上改进本页面</a>
+					    </h1>
+					</div>
+					<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="Blackfriday Markdown Processor v1.1">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h2>安装</h2>
+
+<p>beego 包含一些示例应用程序以帮您学习并使用 beego 应用框架。</p>
+
+<p>您需要安装 Go 1.1+ 以确保所有功能的正常使用。</p>
+
+<p>你需要安装或者升级 Beego 和 <a href="bee.html">Bee</a> 的开发工具:</p>
+
+<pre><code>$ go get -u github.com/astaxie/beego
+$ go get -u github.com/beego/bee
+</code></pre>
+
+<p>为了更加方便的操作，请将 <code>$GOPATH/bin</code> 加入到你的 <code>$PATH</code> 变量中。请确保在此之前您已经添加了 <code>$GOPATH</code> 变量。</p>
+
+<pre><code># 如果您还没添加 $GOPATH 变量
+$ echo 'export GOPATH=&quot;$HOME/go&quot;' &gt;&gt; ~/.profile # 或者 ~/.zshrc, ~/.cshrc, 您所使用的sh对应的配置文件
+
+# 如果您已经添加了 $GOPATH 变量
+$ echo 'export PATH=&quot;$GOPATH/bin:$PATH&quot;' &gt;&gt; ~/.profile # 或者 ~/.zshrc, ~/.cshrc, 您所使用的sh对应的配置文件
+$ exec $SHELL
+</code></pre>
+
+<p>想要快速建立一个应用来检测安装？</p>
+
+<pre><code>$ cd $GOPATH/src
+$ bee new hello
+$ cd hello
+$ bee run
+</code></pre>
+
+<p>Windows 平台下输入：</p>
+
+<pre><code>&gt;cd %GOPATH%/src
+&gt;bee new hello
+&gt;cd hello
+&gt;bee run
+</code></pre>
+
+<p>这些指令帮助您：</p>
+
+<ol>
+<li>安装 beego 到您的 $GOPATH 中。<br></li>
+<li>在您的计算机上安装 Bee 工具。<br></li>
+<li>创建一个名为 “hello” 的应用程序。<br></li>
+<li>启动热编译。<br></li>
+</ol>
+
+<p>一旦程序开始运行，您就可以在浏览器中打开 <a href="javascript:window.open('http://localhost:8080/');">http://localhost:8080/</a> 进行访问。</p>
+
+<h2>简单示例</h2>
+
+<p>下面这个示例程序将会在浏览器中打印 “Hello world”，以此说明使用 beego 构建 Web 应用程序是多么的简单！</p>
+
+<pre><code>package main
+
+import (
+    &quot;github.com/astaxie/beego&quot;
+)
+
+type MainController struct {
+    beego.Controller
+}
+
+func (this *MainController) Get() {
+    this.Ctx.WriteString(&quot;hello world&quot;)
+}
+
+func main() {
+    beego.Router(&quot;/&quot;, &amp;MainController{})
+    beego.Run()
+}
+</code></pre>
+
+<p>把上面的代码保存为 hello.go，然后通过命令行进行编译并执行：</p>
+
+<pre><code>$ go build -o hello hello.go
+$ ./hello
+</code></pre>
+
+<p>这个时候你可以打开你的浏览器，通过这个地址浏览 <a href="javascript:window.open('http://127.0.0.1:8080/');">http://127.0.0.1:8080</a> 返回 “hello world”。</p>
+
+<p>那么上面的代码到底做了些什么呢？</p>
+
+<ol>
+<li>首先我们导入了包 <code>github.com/astaxie/beego</code>。我们知道 Go 语言里面被导入的包会按照深度优先的顺序去执行导入包的初始化（变量和 init 函数，<a href="javascript:window.open('https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/02.3.md#main函数和init函数');">更多详情</a>），beego 包中会初始化一个 BeeAPP 的应用和一些参数。<br></li>
+<li>定义 Controller，这里我们定义了一个 struct 为 <code>MainController</code>，充分利用了 Go 语言的组合的概念，匿名包含了 <code>beego.Controller</code>，这样我们的 <code>MainController</code> 就拥有了 <code>beego.Controller</code> 的所有方法。<br></li>
+<li>定义 RESTful 方法，通过匿名组合之后，其实目前的 <code>MainController</code> 已经拥有了 <code>Get</code>、<code>Post</code>、<code>Delete</code>、<code>Put</code> 等方法，这些方法是分别用来对应用户请求的 Method 函数，如果用户发起的是 POST 请求，那么就执行 <code>Post</code> 函数。所以这里我们定义了 <code>MainController</code> 的 <code>Get</code> 方法用来重写继承的 <code>Get</code> 函数，这样当用户发起 GET 请求的时候就会执行该函数。<br></li>
+<li>定义 main 函数，所有的 Go 应用程序和 C 语言一样都是 main 函数作为入口，所以我们这里定义了我们应用的入口。<br></li>
+<li>Router 注册路由，路由就是告诉 beego，当用户来请求的时候，该如何去调用相应的 Controller，这里我们注册了请求 <code>/</code> 的时候，请求到 <code>MainController</code>。这里我们需要知道，Router 函数的两个参数函数，第一个是路径，第二个是 Controller 的指针。<br></li>
+<li>Run 应用，最后一步就是把在步骤 1 中初始化的 BeeApp 开启起来，其实就是内部监听了 8080 端口：Go 默认情况会监听你本机所有的 IP 上面的 8080 端口。<br></li>
+</ol>
+
+<p>停止服务的话，请按 <code>Ctrl+c</code>。</p>
+
+<p>下面为 windows 下的快捷操作批处理文件：<br>
+在 <code>%GOPATH%/src</code> 目录下分别创建文件 <code>step1.install-bee.bat</code> 和 <code>step2.new-beego-app.bat</code>。</p>
+
+<p><code>step1.install-bee.bat</code> 文件内容：</p>
+
+<pre><code>set GOPATH=%~dp0..
+go build github.com\beego\bee
+copy bee.exe %GOPATH%\bin\bee.exe
+del bee.exe
+pause
+</code></pre>
+
+<p><code>step2.new-beego-app.bat</code> 文件内容：</p>
+
+<pre><code>@echo 设置 App 的值为您的应用文件夹名称
+set APP=coscms.com
+set GOPATH=%~dp0..
+set BEE=%GOPATH%\bin\bee
+%BEE% new %APP%
+cd %APP%
+echo %BEE% run %APP%.exe &gt; run.bat
+echo pause &gt;&gt; run.bat
+start run.bat
+pause
+start http://127.0.0.1:8080
+</code></pre>
+
+<p>依次点击上面创建的两个文件即可快速开启 beego 之旅。<br>
+以后只需要到您的应用目录下点击 <code>run.bat</code> 即可。</p>
+
+</body>
+</html>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+		    </div>
+		    <div class="wrapper-push"></div>
+		</div>
+		<footer id="footer">
+    <div class="container">
+        <div class="row footer-wrap">
+            <div class="col-md-12 desc">
+                <div class="pull-right">
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                        <a class="btn btn-success" href="donate.html"><i class="icon-dollar"></i> 捐赠我们</a>
+                    
+                    
+                </div>
+                
+                <p>
+                    <a href="about.html"><strong>关于</strong></a>
+                    |
+                    <a href="team.html"><strong>团队</strong></a>
+                    |
+                    <a target="_blank" href="javascript:window.open('https://github.com/astaxie/beego');" target="_blank"><strong><i class="icon-github-sign"></i> Github</strong></a>
+                    - 18ms.
+                </p>
+
+                <p>
+                    版权所有 © 2012-2014 Beego 授权许可遵循 <a href="javascript:window.open('http://www.apache.org/licenses/LICENSE-2.0.html');">apache 2.0 licence</a> Logo由 <a target="_blank" href="javascript:window.open('http://mdong.org/');">Tengfei</a> 设计
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39123845-1', 'beego.me');
+  ga('send', 'pageview');
+
+</script>
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<script type="text/javascript" src="static/js/jquery.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jquery.extend-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/bootstrap-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/lib.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/prettify-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jStorage-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jquery.jpanelmenu.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jRespond.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jquery.clingify.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/imagesloaded.pkgd.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/masonry.pkgd.min-1409586500.js"></script>
+	<script>/* end */</script>
+<script>/* Beego Compress group `app` begin */</script>
+	<script type="text/javascript" src="static/js/main-1409586500.js"></script>
+	<script>/* end */</script>
+	</body>
+</html>
+
+
+

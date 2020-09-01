@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="slene, Unknown" />
+
+<title> - beego: 简约 &amp; 强大并存的 Go 应用框架</title>
+
+<link rel="shortcut icon" href="/static/img/favicon.png" />
+
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/bootstrap.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/bootstrap-theme.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/font-awesome.min.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/prettify.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/select2.css?ver=1409586500" />
+	<script>/* end */</script>
+<!--[if IE 7]>
+<script>/* Beego Compress group `ie7` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/font-awesome-ie7.min.css?ver=1409586500" />
+	<script>/* end */</script>
+<![endif]-->
+<script>/* Beego Compress group `app` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/base.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/markdown.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/main.css?ver=1409586500" />
+	<script>/* end */</script>
+
+<!--[if lt IE 9]>
+	<script>/* Beego Compress group `ie9` begin */</script>
+	<script type="text/javascript" src="/static_source/js/html5shiv.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/respond.min.js?ver=1409586500"></script>
+	<script>/* end */</script>
+<![endif]-->
+		
+	</head>
+	<body id="front">
+		<noscript>请启用您浏览器的 JavaScript 选项！</noscript>
+		<div id="wrapper">
+			<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" data-toggle="clingify">
+        <div class="row">
+            <div class="navbar-header">
+                
+                <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="hidden-xs logo" href="/">
+                    <img style="height:32px;width:102px;" src="/static/img/beego_purple.png">
+                </a>
+                <div class="visible-xs text-center">
+                    <a class="navbar-brand" href="/">
+                        Beego
+                    </a>
+                    
+                    <span class="nav-github">
+                        <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    </span>
+                    
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" role="navigation" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ><a href="/">首页</a></li>
+                    <li ><a href="/quickstart">快速入门</a></li>
+                    <li ><a href="/community">开发者社区</a></li>
+                    <li ><a href="/docs/intro/">开发文档</a></li>
+                    <li class="active"><a href="/video">视频教程</a></li>
+                    <li ><a href="/products">产品案例</a></li>
+                    <li ><a href="/blog">官方博客</a></li>
+                </ul>
+                <div class="hidden-sm hidden-xs nav-lang pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-xs btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="hidden-sm hidden-xs nav-github pull-right">
+                    <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    <span rel="show-github" data-user="astaxie" data-repo="beego" data-type="fork"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+			<div id="main">
+				
+<div class="container main-container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box">
+				<div class="cell slim page-box markdown">
+					<div class="page-header">
+					    <h1>
+					    	<a href="https://github.com/beego/beedoc/blob/master/zh-CN/screencasts.md" class="pull-right btn btn-info" target="_blank">到 GitHub 上改进本页面</a>
+					    </h1>
+					</div>
+					<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="Blackfriday Markdown Processor v1.1" />
+  <meta charset="utf-8" />
+</head>
+<body>
+
+<p>这是课程的详细规划:<br />
+<a href="https://github.com/beego/tutorial/blob/master/README_zh.md">https://github.com/beego/tutorial/blob/master/README_zh.md</a></p>
+
+<ol>
+<li><p>beego 入门教程第一课之设计思路</p>
+
+<p><iframe src="http://www.tudou.com/programs/view/html5embed.action?type=0&code=EliSnrCpCi4&lcode=&resourceId=375194595_06_05_99" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe></p>
+
+<p>slide地址: <a href="http://go-talks.appspot.com/github.com/beego/tutorial/zh/1/why_beego.slide#1">设计思路</a></p>
+
+<ul>
+<li>土豆: <a href="http://www.tudou.com/programs/view/EliSnrCpCi4/">http://www.tudou.com/programs/view/EliSnrCpCi4/</a><br /></li>
+<li>优酷: <a href="http://v.youku.com/v_show/id_XNzEwMTczNzY4.html">http://v.youku.com/v_show/id_XNzEwMTczNzY4.html</a><br /></li>
+<li>网盘下载地址: <a href="http://pan.baidu.com/s/1pJO7btD">http://pan.baidu.com/s/1pJO7btD</a><br /></li>
+</ul></li>
+
+<li><p>beego 入门教程第二课之路由设置</p>
+
+<p><iframe src="http://www.tudou.com/programs/view/html5embed.action?type=0&code=mid55HCg1EY&lcode=&resourceId=375194595_06_05_99" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe></p>
+
+<p>slide 地址: <a href="http://go-talks.appspot.com/github.com/beego/tutorial/zh/2/router.slide#1">路由设置</a></p>
+
+<ul>
+<li>土豆：<a href="http://www.tudou.com/programs/view/mid55HCg1EY/">http://www.tudou.com/programs/view/mid55HCg1EY/</a><br /></li>
+<li>51CTO: <a href="http://edu.51cto.com/lesson/id-24586.html">http://edu.51cto.com/lesson/id-24586.html</a><br /></li>
+<li>网盘：<a href="http://pan.baidu.com/s/1o6jXSc6">http://pan.baidu.com/s/1o6jXSc6</a><br /></li>
+</ul></li>
+
+<li><p>beego 入门教程第三课之参数设置</p>
+
+<p><iframe src="http://www.tudou.com/programs/view/html5embed.action?type=0&code=U1MiDKq4JdQ&lcode=&resourceId=375194595_06_05_99" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe></p>
+
+<p>slide 地址: <a href="http://go-talks.appspot.com/github.com/beego/tutorial/zh/3/params.slide#1">参数设置</a></p>
+
+<ul>
+<li>土豆：<a href="http://www.tudou.com/programs/view/U1MiDKq4JdQ/">http://www.tudou.com/programs/view/U1MiDKq4JdQ/</a><br /></li>
+<li>51CTO: <a href="http://edu.51cto.com/lesson/id-24586.html">http://edu.51cto.com/lesson/id-24586.html</a><br /></li>
+<li>网盘：<a href="http://pan.baidu.com/s/1i32zA41">http://pan.baidu.com/s/1i32zA41</a><br /></li>
+</ul></li>
+
+<li><p>beego 一分钟创建 API</p>
+
+<p><iframe src="http://www.tudou.com/programs/view/html5embed.action?type=0&code=aM7iKLlBlrU&lcode=&resourceId=375194595_06_05_99" allowtransparency="true" scrolling="no" border="0" frameborder="0" style="width:480px;height:400px;"></iframe></p>
+
+<ul>
+<li>网盘下载链接: <a href="http://pan.baidu.com/s/1sj0jI6T">http://pan.baidu.com/s/1sj0jI6T</a> 密码: x46e<br /></li>
+</ul></li>
+</ol>
+
+</body>
+</html>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+		    </div>
+		    <div class="wrapper-push"></div>
+		</div>
+		<footer id="footer">
+    <div class="container">
+        <div class="row footer-wrap">
+            <div class="col-md-12 desc">
+                <div class="pull-right">
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                        <a class="btn btn-success" href="/donate"><i class="icon-dollar"></i> 捐赠我们</a>
+                    
+                    
+                </div>
+                
+                <p>
+                    <a href="/about"><strong>关于</strong></a>
+                    |
+                    <a href="/team"><strong>团队</strong></a>
+                    |
+                    <a target="_blank" href="https://github.com/astaxie/beego" target="_blank"><strong><i class="icon-github-sign"></i> Github</strong></a>
+                    - 19ms.
+                </p>
+
+                <p>
+                    版权所有 © 2012-2014 Beego 授权许可遵循 <a href="http://www.apache.org/licenses/LICENSE-2.0.html">apache 2.0 licence</a> Logo由 <a target="_blank" href="http://mdong.org">Tengfei</a> 设计
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39123845-1', 'beego.me');
+  ga('send', 'pageview');
+
+</script>
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<script type="text/javascript" src="/static_source/js/jquery.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jquery.extend.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/bootstrap.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/lib.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/prettify.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jStorage.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jquery.jpanelmenu.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jRespond.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jquery.clingify.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/imagesloaded.pkgd.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/masonry.pkgd.min.js?ver=1409586500"></script>
+	<script>/* end */</script>
+<script>/* Beego Compress group `app` begin */</script>
+	<script type="text/javascript" src="/static_source/js/main.js?ver=1409586500"></script>
+	<script>/* end */</script>
+	</body>
+</html>
+
+
+

@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="slene, Unknown">
+
+<title>高级查询 - beego: 简约 &amp; 强大并存的 Go 应用框架</title>
+
+
+
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<link rel="stylesheet" href="static/css/bootstrap-1409586500.css">
+	<link rel="stylesheet" href="static/css/bootstrap-theme-1409586500.css">
+	<link rel="stylesheet" href="static/css/font-awesome.min-1409586500.css">
+	<link rel="stylesheet" href="static/css/prettify-1409586500.css">
+	<link rel="stylesheet" href="static/css/select2-1409586500.css">
+	<script>/* end */</script>
+<!--[if IE 7]>
+<script>/* Beego Compress group `ie7` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/font-awesome-ie7.min.css?ver=1409586500" />
+	<script>/* end */</script>
+<![endif]-->
+<script>/* Beego Compress group `app` begin */</script>
+	<link rel="stylesheet" href="static/css/base-1409586500.css">
+	<link rel="stylesheet" href="static/css/markdown-1409586500.css">
+	<link rel="stylesheet" href="static/css/main-1409586500.css">
+	<script>/* end */</script>
+
+<!--[if lt IE 9]>
+	<script>/* Beego Compress group `ie9` begin */</script>
+	<script type="text/javascript" src="/static_source/js/html5shiv.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/respond.min.js?ver=1409586500"></script>
+	<script>/* end */</script>
+<![endif]-->
+		
+	</head>
+	<body id="front">
+		<noscript>请启用您浏览器的 JavaScript 选项！</noscript>
+		<div id="wrapper">
+			<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" data-toggle="clingify">
+        <div class="row">
+            <div class="navbar-header">
+                
+                <span class="visible-xs">
+                    <a id="docs-collapse-btn" class="navbar-btn" data-toggle="jpanel-menu" data-target="#docs-collapse">
+                        <span class="sr-only">Toggle docs menu</span>
+                        <i class="icon icon-angle-right"></i>
+                    </a>
+                </span>
+                
+                <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="hidden-xs logo" href="index.html">
+                    <img style="height:32px;width:102px;" src="static/picture/beego_purple.png">
+                </a>
+                <div class="visible-xs text-center">
+                    <a class="navbar-brand" href="index.html">
+                        Beego
+                    </a>
+                    
+                    <span class="nav-github">
+                        <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    </span>
+                    
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" role="navigation" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="quickstart.html">快速入门</a></li>
+                    <li><a href="community.html">开发者社区</a></li>
+                    <li class="active"><a href="index1.html">开发文档</a></li>
+                    <li><a href="video.html">视频教程</a></li>
+                    <li><a href="products.html">产品案例</a></li>
+                    <li><a href="blog.html">官方博客</a></li>
+                </ul>
+                <div class="hidden-sm hidden-xs nav-lang pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-xs btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="hidden-sm hidden-xs nav-github pull-right">
+                    <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    <span rel="show-github" data-user="astaxie" data-repo="beego" data-type="fork"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+			<div id="main">
+				
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-2 col-sm-3">
+            <div id="docs-collapse" class="collapse navbar-collapse docs-sidenav">
+                
+                    
+                    
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index1.html">beego 简介</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="contributing.html">为 beego 贡献</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="releases.html">发布版本</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="upgrade.html">升级指南</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index5.html">beego 安装升级</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="bee1.html">Bee 工具的使用</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index6.html">快速入门</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="new.html">新建项目</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="router1.html">路由设置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="controller.html">Controller 运行机制</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="model.html">model 逻辑</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="view1.html">view 编写</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="static.html">静态文件处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index7.html">beego 的 MVC 架构</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                controller 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="config.html">参数配置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="router.html">路由设置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="controller1.html">控制器函数</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="xsrf.html">XSRF 过滤</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="params.html">请求数据处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="session.html">session 控制</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="filter.html">过滤器</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="flash.html">flash 数据</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="urlbuilding.html">URL构建</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="jsonxml.html">多种格式数据输出</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="validation.html">表单数据验证</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="errors.html">错误处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="logs.html">日志处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                model 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="overview.html">概述</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="orm.html">ORM 使用</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="object.html">CRUD 操作</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class="active item" href="">高级查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="rawsql.html">原生 SQL 查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="querybuilder.html">构造查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="transaction.html">事务处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="models.html">模型定义</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="cmd.html">命令模式</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="test.html">测试用例</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="custom_fields.html">自定义字段</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="faq.html">FAQ</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                view 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="tutorial.html">模板语法指南</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="view.html">模板处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="template.html">模板函数</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="static1.html">静态文件处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="page.html">模板分页处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index4.html">beego 的模块设计</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="session1.html">session 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="grace.html">grace 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="cache.html">cache 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="logs1.html">logs 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="httplib.html">httplib 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="context.html">context 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="toolbox.html">toolbox 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="config1.html">config 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="i18n.html">i18n 模块</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index8.html">beego 高级编程</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="monitor.html">进程内监控</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="docs.html">API 自动化文档</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index9.html">应用部署</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="beego.html">独立部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="supervisor.html">supervisor 部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="nginx.html">Nginx 部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="apache.html">apache 部署</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index10.html">beego 第三方库</a>
+                            
+                            </div>
+                            
+    
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index3.html">应用例子</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="chat.html">在线聊天室</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="shorturl.html">短域名服务</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="todo.html">Todo 列表</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                beego实用库
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="captcha.html">验证码</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="page1.html">分页</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="index11.html">FAQ</a>
+                            
+                            </div>
+                            
+    
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+    
+
+                
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-9">
+            <div class="box">
+				<div>
+					<script>
+					  (function() {
+					    var cx = '014389342508982455625:6zv6mwcpcck';
+					    var gcse = document.createElement('script');
+					    gcse.type = 'text/javascript';
+					    gcse.async = true;
+					    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					        '//www.google.com/cse/cse.js?cx=' + cx;
+					    var s = document.getElementsByTagName('script')[0];
+					    s.parentNode.insertBefore(gcse, s);
+					  })();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+                <div class="cell slim page-box">
+                    <p>
+                        <a href="javascript:window.open('https://github.com/beego/beedoc/blob/master/zh-CN/mvc/model/query.md');" class="pull-right btn btn-info" target="_blank">到 GitHub 上改进本页面</a>
+                        <span class="clearfix"></span>
+                    </p>
+                    <div class="markdown docs-markdown">
+                        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="Blackfriday Markdown Processor v1.1">
+  <meta charset="utf-8">
+</head>
+<body>
+
+<h1>高级查询</h1>
+
+<p>ORM 以 <strong>QuerySeter</strong> 来组织查询，每个返回 <strong>QuerySeter</strong> 的方法都会获得一个新的 <strong>QuerySeter</strong> 对象。</p>
+
+<p>基本使用方法:</p>
+
+<pre lang="go"><code>o := orm.NewOrm()
+
+// 获取 QuerySeter 对象，user 为表名
+qs := o.QueryTable(&quot;user&quot;)
+
+// 也可以直接使用对象作为表名
+user := new(User)
+qs = o.QueryTable(user) // 返回 QuerySeter
+</code></pre>
+
+<h2>expr</h2>
+
+<p>QuerySeter 中用于描述字段和 sql 操作符，使用简单的 expr 查询方法</p>
+
+<p>字段组合的前后顺序依照表的关系，比如 User 表拥有 Profile 的外键，那么对 User 表查询对应的 Profile.Age 为条件，则使用 <code>Profile__Age</code> 注意，字段的分隔符号使用双下划线 <code>__</code>，除了描述字段， expr 的尾部可以增加操作符以执行对应的 sql 操作。比如 <code>Profile__Age__gt</code> 代表 Profile.Age &gt; 18 的条件查询。</p>
+
+<p>注释后面将描述对应的 sql 语句，仅仅是描述 expr 的类似结果，并不代表实际生成的语句。</p>
+
+<pre lang="go"><code>qs.Filter(&quot;id&quot;, 1) // WHERE id = 1
+qs.Filter(&quot;profile__age&quot;, 18) // WHERE profile.age = 18
+qs.Filter(&quot;Profile__Age&quot;, 18) // 使用字段名和 Field 名都是允许的
+qs.Filter(&quot;profile__age&quot;, 18) // WHERE profile.age = 18
+qs.Filter(&quot;profile__age__gt&quot;, 18) // WHERE profile.age &gt; 18
+qs.Filter(&quot;profile__age__gte&quot;, 18) // WHERE profile.age &gt;= 18
+qs.Filter(&quot;profile__age__in&quot;, 18, 20) // WHERE profile.age IN (18, 20)
+
+qs.Filter(&quot;profile__age__in&quot;, 18, 20).Exclude(&quot;profile__lt&quot;, 1000)
+// WHERE profile.age IN (18, 20) AND NOT profile_id &lt; 1000
+</code></pre>
+
+<h2>Operators</h2>
+
+<p>当前支持的操作符号：</p>
+
+<ul>
+<li><a href="#exact">exact</a> / <a href="#iexact">iexact</a> 等于<br></li>
+<li><a href="#contains">contains</a> / <a href="#icontains">icontains</a> 包含<br></li>
+<li><a href="#gt / gte">gt / gte</a> 大于 / 大于等于<br></li>
+<li><a href="#lt / lte">lt / lte</a> 小于 / 小于等于<br></li>
+<li><a href="#startswith">startswith</a> / <a href="#istartswith">istartswith</a> 以&hellip;起始<br></li>
+<li><a href="#endswith">endswith</a> / <a href="#iendswith">iendswith</a> 以&hellip;结束<br></li>
+<li><a href="#in">in</a><br></li>
+<li><a href="#isnull">isnull</a><br></li>
+</ul>
+
+<p>后面以 <code>i</code> 开头的表示：大小写不敏感</p>
+
+<h3>exact</h3>
+
+<p>Filter / Exclude / Condition expr 的默认值</p>
+
+<pre lang="go"><code>qs.Filter(&quot;name&quot;, &quot;slene&quot;) // WHERE name = 'slene'
+qs.Filter(&quot;name__exact&quot;, &quot;slene&quot;) // WHERE name = 'slene'
+// 使用 = 匹配，大小写是否敏感取决于数据表使用的 collation
+qs.Filter(&quot;profile_id&quot;, nil) // WHERE profile_id IS NULL
+</code></pre>
+
+<h3>iexact</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;name__iexact&quot;, &quot;slene&quot;)
+// WHERE name LIKE 'slene'
+// 大小写不敏感，匹配任意 'Slene' 'sLENE'
+</code></pre>
+
+<h3>contains</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;name__contains&quot;, &quot;slene&quot;)
+// WHERE name LIKE BINARY '%slene%'
+// 大小写敏感, 匹配包含 slene 的字符
+</code></pre>
+
+<h3>icontains</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;name__icontains&quot;, &quot;slene&quot;)
+// WHERE name LIKE '%slene%'
+// 大小写不敏感, 匹配任意 'im Slene', 'im sLENE'
+</code></pre>
+
+<h3>in</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;age__in&quot;, 17, 18, 19, 20)
+// WHERE age IN (17, 18, 19, 20)
+
+
+ids:=[]int{17,18,19,20}
+qs.Filter(&quot;age__in&quot;, ids)
+// WHERE age IN (17, 18, 19, 20)
+
+// 同上效果
+</code></pre>
+
+<h3>gt / gte</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;profile__age__gt&quot;, 17)
+// WHERE profile.age &gt; 17
+
+qs.Filter(&quot;profile__age__gte&quot;, 18)
+// WHERE profile.age &gt;= 18
+</code></pre>
+
+<h3>lt / lte</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;profile__age__lt&quot;, 17)
+// WHERE profile.age &lt; 17
+
+qs.Filter(&quot;profile__age__lte&quot;, 18)
+// WHERE profile.age &lt;= 18
+</code></pre>
+
+<h3>startswith</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;name__startswith&quot;, &quot;slene&quot;)
+// WHERE name LIKE BINARY 'slene%'
+// 大小写敏感, 匹配以 'slene' 起始的字符串
+</code></pre>
+
+<h3>istartswith</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;name__istartswith&quot;, &quot;slene&quot;)
+// WHERE name LIKE 'slene%'
+// 大小写不敏感, 匹配任意以 'slene', 'Slene' 起始的字符串
+</code></pre>
+
+<h3>endswith</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;name__endswith&quot;, &quot;slene&quot;)
+// WHERE name LIKE BINARY '%slene'
+// 大小写敏感, 匹配以 'slene' 结束的字符串
+</code></pre>
+
+<h3>iendswith</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;name__iendswithi&quot;, &quot;slene&quot;)
+// WHERE name LIKE '%slene'
+// 大小写不敏感, 匹配任意以 'slene', 'Slene' 结束的字符串
+</code></pre>
+
+<h3>isnull</h3>
+
+<pre lang="go"><code>qs.Filter(&quot;profile__isnull&quot;, true)
+qs.Filter(&quot;profile_id__isnull&quot;, true)
+// WHERE profile_id IS NULL
+
+qs.Filter(&quot;profile__isnull&quot;, false)
+// WHERE profile_id IS NOT NULL
+</code></pre>
+
+<h2>高级查询接口使用</h2>
+
+<p>QuerySeter 是高级查询使用的接口，我们来熟悉下他的接口方法</p>
+
+<ul>
+<li>type QuerySeter interface {<br>
+
+<ul>
+<li><a href="#filter">Filter(string, &hellip;interface{}) QuerySeter</a><br></li>
+<li><a href="#exclude">Exclude(string, &hellip;interface{}) QuerySeter</a><br></li>
+<li><a href="#setcond">SetCond(*Condition) QuerySeter</a><br></li>
+<li><a href="#limit">Limit(int, &hellip;int64) QuerySeter</a><br></li>
+<li><a href="#offset">Offset(int64) QuerySeter</a><br></li>
+<li><a href="#groupby">GroupBy(&hellip;string) QuerySeter</a><br></li>
+<li><a href="#orderby">OrderBy(&hellip;string) QuerySeter</a><br></li>
+<li><a href="#distinct">Distinct() QuerySeter</a><br></li>
+<li><a href="#relatedsel">RelatedSel(&hellip;interface{}) QuerySeter</a><br></li>
+<li><a href="#count">Count() (int64, error)</a><br></li>
+<li><a href="#exist">Exist() bool</a><br></li>
+<li><a href="#update">Update(Params) (int64, error)</a><br></li>
+<li><a href="#delete">Delete() (int64, error)</a><br></li>
+<li><a href="#prepareinsert">PrepareInsert() (Inserter, error)</a><br></li>
+<li><a href="#all">All(interface{}, &hellip;string) (int64, error)</a><br></li>
+<li><a href="#one">One(interface{}, &hellip;string) error</a><br></li>
+<li><a href="#values">Values(*[]Params, &hellip;string) (int64, error)</a><br></li>
+<li><a href="#valueslist">ValuesList(*[]ParamsList, &hellip;string) (int64, error)</a><br></li>
+<li><a href="#valuesflat">ValuesFlat(*ParamsList, string) (int64, error)</a><br></li>
+</ul></li>
+
+<li><p>}</p></li>
+
+<li><p>每个返回 QuerySeter 的 api 调用时都会新建一个 QuerySeter，不影响之前创建的。</p></li>
+
+<li><p>高级查询使用 Filter 和 Exclude 来做常用的条件查询。囊括两种清晰的过滤规则：包含， 排除</p></li>
+</ul>
+
+<h3>Filter</h3>
+
+<p>用来过滤查询结果，起到 <strong>包含条件</strong> 的作用</p>
+
+<p>多个 Filter 之间使用 <code>AND</code> 连接</p>
+
+<pre lang="go"><code>qs.Filter(&quot;profile__isnull&quot;, true).Filter(&quot;name&quot;, &quot;slene&quot;)
+// WHERE profile_id IS NULL AND name = 'slene'
+</code></pre>
+
+<h3>Exclude</h3>
+
+<p>用来过滤查询结果，起到 <strong>排除条件</strong> 的作用</p>
+
+<p>使用 <code>NOT</code> 排除条件</p>
+
+<p>多个 Exclude 之间使用 <code>AND</code> 连接</p>
+
+<pre lang="go"><code>qs.Exclude(&quot;profile__isnull&quot;, true).Filter(&quot;name&quot;, &quot;slene&quot;)
+// WHERE NOT profile_id IS NULL AND name = 'slene'
+</code></pre>
+
+<h3>SetCond</h3>
+
+<p>自定义条件表达式</p>
+
+<pre lang="go"><code>cond := orm.NewCondition()
+cond1 := cond.And(&quot;profile__isnull&quot;, false).AndNot(&quot;status__in&quot;, 1).Or(&quot;profile__age__gt&quot;, 2000)
+
+qs := orm.QueryTable(&quot;user&quot;)
+qs = qs.SetCond(cond1)
+// WHERE ... AND ... AND NOT ... OR ...
+
+cond2 := cond.AndCond(cond1).OrCond(cond.And(&quot;name&quot;, &quot;slene&quot;))
+qs = qs.SetCond(cond2).Count()
+// WHERE (... AND ... AND NOT ... OR ...) OR ( ... )
+</code></pre>
+
+<h3>Limit</h3>
+
+<p>限制最大返回数据行数，第二个参数可以设置 <code>Offset</code></p>
+
+<pre lang="go"><code>var DefaultRowsLimit = 1000 // ORM 默认的 limit 值为 1000
+
+// 默认情况下 select 查询的最大行数为 1000
+// LIMIT 1000
+
+qs.Limit(10)
+// LIMIT 10
+
+qs.Limit(10, 20)
+// LIMIT 10 OFFSET 20 注意跟 SQL 反过来的
+
+qs.Limit(-1)
+// no limit
+
+qs.Limit(-1, 100)
+// LIMIT 18446744073709551615 OFFSET 100
+// 18446744073709551615 是 1&lt;&lt;64 - 1 用来指定无 limit 限制 但有 offset 偏移的情况
+</code></pre>
+
+<h3>Offset</h3>
+
+<p>设置 偏移行数</p>
+
+<pre lang="go"><code>qs.Offset(20)
+// LIMIT 1000 OFFSET 20
+</code></pre>
+
+<h3>GroupBy</h3>
+
+<pre lang="go"><code>qs.GroupBy(&quot;id&quot;, &quot;age&quot;)
+// GROUP BY id,age
+</code></pre>
+
+<h3>OrderBy</h3>
+
+<p>参数使用 <strong>expr</strong></p>
+
+<p>在 expr 前使用减号 <code>-</code> 表示 <code>DESC</code> 的排列</p>
+
+<pre lang="go"><code>qs.OrderBy(&quot;id&quot;, &quot;-profile__age&quot;)
+// ORDER BY id ASC, profile.age DESC
+
+qs.OrderBy(&quot;-profile__age&quot;, &quot;profile&quot;)
+// ORDER BY profile.age DESC, profile_id ASC
+</code></pre>
+
+<h3>Distinct</h3>
+
+<p>对应 sql 的 <code>distinct</code> 语句, 返回不重复的值.</p>
+
+<pre lang="go"><code>qs.Distinct()
+// SELECT DISTINCT
+</code></pre>
+
+<h3>RelatedSel</h3>
+
+<p>关系查询，参数使用 <strong>expr</strong></p>
+
+<pre lang="go"><code>var DefaultRelsDepth = 5 // 默认情况下直接调用 RelatedSel 将进行最大 5 层的关系查询
+
+qs := o.QueryTable(&quot;post&quot;)
+
+qs.RelatedSel()
+// INNER JOIN user ... LEFT OUTER JOIN profile ...
+
+qs.RelatedSel(&quot;user&quot;)
+// INNER JOIN user ...
+// 设置 expr 只对设置的字段进行关系查询
+
+// 对设置 null 属性的 Field 将使用 LEFT OUTER JOIN
+</code></pre>
+
+<h3>Count</h3>
+
+<p>依据当前的查询条件，返回结果行数</p>
+
+<pre lang="go"><code>cnt, err := o.QueryTable(&quot;user&quot;).Count() // SELECT COUNT(*) FROM USER
+fmt.Printf(&quot;Count Num: %s, %s&quot;, cnt, err)
+</code></pre>
+
+<h3>Exist</h3>
+
+<pre lang="go"><code>exist := o.QueryTable(&quot;user&quot;).Filter(&quot;UserName&quot;, &quot;Name&quot;).Exist()
+fmt.Printf(&quot;Is Exist: %s&quot;, exist)
+</code></pre>
+
+<h3>Update</h3>
+
+<p>依据当前查询条件，进行批量更新操作</p>
+
+<pre lang="go"><code>num, err := o.QueryTable(&quot;user&quot;).Filter(&quot;name&quot;, &quot;slene&quot;).Update(orm.Params{
+    &quot;name&quot;: &quot;astaxie&quot;,
+})
+fmt.Printf(&quot;Affected Num: %s, %s&quot;, num, err)
+// SET name = &quot;astaixe&quot; WHERE name = &quot;slene&quot;
+</code></pre>
+
+<p>原子操作增加字段值</p>
+
+<pre lang="go"><code>// 假设 user struct 里有一个 nums int 字段
+num, err := o.QueryTable(&quot;user&quot;).Update(orm.Params{
+    &quot;nums&quot;: orm.ColValue(orm.ColAdd, 100),
+})
+// SET nums = nums + 100
+</code></pre>
+
+<p>orm.ColValue 支持以下操作</p>
+
+<pre lang="go"><code>ColAdd      // 加
+ColMinus    // 减
+ColMultiply // 乘
+ColExcept   // 除
+</code></pre>
+
+<h3>Delete</h3>
+
+<p>依据当前查询条件，进行批量删除操作</p>
+
+<pre lang="go"><code>num, err := o.QueryTable(&quot;user&quot;).Filter(&quot;name&quot;, &quot;slene&quot;).Delete()
+fmt.Printf(&quot;Affected Num: %s, %s&quot;, num, err)
+// DELETE FROM user WHERE name = &quot;slene&quot;
+</code></pre>
+
+<h3>PrepareInsert</h3>
+
+<p>用于一次 prepare 多次 insert 插入，以提高批量插入的速度。</p>
+
+<pre lang="go"><code>var users []*User
+...
+qs := o.QueryTable(&quot;user&quot;)
+i, _ := qs.PrepareInsert()
+for _, user := range users {
+    id, err := i.Insert(user)
+    if err == nil {
+        ...
+    }
+}
+// PREPARE INSERT INTO user (`name`, ...) VALUES (?, ...)
+// EXECUTE INSERT INTO user (`name`, ...) VALUES (&quot;slene&quot;, ...)
+// EXECUTE ...
+// ...
+i.Close() // 别忘记关闭 statement
+</code></pre>
+
+<h3>All</h3>
+
+<p>返回对应的结果集对象</p>
+
+<p>All 的参数支持 *[]Type 和 *[]*Type 两种形式的 slice</p>
+
+<pre lang="go"><code>var users []*User
+num, err := o.QueryTable(&quot;user&quot;).Filter(&quot;name&quot;, &quot;slene&quot;).All(&amp;users)
+fmt.Printf(&quot;Returned Rows Num: %s, %s&quot;, num, err)
+</code></pre>
+
+<p>All / Values / ValuesList / ValuesFlat 受到 <a href="#limit">Limit</a> 的限制，默认最大行数为 1000</p>
+
+<p>可以指定返回的字段：</p>
+
+<pre lang="go"><code>type Post struct {
+    Id      int
+    Title   string
+    Content string
+    Status  int
+}
+
+// 只返回 Id 和 Title
+var posts []Post
+o.QueryTable(&quot;post&quot;).Filter(&quot;Status&quot;, 1).All(&amp;posts, &quot;Id&quot;, &quot;Title&quot;)
+</code></pre>
+
+<p>对象的其他字段值将会是对应类型的默认值</p>
+
+<h3>One</h3>
+
+<p>尝试返回单条记录</p>
+
+<pre lang="go"><code>var user User
+err := o.QueryTable(&quot;user&quot;).Filter(&quot;name&quot;, &quot;slene&quot;).One(&amp;user)
+if err == orm.ErrMultiRows {
+    // 多条的时候报错
+    fmt.Printf(&quot;Returned Multi Rows Not One&quot;)
+}
+if err == orm.ErrNoRows {
+    // 没有找到记录
+    fmt.Printf(&quot;Not row found&quot;)
+}
+</code></pre>
+
+<p>可以指定返回的字段：</p>
+
+<pre lang="go"><code>// 只返回 Id 和 Title
+var post Post
+o.QueryTable(&quot;post&quot;).Filter(&quot;Content__istartswith&quot;, &quot;prefix string&quot;).One(&amp;post, &quot;Id&quot;, &quot;Title&quot;)
+</code></pre>
+
+<p>对象的其他字段值将会是对应类型的默认值</p>
+
+<h3>Values</h3>
+
+<p>返回结果集的 key =&gt; value 值</p>
+
+<p>key 为Model里的Field name, value的值是interface{}类型,例如，如果你要将value赋值给struct中的某字段，需要根据结构体对应字段类型使用<a href="javascript:window.open('https://golang.org/ref/spec#Type_assertions');">断言</a>获取真实值。举例:<code>Name : m[&quot;Name&quot;].(string)</code></p>
+
+<pre lang="go"><code>var maps []orm.Params
+num, err := o.QueryTable(&quot;user&quot;).Values(&amp;maps)
+if err == nil {
+    fmt.Printf(&quot;Result Nums: %d\n&quot;, num)
+    for _, m := range maps {
+        fmt.Println(m[&quot;Id&quot;], m[&quot;Name&quot;])
+    }
+}
+</code></pre>
+
+<p>返回指定的 Field 数据</p>
+
+<p><strong>TODO</strong>: 暂不支持级联查询 <strong>RelatedSel</strong> 直接返回 Values</p>
+
+<p>但可以直接指定 expr 级联返回需要的数据</p>
+
+<pre lang="go"><code>var maps []orm.Params
+num, err := o.QueryTable(&quot;user&quot;).Values(&amp;maps, &quot;id&quot;, &quot;name&quot;, &quot;profile&quot;, &quot;profile__age&quot;)
+if err == nil {
+    fmt.Printf(&quot;Result Nums: %d\n&quot;, num)
+    for _, m := range maps {
+        fmt.Println(m[&quot;Id&quot;], m[&quot;Name&quot;], m[&quot;Profile&quot;], m[&quot;Profile__Age&quot;])
+        // map 中的数据都是展开的，没有复杂的嵌套
+    }
+}
+</code></pre>
+
+<h3>ValuesList</h3>
+
+<p>顾名思义，返回的结果集以slice存储</p>
+
+<p>结果的排列与 Model 中定义的 Field 顺序一致</p>
+
+<p>返回的每个元素值以 string 保存</p>
+
+<pre lang="go"><code>var lists []orm.ParamsList
+num, err := o.QueryTable(&quot;user&quot;).ValuesList(&amp;lists)
+if err == nil {
+    fmt.Printf(&quot;Result Nums: %d\n&quot;, num)
+    for _, row := range lists {
+        fmt.Println(row)
+    }
+}
+</code></pre>
+
+<p>当然也可以指定 expr 返回指定的 Field</p>
+
+<pre lang="go"><code>var lists []orm.ParamsList
+num, err := o.QueryTable(&quot;user&quot;).ValuesList(&amp;lists, &quot;name&quot;, &quot;profile__age&quot;)
+if err == nil {
+    fmt.Printf(&quot;Result Nums: %d\n&quot;, num)
+    for _, row := range lists {
+        fmt.Printf(&quot;Name: %s, Age: %s\m&quot;, row[0], row[1])
+    }
+}
+</code></pre>
+
+<h3>ValuesFlat</h3>
+
+<p>只返回特定的 Field 值，将结果集展开到单个 slice 里</p>
+
+<pre lang="go"><code>var list orm.ParamsList
+num, err := o.QueryTable(&quot;user&quot;).ValuesFlat(&amp;list, &quot;name&quot;)
+if err == nil {
+    fmt.Printf(&quot;Result Nums: %d\n&quot;, num)
+    fmt.Printf(&quot;All User Names: %s&quot;, strings.Join(list, &quot;, &quot;))
+}
+</code></pre>
+
+<h2>关系查询</h2>
+
+<p>以例子里的<a href="orm.html">模型定义</a>来看下怎么进行关系查询</p>
+
+<h4>User 和 Profile 是 OneToOne 的关系</h4>
+
+<p>已经取得了 User 对象，查询 Profile：</p>
+
+<pre lang="go"><code>user := &amp;User{Id: 1}
+o.Read(user)
+if user.Profile != nil {
+    o.Read(user.Profile)
+}
+</code></pre>
+
+<p>直接关联查询：</p>
+
+<pre lang="go"><code>user := &amp;User{}
+o.QueryTable(&quot;user&quot;).Filter(&quot;Id&quot;, 1).RelatedSel().One(user)
+// 自动查询到 Profile
+fmt.Println(user.Profile)
+// 因为在 Profile 里定义了反向关系的 User，所以 Profile 里的 User 也是自动赋值过的，可以直接取用。
+fmt.Println(user.Profile.User)
+
+// [SELECT T0.`id`, T0.`name`, T0.`profile_id`, T1.`id`, T1.`age` FROM `user` T0 INNER JOIN `profile` T1 ON T1.`id` = T0.`profile_id` WHERE T0.`id` = ? LIMIT 1000] - `1`
+</code></pre>
+
+<p>通过 User 反向查询 Profile：</p>
+
+<pre lang="go"><code>var profile Profile
+err := o.QueryTable(&quot;profile&quot;).Filter(&quot;User__Id&quot;, 1).One(&amp;profile)
+if err == nil {
+    fmt.Println(profile)
+}
+</code></pre>
+
+<h4>Post 和 User 是 ManyToOne 关系，也就是 ForeignKey 为 User</h4>
+
+<pre lang="go"><code>type Post struct {
+    Id    int
+    Title string
+    User  *User  `orm:&quot;rel(fk)&quot;`
+    Tags  []*Tag `orm:&quot;rel(m2m)&quot;`
+}
+</code></pre>
+
+<pre lang="go"><code>var posts []*Post
+num, err := o.QueryTable(&quot;post&quot;).Filter(&quot;User&quot;, 1).RelatedSel().All(&amp;posts)
+if err == nil {
+    fmt.Printf(&quot;%d posts read\n&quot;, num)
+    for _, post := range posts {
+        fmt.Printf(&quot;Id: %d, UserName: %d, Title: %s\n&quot;, post.Id, post.User.UserName, post.Title)
+    }
+}
+// [SELECT T0.`id`, T0.`title`, T0.`user_id`, T1.`id`, T1.`name`, T1.`profile_id`, T2.`id`, T2.`age` FROM `post` T0 INNER JOIN `user` T1 ON T1.`id` = T0.`user_id` INNER JOIN `profile` T2 ON T2.`id` = T1.`profile_id` WHERE T0.`user_id` = ? LIMIT 1000] - `1`
+</code></pre>
+
+<p>根据 Post.Title 查询对应的 User：</p>
+
+<p>RegisterModel 时，ORM 也会自动建立 User 中 Post 的反向关系，所以可以直接进行查询</p>
+
+<pre lang="go"><code>var user User
+err := o.QueryTable(&quot;user&quot;).Filter(&quot;Post__Title&quot;, &quot;The Title&quot;).Limit(1).One(&amp;user)
+if err == nil {
+    fmt.Printf(user)
+}
+</code></pre>
+
+<h4>Post 和 Tag 是 ManyToMany 关系</h4>
+
+<p>设置 rel(m2m) 以后，ORM 会自动创建中间表</p>
+
+<pre lang="go"><code>type Post struct {
+    Id    int
+    Title string
+    User  *User  `orm:&quot;rel(fk)&quot;`
+    Tags  []*Tag `orm:&quot;rel(m2m)&quot;`
+}
+</code></pre>
+
+<pre lang="go"><code>type Tag struct {
+    Id    int
+    Name  string
+    Posts []*Post `orm:&quot;reverse(many)&quot;`
+}
+</code></pre>
+
+<p>一条 Post 纪录可能对应不同的 Tag 纪录,一条 Tag 纪录可能对应不同的 Post 纪录，所以 Post 和 Tag 属于多对多关系,通过 tag name 查询哪些 post 使用了这个 tag</p>
+
+<pre lang="go"><code>var posts []*Post
+num, err := dORM.QueryTable(&quot;post&quot;).Filter(&quot;Tags__Tag__Name&quot;, &quot;golang&quot;).All(&amp;posts)
+</code></pre>
+
+<p>通过 post title 查询这个 post 有哪些 tag</p>
+
+<pre lang="go"><code>var tags []*Tag
+num, err := dORM.QueryTable(&quot;tag&quot;).Filter(&quot;Posts__Post__Title&quot;, &quot;Introduce Beego ORM&quot;).All(&amp;tags)
+</code></pre>
+
+<h2>载入关系字段</h2>
+
+<p>LoadRelated 用于载入模型的关系字段，包括所有的 rel/reverse - one/many 关系</p>
+
+<p>ManyToMany 关系字段载入</p>
+
+<pre lang="go"><code>// 载入相应的 Tags
+post := Post{Id: 1}
+err := o.Read(&amp;post)
+num, err := o.LoadRelated(&amp;post, &quot;Tags&quot;)
+</code></pre>
+
+<pre lang="go"><code>// 载入相应的 Posts
+tag := Tag{Id: 1}
+err := o.Read(&amp;tag)
+num, err := o.LoadRelated(&amp;tag, &quot;Posts&quot;)
+</code></pre>
+
+<p>User 是 Post 的 ForeignKey，对应的 ReverseMany 关系字段载入</p>
+
+<pre lang="go"><code>type User struct {
+    Id    int
+    Name  string
+    Posts []*Post `orm:&quot;reverse(many)&quot;`
+}
+
+user := User{Id: 1}
+err := dORM.Read(&amp;user)
+num, err := dORM.LoadRelated(&amp;user, &quot;Posts&quot;)
+for _, post := range user.Posts {
+    //...
+}
+</code></pre>
+
+<h2>多对多关系操作</h2>
+
+<ul>
+<li>type QueryM2Mer interface {<br>
+
+<ul>
+<li><a href="#querym2mer-add">Add(&hellip;interface{}) (int64, error)</a><br></li>
+<li><a href="#querym2mer-remove">Remove(&hellip;interface{}) (int64, error)</a><br></li>
+<li><a href="#querym2mer-exist">Exist(interface{}) bool</a><br></li>
+<li><a href="#querym2mer-clear">Clear() (int64, error)</a><br></li>
+<li><a href="#querym2mer-count">Count() (int64, error)</a><br></li>
+</ul></li>
+<li>}<br></li>
+</ul>
+
+<p>创建一个 QueryM2Mer 对象</p>
+
+<pre lang="go"><code>o := orm.NewOrm()
+post := Post{Id: 1}
+m2m := o.QueryM2M(&amp;post, &quot;Tags&quot;)
+// 第一个参数的对象，主键必须有值
+// 第二个参数为对象需要操作的 M2M 字段
+// QueryM2Mer 的 api 将作用于 Id 为 1 的 Post
+</code></pre>
+
+<h3>QueryM2Mer Add</h3>
+
+<pre lang="go"><code>tag := &amp;Tag{Name: &quot;golang&quot;}
+o.Insert(tag)
+
+num, err := m2m.Add(tag)
+if err == nil {
+    fmt.Println(&quot;Added nums: &quot;, num)
+}
+</code></pre>
+
+<p>Add 支持多种类型 Tag *Tag []*Tag []Tag []interface{}</p>
+
+<pre lang="go"><code>var tags []*Tag
+...
+// 读取 tags 以后
+...
+num, err := m2m.Add(tags)
+if err == nil {
+    fmt.Println(&quot;Added nums: &quot;, num)
+}
+// 也可以多个作为参数传入
+// m2m.Add(tag1, tag2, tag3)
+</code></pre>
+
+<h3>QueryM2Mer Remove</h3>
+
+<p>从M2M关系中删除 tag</p>
+
+<p>Remove 支持多种类型 Tag *Tag []*Tag []Tag []interface{}</p>
+
+<pre lang="go"><code>var tags []*Tag
+...
+// 读取 tags 以后
+...
+num, err := m2m.Remove(tags)
+if err == nil {
+    fmt.Println(&quot;Removed nums: &quot;, num)
+}
+// 也可以多个作为参数传入
+// m2m.Remove(tag1, tag2, tag3)
+</code></pre>
+
+<h3>QueryM2Mer Exist</h3>
+
+<p>判断 Tag 是否存在于 M2M 关系中</p>
+
+<pre lang="go"><code>if m2m.Exist(&amp;Tag{Id: 2}) {
+    fmt.Println(&quot;Tag Exist&quot;)
+}
+</code></pre>
+
+<h3>QueryM2Mer Clear</h3>
+
+<p>清除所有 M2M 关系</p>
+
+<pre lang="go"><code>nums, err := m2m.Clear()
+if err == nil {
+    fmt.Println(&quot;Removed Tag Nums: &quot;, nums)
+}
+</code></pre>
+
+<h3>QueryM2Mer Count</h3>
+
+<p>计算 Tag 的数量</p>
+
+<pre lang="go"><code>nums, err := m2m.Count()
+if err == nil {
+    fmt.Println(&quot;Total Nums: &quot;, nums)
+}
+</code></pre>
+
+</body>
+</html>
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var disqus_url = 'http://beego.me/docs/' + 'mvc\/model\/query.md?lang=zh-CN';
+            </script>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+     
+    var disqus_shortname = 'beego'; 
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="javascript:window.open('http://disqus.com/?ref_noscript');">comments powered by Disqus.</a></noscript>
+<a href="javascript:window.open('http://disqus.com/');" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+</div>
+
+		    </div>
+		    <div class="wrapper-push"></div>
+		</div>
+		<footer id="footer">
+    <div class="container">
+        <div class="row footer-wrap">
+            <div class="col-md-12 desc">
+                <div class="pull-right">
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                        <a class="btn btn-success" href="donate.html"><i class="icon-dollar"></i> 捐赠我们</a>
+                    
+                    
+                </div>
+                
+                <p>
+                    <a href="about.html"><strong>关于</strong></a>
+                    |
+                    <a href="team.html"><strong>团队</strong></a>
+                    |
+                    <a target="_blank" href="javascript:window.open('https://github.com/astaxie/beego');" target="_blank"><strong><i class="icon-github-sign"></i> Github</strong></a>
+                    - 22ms.
+                </p>
+
+                <p>
+                    版权所有 © 2012-2014 Beego 授权许可遵循 <a href="javascript:window.open('http://www.apache.org/licenses/LICENSE-2.0.html');">apache 2.0 licence</a> Logo由 <a target="_blank" href="javascript:window.open('http://mdong.org/');">Tengfei</a> 设计
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39123845-1', 'beego.me');
+  ga('send', 'pageview');
+
+</script>
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<script type="text/javascript" src="static/js/jquery.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jquery.extend-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/bootstrap-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/lib.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/prettify-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jStorage-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jquery.jpanelmenu.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jRespond.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/jquery.clingify.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/imagesloaded.pkgd.min-1409586500.js"></script>
+	<script type="text/javascript" src="static/js/masonry.pkgd.min-1409586500.js"></script>
+	<script>/* end */</script>
+<script>/* Beego Compress group `app` begin */</script>
+	<script type="text/javascript" src="static/js/main-1409586500.js"></script>
+	<script>/* end */</script>
+	</body>
+</html>
+
+
+

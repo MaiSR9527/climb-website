@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<title>EnableWebSecurity (spring-security-docs-manual 5.3.4.RELEASE API)</title>
+<link rel="stylesheet" type="text/css" href="static/css/stylesheet1.css" title="Style">
+<script type="text/javascript" src="static/js/script.js"></script>
+</head>
+<body>
+<script type="text/javascript">try{if(location.href.indexOf('is-external=true')==-1){parent.document.title="EnableWebSecurity (spring-security-docs-manual 5.3.4.RELEASE API)";}}catch(err){}</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+
+<div class="topNav"><a name="navbar.top">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.top.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="overview-summary3.html">Overview</a></li>
+<li><a href="package-summary4.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="package-tree4.html">Tree</a></li>
+<li><a href="deprecated-list3.html">Deprecated</a></li>
+<li><a href="index-all1.html">Index</a></li>
+<li><a href="help-doc3.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li>Prev&nbsp;Class</li>
+<li><a href="WebSecurityConfiguration.html" title="class in org.springframework.security.config.annotation.web.configuration"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/index.html?org/springframework/security/config/annotation/web/configuration/EnableWebSecurity.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="allclasses-noframe3.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_top");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Required&nbsp;|&nbsp;</li>
+<li><a href="#annotation.type.optional.element.summary">Optional</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#annotation.type.element.detail">Element</a></li>
+</ul>
+</div>
+<a name="skip.navbar.top">
+
+</a></div>
+
+
+<div class="header">
+<div class="subTitle">org.springframework.security.config.annotation.web.configuration</div>
+<h2 title="Annotation Type EnableWebSecurity" class="title">Annotation Type EnableWebSecurity</h2>
+</div>
+<div class="contentContainer">
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<hr>
+<br>
+<pre>@Retention(value=RUNTIME)
+ @Target(value=TYPE)
+ @Documented
+ @Import(value={<a href="WebSecurityConfiguration.html" title="class in org.springframework.security.config.annotation.web.configuration">WebSecurityConfiguration.class</a>,org.springframework.security.config.annotation.web.configuration.SpringWebMvcImportSelector.class,org.springframework.security.config.annotation.web.configuration.OAuth2ImportSelector.class})
+ <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/authentication/configuration/EnableGlobalAuthentication.html');" title="annotation in org.springframework.security.config.annotation.authentication.configuration">@EnableGlobalAuthentication</a>
+ @Configuration
+public @interface <span class="memberNameLabel">EnableWebSecurity</span></pre>
+<div class="block">Add this annotation to an <code>@Configuration</code> class to have the Spring Security
+configuration defined in any <a href="WebSecurityConfigurer.html" title="interface in org.springframework.security.config.annotation.web"><code>WebSecurityConfigurer</code></a> or more likely by extending
+the <a href="WebSecurityConfigurerAdapter.html" title="class in org.springframework.security.config.annotation.web.configuration"><code>WebSecurityConfigurerAdapter</code></a> base class and overriding individual methods:
+<pre class="code"> &#064;Configuration
+ &#064;EnableWebSecurity
+ public class MyWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+        &#064;Override
+        public void configure(WebSecurity web) throws Exception {
+                web.ignoring()
+                // Spring Security should completely ignore URLs starting with /resources/
+                                .antMatchers(&quot;/resources/**&quot;);
+        }
+
+        &#064;Override
+        protected void configure(HttpSecurity http) throws Exception {
+                http.authorizeRequests().antMatchers(&quot;/public/**&quot;).permitAll().anyRequest()
+                                .hasRole(&quot;USER&quot;).and()
+                                // Possibly more configuration ...
+                                .formLogin() // enable form based log in
+                                // set permitAll for all URLs associated with Form Login
+                                .permitAll();
+        }
+
+        &#064;Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+                auth
+                // enable in memory based authentication with a user named &quot;user&quot; and &quot;admin&quot;
+                .inMemoryAuthentication().withUser(&quot;user&quot;).password(&quot;password&quot;).roles(&quot;USER&quot;)
+                                .and().withUser(&quot;admin&quot;).password(&quot;password&quot;).roles(&quot;USER&quot;, &quot;ADMIN&quot;);
+        }
+
+        // Possibly more overridden methods ...
+ }
+ </pre></div>
+<dl>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>3.2</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="WebSecurityConfigurer.html" title="interface in org.springframework.security.config.annotation.web"><code>WebSecurityConfigurer</code></a>,
+<a href="WebSecurityConfigurerAdapter.html" title="class in org.springframework.security.config.annotation.web.configuration"><code>WebSecurityConfigurerAdapter</code></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="annotation.type.optional.element.summary">
+
+</a>
+<h3>Optional Element Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Optional Element Summary table, listing optional elements, and an explanation">
+<caption><span>Optional Elements</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Optional Element and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#debug--">debug</a></span></code>
+<div class="block">Controls debugging support for Spring Security.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="annotation.type.element.detail">
+
+</a>
+<h3>Element Detail</h3>
+<a name="debug--">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>debug</h4>
+<pre>public abstract&nbsp;boolean&nbsp;debug</pre>
+<div class="block">Controls debugging support for Spring Security. Default is false.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>if true, enables debug support with Spring Security</dd>
+</dl>
+<dl>
+<dt>Default:</dt>
+<dd>false</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div class="bottomNav"><a name="navbar.bottom">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.bottom.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="overview-summary3.html">Overview</a></li>
+<li><a href="package-summary4.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="package-tree4.html">Tree</a></li>
+<li><a href="deprecated-list3.html">Deprecated</a></li>
+<li><a href="index-all1.html">Index</a></li>
+<li><a href="help-doc3.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li>Prev&nbsp;Class</li>
+<li><a href="WebSecurityConfiguration.html" title="class in org.springframework.security.config.annotation.web.configuration"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/index.html?org/springframework/security/config/annotation/web/configuration/EnableWebSecurity.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="allclasses-noframe3.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_bottom");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Required&nbsp;|&nbsp;</li>
+<li><a href="#annotation.type.optional.element.summary">Optional</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#annotation.type.element.detail">Element</a></li>
+</ul>
+</div>
+<a name="skip.navbar.bottom">
+
+</a></div>
+
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

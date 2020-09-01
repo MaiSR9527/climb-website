@@ -1,0 +1,1239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+
+<title>Overview (spring-security-docs-manual 5.3.4.RELEASE API)</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="Style">
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<script type="text/javascript">try{if(location.href.indexOf('is-external=true')==-1){parent.document.title="Overview (spring-security-docs-manual 5.3.4.RELEASE API)";}}catch(err){}</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+
+<div class="topNav"><a name="navbar.top">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.top.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li class="navBarCell1Rev">Overview</li>
+<li>Package</li>
+<li>Class</li>
+<li><a href="overview-tree.html">Tree</a></li>
+<li><a href="deprecated-list.html">Deprecated</a></li>
+<li><a href="index-all.html">Index</a></li>
+<li><a href="help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li>Prev</li>
+<li>Next</li>
+</ul>
+<ul class="navList">
+<li><a href="index.html?overview-summary.html" target="_top">Frames</a></li>
+<li><a href="overview-summary.html" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_top");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<a name="skip.navbar.top">
+
+</a></div>
+
+<div class="header">
+<h1 class="title">spring-security-docs-manual 5.3.4.RELEASE API</h1>
+</div>
+<div class="contentContainer">
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Packages table, listing packages, and an explanation">
+<caption><span>Packages</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Package</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/access/package-summary.html">org.springframework.security.access</a></td>
+<td class="colLast">
+<div class="block">Core access-control related code, including security metadata related classes, interception code, access control
+annotations, EL support and voter-based implementations of the central
+<a href="org/springframework/security/access/AccessDecisionManager.html" title="interface in org.springframework.security.access"><code>AccessDecisionManager</code></a> interface.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/access/annotation/package-summary.html">org.springframework.security.access.annotation</a></td>
+<td class="colLast">
+<div class="block">Support for JSR-250 and Spring Security <code>@Secured</code> annotations.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/access/event/package-summary.html">org.springframework.security.access.event</a></td>
+<td class="colLast">
+<div class="block">Authorization event and listener classes.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/access/expression/package-summary.html">org.springframework.security.access.expression</a></td>
+<td class="colLast">
+<div class="block">Expression handling code to support the use of Spring-EL based expressions in <code>@PreAuthorize</code>, <code>@PreFilter</code>,
+<code>@PostAuthorize</code> and <code>@PostFilter</code> annotations.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/access/expression/method/package-summary.html">org.springframework.security.access.expression.method</a></td>
+<td class="colLast">
+<div class="block">Implementation of expression-based method security.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/access/hierarchicalroles/package-summary.html">org.springframework.security.access.hierarchicalroles</a></td>
+<td class="colLast">
+<div class="block">Role hierarchy implementation.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/access/intercept/package-summary.html">org.springframework.security.access.intercept</a></td>
+<td class="colLast">
+<div class="block">Abstract level security interception classes which are responsible for enforcing the
+configured security constraints for a secure object.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/access/intercept/aopalliance/package-summary.html">org.springframework.security.access.intercept.aopalliance</a></td>
+<td class="colLast">
+<div class="block">Enforces security for AOP Alliance <code>MethodInvocation</code>s, such as via Spring AOP.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/access/intercept/aspectj/package-summary.html">org.springframework.security.access.intercept.aspectj</a></td>
+<td class="colLast">
+<div class="block">Enforces security for AspectJ <code>JointPoint</code>s, delegating secure object callbacks to the calling aspect.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/access/method/package-summary.html">org.springframework.security.access.method</a></td>
+<td class="colLast">
+<div class="block">Provides <code>SecurityMetadataSource</code> implementations for securing Java method invocations via different
+AOP libraries.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/access/prepost/package-summary.html">org.springframework.security.access.prepost</a></td>
+<td class="colLast">
+<div class="block">Contains the infrastructure classes for handling the <code>@PreAuthorize</code>, <code>@PreFilter</code>, <code>@PostAuthorize</code>
+and <code>@PostFilter</code> annotations.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/access/vote/package-summary.html">org.springframework.security.access.vote</a></td>
+<td class="colLast">
+<div class="block">Implements a vote-based approach to authorization decisions.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/acls/package-summary.html">org.springframework.security.acls</a></td>
+<td class="colLast">
+<div class="block">The Spring Security ACL package which implements instance-based security for domain objects.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/acls/afterinvocation/package-summary.html">org.springframework.security.acls.afterinvocation</a></td>
+<td class="colLast">
+<div class="block">After-invocation providers for collection and array filtering.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/acls/domain/package-summary.html">org.springframework.security.acls.domain</a></td>
+<td class="colLast">
+<div class="block">Basic implementation of access control lists (ACLs) interfaces.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/acls/jdbc/package-summary.html">org.springframework.security.acls.jdbc</a></td>
+<td class="colLast">
+<div class="block">JDBC-based persistence of ACL information</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/acls/model/package-summary.html">org.springframework.security.acls.model</a></td>
+<td class="colLast">
+<div class="block">Interfaces and shared classes to manage access control lists (ACLs) for domain object instances.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/authentication/package-summary.html">org.springframework.security.authentication</a></td>
+<td class="colLast">
+<div class="block">Core classes and interfaces related to user authentication, which are used throughout Spring Security.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/authentication/dao/package-summary.html">org.springframework.security.authentication.dao</a></td>
+<td class="colLast">
+<div class="block">An <code>AuthenticationProvider</code> which relies upon a data access object.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/authentication/event/package-summary.html">org.springframework.security.authentication.event</a></td>
+<td class="colLast">
+<div class="block">Authentication success and failure events which can be published to the Spring application context.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/authentication/jaas/package-summary.html">org.springframework.security.authentication.jaas</a></td>
+<td class="colLast">
+<div class="block">An authentication provider for JAAS.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/authentication/jaas/event/package-summary.html">org.springframework.security.authentication.jaas.event</a></td>
+<td class="colLast">
+<div class="block">JAAS authentication events which can be published to the Spring application context by the JAAS authentication
+provider.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/authentication/jaas/memory/package-summary.html">org.springframework.security.authentication.jaas.memory</a></td>
+<td class="colLast">
+<div class="block">An in memory JAAS implementation.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/authentication/rcp/package-summary.html">org.springframework.security.authentication.rcp</a></td>
+<td class="colLast">
+<div class="block">Allows remote clients to authenticate and obtain a populated <code>Authentication</code> object.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/authorization/package-summary.html">org.springframework.security.authorization</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/cas/package-summary.html">org.springframework.security.cas</a></td>
+<td class="colLast">
+<div class="block">Spring Security support for Jasig's Central Authentication Service (<a href="https://www.jasig.org/cas">CAS</a>).</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/cas/authentication/package-summary.html">org.springframework.security.cas.authentication</a></td>
+<td class="colLast">
+<div class="block">An <code>AuthenticationProvider</code> that can process CAS service tickets and proxy tickets.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/cas/jackson2/package-summary.html">org.springframework.security.cas.jackson2</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/cas/userdetails/package-summary.html">org.springframework.security.cas.userdetails</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/cas/web/package-summary.html">org.springframework.security.cas.web</a></td>
+<td class="colLast">
+<div class="block">Authenticates standard web browser users via CAS.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/cas/web/authentication/package-summary.html">org.springframework.security.cas.web.authentication</a></td>
+<td class="colLast">
+<div class="block">Authentication processing mechanisms which respond to the submission of authentication
+credentials using CAS.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/concurrent/package-summary.html">org.springframework.security.concurrent</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/package-summary.html">org.springframework.security.config</a></td>
+<td class="colLast">
+<div class="block">Support classes for the Spring Security namespace.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/package-summary.html">org.springframework.security.config.annotation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/authentication/package-summary.html">org.springframework.security.config.annotation.authentication</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/authentication/builders/package-summary.html">org.springframework.security.config.annotation.authentication.builders</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/authentication/configuration/package-summary.html">org.springframework.security.config.annotation.authentication.configuration</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/authentication/configurers/ldap/package-summary.html">org.springframework.security.config.annotation.authentication.configurers.ldap</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/authentication/configurers/provisioning/package-summary.html">org.springframework.security.config.annotation.authentication.configurers.provisioning</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/authentication/configurers/userdetails/package-summary.html">org.springframework.security.config.annotation.authentication.configurers.userdetails</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/configuration/package-summary.html">org.springframework.security.config.annotation.configuration</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/method/configuration/package-summary.html">org.springframework.security.config.annotation.method.configuration</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/rsocket/package-summary.html">org.springframework.security.config.annotation.rsocket</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/package-summary.html">org.springframework.security.config.annotation.web</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/builders/package-summary.html">org.springframework.security.config.annotation.web.builders</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/configuration/package-summary.html">org.springframework.security.config.annotation.web.configuration</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/configurers/package-summary.html">org.springframework.security.config.annotation.web.configurers</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/configurers/oauth2/client/package-summary.html">org.springframework.security.config.annotation.web.configurers.oauth2.client</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/configurers/oauth2/server/resource/package-summary.html">org.springframework.security.config.annotation.web.configurers.oauth2.server.resource</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/configurers/openid/package-summary.html">org.springframework.security.config.annotation.web.configurers.openid</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/configurers/saml2/package-summary.html">org.springframework.security.config.annotation.web.configurers.saml2</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/messaging/package-summary.html">org.springframework.security.config.annotation.web.messaging</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/reactive/package-summary.html">org.springframework.security.config.annotation.web.reactive</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/servlet/configuration/package-summary.html">org.springframework.security.config.annotation.web.servlet.configuration</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/annotation/web/socket/package-summary.html">org.springframework.security.config.annotation.web.socket</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/authentication/package-summary.html">org.springframework.security.config.authentication</a></td>
+<td class="colLast">
+<div class="block">Parsing of &lt;authentication-manager&gt; and related elements.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/core/package-summary.html">org.springframework.security.config.core</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/core/userdetails/package-summary.html">org.springframework.security.config.core.userdetails</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/crypto/package-summary.html">org.springframework.security.config.crypto</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/debug/package-summary.html">org.springframework.security.config.debug</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/http/package-summary.html">org.springframework.security.config.http</a></td>
+<td class="colLast">
+<div class="block">Parsing of the &lt;http&gt; namespace element.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/ldap/package-summary.html">org.springframework.security.config.ldap</a></td>
+<td class="colLast">
+<div class="block">Security namespace support for LDAP authentication.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/method/package-summary.html">org.springframework.security.config.method</a></td>
+<td class="colLast">
+<div class="block">Support for parsing of the &lt;global-method-security&gt; and &lt;intercept-methods&gt; elements.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/oauth2/client/package-summary.html">org.springframework.security.config.oauth2.client</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/provisioning/package-summary.html">org.springframework.security.config.provisioning</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/config/web/server/package-summary.html">org.springframework.security.config.web.server</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/config/websocket/package-summary.html">org.springframework.security.config.websocket</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/context/package-summary.html">org.springframework.security.context</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/converter/package-summary.html">org.springframework.security.converter</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/core/package-summary.html">org.springframework.security.core</a></td>
+<td class="colLast">
+<div class="block">Core classes and interfaces related to user authentication and authorization, as well as the maintenance of
+a security context.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/core/annotation/package-summary.html">org.springframework.security.core.annotation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/core/authority/package-summary.html">org.springframework.security.core.authority</a></td>
+<td class="colLast">
+<div class="block">The default implementation of the <code>GrantedAuthority</code> interface.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/core/authority/mapping/package-summary.html">org.springframework.security.core.authority.mapping</a></td>
+<td class="colLast">
+<div class="block">Strategies for mapping a list of attributes (such as roles or LDAP groups) to a list of
+<code>GrantedAuthority</code>s.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/core/context/package-summary.html">org.springframework.security.core.context</a></td>
+<td class="colLast">
+<div class="block">Classes related to the establishment of a security context for the duration of a request (such as
+an HTTP or RMI invocation).</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/core/parameters/package-summary.html">org.springframework.security.core.parameters</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/core/session/package-summary.html">org.springframework.security.core.session</a></td>
+<td class="colLast">
+<div class="block">Session abstraction which is provided by the <code>org.springframework.security.core.session.SessionInformation
+SessionInformation</code> class.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/core/token/package-summary.html">org.springframework.security.core.token</a></td>
+<td class="colLast">
+<div class="block">A service for building secure random tokens.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/core/userdetails/package-summary.html">org.springframework.security.core.userdetails</a></td>
+<td class="colLast">
+<div class="block">The standard interfaces for implementing user data DAOs.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/core/userdetails/cache/package-summary.html">org.springframework.security.core.userdetails.cache</a></td>
+<td class="colLast">
+<div class="block">Implementations of <a href="org/springframework/security/core/userdetails/UserCache.html" title="interface in org.springframework.security.core.userdetails"><code>UserCache</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/core/userdetails/jdbc/package-summary.html">org.springframework.security.core.userdetails.jdbc</a></td>
+<td class="colLast">
+<div class="block">Exposes a JDBC-based authentication repository, implementing
+<code>org.springframework.security.core.userdetails.UserDetailsService UserDetailsService</code>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/core/userdetails/memory/package-summary.html">org.springframework.security.core.userdetails.memory</a></td>
+<td class="colLast">
+<div class="block">Exposes an in-memory authentication repository.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/crypto/argon2/package-summary.html">org.springframework.security.crypto.argon2</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/crypto/bcrypt/package-summary.html">org.springframework.security.crypto.bcrypt</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/crypto/codec/package-summary.html">org.springframework.security.crypto.codec</a></td>
+<td class="colLast">
+<div class="block">Internal codec classes.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/crypto/encrypt/package-summary.html">org.springframework.security.crypto.encrypt</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/crypto/factory/package-summary.html">org.springframework.security.crypto.factory</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/crypto/keygen/package-summary.html">org.springframework.security.crypto.keygen</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/crypto/password/package-summary.html">org.springframework.security.crypto.password</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/crypto/scrypt/package-summary.html">org.springframework.security.crypto.scrypt</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/crypto/util/package-summary.html">org.springframework.security.crypto.util</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/data/repository/query/package-summary.html">org.springframework.security.data.repository.query</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/jackson2/package-summary.html">org.springframework.security.jackson2</a></td>
+<td class="colLast">
+<div class="block">Mix-in classes to add Jackson serialization support.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/ldap/package-summary.html">org.springframework.security.ldap</a></td>
+<td class="colLast">
+<div class="block">Spring Security's LDAP module.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/ldap/authentication/package-summary.html">org.springframework.security.ldap.authentication</a></td>
+<td class="colLast">
+<div class="block">The LDAP authentication provider package.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/ldap/authentication/ad/package-summary.html">org.springframework.security.ldap.authentication.ad</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/ldap/ppolicy/package-summary.html">org.springframework.security.ldap.ppolicy</a></td>
+<td class="colLast">
+<div class="block">Implementation of password policy functionality based on the
+<a href="https://tools.ietf.org/draft/draft-behera-ldap-password-policy/draft-behera-ldap-password-policy-09.txt">
+Password Policy for LDAP Directories</a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/ldap/search/package-summary.html">org.springframework.security.ldap.search</a></td>
+<td class="colLast">
+<div class="block"><code>LdapUserSearch</code> implementations.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/ldap/server/package-summary.html">org.springframework.security.ldap.server</a></td>
+<td class="colLast">
+<div class="block">Embedded Apache Directory Server implementation, as used by the configuration namespace.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/ldap/userdetails/package-summary.html">org.springframework.security.ldap.userdetails</a></td>
+<td class="colLast">
+<div class="block">LDAP-focused <code>UserDetails</code> implementations which map from a ubset of the data
+contained in some of the standard LDAP types (such as <code>InetOrgPerson</code>).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/messaging/access/expression/package-summary.html">org.springframework.security.messaging.access.expression</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/messaging/access/intercept/package-summary.html">org.springframework.security.messaging.access.intercept</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/messaging/context/package-summary.html">org.springframework.security.messaging.context</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/messaging/handler/invocation/reactive/package-summary.html">org.springframework.security.messaging.handler.invocation.reactive</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/messaging/util/matcher/package-summary.html">org.springframework.security.messaging.util.matcher</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/messaging/web/csrf/package-summary.html">org.springframework.security.messaging.web.csrf</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/messaging/web/socket/server/package-summary.html">org.springframework.security.messaging.web.socket.server</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/package-summary.html">org.springframework.security.oauth2.client</a></td>
+<td class="colLast">
+<div class="block">Core classes and interfaces providing support for OAuth 2.0 Client.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/annotation/package-summary.html">org.springframework.security.oauth2.client.annotation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/authentication/package-summary.html">org.springframework.security.oauth2.client.authentication</a></td>
+<td class="colLast">
+<div class="block">Support classes and interfaces for authenticating and authorizing a client
+with an OAuth 2.0 Authorization Server using a specific authorization grant flow.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/endpoint/package-summary.html">org.springframework.security.oauth2.client.endpoint</a></td>
+<td class="colLast">
+<div class="block">Classes and interfaces providing support to the client
+for initiating requests to the Authorization Server's Protocol Endpoints.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/http/package-summary.html">org.springframework.security.oauth2.client.http</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/jackson2/package-summary.html">org.springframework.security.oauth2.client.jackson2</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/oidc/authentication/package-summary.html">org.springframework.security.oauth2.client.oidc.authentication</a></td>
+<td class="colLast">
+<div class="block">Support classes and interfaces for authenticating and authorizing a client
+with an OpenID Connect 1.0 Provider using a specific authorization grant flow.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/oidc/userinfo/package-summary.html">org.springframework.security.oauth2.client.oidc.userinfo</a></td>
+<td class="colLast">
+<div class="block">Classes and interfaces providing support to the client for initiating requests
+to the OpenID Connect 1.0 Provider's UserInfo Endpoint.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/oidc/web/logout/package-summary.html">org.springframework.security.oauth2.client.oidc.web.logout</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/oidc/web/server/logout/package-summary.html">org.springframework.security.oauth2.client.oidc.web.server.logout</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/registration/package-summary.html">org.springframework.security.oauth2.client.registration</a></td>
+<td class="colLast">
+<div class="block">Classes and interfaces that provide support for <a href="org/springframework/security/oauth2/client/registration/ClientRegistration.html" title="class in org.springframework.security.oauth2.client.registration"><code>ClientRegistration</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/userinfo/package-summary.html">org.springframework.security.oauth2.client.userinfo</a></td>
+<td class="colLast">
+<div class="block">Classes and interfaces providing support to the client for initiating requests
+to the OAuth 2.0 Authorization Server's UserInfo Endpoint.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/web/package-summary.html">org.springframework.security.oauth2.client.web</a></td>
+<td class="colLast">
+<div class="block">OAuth 2.0 Client <code>Filter</code>'s and supporting classes and interfaces.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/web/method/annotation/package-summary.html">org.springframework.security.oauth2.client.web.method.annotation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/web/reactive/function/client/package-summary.html">org.springframework.security.oauth2.client.web.reactive.function.client</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/web/reactive/result/method/annotation/package-summary.html">org.springframework.security.oauth2.client.web.reactive.result.method.annotation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/web/server/package-summary.html">org.springframework.security.oauth2.client.web.server</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/client/web/server/authentication/package-summary.html">org.springframework.security.oauth2.client.web.server.authentication</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/core/package-summary.html">org.springframework.security.oauth2.core</a></td>
+<td class="colLast">
+<div class="block">Core classes and interfaces providing support for the OAuth 2.0 Authorization Framework.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/core/converter/package-summary.html">org.springframework.security.oauth2.core.converter</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/core/endpoint/package-summary.html">org.springframework.security.oauth2.core.endpoint</a></td>
+<td class="colLast">
+<div class="block">Support classes that model the OAuth 2.0 Request and Response messages
+from the Authorization Endpoint and Token Endpoint.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/core/http/converter/package-summary.html">org.springframework.security.oauth2.core.http.converter</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/core/oidc/package-summary.html">org.springframework.security.oauth2.core.oidc</a></td>
+<td class="colLast">
+<div class="block">Core classes and interfaces providing support for OpenID Connect Core 1.0.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/core/oidc/endpoint/package-summary.html">org.springframework.security.oauth2.core.oidc.endpoint</a></td>
+<td class="colLast">
+<div class="block">Support classes that model the OpenID Connect Core 1.0 Request and Response messages
+from the Authorization Endpoint and Token Endpoint.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/core/oidc/user/package-summary.html">org.springframework.security.oauth2.core.oidc.user</a></td>
+<td class="colLast">
+<div class="block">Provides a model for an OpenID Connect Core 1.0 representation of a user <code>Principal</code>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/core/user/package-summary.html">org.springframework.security.oauth2.core.user</a></td>
+<td class="colLast">
+<div class="block">Provides a model for an OAuth 2.0 representation of a user <code>Principal</code>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/core/web/reactive/function/package-summary.html">org.springframework.security.oauth2.core.web.reactive.function</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/jose/jws/package-summary.html">org.springframework.security.oauth2.jose.jws</a></td>
+<td class="colLast">
+<div class="block">Core classes and interfaces providing support for JSON Web Signature (JWS).</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/jwt/package-summary.html">org.springframework.security.oauth2.jwt</a></td>
+<td class="colLast">
+<div class="block">Core classes and interfaces providing support for JSON Web Token (JWT).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/server/resource/package-summary.html">org.springframework.security.oauth2.server.resource</a></td>
+<td class="colLast">
+<div class="block">OAuth 2.0 Resource Server core classes and interfaces providing support.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/server/resource/authentication/package-summary.html">org.springframework.security.oauth2.server.resource.authentication</a></td>
+<td class="colLast">
+<div class="block">OAuth 2.0 Resource Server <code>Authentication</code>s and supporting classes and interfaces.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/server/resource/introspection/package-summary.html">org.springframework.security.oauth2.server.resource.introspection</a></td>
+<td class="colLast">
+<div class="block">OAuth 2.0 Introspection supporting classes and interfaces.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/server/resource/web/package-summary.html">org.springframework.security.oauth2.server.resource.web</a></td>
+<td class="colLast">
+<div class="block">OAuth 2.0 Resource Server <code>Filter</code>'s and supporting classes and interfaces.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/server/resource/web/access/package-summary.html">org.springframework.security.oauth2.server.resource.web.access</a></td>
+<td class="colLast">
+<div class="block">OAuth 2.0 Resource Server access denial classes and interfaces.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/server/resource/web/access/server/package-summary.html">org.springframework.security.oauth2.server.resource.web.access.server</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/server/resource/web/reactive/function/client/package-summary.html">org.springframework.security.oauth2.server.resource.web.reactive.function.client</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/oauth2/server/resource/web/server/package-summary.html">org.springframework.security.oauth2.server.resource.web.server</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/openid/package-summary.html">org.springframework.security.openid</a></td>
+<td class="colLast">
+<div class="block">Authenticates standard web browser users via <a href="https://openid.net">OpenID</a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/provisioning/package-summary.html">org.springframework.security.provisioning</a></td>
+<td class="colLast">
+<div class="block">Contains simple user and authority group account provisioning interfaces together with a a
+JDBC-based implementation.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/remoting/dns/package-summary.html">org.springframework.security.remoting.dns</a></td>
+<td class="colLast">
+<div class="block">DNS resolution.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/remoting/httpinvoker/package-summary.html">org.springframework.security.remoting.httpinvoker</a></td>
+<td class="colLast">
+<div class="block">Enables use of Spring's <code>HttpInvoker</code> extension points to
+present the <code>principal</code> and <code>credentials</code> located
+in the <code>ContextHolder</code> via BASIC authentication.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/remoting/rmi/package-summary.html">org.springframework.security.remoting.rmi</a></td>
+<td class="colLast">
+<div class="block">Enables use of Spring's RMI remoting extension points to propagate the <code>SecurityContextHolder</code> (which
+should contain an <code>Authentication</code> request token) from one JVM to the remote JVM.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/rsocket/api/package-summary.html">org.springframework.security.rsocket.api</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/rsocket/authentication/package-summary.html">org.springframework.security.rsocket.authentication</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/rsocket/authorization/package-summary.html">org.springframework.security.rsocket.authorization</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/rsocket/core/package-summary.html">org.springframework.security.rsocket.core</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/rsocket/metadata/package-summary.html">org.springframework.security.rsocket.metadata</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/rsocket/util/matcher/package-summary.html">org.springframework.security.rsocket.util.matcher</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/saml2/package-summary.html">org.springframework.security.saml2</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/saml2/credentials/package-summary.html">org.springframework.security.saml2.credentials</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/saml2/provider/service/authentication/package-summary.html">org.springframework.security.saml2.provider.service.authentication</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/saml2/provider/service/registration/package-summary.html">org.springframework.security.saml2.provider.service.registration</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/saml2/provider/service/servlet/filter/package-summary.html">org.springframework.security.saml2.provider.service.servlet.filter</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/scheduling/package-summary.html">org.springframework.security.scheduling</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/taglibs/package-summary.html">org.springframework.security.taglibs</a></td>
+<td class="colLast">
+<div class="block">Security related tag libraries that can be used in JSPs and templates.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/taglibs/authz/package-summary.html">org.springframework.security.taglibs.authz</a></td>
+<td class="colLast">
+<div class="block">JSP Security tag library implementation.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/taglibs/csrf/package-summary.html">org.springframework.security.taglibs.csrf</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/task/package-summary.html">org.springframework.security.task</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/test/context/package-summary.html">org.springframework.security.test.context</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/test/context/annotation/package-summary.html">org.springframework.security.test.context.annotation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/test/context/support/package-summary.html">org.springframework.security.test.context.support</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/test/web/reactive/server/package-summary.html">org.springframework.security.test.web.reactive.server</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/test/web/servlet/request/package-summary.html">org.springframework.security.test.web.servlet.request</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/test/web/servlet/response/package-summary.html">org.springframework.security.test.web.servlet.response</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/test/web/servlet/setup/package-summary.html">org.springframework.security.test.web.servlet.setup</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/test/web/support/package-summary.html">org.springframework.security.test.web.support</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/util/package-summary.html">org.springframework.security.util</a></td>
+<td class="colLast">
+<div class="block">General utility classes used throughout the Spring Security framework.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/package-summary.html">org.springframework.security.web</a></td>
+<td class="colLast">
+<div class="block">Spring Security's web security module.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/access/package-summary.html">org.springframework.security.web.access</a></td>
+<td class="colLast">
+<div class="block">Access-control related classes and packages.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/access/channel/package-summary.html">org.springframework.security.web.access.channel</a></td>
+<td class="colLast">
+<div class="block">Classes that ensure web requests are received over required transport channels.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/access/expression/package-summary.html">org.springframework.security.web.access.expression</a></td>
+<td class="colLast">
+<div class="block">Implementation of web security expressions.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/access/intercept/package-summary.html">org.springframework.security.web.access.intercept</a></td>
+<td class="colLast">
+<div class="block">Enforcement of security for HTTP requests, typically by the URL requested.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/package-summary.html">org.springframework.security.web.authentication</a></td>
+<td class="colLast">
+<div class="block">Authentication processing mechanisms, which respond to the submission of authentication
+credentials using various protocols (eg BASIC, CAS, form login etc).</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/logout/package-summary.html">org.springframework.security.web.authentication.logout</a></td>
+<td class="colLast">
+<div class="block">Logout functionality based around a filter which handles a specific logout URL.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/preauth/package-summary.html">org.springframework.security.web.authentication.preauth</a></td>
+<td class="colLast">
+<div class="block">Support for "pre-authenticated" scenarios, where Spring Security assumes the incoming request has already been
+authenticated by some externally configured system.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/preauth/j2ee/package-summary.html">org.springframework.security.web.authentication.preauth.j2ee</a></td>
+<td class="colLast">
+<div class="block">Pre-authentication support for container-authenticated requests.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/preauth/websphere/package-summary.html">org.springframework.security.web.authentication.preauth.websphere</a></td>
+<td class="colLast">
+<div class="block">Websphere-specific pre-authentication classes.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/preauth/x509/package-summary.html">org.springframework.security.web.authentication.preauth.x509</a></td>
+<td class="colLast">
+<div class="block">X.509 client certificate authentication support.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/rememberme/package-summary.html">org.springframework.security.web.authentication.rememberme</a></td>
+<td class="colLast">
+<div class="block">Support for remembering a user between different web sessions.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/session/package-summary.html">org.springframework.security.web.authentication.session</a></td>
+<td class="colLast">
+<div class="block">Strategy interface and implementations for handling session-related behaviour for a newly authenticated user.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/switchuser/package-summary.html">org.springframework.security.web.authentication.switchuser</a></td>
+<td class="colLast">
+<div class="block">Provides HTTP-based "switch user" (su) capabilities.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/ui/package-summary.html">org.springframework.security.web.authentication.ui</a></td>
+<td class="colLast">
+<div class="block">Authentication user-interface rendering code.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/authentication/www/package-summary.html">org.springframework.security.web.authentication.www</a></td>
+<td class="colLast">
+<div class="block">WWW-Authenticate based authentication mechanism implementations: Basic and Digest authentication.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/bind/annotation/package-summary.html">org.springframework.security.web.bind.annotation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/bind/support/package-summary.html">org.springframework.security.web.bind.support</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/context/package-summary.html">org.springframework.security.web.context</a></td>
+<td class="colLast">
+<div class="block">Classes which are responsible for maintaining the security context between HTTP requests.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/context/request/async/package-summary.html">org.springframework.security.web.context.request.async</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/context/support/package-summary.html">org.springframework.security.web.context.support</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/csrf/package-summary.html">org.springframework.security.web.csrf</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/debug/package-summary.html">org.springframework.security.web.debug</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/firewall/package-summary.html">org.springframework.security.web.firewall</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/header/package-summary.html">org.springframework.security.web.header</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/header/writers/package-summary.html">org.springframework.security.web.header.writers</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/header/writers/frameoptions/package-summary.html">org.springframework.security.web.header.writers.frameoptions</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/http/package-summary.html">org.springframework.security.web.http</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/jaasapi/package-summary.html">org.springframework.security.web.jaasapi</a></td>
+<td class="colLast">
+<div class="block">Makes a JAAS Subject available as the current Subject.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/jackson2/package-summary.html">org.springframework.security.web.jackson2</a></td>
+<td class="colLast">
+<div class="block">Mix-in classes to provide Jackson serialization support.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/method/annotation/package-summary.html">org.springframework.security.web.method.annotation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/reactive/result/method/annotation/package-summary.html">org.springframework.security.web.reactive.result.method.annotation</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/reactive/result/view/package-summary.html">org.springframework.security.web.reactive.result.view</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/savedrequest/package-summary.html">org.springframework.security.web.savedrequest</a></td>
+<td class="colLast">
+<div class="block">Classes related to the caching of an <code>HttpServletRequest</code> which requires authentication.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/package-summary.html">org.springframework.security.web.server</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/authentication/package-summary.html">org.springframework.security.web.server.authentication</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/authentication/logout/package-summary.html">org.springframework.security.web.server.authentication.logout</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/authorization/package-summary.html">org.springframework.security.web.server.authorization</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/context/package-summary.html">org.springframework.security.web.server.context</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/csrf/package-summary.html">org.springframework.security.web.server.csrf</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/header/package-summary.html">org.springframework.security.web.server.header</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/jackson2/package-summary.html">org.springframework.security.web.server.jackson2</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/savedrequest/package-summary.html">org.springframework.security.web.server.savedrequest</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/transport/package-summary.html">org.springframework.security.web.server.transport</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/ui/package-summary.html">org.springframework.security.web.server.ui</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/server/util/matcher/package-summary.html">org.springframework.security.web.server.util.matcher</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/servlet/support/csrf/package-summary.html">org.springframework.security.web.servlet.support.csrf</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/servlet/util/matcher/package-summary.html">org.springframework.security.web.servlet.util.matcher</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/servletapi/package-summary.html">org.springframework.security.web.servletapi</a></td>
+<td class="colLast">
+<div class="block">Populates a Servlet request with a new Spring Security compliant <code>HttpServletRequestWrapper</code>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/session/package-summary.html">org.springframework.security.web.session</a></td>
+<td class="colLast">
+<div class="block">Session management filters, <code>HttpSession</code> events and publisher classes.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/security/web/util/package-summary.html">org.springframework.security.web.util</a></td>
+<td class="colLast">
+<div class="block">Web utility classes.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/security/web/util/matcher/package-summary.html">org.springframework.security.web.util.matcher</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="bottomNav"><a name="navbar.bottom">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.bottom.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li class="navBarCell1Rev">Overview</li>
+<li>Package</li>
+<li>Class</li>
+<li><a href="overview-tree.html">Tree</a></li>
+<li><a href="deprecated-list.html">Deprecated</a></li>
+<li><a href="index-all.html">Index</a></li>
+<li><a href="help-doc.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li>Prev</li>
+<li>Next</li>
+</ul>
+<ul class="navList">
+<li><a href="index.html?overview-summary.html" target="_top">Frames</a></li>
+<li><a href="overview-summary.html" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_bottom");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<a name="skip.navbar.bottom">
+
+</a></div>
+
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

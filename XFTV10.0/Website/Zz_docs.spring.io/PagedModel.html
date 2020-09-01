@@ -1,0 +1,516 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>PagedModel (Spring HATEOAS 1.0.0.M1 API)</title>
+<meta name="date" content="2019-03-05">
+<link rel="stylesheet" type="text/css" href="static/css/stylesheet1.css" title="Style">
+<script type="text/javascript" src="static/js/script.js"></script>
+</head>
+<body>
+<script type="text/javascript">try{if(location.href.indexOf('is-external=true')==-1){parent.document.title="PagedModel (Spring HATEOAS 1.0.0.M1 API)";}}catch(err){}var methods={"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":9};var tabs={65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};var altColor="altColor";var rowColor="rowColor";var tableTab="tableTab";var activeTableTab="activeTableTab";</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+
+<div class="topNav"><a name="navbar.top">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.top.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/overview-summary.html');">Overview</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/package-summary.html');">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/class-use/PagedModel.html');">Use</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/package-tree.html');">Tree</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/deprecated-list.html');">Deprecated</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/index-all.html');">Index</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/help-doc.html');">Help</a></li>
+</ul>
+<div class="aboutLanguage">Spring HATEOAS</div>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/MediaTypes.html');" title="class in org.springframework.hateoas"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/index.html?org/springframework/hateoas/PagedModel.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/allclasses-noframe.html');">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_top");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.top">
+
+</a></div>
+
+
+<div class="header">
+<div class="subTitle">org.springframework.hateoas</div>
+<h2 title="Class PagedModel" class="title">Class PagedModel&lt;T&gt;</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true');" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html');" title="class in org.springframework.hateoas">org.springframework.hateoas.RepresentationModel</a>&lt;<a href="CollectionModel.html" title="class in org.springframework.hateoas">CollectionModel</a>&lt;T&gt;&gt;</li>
+<li>
+<ul class="inheritance">
+<li><a href="CollectionModel.html" title="class in org.springframework.hateoas">org.springframework.hateoas.CollectionModel</a>&lt;T&gt;</li>
+<li>
+<ul class="inheritance">
+<li>org.springframework.hateoas.PagedModel&lt;T&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true');" title="class or interface in java.lang">Iterable</a>&lt;T&gt;</dd>
+</dl>
+<hr>
+<br>
+<pre>public class <span class="typeNameLabel">PagedModel&lt;T&gt;</span>
+extends <a href="CollectionModel.html" title="class in org.springframework.hateoas">CollectionModel</a>&lt;T&gt;</pre>
+<div class="block">DTO to implement binding response representations of pageable collections.</div>
+<dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Oliver Gierke, Greg Turnquist</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+
+</a>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas">PagedModel.PageMetadata</a></span></code>
+<div class="block">Value object for pagination metadata.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="field.summary">
+
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="" title="class in org.springframework.hateoas">PagedModel</a>&lt;?&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#NO_PAGE">NO_PAGE</a></span></code>&nbsp;</td>
+</tr>
+</table>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="constructor.summary">
+
+</a>
+<h3>Constructor Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier</th>
+<th class="colLast" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected </code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#PagedModel--">PagedModel</a></span>()</code>
+<div class="block">Default constructor to allow instantiation by reflection.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#PagedModel-java.util.Collection-org.springframework.hateoas.PagedModel.PageMetadata-java.lang.Iterable-">PagedModel</a></span>(<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true');" title="class or interface in java.util">Collection</a>&lt;<a href="" title="type parameter in PagedModel">T</a>&gt;&nbsp;content,
+<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas">PagedModel.PageMetadata</a>&nbsp;metadata,
+<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true');" title="class or interface in java.lang">Iterable</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas">Link</a>&gt;&nbsp;links)</code>
+<div class="block">Creates a new <a href="" title="class in org.springframework.hateoas"><code>PagedModel</code></a> from the given content <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas"><code>PagedModel.PageMetadata</code></a> and <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas"><code>Link</code></a>s.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#PagedModel-java.util.Collection-org.springframework.hateoas.PagedModel.PageMetadata-org.springframework.hateoas.Link...-">PagedModel</a></span>(<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true');" title="class or interface in java.util">Collection</a>&lt;<a href="" title="type parameter in PagedModel">T</a>&gt;&nbsp;content,
+<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas">PagedModel.PageMetadata</a>&nbsp;metadata,
+<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas">Link</a>...&nbsp;links)</code>
+<div class="block">Creates a new <a href="" title="class in org.springframework.hateoas"><code>PagedModel</code></a> from the given content, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas"><code>PagedModel.PageMetadata</code></a> and <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas"><code>Link</code></a>s (optional).</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="method.summary">
+
+</a>
+<h3>Method Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#equals-java.lang.Object-">equals</a></span>(<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true');" title="class or interface in java.lang">Object</a>&nbsp;obj)</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas">PagedModel.PageMetadata</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#getMetadata--">getMetadata</a></span>()</code>
+<div class="block">Returns the pagination metadata.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true');" title="class or interface in java.util">Optional</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas">Link</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#getNextLink--">getNextLink</a></span>()</code>
+<div class="block">Returns the Link pointing to the next page (if set).</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true');" title="class or interface in java.util">Optional</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas">Link</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#getPreviousLink--">getPreviousLink</a></span>()</code>
+<div class="block">Returns the Link pointing to the previous page (if set).</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true');" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#toString--">toString</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>static &lt;T extends <a href="EntityModel.html" title="class in org.springframework.hateoas">EntityModel</a>&lt;S&gt;,S&gt;<br><a href="" title="class in org.springframework.hateoas">PagedModel</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#wrap-java.lang.Iterable-org.springframework.hateoas.PagedModel.PageMetadata-">wrap</a></span>(<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true');" title="class or interface in java.lang">Iterable</a>&lt;S&gt;&nbsp;content,
+<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas">PagedModel.PageMetadata</a>&nbsp;metadata)</code>
+<div class="block">Factory method to easily create a <a href="" title="class in org.springframework.hateoas"><code>PagedModel</code></a> instance from a set of entities and pagination metadata.</div>
+</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.springframework.hateoas.CollectionModel">
+
+</a>
+<h3>Methods inherited from class&nbsp;org.springframework.hateoas.<a href="CollectionModel.html" title="class in org.springframework.hateoas">CollectionModel</a></h3>
+<code><a href="CollectionModel.html#getContent--">getContent</a>, <a href="CollectionModel.html#iterator--">iterator</a>, <a href="CollectionModel.html#wrap-java.lang.Iterable-">wrap</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.springframework.hateoas.RepresentationModel">
+
+</a>
+<h3>Methods inherited from class&nbsp;org.springframework.hateoas.<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html');" title="class in org.springframework.hateoas">RepresentationModel</a></h3>
+<code><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#add-java.lang.Iterable-');">add</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#add-org.springframework.hateoas.Link...-');">add</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#add-org.springframework.hateoas.Link-');">add</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#getLink-org.springframework.hateoas.LinkRelation-');">getLink</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#getLink-java.lang.String-');">getLink</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#getLinks--');">getLinks</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#getLinks-org.springframework.hateoas.LinkRelation-');">getLinks</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#getLinks-java.lang.String-');">getLinks</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#getRequiredLink-org.springframework.hateoas.LinkRelation-');">getRequiredLink</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#getRequiredLink-java.lang.String-');">getRequiredLink</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#hasLink-org.springframework.hateoas.LinkRelation-');">hasLink</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#hasLink-java.lang.String-');">hasLink</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#hasLinks--');">hasLinks</a>, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/RepresentationModel.html#removeLinks--');">removeLinks</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
+
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true');" title="class or interface in java.lang">Object</a></h3>
+<code><a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--');" title="class or interface in java.lang">clone</a>, <a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--');" title="class or interface in java.lang">finalize</a>, <a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--');" title="class or interface in java.lang">getClass</a>, <a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--');" title="class or interface in java.lang">notify</a>, <a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--');" title="class or interface in java.lang">notifyAll</a>, <a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--');" title="class or interface in java.lang">wait</a>, <a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-');" title="class or interface in java.lang">wait</a>, <a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-');" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.java.lang.Iterable">
+
+</a>
+<h3>Methods inherited from interface&nbsp;java.lang.<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true');" title="class or interface in java.lang">Iterable</a></h3>
+<code><a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true#forEach-java.util.function.Consumer-');" title="class or interface in java.lang">forEach</a>, <a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true#spliterator--');" title="class or interface in java.lang">spliterator</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+
+</a>
+<h3>Field Detail</h3>
+<a name="NO_PAGE">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>NO_PAGE</h4>
+<pre>public static&nbsp;<a href="" title="class in org.springframework.hateoas">PagedModel</a>&lt;?&gt; NO_PAGE</pre>
+</li>
+</ul>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="constructor.detail">
+
+</a>
+<h3>Constructor Detail</h3>
+<a name="PagedModel--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PagedModel</h4>
+<pre>protected&nbsp;PagedModel()</pre>
+<div class="block">Default constructor to allow instantiation by reflection.</div>
+</li>
+</ul>
+<a name="PagedModel-java.util.Collection-org.springframework.hateoas.PagedModel.PageMetadata-org.springframework.hateoas.Link...-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>PagedModel</h4>
+<pre>public&nbsp;PagedModel(<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true');" title="class or interface in java.util">Collection</a>&lt;<a href="" title="type parameter in PagedModel">T</a>&gt;&nbsp;content,
+                  <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas">PagedModel.PageMetadata</a>&nbsp;metadata,
+                  <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas">Link</a>...&nbsp;links)</pre>
+<div class="block">Creates a new <a href="" title="class in org.springframework.hateoas"><code>PagedModel</code></a> from the given content, <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas"><code>PagedModel.PageMetadata</code></a> and <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas"><code>Link</code></a>s (optional).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>content</code> - must not be null.</dd>
+<dd><code>metadata</code> - </dd>
+<dd><code>links</code> - </dd>
+</dl>
+</li>
+</ul>
+<a name="PagedModel-java.util.Collection-org.springframework.hateoas.PagedModel.PageMetadata-java.lang.Iterable-">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>PagedModel</h4>
+<pre>public&nbsp;PagedModel(<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true');" title="class or interface in java.util">Collection</a>&lt;<a href="" title="type parameter in PagedModel">T</a>&gt;&nbsp;content,
+                  <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas">PagedModel.PageMetadata</a>&nbsp;metadata,
+                  <a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true');" title="class or interface in java.lang">Iterable</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas">Link</a>&gt;&nbsp;links)</pre>
+<div class="block">Creates a new <a href="" title="class in org.springframework.hateoas"><code>PagedModel</code></a> from the given content <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas"><code>PagedModel.PageMetadata</code></a> and <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas"><code>Link</code></a>s.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>content</code> - must not be null.</dd>
+<dd><code>metadata</code> - </dd>
+<dd><code>links</code> - </dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="method.detail">
+
+</a>
+<h3>Method Detail</h3>
+<a name="getMetadata--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getMetadata</h4>
+<pre>public&nbsp;<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas">PagedModel.PageMetadata</a>&nbsp;getMetadata()</pre>
+<div class="block">Returns the pagination metadata.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the metadata</dd>
+</dl>
+</li>
+</ul>
+<a name="wrap-java.lang.Iterable-org.springframework.hateoas.PagedModel.PageMetadata-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>wrap</h4>
+<pre>public static&nbsp;&lt;T extends <a href="EntityModel.html" title="class in org.springframework.hateoas">EntityModel</a>&lt;S&gt;,S&gt;&nbsp;<a href="" title="class in org.springframework.hateoas">PagedModel</a>&lt;T&gt;&nbsp;wrap(<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true');" title="class or interface in java.lang">Iterable</a>&lt;S&gt;&nbsp;content,
+                                                              <a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas">PagedModel.PageMetadata</a>&nbsp;metadata)</pre>
+<div class="block">Factory method to easily create a <a href="" title="class in org.springframework.hateoas"><code>PagedModel</code></a> instance from a set of entities and pagination metadata.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>content</code> - must not be null.</dd>
+<dd><code>metadata</code> - </dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+</dl>
+</li>
+</ul>
+<a name="getNextLink--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNextLink</h4>
+<pre>public&nbsp;<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true');" title="class or interface in java.util">Optional</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas">Link</a>&gt;&nbsp;getNextLink()</pre>
+<div class="block">Returns the Link pointing to the next page (if set).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+</dl>
+</li>
+</ul>
+<a name="getPreviousLink--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPreviousLink</h4>
+<pre>public&nbsp;<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true');" title="class or interface in java.util">Optional</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/Link.html');" title="class in org.springframework.hateoas">Link</a>&gt;&nbsp;getPreviousLink()</pre>
+<div class="block">Returns the Link pointing to the previous page (if set).</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+</dl>
+</li>
+</ul>
+<a name="toString--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toString</h4>
+<pre>public&nbsp;<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true');" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="CollectionModel.html#toString--">toString</a></code>&nbsp;in class&nbsp;<code><a href="CollectionModel.html" title="class in org.springframework.hateoas">CollectionModel</a>&lt;<a href="" title="type parameter in PagedModel">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a name="equals-java.lang.Object-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public&nbsp;boolean&nbsp;equals(<a href="javascript:window.open('https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true');" title="class or interface in java.lang">Object</a>&nbsp;obj)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="CollectionModel.html#equals-java.lang.Object-">equals</a></code>&nbsp;in class&nbsp;<code><a href="CollectionModel.html" title="class in org.springframework.hateoas">CollectionModel</a>&lt;<a href="" title="type parameter in PagedModel">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a name="hashCode--">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>public&nbsp;int&nbsp;hashCode()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="CollectionModel.html#hashCode--">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="CollectionModel.html" title="class in org.springframework.hateoas">CollectionModel</a>&lt;<a href="" title="type parameter in PagedModel">T</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div class="bottomNav"><a name="navbar.bottom">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.bottom.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/overview-summary.html');">Overview</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/package-summary.html');">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/class-use/PagedModel.html');">Use</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/package-tree.html');">Tree</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/deprecated-list.html');">Deprecated</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/index-all.html');">Index</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/help-doc.html');">Help</a></li>
+</ul>
+<div class="aboutLanguage">Spring HATEOAS</div>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/MediaTypes.html');" title="class in org.springframework.hateoas"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/org/springframework/hateoas/PagedModel.PageMetadata.html');" title="class in org.springframework.hateoas"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/index.html?org/springframework/hateoas/PagedModel.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-hateoas/docs/1.0.0.M1/apidocs/allclasses-noframe.html');">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_bottom");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.bottom">
+
+</a></div>
+
+<p class="legalCopy"><small>Copyright &#169; 2012-2019&#x2013;2019 <a href="javascript:window.open('https://www.spring.io/');">Pivotal, Inc.</a>. All rights reserved.</small></p>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Spring | Guides</title>
+<meta content="width=device-width,initial-scale=1,shrink-to-fit=no" id="Viewport" name="viewport" />
+<link media="all" rel="stylesheet" type="text/css" href="/css/main-223d469db63e945f615f4af44eeb236a.css" />
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/images/favicon.ico" />
+<meta content="Level up your Java code and explore what Spring can do for you." name="description" />
+<link rel="manifest" href="/manifest-0e3065c2bbd1ef7a320e80861393f1a6.json" />
+<meta content="#6db33f" name="theme-color" />
+<meta content="spring" name="apple-mobile-web-app-title" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="default" name="apple-mobile-web-app-status-bar-style" />
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KZM7GF6');</script>
+
+<script src="/js/run_prettify-b8b4abd61389be25d5219fffabfab796.js"></script>
+<meta content="" property="og:title" />
+<meta content="" property="og:description" />
+</head>
+<body id="guides">
+<script src="/js/theme-f367e6936a70ad2e6b3dcb91c6673a9f.js"></script>
+<header>
+<nav id="nav">
+<div class="container flex jc-between ai-center" id="nav-inner">
+<a href="/" id="logo-focus" tabindex="1">
+<img alt="Spring" class="block" id="springlogo" src="/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" />
+</a>
+<ul class="flex jc-between" id="nav-items">
+<li><div class="has-menu" id="why-hov"><span tabindex="2">Why Spring</span><div class="nav-arrow"></div></div></li>
+<li><div class="has-menu" id="learn-hov"><span tabindex="11">Learn</span><div class="nav-arrow"></div></div></li>
+<li><div class="has-menu" id="projects-hov"><span tabindex="17">Projects</span><div class="nav-arrow"></div></div></li>
+<li><a class="z-5 rel" href="/training" tabindex="30">Training</a></li>
+<li><a class="z-5 rel" href="/support" tabindex="31">Support</a></li>
+<li><a class="has-menu" id="community-hov"><span tabindex="32">Community</span><div class="nav-arrow"></div></a></li>
+<li>
+<a class="theme-switch" id="switch-theme">
+<span>
+<i class="fas fa-moon"></i>
+<i class="fas fa-sun"></i>
+</span>
+</a>
+</li>
+
+</ul>
+</div>
+<div class="container rel" id="dropdown-menus">
+<div class="abs rad-5" id="scope"></div>
+<div class="drop-menu" id="why-items">
+<div class="drop-target" id="why-target"></div>
+<ul>
+<li><a href="/why-spring" tabindex="3">Overview</a></li>
+<li><a href="/microservices" tabindex="4">Microservices</a></li>
+<li><a href="/reactive" tabindex="5">Reactive</a></li>
+<li><a href="/event-driven" tabindex="6">Event Driven</a></li>
+<li><a href="/cloud" tabindex="7">Cloud</a></li>
+<li><a href="/web-applications" tabindex="8">Web Applications</a></li>
+<li><a href="/serverless" tabindex="9">Serverless</a></li>
+<li><a href="/batch" tabindex="10">Batch</a></li>
+</ul>
+</div>
+<div class="drop-menu" id="learn-items">
+<div class="drop-target" id="learn-target"></div>
+<ul>
+<li><a href="/learn" tabindex="12">Overview</a></li>
+<li><a href="/quickstart" tabindex="13">Quickstart</a></li>
+<li><a href="/guides" tabindex="14">Guides</a></li>
+
+<li><a href="/blog" tabindex="16">Blog</a></li>
+</ul>
+</div>
+<div class="drop-menu" id="project-items">
+<div class="drop-target" id="project-target"></div>
+<ul>
+<li><a href="/projects" tabindex="18">Overview</a></li>
+<li><a href="/projects/spring-boot" tabindex="19">Spring Boot</a></li>
+<li><a href="/projects/spring-framework" tabindex="20">Spring Framework</a></li>
+<li><a href="/projects/spring-cloud" tabindex="21">Spring Cloud</a></li>
+<li><a href="/projects/spring-cloud-dataflow" tabindex="22">Spring Cloud Data Flow</a></li>
+<li><a href="/projects/spring-data" tabindex="23">Spring Data</a></li>
+<li><a href="/projects/spring-integration" tabindex="24">Spring Integration</a></li>
+<li><a href="/projects/spring-batch" tabindex="25">Spring Batch</a></li>
+<li><a href="/projects/spring-security" tabindex="26">Spring Security</a></li>
+<li><a class="blue mb-2 inline-block" href="/projects" tabindex="27">View all projects</a></li>
+<li class="uppercase smallest">Development Tools</li>
+<li><a href="/tools" tabindex="28">Spring Tools 4</a></li>
+<li><a href="https://start.spring.io" tabindex="29">Spring Initializr <svg class="external-link-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" points="15 10.94 15 15 1 15 1 1 5.06 1" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><polyline fill="none" points="8.93 1 15 1 15 7.07" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><line fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" x1="15" x2="8" y1="1" y2="8"></line></svg></a></li>
+</ul>
+</div>
+<div class="drop-menu" id="community-items">
+<div class="drop-target" id="community-target"></div>
+<ul>
+<li><a href="/community" tabindex="33">Overview</a></li>
+<li><a href="/events" tabindex="34">Events</a></li>
+<li><a href="/team" tabindex="35">Team</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="pointer" id="mobile-nav-open">
+<div id="hamburger">
+<div class="burger-bar"></div>
+<div class="burger-bar"></div>
+<div class="burger-bar"></div>
+</div>
+<svg class="mobile-close pointer" id="Layer_1" style="enable-background:new 0 0 14.6 14.6;" version="1.1" viewBox="0 0 14.6 14.6" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px"><style type="text/css">.st0{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}</style><title>close</title><line class="st0" x1="1.5" x2="13.1" y1="1.5" y2="13.1"></line><line class="st0" x1="13.1" x2="1.5" y1="1.5" y2="13.1"></line></svg>
+</div>
+<nav class="border-box rel" id="mobile-nav">
+<div class="rel">
+<div class="mobile-category flex jc-between ai-center" id="mobile-why">
+<div class="mobile-title antialiased cursor-d">Why Spring</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-why-items">
+<ul>
+<li><a href="/why-spring">Overview</a></li>
+<li><a href="/microservices">Microservices</a></li>
+<li><a href="/reactive">Reactive</a></li>
+<li><a href="/event-driven">Event Driven</a></li>
+<li><a href="/cloud">Cloud</a></li>
+<li><a href="/web-applications">Web Applications</a></li>
+<li><a href="/serverless">Serverless</a></li>
+<li><a href="/batch">Batch</a></li>
+</ul>
+</div>
+<div class="mobile-category flex jc-between ai-center" id="mobile-learn">
+<div class="mobile-title antialiased cursor-d">Learn</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-learn-items">
+<ul>
+<li><a href="/learn">Overview</a></li>
+<li><a href="/quickstart">Quickstart</a></li>
+<li><a href="/guides">Guides</a></li>
+
+<li><a href="/blog">Blog</a></li>
+</ul>
+</div>
+<div class="mobile-category flex jc-between ai-center" id="mobile-projects">
+<div class="mobile-title antialiased cursor-d">Projects</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-project-items">
+<ul>
+<li><a href="/projects">Overview</a></li>
+<li><a href="/projects/spring-boot">Spring Boot</a></li>
+<li><a href="/projects/spring-framework">Spring Framework</a></li>
+<li><a href="/projects/spring-cloud">Spring Cloud</a></li>
+<li><a href="/projects/spring-cloud-dataflow">Spring Cloud Data Flow</a></li>
+<li><a href="/projects/spring-data">Spring Data</a></li>
+<li><a href="/projects/spring-integration">Spring Integration</a></li>
+<li><a href="/projects/spring-batch">Spring Batch</a></li>
+<li><a href="/projects/spring-security">Spring Security</a></li>
+<li><a class="blue mb-2 inline-block" href="/projects">View all projects</a></li>
+<p class="uppercase smallest white">Development Tools</p>
+<li><a href="/tools">Spring Tools 4</a></li>
+<li><a href="https://start.spring.io">Spring Initializr <svg class="external-link-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" points="15 10.94 15 15 1 15 1 1 5.06 1" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><polyline fill="none" points="8.93 1 15 1 15 7.07" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><line fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" x1="15" x2="8" y1="1" y2="8"></line></svg></a></li>
+</ul>
+</div>
+<a class="mobile-link block" href="/training"><div class="mobile-title antialiased">Training</div></a>
+<a class="mobile-link block" href="/support"><div class="mobile-title antialiased">Support</div></a>
+<div class="mobile-category flex jc-between ai-center" id="mobile-community">
+<div class="mobile-title antialiased cursor-d">Community</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-community-items">
+<ul>
+<li><a href="/community">Overview</a></li>
+<li><a href="/events">Events</a></li>
+<li><a href="/team">Team</a></li>
+</ul>
+</div>
+
+</div>
+</nav>
+<div id="search-nav" role="search">
+<div class="container relative">
+<form accept-charset="UTF-8" action="/search" id="searchheaderform" method="get"><input name="utf8" type="hidden" value="✓" />
+<input autocomplete="off" id="searchheaderinput" name="q" placeholder="Search for documentation, guides, and posts..." type="text" />
+<input data-disable-with="" id="searchheadersubmit" type="submit" value="" />
+</form>
+
+</div>
+</div>
+</header>
+<div id="main">
+<div class="bg-lightblue" id="hero" role="Banner">
+<div class="container">
+<div class="flex jc-between ai-center mb-3">
+<img alt="" class="img img-light" src="/images/guides-7983d4cd334dbbf39734aebf3de91a4e.svg" />
+<img alt="" class="img img-dark" src="/images/guides-dark-214bebaa338f862118ca265917318f3e.svg" />
+<div class="text">
+<h1 class="h1 antialiased">Guides</h1>
+<p class="big">Whatever you're building, these guides are designed to get you productive as quickly as possible – using the latest Spring project releases and techniques as recommended by the Spring team.</p>
+</div>
+</div>
+<div class="flex jc-between" id="jump-cards">
+<a class="jump-card rad-5 shadow-hover border-dark border-box center" href="#getting-started-guides">
+<h3 class="h3 antialiased">Getting Started Guides</h3>
+<p class="m-0">15-30 minutes</p>
+<div class="jump-arrow mx-auto"></div>
+</a>
+<a class="jump-card rad-5 shadow-hover border-dark border-box center" href="#topical-guides">
+<h3 class="h3 antialiased">Topical Guides</h3>
+<p class="m-0">60 minutes or less</p>
+<div class="jump-arrow mx-auto"></div>
+</a>
+<a class="jump-card rad-5 shadow-hover border-dark border-box center" href="#tutorials">
+<h3 class="h3 antialiased">Tutorials</h3>
+<p class="m-0">2-3 hours</p>
+<div class="jump-arrow mx-auto"></div>
+</a>
+</div>
+</div>
+</div>
+<div class="content" role="Main">
+<div class="container mb-6" id="getting-started-guides">
+<h2 class="h2 antialiased">Getting Started Guides</h2>
+<section class="flex jc-between mb-3" id="started-and-search">
+<p class="guide-description m-0">Designed to be completed in 15-30 minutes, these guides provide quick, hands-on instructions for building the "Hello World" of any development task with Spring. In most cases, the only prerequisites are a JDK and a text editor.</p>
+<div class="rel" id="search-container">
+<input class="border-box" id="guide-search" placeholder="Find a guide" />
+<div id="guide-search-icon">
+<svg aria-hidden="true" class="icon-webapps" data-icon="icon-webapps" focusable="false" role="img" viewBox="0 0 18.29 18.29" xmlns="http://www.w3.org/2000/svg">
+<line class="cls-1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3px" x1="11.84" x2="16.79" y1="11.84" y2="16.79"></line>
+<circle class="cls-1" cx="7.59" cy="7.59" fill="none" r="6.09" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3px"></circle>
+</svg>
+</div>
+</div>
+</section>
+<section class="flex jc-between flex-wrap" id="getting-started-list">
+<div class="guide-search-no-result" id="guide-search-no-result">No result found.</div>
+<div class="guide guide-search half border-box flex" data-filterable="Building a RESTful Web Service Learn how to create a RESTful web service with Spring. [spring-boot]">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/rest-service/">Building a RESTful Web Service</a>
+<p class="m-0">Learn how to create a RESTful web service with Spring.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Scheduling Tasks Learn how to schedule tasks with Spring. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/scheduling-tasks/">Scheduling Tasks</a>
+<p class="m-0">Learn how to schedule tasks with Spring.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Consuming a RESTful Web Service Learn how to retrieve web page data with Spring&#39;s RestTemplate. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/consuming-rest/">Consuming a RESTful Web Service</a>
+<p class="m-0">Learn how to retrieve web page data with Spring&#39;s RestTemplate.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Building Java Projects with Gradle Learn how to build a Java project with Gradle. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/gradle/">Building Java Projects with Gradle</a>
+<p class="m-0">Learn how to build a Java project with Gradle.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Building Java Projects with Maven Learn how to build a Java project with Maven. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/maven/">Building Java Projects with Maven</a>
+<p class="m-0">Learn how to build a Java project with Maven.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing Relational Data using JDBC with Spring Learn how to access relational data with Spring. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/relational-data-access/">Accessing Relational Data using JDBC with Spring</a>
+<p class="m-0">Learn how to access relational data with Spring.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Uploading Files Learn how to build a Spring application that accepts multi-part file uploads. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/uploading-files/">Uploading Files</a>
+<p class="m-0">Learn how to build a Spring application that accepts multi-part file uploads.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Authenticating a User with LDAP Learn how to secure an application with LDAP. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/authenticating-ldap/">Authenticating a User with LDAP</a>
+<p class="m-0">Learn how to secure an application with LDAP.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Messaging with Redis Learn how to use Redis as a message broker. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/messaging-redis/">Messaging with Redis</a>
+<p class="m-0">Learn how to use Redis as a message broker.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Messaging with RabbitMQ Learn how to create a simple publish-and-subscribe application with Spring and RabbitMQ. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/messaging-rabbitmq/">Messaging with RabbitMQ</a>
+<p class="m-0">Learn how to create a simple publish-and-subscribe application with Spring and RabbitMQ.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing Data with Neo4j Learn how to persist objects and relationships in Neo4j&#39;s NoSQL data store. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-data-neo4j/">Accessing Data with Neo4j</a>
+<p class="m-0">Learn how to persist objects and relationships in Neo4j&#39;s NoSQL data store.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Validating Form Input Learn how to perform form validation with Spring. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/validating-form-input/">Validating Form Input</a>
+<p class="m-0">Learn how to perform form validation with Spring.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Building a RESTful Web Service with Spring Boot Actuator Learn how to create a RESTful Web service with Spring Boot Actuator. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/actuator-service/">Building a RESTful Web Service with Spring Boot Actuator</a>
+<p class="m-0">Learn how to create a RESTful Web service with Spring Boot Actuator.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Messaging with JMS Learn how to publish and subscribe to messages using a JMS broker. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/messaging-jms/">Messaging with JMS</a>
+<p class="m-0">Learn how to publish and subscribe to messages using a JMS broker.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Creating a Batch Service Learn how to create a basic batch-driven solution. [spring-batch]">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/batch-processing/">Creating a Batch Service</a>
+<p class="m-0">Learn how to create a basic batch-driven solution.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Securing a Web Application Learn how to protect your web application with Spring Security. [spring-security]">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/securing-web/">Securing a Web Application</a>
+<p class="m-0">Learn how to protect your web application with Spring Security.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Building a Hypermedia-Driven RESTful Web Service Learn how to create a hypermedia-driven RESTful Web service with Spring. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/rest-hateoas/">Building a Hypermedia-Driven RESTful Web Service</a>
+<p class="m-0">Learn how to create a hypermedia-driven RESTful Web service with Spring.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing Data in Pivotal GemFire Learn how to build an application using Gemfire&#39;s data fabric. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-data-gemfire/">Accessing Data in Pivotal GemFire</a>
+<p class="m-0">Learn how to build an application using Gemfire&#39;s data fabric.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Integrating Data Learn how to build an application that uses Spring Integration to fetch data, process it, and write it to a file. [spring-integration]">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/integration/">Integrating Data</a>
+<p class="m-0">Learn how to build an application that uses Spring Integration to fetch data, process it, and write it to a file.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Caching Data with Pivotal GemFire Learn how to cache data in GemFire. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/caching-gemfire/">Caching Data with Pivotal GemFire</a>
+<p class="m-0">Learn how to cache data in GemFire.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Managing Transactions Learn how to wrap key parts of code with transactions. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/managing-transactions/">Managing Transactions</a>
+<p class="m-0">Learn how to wrap key parts of code with transactions.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing Data with JPA Learn how to work with JPA data persistence using Spring Data JPA. [spring-data-jpa]">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-data-jpa/">Accessing Data with JPA</a>
+<p class="m-0">Learn how to work with JPA data persistence using Spring Data JPA.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing Data with MongoDB Learn how to persist data in MongoDB. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-data-mongodb/">Accessing Data with MongoDB</a>
+<p class="m-0">Learn how to persist data in MongoDB.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Serving Web Content with Spring MVC Learn how to create a web page with Spring MVC and Thymeleaf. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/serving-web-content/">Serving Web Content with Spring MVC</a>
+<p class="m-0">Learn how to create a web page with Spring MVC and Thymeleaf.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Converting a Spring Boot JAR Application to a WAR Learn how to convert your Spring Boot JAR-based application to a WAR file. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/convert-jar-to-war/">Converting a Spring Boot JAR Application to a WAR</a>
+<p class="m-0">Learn how to convert your Spring Boot JAR-based application to a WAR file.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Creating Asynchronous Methods Learn how to create asynchronous service methods. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/async-method/">Creating Asynchronous Methods</a>
+<p class="m-0">Learn how to create asynchronous service methods.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Handling Form Submission Learn how to create and submit a web form with Spring. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/handling-form-submission/">Handling Form Submission</a>
+<p class="m-0">Learn how to create and submit a web form with Spring.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Building an Application with Spring Boot Learn how to build an application with minimal configuration. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/spring-boot/">Building an Application with Spring Boot</a>
+<p class="m-0">Learn how to build an application with minimal configuration.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Using WebSocket to build an interactive web application Learn how to the send and receive messages between a browser and the server over a WebSocket []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/messaging-stomp-websocket/">Using WebSocket to build an interactive web application</a>
+<p class="m-0">Learn how to the send and receive messages between a browser and the server over a WebSocket</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Working a Getting Started guide with STS Learn how to import a Getting Started guide with Spring Tool Suite (STS). []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/sts/">Working a Getting Started guide with STS</a>
+<p class="m-0">Learn how to import a Getting Started guide with Spring Tool Suite (STS).</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Consuming a RESTful Web Service with AngularJS Learn how to retrieve web page data with AngularJS. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/consuming-rest-angularjs/">Consuming a RESTful Web Service with AngularJS</a>
+<p class="m-0">Learn how to retrieve web page data with AngularJS.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Consuming a RESTful Web Service with rest.js Learn how to retrieve web page data with rest.js. []">
+ <div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/consuming-rest-restjs/">Consuming a RESTful Web Service with rest.js</a>
+<p class="m-0">Learn how to retrieve web page data with rest.js.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Consuming a RESTful Web Service with jQuery Learn how to retrieve web page data with jQuery. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/consuming-rest-jquery/">Consuming a RESTful Web Service with jQuery</a>
+<p class="m-0">Learn how to retrieve web page data with jQuery.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Enabling Cross Origin Requests for a RESTful Web Service Learn how to create a RESTful web service with Spring that support Cross-Origin Resource Sharing (CORS). []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/rest-service-cors/">Enabling Cross Origin Requests for a RESTful Web Service</a>
+<p class="m-0">Learn how to create a RESTful web service with Spring that support Cross-Origin Resource Sharing (CORS).</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Consuming a SOAP web service Learn how to create a client that consumes a WSDL-based service []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/consuming-web-service/">Consuming a SOAP web service</a>
+<p class="m-0">Learn how to create a client that consumes a WSDL-based service</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing JPA Data with REST Learn how to work with RESTful, hypermedia-based data persistence using Spring Data REST. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-data-rest/">Accessing JPA Data with REST</a>
+<p class="m-0">Learn how to work with RESTful, hypermedia-based data persistence using Spring Data REST.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing Neo4j Data with REST Learn how to work with RESTful, hypermedia-based data persistence using Spring Data REST. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-neo4j-data-rest/">Accessing Neo4j Data with REST</a>
+<p class="m-0">Learn how to work with RESTful, hypermedia-based data persistence using Spring Data REST.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing MongoDB Data with REST Learn how to work with RESTful, hypermedia-based data persistence using Spring Data REST. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-mongodb-data-rest/">Accessing MongoDB Data with REST</a>
+<p class="m-0">Learn how to work with RESTful, hypermedia-based data persistence using Spring Data REST.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing Data in Pivotal GemFire with REST Learn how to work with RESTful, hypermedia-based data persistence using Spring Data REST. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-gemfire-data-rest/">Accessing Data in Pivotal GemFire with REST</a>
+<p class="m-0">Learn how to work with RESTful, hypermedia-based data persistence using Spring Data REST.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Producing a SOAP web service Learn how to create a SOAP-based web service with Spring. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/producing-web-service/">Producing a SOAP web service</a>
+<p class="m-0">Learn how to create a SOAP-based web service with Spring.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Caching Data with Spring Learn how to cache data in memory with Spring []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/caching/">Caching Data with Spring</a>
+<p class="m-0">Learn how to cache data in memory with Spring</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Deploying to Cloud Foundry from STS Learn how to deploy a Spring application to Cloud Foundry from STS []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/sts-cloud-foundry-deployment/">Deploying to Cloud Foundry from STS</a>
+<p class="m-0">Learn how to deploy a Spring application to Cloud Foundry from STS</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Spring Boot with Docker Learn how to create a Docker container from a Spring Boot application with Maven or Gradle []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/spring-boot-docker/">Spring Boot with Docker</a>
+<p class="m-0">Learn how to create a Docker container from a Spring Boot application with Maven or Gradle</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Working a Getting Started guide with IntelliJ IDEA Learn how to work a Getting Started guide with IntelliJ IDEA. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/intellij-idea/">Working a Getting Started guide with IntelliJ IDEA</a>
+<p class="m-0">Learn how to work a Getting Started guide with IntelliJ IDEA.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Creating CRUD UI with Vaadin Use Vaadin and Spring Data JPA to build a dynamic UI []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/crud-with-vaadin/">Creating CRUD UI with Vaadin</a>
+<p class="m-0">Use Vaadin and Spring Data JPA to build a dynamic UI</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Service Registration and Discovery Learn how to register and find services with Eureka []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/service-registration-and-discovery/">Service Registration and Discovery</a>
+<p class="m-0">Learn how to register and find services with Eureka</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Centralized Configuration Learn how to manage application settings from an external, centralized source []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/centralized-configuration/">Centralized Configuration</a>
+<p class="m-0">Learn how to manage application settings from an external, centralized source</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Routing and Filtering Learn how to route and filter requests to a microservice using Netflix Zuul []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/routing-and-filtering/">Routing and Filtering</a>
+<p class="m-0">Learn how to route and filter requests to a microservice using Netflix Zuul</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Circuit Breaker Learn how to degrade gracefully services using Hystrix []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/circuit-breaker/">Circuit Breaker</a>
+<p class="m-0">Learn how to degrade gracefully services using Hystrix</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Client Side Load Balancing with Ribbon and Spring Cloud Dynamically support services coming up and going down without interrupting the client []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/client-side-load-balancing/">Client Side Load Balancing with Ribbon and Spring Cloud</a>
+<p class="m-0">Dynamically support services coming up and going down without interrupting the client</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Testing the Web Layer Learn how to test Spring Boot applications and MVC controllers. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/testing-web/">Testing the Web Layer</a>
+<p class="m-0">Learn how to test Spring Boot applications and MVC controllers.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing data with MySQL Learn how to set up and manage user accounts on MySQL and how to configure Spring Boot to connect to it at runtime. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-data-mysql/">Accessing data with MySQL</a>
+<p class="m-0">Learn how to set up and manage user accounts on MySQL and how to configure Spring Boot to connect to it at runtime.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Creating a Multi Module Project Learn how to build a library and package it for consumption in a Spring Boot application []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/multi-module/">Creating a Multi Module Project</a>
+<p class="m-0">Learn how to build a library and package it for consumption in a Spring Boot application</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Creating API Documentation with Restdocs Learn how to generate documentation for HTTP endpoints using Spring Restdocs []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/testing-restdocs/">Creating API Documentation with Restdocs</a>
+<p class="m-0">Learn how to generate documentation for HTTP endpoints using Spring Restdocs</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Messaging with Google Cloud Pub/Sub Learn how to exchange messages using Spring Integration channel adapters and Google Cloud Pub/Sub []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/messaging-gcp-pubsub/">Messaging with Google Cloud Pub/Sub</a>
+<p class="m-0">Learn how to exchange messages using Spring Integration channel adapters and Google Cloud Pub/Sub</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Building a Reactive RESTful Web Service Learn how to create a RESTful web service with Reactive Spring. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/reactive-rest-service/">Building a Reactive RESTful Web Service</a>
+<p class="m-0">Learn how to create a RESTful web service with Reactive Spring.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Consumer Driven Contracts Learn how to with contract stubs and consuming that contract from another Spring application []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/contract-rest/">Consumer Driven Contracts</a>
+<p class="m-0">Learn how to with contract stubs and consuming that contract from another Spring application</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing Vault Learn how to use Spring Vault to load secrets from HashiCorp Vault []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-vault/">Accessing Vault</a>
+<p class="m-0">Learn how to use Spring Vault to load secrets from HashiCorp Vault</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Vault Configuration Learn how to store and retrieve application configuration details in HashiCorp Vault []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/vault-config/">Vault Configuration</a>
+<p class="m-0">Learn how to store and retrieve application configuration details in HashiCorp Vault</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing Data Reactively with Redis Learn how to reactively interface with Redis and Spring Data []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/spring-data-reactive-redis/">Accessing Data Reactively with Redis</a>
+<p class="m-0">Learn how to reactively interface with Redis and Spring Data</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Deploying a Spring Boot app to Azure Learn how to deploy a Spring Boot app to Azure. []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/spring-boot-for-azure/">Deploying a Spring Boot app to Azure</a>
+<p class="m-0">Learn how to deploy a Spring Boot app to Azure.</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Building a Gateway Learn how to configure a gateway [spring-cloud-gateway]">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/gateway/">Building a Gateway</a>
+<p class="m-0">Learn how to configure a gateway</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Client-Side Load-Balancing with Spring Cloud LoadBalancer Dynamically select correct instance for the request [spring-cloud-commons, spring-cloud]">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/spring-cloud-loadbalancer/">Client-Side Load-Balancing with Spring Cloud LoadBalancer</a>
+<p class="m-0">Dynamically select correct instance for the request</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Spring Cloud Stream Learn how to build and test Spring Cloud Stream Applications with RabbitMQ and Apache Kafka []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/spring-cloud-stream/">Spring Cloud Stream</a>
+<p class="m-0">Learn how to build and test Spring Cloud Stream Applications with RabbitMQ and Apache Kafka</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Spring Cloud Data Flow Learn how to build, deploy and launch streaming and batch data pipelines using Spring Cloud Data Flow []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/spring-cloud-dataflow/">Spring Cloud Data Flow</a>
+<p class="m-0">Learn how to build, deploy and launch streaming and batch data pipelines using Spring Cloud Data Flow</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Spring Cloud Task Learn how to build and test Spring Cloud Task Applications []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/spring-cloud-task/">Spring Cloud Task</a>
+<p class="m-0">Learn how to build and test Spring Cloud Task Applications</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Spring Boot Kubernetes Deploy a Spring Boot application to Kubernetes []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/spring-boot-kubernetes/">Spring Boot Kubernetes</a>
+<p class="m-0">Deploy a Spring Boot application to Kubernetes</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Accessing data with R2DBC Learn how to access relational data with the reactive protocol R2DBC []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/accessing-data-r2dbc/">Accessing data with R2DBC</a>
+<p class="m-0">Learn how to access relational data with the reactive protocol R2DBC</p>
+</div>
+</div>
+<div class="guide guide-search half border-box flex" data-filterable="Spring Cloud Circuit Breaker Guide How to Use Spring Cloud Circuit Breaker []">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-start" data-icon="icon-guides-start" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="6.5,14.2 6.5,25.8 15.2,25 6.5,14.2 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/gs/cloud-circuit-breaker/">Spring Cloud Circuit Breaker Guide</a>
+<p class="m-0">How to Use Spring Cloud Circuit Breaker</p>
+</div>
+</div>
+</section>
+</div>
+<section class="mb-6" id="topical-guides">
+<div class="container">
+<div class="mb-3">
+<h2 class="h2 antialiased">Topical Guides</h2>
+<p class="guide-description m-0">Designed to be read and comprehended in an hour or less, providing more wide-ranging or subjective content than a getting started guide.</p>
+</div>
+<section class="flex jc-between flex-wrap" id="topical-guides-list">
+<div class="guide half border-box flex" data-filterable="Spring Security Architecture Topical guide to Spring Security, how the bits fit together and how they interact with Spring Boot">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-topic" data-icon="icon-guides-topic" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="10.2,14.1 8.2,17.7 3.6,15.8 6.9,21.4 6.1,26.2 10.2,26.1 14.3,30.9 13.5,25.2 16.9,23.4 12.3,20
+	10.2,14.1 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/topicals/spring-security-architecture/">Spring Security Architecture</a>
+<p class="m-0">Topical guide to Spring Security, how the bits fit together and how they interact with Spring Boot</p>
+</div>
+</div>
+<div class="guide half border-box flex" data-filterable="Spring Boot Docker Topical guide to using Docker and how to create container images for Spring Boot applications">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-topic" data-icon="icon-guides-topic" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 "></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+	L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0l5-2.9
+	c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7L4.4,3.2
+	L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<polyline class="shape-color-5" points="10.2,14.1 8.2,17.7 3.6,15.8 6.9,21.4 6.1,26.2 10.2,26.1 14.3,30.9 13.5,25.2 16.9,23.4 12.3,20
+	10.2,14.1 "></polyline>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/topicals/spring-boot-docker/">Spring Boot Docker</a>
+<p class="m-0">Topical guide to using Docker and how to create container images for Spring Boot applications</p>
+</div>
+</div>
+</section>
+</div>
+</section>
+<section class="mb-6" id="tutorials">
+<div class="container">
+<div class="mb-3">
+<h2 class="h2 antialiased">Tutorials</h2>
+<p class="guide-description m-0">Designed to be completed in 2-3 hours, these guides provide deeper, in-context explorations of enterprise application development topics, leaving you ready to implement real-world solutions.</p>
+</div>
+<section class="flex jc-between flex-wrap" id="tutorials-list">
+<div class="guide half border-box flex" data-filterable="Building REST services with Spring Learn how to easily build RESTful services with Spring">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-tutorial" data-icon="icon-guides-tutorial" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 		"></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+			L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0
+			l5-2.9c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7
+			L4.4,3.2L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<path class="shape-color-5" d="M10.3,25.4c-1.4-0.9-2.3-2.5-2.4-4.2c0-1.6,1.1-2.2,2.4-1.4c1.4,0.9,2.3,2.5,2.4,4.2
+			C12.7,25.5,11.6,26.1,10.3,25.4 M11.5,15.5L9,14l-0.1,1.7c-0.4-0.1-0.9-0.2-1.4-0.1l-1.2-1.8l-1.8,1l1,2c-0.2,0.4-0.4,0.8-0.5,1.2
+			l-1.6-0.8v2.9l1.6,1c0.1,0.7,0.3,1.3,0.6,1.9l-1,0.8l1.8,3l1.2-0.4c0.4,0.5,0.9,1,1.4,1.4L9,29.6l2.5,1.5l0.1-1.7
+			c0.5,0.1,1,0.2,1.5,0.1l1.1,1.8l1.8-1L15,28.5c0.3-0.4,0.5-0.9,0.6-1.3l1.5,0.7V25l-1.4-0.9c-0.1-0.7-0.3-1.4-0.6-2l0.9-0.7
+			l-1.8-3l-1.1,0.5c-0.4-0.6-0.9-1.1-1.5-1.5L11.5,15.5"></path>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/tutorials/rest/">Building REST services with Spring</a>
+<p class="m-0">Learn how to easily build RESTful services with Spring</p>
+</div>
+</div>
+<div class="guide half border-box flex" data-filterable="Spring Security and Angular A tutorial on how to use Spring Security with a single page application with various backend architectures, ranging from a simple single server to an API gateway with OAuth2 authentication.">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-tutorial" data-icon="icon-guides-tutorial" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 		"></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+			L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0
+			l5-2.9c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7
+			L4.4,3.2L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<path class="shape-color-5" d="M10.3,25.4c-1.4-0.9-2.3-2.5-2.4-4.2c0-1.6,1.1-2.2,2.4-1.4c1.4,0.9,2.3,2.5,2.4,4.2
+			C12.7,25.5,11.6,26.1,10.3,25.4 M11.5,15.5L9,14l-0.1,1.7c-0.4-0.1-0.9-0.2-1.4-0.1l-1.2-1.8l-1.8,1l1,2c-0.2,0.4-0.4,0.8-0.5,1.2
+			l-1.6-0.8v2.9l1.6,1c0.1,0.7,0.3,1.3,0.6,1.9l-1,0.8l1.8,3l1.2-0.4c0.4,0.5,0.9,1,1.4,1.4L9,29.6l2.5,1.5l0.1-1.7
+			c0.5,0.1,1,0.2,1.5,0.1l1.1,1.8l1.8-1L15,28.5c0.3-0.4,0.5-0.9,0.6-1.3l1.5,0.7V25l-1.4-0.9c-0.1-0.7-0.3-1.4-0.6-2l0.9-0.7
+			l-1.8-3l-1.1,0.5c-0.4-0.6-0.9-1.1-1.5-1.5L11.5,15.5"></path>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/tutorials/spring-security-and-angular-js/">Spring Security and Angular</a>
+<p class="m-0">A tutorial on how to use Spring Security with a single page application with various backend architectures, ranging from a simple single server to an API gateway with OAuth2 authentication.</p>
+</div>
+</div>
+<div class="guide half border-box flex" data-filterable="React.js and Spring Data REST A tutorial based on the 5-part blog series by Greg Turnquist">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-tutorial" data-icon="icon-guides-tutorial" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 		"></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+			L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0
+			l5-2.9c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7
+			L4.4,3.2L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<path class="shape-color-5" d="M10.3,25.4c-1.4-0.9-2.3-2.5-2.4-4.2c0-1.6,1.1-2.2,2.4-1.4c1.4,0.9,2.3,2.5,2.4,4.2
+			C12.7,25.5,11.6,26.1,10.3,25.4 M11.5,15.5L9,14l-0.1,1.7c-0.4-0.1-0.9-0.2-1.4-0.1l-1.2-1.8l-1.8,1l1,2c-0.2,0.4-0.4,0.8-0.5,1.2
+			l-1.6-0.8v2.9l1.6,1c0.1,0.7,0.3,1.3,0.6,1.9l-1,0.8l1.8,3l1.2-0.4c0.4,0.5,0.9,1,1.4,1.4L9,29.6l2.5,1.5l0.1-1.7
+			c0.5,0.1,1,0.2,1.5,0.1l1.1,1.8l1.8-1L15,28.5c0.3-0.4,0.5-0.9,0.6-1.3l1.5,0.7V25l-1.4-0.9c-0.1-0.7-0.3-1.4-0.6-2l0.9-0.7
+			l-1.8-3l-1.1,0.5c-0.4-0.6-0.9-1.1-1.5-1.5L11.5,15.5"></path>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/tutorials/react-and-spring-data-rest/">React.js and Spring Data REST</a>
+<p class="m-0">A tutorial based on the 5-part blog series by Greg Turnquist</p>
+</div>
+</div>
+<div class="guide half border-box flex" data-filterable="Spring Boot and OAuth2 A tutorial on &quot;social&quot; login and single sign on with Facebook and Github">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-tutorial" data-icon="icon-guides-tutorial" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 		"></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+			L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0
+			l5-2.9c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7
+			L4.4,3.2L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<path class="shape-color-5" d="M10.3,25.4c-1.4-0.9-2.3-2.5-2.4-4.2c0-1.6,1.1-2.2,2.4-1.4c1.4,0.9,2.3,2.5,2.4,4.2
+			C12.7,25.5,11.6,26.1,10.3,25.4 M11.5,15.5L9,14l-0.1,1.7c-0.4-0.1-0.9-0.2-1.4-0.1l-1.2-1.8l-1.8,1l1,2c-0.2,0.4-0.4,0.8-0.5,1.2
+			l-1.6-0.8v2.9l1.6,1c0.1,0.7,0.3,1.3,0.6,1.9l-1,0.8l1.8,3l1.2-0.4c0.4,0.5,0.9,1,1.4,1.4L9,29.6l2.5,1.5l0.1-1.7
+			c0.5,0.1,1,0.2,1.5,0.1l1.1,1.8l1.8-1L15,28.5c0.3-0.4,0.5-0.9,0.6-1.3l1.5,0.7V25l-1.4-0.9c-0.1-0.7-0.3-1.4-0.6-2l0.9-0.7
+			l-1.8-3l-1.1,0.5c-0.4-0.6-0.9-1.1-1.5-1.5L11.5,15.5"></path>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/tutorials/spring-boot-oauth2/">Spring Boot and OAuth2</a>
+<p class="m-0">A tutorial on &quot;social&quot; login and single sign on with Facebook and Github</p>
+</div>
+</div>
+<div class="guide half border-box flex" data-filterable="Building web applications with Spring Boot and Kotlin Learn how to easily build and test web applications with Spring, Kotlin, Junit 5 and JPA">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-tutorial" data-icon="icon-guides-tutorial" focusable="false" role="img" viewBox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 		"></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+			L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0
+			l5-2.9c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7
+			L4.4,3.2L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<path class="shape-color-5" d="M10.3,25.4c-1.4-0.9-2.3-2.5-2.4-4.2c0-1.6,1.1-2.2,2.4-1.4c1.4,0.9,2.3,2.5,2.4,4.2
+			C12.7,25.5,11.6,26.1,10.3,25.4 M11.5,15.5L9,14l-0.1,1.7c-0.4-0.1-0.9-0.2-1.4-0.1l-1.2-1.8l-1.8,1l1,2c-0.2,0.4-0.4,0.8-0.5,1.2
+			l-1.6-0.8v2.9l1.6,1c0.1,0.7,0.3,1.3,0.6,1.9l-1,0.8l1.8,3l1.2-0.4c0.4,0.5,0.9,1,1.4,1.4L9,29.6l2.5,1.5l0.1-1.7
+			c0.5,0.1,1,0.2,1.5,0.1l1.1,1.8l1.8-1L15,28.5c0.3-0.4,0.5-0.9,0.6-1.3l1.5,0.7V25l-1.4-0.9c-0.1-0.7-0.3-1.4-0.6-2l0.9-0.7
+			l-1.8-3l-1.1,0.5c-0.4-0.6-0.9-1.1-1.5-1.5L11.5,15.5"></path>
+</svg>
+</div>
+<div class="text">
+<a class="guide-link bold blue link-darken antialiased" href="/guides/tutorials/spring-boot-kotlin/">Building web applications with Spring Boot and Kotlin</a>
+<p class="m-0">Learn how to easily build and test web applications with Spring, Kotlin, Junit 5 and JPA</p>
+</div>
+</div>
+</section>
+</div>
+</section>
+</div>
+<script src="/js/guide-132d4c84a015ed4abb061b97debbd056.js"></script>
+</div>
+<footer>
+<div id="top">
+<div class="container flex jc-between mx-auto">
+<div id="green-circle-sm"></div>
+
+<img alt="" id="circle-grid" src="/images/footer-circles-dc4b03d4edc1f3b7b42a45bdcce411c8.svg" />
+<div class="third">
+<h2 class="bold h3 antialiased">Get ahead</h2>
+<p>VMware offers training and certification to turbo-charge your progress.</p>
+<a class="blue link-animate" href="/training">Learn more</a>
+</div>
+<div class="third">
+<h2 class="bold h3 antialiased">Get support</h2>
+<p>Spring Runtime offers support and binaries for OpenJDK&trade;, Spring, and Apache Tomcat&reg; in one simple subscription.</p>
+<a class="blue link-animate" href="/support">Learn more</a>
+</div>
+<div class="third">
+<h2 class="bold h3 antialiased">Upcoming events</h2>
+<div class="footer-event">
+<a class="blue link-animate" href="https://springone.io">SpringOne</a>
+<p>All virtual. All free.</p>
+</div>
+<br />
+<div class="footer-event">
+<a class="blue link-animate" href="https://springonetour.io">SpringOne Tour</a>
+<p>The best Cloud-Native Java content brought directly to you.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="bottom">
+<div id="bottom-top">
+<div class="mx-auto" id="footer-over">
+<div class="container flex jc-between mx-auto">
+<div class="left">
+<div class="flex jc-between">
+<div class="footer-column">
+<p><strong><a href="/why-spring">Why Spring</a></strong></p>
+<ul>
+<li><a href="/microservices">Microservices</a></li>
+<li><a href="/reactive">Reactive</a></li>
+<li><a href="/event-driven">Event Driven</a></li>
+<li><a href="/cloud">Cloud</a></li>
+<li><a href="/web-applications">Web Applications</a></li>
+<li><a href="/serverless">Serverless</a></li>
+<li><a href="/batch">Batch</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<p><strong><a href="/learn">Learn</a></strong></p>
+<ul>
+<li><a href="/quickstart">Quickstart</a></li>
+<li><a href="/guides">Guides</a></li>
+<li><a href="/blog">Blog</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<p><strong><a href="/community">Community</a></strong></p>
+<ul>
+<li><a href="/events">Events</a></li>
+<li><a href="/team">Team</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<p><strong><a href="/projects">Projects</a></strong></p>
+<p><strong><a href="/training">Training</a></strong></p>
+<p><strong><a href="/support">Support</a></strong></p>
+<p><strong><a href="/thank-you">Thank You</a></strong></p>
+</div>
+</div>
+</div>
+<div class="right">
+<h2 class="h3 mb-2 antialiased hide">Get the Spring newsletter</h2>
+<h2 class="h3 mb-2 antialiased confirmation">Thank you!</h2>
+<script src="//app-sj05.marketo.com/js/forms2/js/forms2.min.js"></script>
+<form id="mktoForm_4723"></form>
+<script>
+                            MktoForms2.loadForm("https://app-sj05.marketo.com", "625-IUJ-009", 4723 , function(form){
+                                form.onSuccess(function(values, followUpUrl){
+                                    form.getFormElem().hide();
+                                    $('.hide').hide();
+                                    $('.confirmation').show();
+                                    return false;
+                                });
+                            });
+                        </script>
+</div>
+</div>
+</div>
+</div>
+<div id="bottom-bottom">
+<div class="flex container jc-between">
+<div id="spring-links">
+<img alt="Spring" id="springlogo-foot" src="/images/spring-logo-9146a4d3298760c2e7e49595184e1975.svg" />
+<p class="smallest antialiased">© <script>var d = new Date();
+                    document.write(d.getFullYear());</script> <a href="https://www.vmware.com/">VMware</a>, Inc. or its affiliates. <a href="https://www.vmware.com/help/legal.html">Terms of Use</a> • <a href="https://www.vmware.com/help/privacy.html" rel="noopener noreferrer">Privacy</a> • <a href="/trademarks">Trademark Guidelines</a> <span id="thank-you-mobile">• <a href="/thank-you">Thank you</a></span> <span id="teconsent"></span></p>
+<p class="smallest antialiased">Apache®, Apache Tomcat®, Apache Kafka®, Apache Cassandra&trade;, and Apache Geode&trade; are trademarks or registered trademarks of the Apache Software Foundation in the United States and/or other countries. Java&trade;, Java&trade; SE, Java&trade; EE, and OpenJDK&trade; are trademarks of Oracle and/or its affiliates. Kubernetes® is a registered trademark of the Linux Foundation in the United States and other countries. Linux® is the registered trademark of Linus Torvalds in the United States and other countries. Windows® and Microsoft® Azure are registered trademarks of Microsoft Corporation. “AWS” and “Amazon Web Services” are trademarks or registered trademarks of Amazon.com Inc. or its affiliates. All other trademarks and copyrights are property of their respective owners and are only mentioned for informative purposes. Other names may be trademarks of their respective owners.</p>
+</div>
+<div class="flex jc-between" id="social-icons">
+<a href="https://www.youtube.com/user/SpringSourceDev" title="Youtube"><svg id="youtube-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle class="cls-1" cx="20" cy="20" r="20"></circle><path class="cls-2" d="M30.91,14.53a2.89,2.89,0,0,0-2-2C27.12,12,20,12,20,12s-7.12,0-8.9.47a2.9,2.9,0,0,0-2,2A30.56,30.56,0,0,0,8.63,20a30.44,30.44,0,0,0,.46,5.47,2.89,2.89,0,0,0,2,2C12.9,28,20,28,20,28s7.12,0,8.9-.47a2.87,2.87,0,0,0,2-2A30.56,30.56,0,0,0,31.37,20,28.88,28.88,0,0,0,30.91,14.53ZM17.73,23.41V16.59L23.65,20Z"></path></svg></a>
+<a href="https://github.com/spring-projects" title="Github"><svg id="github-icon" viewBox="0 0 75.93 75.93" xmlns="http://www.w3.org/2000/svg"><path class="cls-1" d="M38,0a38,38,0,1,0,38,38A38,38,0,0,0,38,0Z"></path><path class="cls-2" d="M38,15.59A22.95,22.95,0,0,0,30.71,60.3c1.15.21,1.57-.5,1.57-1.11s0-2,0-3.9c-6.38,1.39-7.73-3.07-7.73-3.07A6.09,6.09,0,0,0,22,48.86c-2.09-1.42.15-1.39.15-1.39a4.81,4.81,0,0,1,3.52,2.36c2,3.5,5.37,2.49,6.67,1.91a4.87,4.87,0,0,1,1.46-3.07c-5.09-.58-10.45-2.55-10.45-11.34a8.84,8.84,0,0,1,2.36-6.15,8.29,8.29,0,0,1,.23-6.07s1.92-.62,6.3,2.35a21.82,21.82,0,0,1,11.49,0c4.38-3,6.3-2.35,6.3-2.35a8.29,8.29,0,0,1,.23,6.07,8.84,8.84,0,0,1,2.36,6.15c0,8.81-5.37,10.75-10.48,11.32a5.46,5.46,0,0,1,1.56,4.25c0,3.07,0,5.54,0,6.29s.42,1.33,1.58,1.1A22.94,22.94,0,0,0,38,15.59Z"></path></svg></a>
+<a href="https://twitter.com/springcentral" title="Twitter"><svg id="twitter-icon" viewBox="0 0 75.93 75.93" xmlns="http://www.w3.org/2000/svg"><circle class="cls-1" cx="37.97" cy="37.97" r="37.97"></circle><path class="cls-2" d="M55.2,22.73a15.43,15.43,0,0,1-4.88,1.91,7.56,7.56,0,0,0-5.61-2.49A7.78,7.78,0,0,0,37,30a7.56,7.56,0,0,0,.2,1.79,21.63,21.63,0,0,1-15.84-8.23,8,8,0,0,0,2.37,10.52,7.66,7.66,0,0,1-3.48-1v.09A7.84,7.84,0,0,0,26.45,41a7.54,7.54,0,0,1-2,.28A7.64,7.64,0,0,1,23,41.09a7.71,7.71,0,0,0,7.18,5.47,15.21,15.21,0,0,1-9.55,3.37,15.78,15.78,0,0,1-1.83-.11,21.41,21.41,0,0,0,11.78,3.54c14.13,0,21.86-12,21.86-22.42,0-.34,0-.68,0-1a15.67,15.67,0,0,0,3.83-4.08,14.9,14.9,0,0,1-4.41,1.24A7.8,7.8,0,0,0,55.2,22.73Z" data-name="Twitter" id="Twitter-2"></path></svg></a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script src="/js/main-0c8620f9bfc02ced83daef5cff697298.js"></script>
+</body></html>

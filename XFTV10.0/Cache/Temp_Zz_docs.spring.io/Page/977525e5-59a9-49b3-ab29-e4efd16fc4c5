@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>All Classes (Spring Data Core 2.3.2.RELEASE API)</title>
+<meta name="date" content="2020-07-22">
+<link rel="stylesheet" type="text/css" href="spring-javadoc.css" title="Style">
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<h1 class="bar">All&nbsp;Classes</h1>
+<div class="indexContainer">
+<ul>
+<li><a href="org/springframework/data/domain/AbstractAggregateRoot.html" title="class in org.springframework.data.domain">AbstractAggregateRoot</a></li>
+<li><a href="org/springframework/data/repository/core/support/AbstractEntityInformation.html" title="class in org.springframework.data.repository.core.support">AbstractEntityInformation</a></li>
+<li><a href="org/springframework/data/mapping/context/AbstractMappingContext.html" title="class in org.springframework.data.mapping.context">AbstractMappingContext</a></li>
+<li><a href="org/springframework/data/domain/AbstractPageRequest.html" title="class in org.springframework.data.domain">AbstractPageRequest</a></li>
+<li><a href="org/springframework/data/mapping/model/AbstractPersistentProperty.html" title="class in org.springframework.data.mapping.model">AbstractPersistentProperty</a></li>
+<li><a href="org/springframework/data/repository/query/parser/AbstractQueryCreator.html" title="class in org.springframework.data.repository.query.parser">AbstractQueryCreator</a></li>
+<li><a href="org/springframework/data/repository/core/support/AbstractRepositoryMetadata.html" title="class in org.springframework.data.repository.core.support">AbstractRepositoryMetadata</a></li>
+<li><a href="org/springframework/data/repository/init/AbstractRepositoryPopulatorFactoryBean.html" title="class in org.springframework.data.repository.init">AbstractRepositoryPopulatorFactoryBean</a></li>
+<li><a href="org/springframework/data/mapping/AccessOptions.html" title="class in org.springframework.data.mapping">AccessOptions</a></li>
+<li><a href="org/springframework/data/mapping/AccessOptions.GetOptions.html" title="class in org.springframework.data.mapping">AccessOptions.GetOptions</a></li>
+<li><a href="org/springframework/data/mapping/AccessOptions.GetOptions.GetNulls.html" title="enum in org.springframework.data.mapping">AccessOptions.GetOptions.GetNulls</a></li>
+<li><a href="org/springframework/data/mapping/AccessOptions.SetOptions.html" title="class in org.springframework.data.mapping">AccessOptions.SetOptions</a></li>
+<li><a href="org/springframework/data/mapping/AccessOptions.SetOptions.Propagation.html" title="enum in org.springframework.data.mapping">AccessOptions.SetOptions.Propagation</a></li>
+<li><a href="org/springframework/data/mapping/AccessOptions.SetOptions.SetNulls.html" title="enum in org.springframework.data.mapping">AccessOptions.SetOptions.SetNulls</a></li>
+<li><a href="org/springframework/data/projection/Accessor.html" title="class in org.springframework.data.projection">Accessor</a></li>
+<li><a href="org/springframework/data/annotation/AccessType.html" title="annotation in org.springframework.data.annotation">AccessType</a></li>
+<li><a href="org/springframework/data/annotation/AccessType.Type.html" title="enum in org.springframework.data.annotation">AccessType.Type</a></li>
+<li><a href="org/springframework/data/domain/AfterDomainEventPublication.html" title="annotation in org.springframework.data.domain">AfterDomainEventPublication</a></li>
+<li><a href="org/springframework/data/mapping/Alias.html" title="class in org.springframework.data.mapping">Alias</a></li>
+<li><a href="org/springframework/data/util/AnnotatedTypeScanner.html" title="class in org.springframework.data.util">AnnotatedTypeScanner</a></li>
+<li><a href="org/springframework/data/auditing/config/AnnotationAuditingConfiguration.html" title="class in org.springframework.data.auditing.config">AnnotationAuditingConfiguration</a></li>
+<li><a href="org/springframework/data/mapping/model/AnnotationBasedPersistentProperty.html" title="class in org.springframework.data.mapping.model">AnnotationBasedPersistentProperty</a></li>
+<li><a href="org/springframework/data/util/AnnotationDetectionFieldCallback.html" title="class in org.springframework.data.util">AnnotationDetectionFieldCallback</a></li>
+<li><a href="org/springframework/data/util/AnnotationDetectionMethodCallback.html" title="class in org.springframework.data.util">AnnotationDetectionMethodCallback</a></li>
+<li><a href="org/springframework/data/repository/config/AnnotationRepositoryConfigurationSource.html" title="class in org.springframework.data.repository.config">AnnotationRepositoryConfigurationSource</a></li>
+<li><a href="org/springframework/data/repository/core/support/AnnotationRepositoryMetadata.html" title="class in org.springframework.data.repository.core.support">AnnotationRepositoryMetadata</a></li>
+<li><a href="org/springframework/data/history/AnnotationRevisionMetadata.html" title="class in org.springframework.data.history">AnnotationRevisionMetadata</a></li>
+<li><a href="org/springframework/data/mapping/Association.html" title="class in org.springframework.data.mapping">Association</a></li>
+<li><a href="org/springframework/data/mapping/AssociationHandler.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">AssociationHandler</span></a></li>
+<li><a href="org/springframework/data/domain/Auditable.html" title="interface in org.springframework.data.domain"><span class="interfaceName">Auditable</span></a></li>
+<li><a href="org/springframework/data/auditing/AuditableBeanWrapper.html" title="interface in org.springframework.data.auditing"><span class="interfaceName">AuditableBeanWrapper</span></a></li>
+<li><a href="org/springframework/data/auditing/AuditableBeanWrapperFactory.html" title="interface in org.springframework.data.auditing"><span class="interfaceName">AuditableBeanWrapperFactory</span></a></li>
+<li><a href="org/springframework/data/auditing/config/AuditingBeanDefinitionRegistrarSupport.html" title="class in org.springframework.data.auditing.config">AuditingBeanDefinitionRegistrarSupport</a></li>
+<li><a href="org/springframework/data/auditing/config/AuditingConfiguration.html" title="interface in org.springframework.data.auditing.config"><span class="interfaceName">AuditingConfiguration</span></a></li>
+<li><a href="org/springframework/data/auditing/AuditingHandler.html" title="class in org.springframework.data.auditing">AuditingHandler</a></li>
+<li><a href="org/springframework/data/auditing/config/AuditingHandlerBeanDefinitionParser.html" title="class in org.springframework.data.auditing.config">AuditingHandlerBeanDefinitionParser</a></li>
+<li><a href="org/springframework/data/domain/AuditorAware.html" title="interface in org.springframework.data.domain"><span class="interfaceName">AuditorAware</span></a></li>
+<li><a href="org/springframework/data/mapping/model/BasicPersistentEntity.html" title="class in org.springframework.data.mapping.model">BasicPersistentEntity</a></li>
+<li><a href="org/springframework/data/config/BeanComponentDefinitionBuilder.html" title="class in org.springframework.data.config">BeanComponentDefinitionBuilder</a></li>
+<li><a href="org/springframework/data/util/BeanLookup.html" title="class in org.springframework.data.util">BeanLookup</a></li>
+<li><a href="org/springframework/data/mapping/model/BeanWrapperPropertyAccessorFactory.html" title="enum in org.springframework.data.mapping.model">BeanWrapperPropertyAccessorFactory</a></li>
+<li><a href="org/springframework/data/repository/config/BootstrapMode.html" title="enum in org.springframework.data.repository.config">BootstrapMode</a></li>
+<li><a href="org/springframework/data/geo/Box.html" title="class in org.springframework.data.geo">Box</a></li>
+<li><a href="org/springframework/data/mapping/model/CamelCaseAbbreviatingFieldNamingStrategy.html" title="class in org.springframework.data.mapping.model">CamelCaseAbbreviatingFieldNamingStrategy</a></li>
+<li><a href="org/springframework/data/mapping/model/CamelCaseSplittingFieldNamingStrategy.html" title="class in org.springframework.data.mapping.model">CamelCaseSplittingFieldNamingStrategy</a></li>
+<li><a href="org/springframework/data/util/CastUtils.html" title="interface in org.springframework.data.util"><span class="interfaceName">CastUtils</span></a></li>
+<li><a href="org/springframework/data/repository/cdi/CdiRepositoryBean.html" title="class in org.springframework.data.repository.cdi">CdiRepositoryBean</a></li>
+<li><a href="org/springframework/data/repository/cdi/CdiRepositoryConfiguration.html" title="interface in org.springframework.data.repository.cdi"><span class="interfaceName">CdiRepositoryConfiguration</span></a></li>
+<li><a href="org/springframework/data/repository/cdi/CdiRepositoryContext.html" title="class in org.springframework.data.repository.cdi">CdiRepositoryContext</a></li>
+<li><a href="org/springframework/data/repository/cdi/CdiRepositoryExtensionSupport.html" title="class in org.springframework.data.repository.cdi">CdiRepositoryExtensionSupport</a></li>
+<li><a href="org/springframework/data/transaction/ChainedTransactionManager.html" title="class in org.springframework.data.transaction">ChainedTransactionManager</a></li>
+<li><a href="org/springframework/data/crossstore/ChangeSet.html" title="interface in org.springframework.data.crossstore"><span class="interfaceName">ChangeSet</span></a></li>
+<li><a href="org/springframework/data/crossstore/ChangeSetBacked.html" title="interface in org.springframework.data.crossstore"><span class="interfaceName">ChangeSetBacked</span></a></li>
+<li><a href="org/springframework/data/crossstore/ChangeSetBackedTransactionSynchronization.html" title="class in org.springframework.data.crossstore">ChangeSetBackedTransactionSynchronization</a></li>
+<li><a href="org/springframework/data/crossstore/ChangeSetPersister.html" title="interface in org.springframework.data.crossstore"><span class="interfaceName">ChangeSetPersister</span></a></li>
+<li><a href="org/springframework/data/crossstore/ChangeSetPersister.NotFoundException.html" title="class in org.springframework.data.crossstore">ChangeSetPersister.NotFoundException</a></li>
+<li><a href="org/springframework/data/geo/Circle.html" title="class in org.springframework.data.geo">Circle</a></li>
+<li><a href="org/springframework/data/convert/ClassGeneratingEntityInstantiator.html" title="class in org.springframework.data.convert">ClassGeneratingEntityInstantiator</a></li>
+<li><a href="org/springframework/data/mapping/model/ClassGeneratingPropertyAccessorFactory.html" title="class in org.springframework.data.mapping.model">ClassGeneratingPropertyAccessorFactory</a></li>
+<li><a href="org/springframework/data/util/ClassTypeInformation.html" title="class in org.springframework.data.util">ClassTypeInformation</a></li>
+<li><a href="org/springframework/data/repository/util/ClassUtils.html" title="class in org.springframework.data.repository.util">ClassUtils</a></li>
+<li><a href="org/springframework/data/util/CloseableIterator.html" title="interface in org.springframework.data.util"><span class="interfaceName">CloseableIterator</span></a></li>
+<li><a href="org/springframework/data/convert/ConfigurableTypeInformationMapper.html" title="class in org.springframework.data.convert">ConfigurableTypeInformationMapper</a></li>
+<li><a href="org/springframework/data/config/ConfigurationUtils.html" title="interface in org.springframework.data.config"><span class="interfaceName">ConfigurationUtils</span></a></li>
+<li><a href="org/springframework/data/convert/ConverterBuilder.html" title="interface in org.springframework.data.convert"><span class="interfaceName">ConverterBuilder</span></a></li>
+<li><a href="org/springframework/data/convert/ConverterBuilder.ConverterAware.html" title="interface in org.springframework.data.convert"><span class="interfaceName">ConverterBuilder.ConverterAware</span></a></li>
+<li><a href="org/springframework/data/convert/ConverterBuilder.ReadingConverterAware.html" title="interface in org.springframework.data.convert"><span class="interfaceName">ConverterBuilder.ReadingConverterAware</span></a></li>
+<li><a href="org/springframework/data/convert/ConverterBuilder.ReadingConverterBuilder.html" title="interface in org.springframework.data.convert"><span class="interfaceName">ConverterBuilder.ReadingConverterBuilder</span></a></li>
+<li><a href="org/springframework/data/convert/ConverterBuilder.WritingConverterAware.html" title="interface in org.springframework.data.convert"><span class="interfaceName">ConverterBuilder.WritingConverterAware</span></a></li>
+<li><a href="org/springframework/data/convert/ConverterBuilder.WritingConverterBuilder.html" title="interface in org.springframework.data.convert"><span class="interfaceName">ConverterBuilder.WritingConverterBuilder</span></a></li>
+<li><a href="org/springframework/data/mapping/model/ConvertingPropertyAccessor.html" title="class in org.springframework.data.mapping.model">ConvertingPropertyAccessor</a></li>
+<li><a href="org/springframework/data/annotation/CreatedBy.html" title="annotation in org.springframework.data.annotation">CreatedBy</a></li>
+<li><a href="org/springframework/data/annotation/CreatedDate.html" title="annotation in org.springframework.data.annotation">CreatedDate</a></li>
+<li><a href="org/springframework/data/repository/core/CrudMethods.html" title="interface in org.springframework.data.repository.core"><span class="interfaceName">CrudMethods</span></a></li>
+<li><a href="org/springframework/data/repository/CrudRepository.html" title="interface in org.springframework.data.repository"><span class="interfaceName">CrudRepository</span></a></li>
+<li><a href="org/springframework/data/auditing/CurrentDateTimeProvider.html" title="enum in org.springframework.data.auditing">CurrentDateTimeProvider</a></li>
+<li><a href="org/springframework/data/convert/CustomConversions.html" title="class in org.springframework.data.convert">CustomConversions</a></li>
+<li><a href="org/springframework/data/convert/CustomConversions.ConverterConfiguration.html" title="class in org.springframework.data.convert">CustomConversions.ConverterConfiguration</a></li>
+<li><a href="org/springframework/data/convert/CustomConversions.ConverterRegistrationIntent.html" title="class in org.springframework.data.convert">CustomConversions.ConverterRegistrationIntent</a></li>
+<li><a href="org/springframework/data/convert/CustomConversions.ConverterRegistrationIntent.ConverterOrigin.html" title="enum in org.springframework.data.convert">CustomConversions.ConverterRegistrationIntent.ConverterOrigin</a></li>
+<li><a href="org/springframework/data/convert/CustomConversions.StoreConversions.html" title="class in org.springframework.data.convert">CustomConversions.StoreConversions</a></li>
+<li><a href="org/springframework/data/geo/CustomMetric.html" title="class in org.springframework.data.geo">CustomMetric</a></li>
+<li><a href="org/springframework/data/repository/config/CustomRepositoryImplementationDetector.html" title="class in org.springframework.data.repository.config">CustomRepositoryImplementationDetector</a></li>
+<li><a href="org/springframework/data/auditing/DateTimeProvider.html" title="interface in org.springframework.data.auditing"><span class="interfaceName">DateTimeProvider</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/DefaultCrudMethods.html" title="class in org.springframework.data.repository.core.support">DefaultCrudMethods</a></li>
+<li><a href="org/springframework/data/projection/DefaultMethodInvokingMethodInterceptor.html" title="class in org.springframework.data.projection">DefaultMethodInvokingMethodInterceptor</a></li>
+<li><a href="org/springframework/data/repository/query/DefaultParameters.html" title="class in org.springframework.data.repository.query">DefaultParameters</a></li>
+<li><a href="org/springframework/data/repository/config/DefaultRepositoryBaseClass.html" title="class in org.springframework.data.repository.config">DefaultRepositoryBaseClass</a></li>
+<li><a href="org/springframework/data/repository/config/DefaultRepositoryConfiguration.html" title="class in org.springframework.data.repository.config">DefaultRepositoryConfiguration</a></li>
+<li><a href="org/springframework/data/repository/support/DefaultRepositoryInvokerFactory.html" title="class in org.springframework.data.repository.support">DefaultRepositoryInvokerFactory</a></li>
+<li><a href="org/springframework/data/repository/core/support/DefaultRepositoryMetadata.html" title="class in org.springframework.data.repository.core.support">DefaultRepositoryMetadata</a></li>
+<li><a href="org/springframework/data/mapping/model/DefaultSpELExpressionEvaluator.html" title="class in org.springframework.data.mapping.model">DefaultSpELExpressionEvaluator</a></li>
+<li><a href="org/springframework/data/convert/DefaultTypeMapper.html" title="class in org.springframework.data.convert">DefaultTypeMapper</a></li>
+<li><a href="org/springframework/data/repository/core/support/DelegatingEntityInformation.html" title="class in org.springframework.data.repository.core.support">DelegatingEntityInformation</a></li>
+<li><a href="org/springframework/data/util/DirectFieldAccessFallbackBeanWrapper.html" title="class in org.springframework.data.util">DirectFieldAccessFallbackBeanWrapper</a></li>
+<li><a href="org/springframework/data/geo/Distance.html" title="class in org.springframework.data.geo">Distance</a></li>
+<li><a href="org/springframework/data/geo/format/DistanceFormatter.html" title="enum in org.springframework.data.geo.format">DistanceFormatter</a></li>
+<li><a href="org/springframework/data/repository/support/DomainClassConverter.html" title="class in org.springframework.data.repository.support">DomainClassConverter</a></li>
+<li><a href="org/springframework/data/domain/DomainEvents.html" title="annotation in org.springframework.data.domain">DomainEvents</a></li>
+<li><a href="org/springframework/data/repository/cdi/Eager.html" title="annotation in org.springframework.data.repository.cdi">Eager</a></li>
+<li><a href="org/springframework/data/web/config/EnableSpringDataWebSupport.html" title="annotation in org.springframework.data.web.config">EnableSpringDataWebSupport</a></li>
+<li><a href="org/springframework/data/web/config/EnableSpringDataWebSupport.QuerydslActivator.html" title="class in org.springframework.data.web.config">EnableSpringDataWebSupport.QuerydslActivator</a></li>
+<li><a href="org/springframework/data/web/config/EnableSpringDataWebSupport.SpringDataWebConfigurationImportSelector.html" title="class in org.springframework.data.web.config">EnableSpringDataWebSupport.SpringDataWebConfigurationImportSelector</a></li>
+<li><a href="org/springframework/data/mapping/callback/EntityCallback.html" title="interface in org.springframework.data.mapping.callback"><span class="interfaceName">EntityCallback</span></a></li>
+<li><a href="org/springframework/data/mapping/callback/EntityCallbacks.html" title="interface in org.springframework.data.mapping.callback"><span class="interfaceName">EntityCallbacks</span></a></li>
+<li><a href="org/springframework/data/convert/EntityConverter.html" title="interface in org.springframework.data.convert"><span class="interfaceName">EntityConverter</span></a></li>
+<li><a href="org/springframework/data/repository/core/EntityInformation.html" title="interface in org.springframework.data.repository.core"><span class="interfaceName">EntityInformation</span></a></li>
+<li><a href="org/springframework/data/convert/EntityInstantiator.html" title="interface in org.springframework.data.convert"><span class="interfaceName">EntityInstantiator</span></a></li>
+<li><a href="org/springframework/data/mapping/model/EntityInstantiator.html" title="interface in org.springframework.data.mapping.model"><span class="interfaceName">EntityInstantiator</span></a></li>
+<li><a href="org/springframework/data/convert/EntityInstantiators.html" title="class in org.springframework.data.convert">EntityInstantiators</a></li>
+<li><a href="org/springframework/data/mapping/model/EntityInstantiators.html" title="class in org.springframework.data.mapping.model">EntityInstantiators</a></li>
+<li><a href="org/springframework/data/repository/core/EntityMetadata.html" title="interface in org.springframework.data.repository.core"><span class="interfaceName">EntityMetadata</span></a></li>
+<li><a href="org/springframework/data/querydsl/EntityPathResolver.html" title="interface in org.springframework.data.querydsl"><span class="interfaceName">EntityPathResolver</span></a></li>
+<li><a href="org/springframework/data/convert/EntityReader.html" title="interface in org.springframework.data.convert"><span class="interfaceName">EntityReader</span></a></li>
+<li><a href="org/springframework/data/convert/EntityWriter.html" title="interface in org.springframework.data.convert"><span class="interfaceName">EntityWriter</span></a></li>
+<li><a href="org/springframework/data/spel/spi/EvaluationContextExtension.html" title="interface in org.springframework.data.spel.spi"><span class="interfaceName">EvaluationContextExtension</span></a></li>
+<li><a href="org/springframework/data/spel/EvaluationContextProvider.html" title="interface in org.springframework.data.spel"><span class="interfaceName">EvaluationContextProvider</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/EventPublishingRepositoryProxyPostProcessor.html" title="class in org.springframework.data.repository.core.support">EventPublishingRepositoryProxyPostProcessor</a></li>
+<li><a href="org/springframework/data/domain/Example.html" title="interface in org.springframework.data.domain"><span class="interfaceName">Example</span></a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.html" title="interface in org.springframework.data.domain"><span class="interfaceName">ExampleMatcher</span></a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.GenericPropertyMatcher.html" title="class in org.springframework.data.domain">ExampleMatcher.GenericPropertyMatcher</a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.GenericPropertyMatchers.html" title="class in org.springframework.data.domain">ExampleMatcher.GenericPropertyMatchers</a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.MatcherConfigurer.html" title="interface in org.springframework.data.domain"><span class="interfaceName">ExampleMatcher.MatcherConfigurer</span></a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.MatchMode.html" title="enum in org.springframework.data.domain">ExampleMatcher.MatchMode</a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.NoOpPropertyValueTransformer.html" title="enum in org.springframework.data.domain">ExampleMatcher.NoOpPropertyValueTransformer</a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.NullHandler.html" title="enum in org.springframework.data.domain">ExampleMatcher.NullHandler</a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.PropertySpecifier.html" title="class in org.springframework.data.domain">ExampleMatcher.PropertySpecifier</a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.PropertySpecifiers.html" title="class in org.springframework.data.domain">ExampleMatcher.PropertySpecifiers</a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.PropertyValueTransformer.html" title="interface in org.springframework.data.domain"><span class="interfaceName">ExampleMatcher.PropertyValueTransformer</span></a></li>
+<li><a href="org/springframework/data/domain/ExampleMatcher.StringMatcher.html" title="enum in org.springframework.data.domain">ExampleMatcher.StringMatcher</a></li>
+<li><a href="org/springframework/data/support/ExampleMatcherAccessor.html" title="class in org.springframework.data.support">ExampleMatcherAccessor</a></li>
+<li><a href="org/springframework/data/spel/ExtensionAwareEvaluationContextProvider.html" title="class in org.springframework.data.spel">ExtensionAwareEvaluationContextProvider</a></li>
+<li><a href="org/springframework/data/repository/query/ExtensionAwareQueryMethodEvaluationContextProvider.html" title="class in org.springframework.data.repository.query">ExtensionAwareQueryMethodEvaluationContextProvider</a></li>
+<li><a href="org/springframework/data/mapping/model/FieldNamingStrategy.html" title="interface in org.springframework.data.mapping.model"><span class="interfaceName">FieldNamingStrategy</span></a></li>
+<li><a href="org/springframework/data/repository/config/FragmentMetadata.html" title="class in org.springframework.data.repository.config">FragmentMetadata</a></li>
+<li><a href="org/springframework/data/spel/spi/Function.html" title="class in org.springframework.data.spel.spi">Function</a></li>
+<li><a href="org/springframework/data/geo/GeoModule.html" title="class in org.springframework.data.geo">GeoModule</a></li>
+<li><a href="org/springframework/data/geo/GeoPage.html" title="class in org.springframework.data.geo">GeoPage</a></li>
+<li><a href="org/springframework/data/geo/GeoResult.html" title="class in org.springframework.data.geo">GeoResult</a></li>
+<li><a href="org/springframework/data/geo/GeoResults.html" title="class in org.springframework.data.geo">GeoResults</a></li>
+<li><a href="org/springframework/data/crossstore/HashMapChangeSet.html" title="class in org.springframework.data.crossstore">HashMapChangeSet</a></li>
+<li><a href="org/springframework/data/web/config/HateoasAwareSpringDataWebConfiguration.html" title="class in org.springframework.data.web.config">HateoasAwareSpringDataWebConfiguration</a></li>
+<li><a href="org/springframework/data/web/HateoasPageableHandlerMethodArgumentResolver.html" title="class in org.springframework.data.web">HateoasPageableHandlerMethodArgumentResolver</a></li>
+<li><a href="org/springframework/data/web/HateoasSortHandlerMethodArgumentResolver.html" title="class in org.springframework.data.web">HateoasSortHandlerMethodArgumentResolver</a></li>
+<li><a href="org/springframework/data/annotation/Id.html" title="annotation in org.springframework.data.annotation">Id</a></li>
+<li><a href="org/springframework/data/mapping/IdentifierAccessor.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">IdentifierAccessor</span></a></li>
+<li><a href="org/springframework/data/mapping/model/IdPropertyIdentifierAccessor.html" title="class in org.springframework.data.mapping.model">IdPropertyIdentifierAccessor</a></li>
+<li><a href="org/springframework/data/annotation/Immutable.html" title="annotation in org.springframework.data.annotation">Immutable</a></li>
+<li><a href="org/springframework/data/repository/config/ImplementationDetectionConfiguration.html" title="interface in org.springframework.data.repository.config"><span class="interfaceName">ImplementationDetectionConfiguration</span></a></li>
+<li><a href="org/springframework/data/repository/config/ImplementationLookupConfiguration.html" title="interface in org.springframework.data.repository.config"><span class="interfaceName">ImplementationLookupConfiguration</span></a></li>
+<li><a href="org/springframework/data/mapping/model/InstantiationAwarePropertyAccessor.html" title="class in org.springframework.data.mapping.model">InstantiationAwarePropertyAccessor</a></li>
+<li><a href="org/springframework/data/mapping/model/InstantiationAwarePropertyAccessorFactory.html" title="class in org.springframework.data.mapping.model">InstantiationAwarePropertyAccessorFactory</a></li>
+<li><a href="org/springframework/data/mapping/model/InternalEntityInstantiatorFactory.html" title="class in org.springframework.data.mapping.model">InternalEntityInstantiatorFactory</a></li>
+<li><a href="org/springframework/data/mapping/context/InvalidPersistentPropertyPath.html" title="class in org.springframework.data.mapping.context">InvalidPersistentPropertyPath</a></li>
+<li><a href="org/springframework/data/auditing/IsNewAwareAuditingHandler.html" title="class in org.springframework.data.auditing">IsNewAwareAuditingHandler</a></li>
+<li><a href="org/springframework/data/auditing/config/IsNewAwareAuditingHandlerBeanDefinitionParser.html" title="class in org.springframework.data.auditing.config">IsNewAwareAuditingHandlerBeanDefinitionParser</a></li>
+<li><a href="org/springframework/data/support/IsNewStrategy.html" title="interface in org.springframework.data.support"><span class="interfaceName">IsNewStrategy</span></a></li>
+<li><a href="org/springframework/data/repository/init/Jackson2RepositoryPopulatorFactoryBean.html" title="class in org.springframework.data.repository.init">Jackson2RepositoryPopulatorFactoryBean</a></li>
+<li><a href="org/springframework/data/repository/init/Jackson2ResourceReader.html" title="class in org.springframework.data.repository.init">Jackson2ResourceReader</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.html" title="class in org.springframework.data.convert">JodaTimeConverters</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.DateTimeToDateConverter.html" title="enum in org.springframework.data.convert">JodaTimeConverters.DateTimeToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.DateToDateTimeConverter.html" title="enum in org.springframework.data.convert">JodaTimeConverters.DateToDateTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.DateToLocalDateConverter.html" title="enum in org.springframework.data.convert">JodaTimeConverters.DateToLocalDateConverter</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.DateToLocalDateTimeConverter.html" title="enum in org.springframework.data.convert">JodaTimeConverters.DateToLocalDateTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.InstantToJodaLocalDateTime.html" title="enum in org.springframework.data.convert">JodaTimeConverters.InstantToJodaLocalDateTime</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.JodaLocalDateTimeToInstant.html" title="enum in org.springframework.data.convert">JodaTimeConverters.JodaLocalDateTimeToInstant</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.LocalDateTimeToDateConverter.html" title="enum in org.springframework.data.convert">JodaTimeConverters.LocalDateTimeToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.LocalDateTimeToJodaDateTime.html" title="enum in org.springframework.data.convert">JodaTimeConverters.LocalDateTimeToJodaDateTime</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.LocalDateTimeToJodaLocalDateTime.html" title="enum in org.springframework.data.convert">JodaTimeConverters.LocalDateTimeToJodaLocalDateTime</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.LocalDateTimeToJsr310Converter.html" title="enum in org.springframework.data.convert">JodaTimeConverters.LocalDateTimeToJsr310Converter</a></li>
+<li><a href="org/springframework/data/convert/JodaTimeConverters.LocalDateToDateConverter.html" title="enum in org.springframework.data.convert">JodaTimeConverters.LocalDateToDateConverter</a></li>
+<li><a href="org/springframework/data/web/JsonPath.html" title="annotation in org.springframework.data.web">JsonPath</a></li>
+<li><a href="org/springframework/data/web/JsonProjectingMethodInterceptorFactory.html" title="class in org.springframework.data.web">JsonProjectingMethodInterceptorFactory</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.html" title="class in org.springframework.data.convert">Jsr310Converters</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.DateToInstantConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.DateToInstantConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.DateToLocalDateConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.DateToLocalDateConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.DateToLocalDateTimeConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.DateToLocalDateTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.DateToLocalTimeConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.DateToLocalTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.DurationToStringConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.DurationToStringConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.InstantToDateConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.InstantToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.InstantToLocalDateTimeConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.InstantToLocalDateTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.LocalDateTimeToDateConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.LocalDateTimeToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.LocalDateTimeToInstantConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.LocalDateTimeToInstantConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.LocalDateToDateConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.LocalDateToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.LocalTimeToDateConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.LocalTimeToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.PeriodToStringConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.PeriodToStringConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.StringToDurationConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.StringToDurationConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.StringToInstantConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.StringToInstantConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.StringToLocalDateConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.StringToLocalDateConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.StringToLocalDateTimeConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.StringToLocalDateTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.StringToPeriodConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.StringToPeriodConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.StringToZoneIdConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.StringToZoneIdConverter</a></li>
+<li><a href="org/springframework/data/convert/Jsr310Converters.ZoneIdToStringConverter.html" title="enum in org.springframework.data.convert">Jsr310Converters.ZoneIdToStringConverter</a></li>
+<li><a href="org/springframework/data/convert/KotlinClassGeneratingEntityInstantiator.html" title="class in org.springframework.data.convert">KotlinClassGeneratingEntityInstantiator</a></li>
+<li><a href="org/springframework/data/mapping/model/KotlinDefaultMask.html" title="class in org.springframework.data.mapping.model">KotlinDefaultMask</a></li>
+<li><a href="org/springframework/data/util/KotlinReflectionUtils.html" title="class in org.springframework.data.util">KotlinReflectionUtils</a></li>
+<li><a href="org/springframework/data/annotation/LastModifiedBy.html" title="annotation in org.springframework.data.annotation">LastModifiedBy</a></li>
+<li><a href="org/springframework/data/annotation/LastModifiedDate.html" title="annotation in org.springframework.data.annotation">LastModifiedDate</a></li>
+<li><a href="org/springframework/data/util/Lazy.html" title="class in org.springframework.data.util">Lazy</a></li>
+<li><a href="org/springframework/data/auditing/MappingAuditableBeanWrapperFactory.html" title="class in org.springframework.data.auditing">MappingAuditableBeanWrapperFactory</a></li>
+<li><a href="org/springframework/data/mapping/context/MappingContext.html" title="interface in org.springframework.data.mapping.context"><span class="interfaceName">MappingContext</span></a></li>
+<li><a href="org/springframework/data/mapping/context/MappingContextEvent.html" title="class in org.springframework.data.mapping.context">MappingContextEvent</a></li>
+<li><a href="org/springframework/data/convert/MappingContextTypeInformationMapper.html" title="class in org.springframework.data.convert">MappingContextTypeInformationMapper</a></li>
+<li><a href="org/springframework/data/mapping/MappingException.html" title="class in org.springframework.data.mapping">MappingException</a></li>
+<li><a href="org/springframework/data/mapping/model/MappingInstantiationException.html" title="class in org.springframework.data.mapping.model">MappingInstantiationException</a></li>
+<li><a href="org/springframework/data/projection/MethodInterceptorFactory.html" title="interface in org.springframework.data.projection"><span class="interfaceName">MethodInterceptorFactory</span></a></li>
+<li><a href="org/springframework/data/util/MethodInvocationRecorder.html" title="class in org.springframework.data.util">MethodInvocationRecorder</a></li>
+<li><a href="org/springframework/data/util/MethodInvocationRecorder.PropertyNameDetectionStrategy.html" title="interface in org.springframework.data.util"><span class="interfaceName">MethodInvocationRecorder.PropertyNameDetectionStrategy</span></a></li>
+<li><a href="org/springframework/data/util/MethodInvocationRecorder.Recorded.html" title="class in org.springframework.data.util">MethodInvocationRecorder.Recorded</a></li>
+<li><a href="org/springframework/data/util/MethodInvocationRecorder.Recorded.ToCollectionConverter.html" title="interface in org.springframework.data.util"><span class="interfaceName">MethodInvocationRecorder.Recorded.ToCollectionConverter</span></a></li>
+<li><a href="org/springframework/data/util/MethodInvocationRecorder.Recorded.ToMapConverter.html" title="interface in org.springframework.data.util"><span class="interfaceName">MethodInvocationRecorder.Recorded.ToMapConverter</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/MethodInvocationValidator.html" title="class in org.springframework.data.repository.core.support">MethodInvocationValidator</a></li>
+<li><a href="org/springframework/data/repository/core/support/MethodLookup.html" title="interface in org.springframework.data.repository.core.support"><span class="interfaceName">MethodLookup</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/MethodLookup.InvokedMethod.html" title="class in org.springframework.data.repository.core.support">MethodLookup.InvokedMethod</a></li>
+<li><a href="org/springframework/data/repository/core/support/MethodLookup.MethodPredicate.html" title="interface in org.springframework.data.repository.core.support"><span class="interfaceName">MethodLookup.MethodPredicate</span></a></li>
+<li><a href="org/springframework/data/type/MethodsMetadata.html" title="interface in org.springframework.data.type"><span class="interfaceName">MethodsMetadata</span></a></li>
+<li><a href="org/springframework/data/type/classreading/MethodsMetadataReader.html" title="interface in org.springframework.data.type.classreading"><span class="interfaceName">MethodsMetadataReader</span></a></li>
+<li><a href="org/springframework/data/type/classreading/MethodsMetadataReaderFactory.html" title="class in org.springframework.data.type.classreading">MethodsMetadataReaderFactory</a></li>
+<li><a href="org/springframework/data/geo/Metric.html" title="interface in org.springframework.data.geo"><span class="interfaceName">Metric</span></a></li>
+<li><a href="org/springframework/data/geo/Metrics.html" title="enum in org.springframework.data.geo">Metrics</a></li>
+<li><a href="org/springframework/data/querydsl/binding/MultiValueBinding.html" title="interface in org.springframework.data.querydsl.binding"><span class="interfaceName">MultiValueBinding</span></a></li>
+<li><a href="org/springframework/data/mapping/model/MutablePersistentEntity.html" title="interface in org.springframework.data.mapping.model"><span class="interfaceName">MutablePersistentEntity</span></a></li>
+<li><a href="org/springframework/data/repository/core/NamedQueries.html" title="interface in org.springframework.data.repository.core"><span class="interfaceName">NamedQueries</span></a></li>
+<li><a href="org/springframework/data/repository/config/NamedQueriesBeanDefinitionBuilder.html" title="class in org.springframework.data.repository.config">NamedQueriesBeanDefinitionBuilder</a></li>
+<li><a href="org/springframework/data/repository/config/NamedQueriesBeanDefinitionParser.html" title="class in org.springframework.data.repository.config">NamedQueriesBeanDefinitionParser</a></li>
+<li><a href="org/springframework/data/repository/NoRepositoryBean.html" title="annotation in org.springframework.data.repository">NoRepositoryBean</a></li>
+<li><a href="org/springframework/data/util/NullableUtils.html" title="class in org.springframework.data.util">NullableUtils</a></li>
+<li><a href="org/springframework/data/repository/util/NullableWrapper.html" title="class in org.springframework.data.repository.util">NullableWrapper</a></li>
+<li><a href="org/springframework/data/util/Optionals.html" title="interface in org.springframework.data.util"><span class="interfaceName">Optionals</span></a></li>
+<li><a href="org/springframework/data/querydsl/binding/OptionalValueBinding.html" title="interface in org.springframework.data.querydsl.binding"><span class="interfaceName">OptionalValueBinding</span></a></li>
+<li><a href="org/springframework/data/domain/jaxb/OrderAdapter.html" title="class in org.springframework.data.domain.jaxb">OrderAdapter</a></li>
+<li><a href="org/springframework/data/domain/Page.html" title="interface in org.springframework.data.domain"><span class="interfaceName">Page</span></a></li>
+<li><a href="org/springframework/data/domain/Pageable.html" title="interface in org.springframework.data.domain"><span class="interfaceName">Pageable</span></a></li>
+<li><a href="org/springframework/data/web/PageableArgumentResolver.html" title="interface in org.springframework.data.web"><span class="interfaceName">PageableArgumentResolver</span></a></li>
+<li><a href="org/springframework/data/web/PageableDefault.html" title="annotation in org.springframework.data.web">PageableDefault</a></li>
+<li><a href="org/springframework/data/repository/support/PageableExecutionUtils.html" title="class in org.springframework.data.repository.support">PageableExecutionUtils</a></li>
+<li><a href="org/springframework/data/web/PageableHandlerMethodArgumentResolver.html" title="class in org.springframework.data.web">PageableHandlerMethodArgumentResolver</a></li>
+<li><a href="org/springframework/data/web/config/PageableHandlerMethodArgumentResolverCustomizer.html" title="interface in org.springframework.data.web.config"><span class="interfaceName">PageableHandlerMethodArgumentResolverCustomizer</span></a></li>
+<li><a href="org/springframework/data/web/PageableHandlerMethodArgumentResolverSupport.html" title="class in org.springframework.data.web">PageableHandlerMethodArgumentResolverSupport</a></li>
+<li><a href="org/springframework/data/domain/jaxb/PageAdapter.html" title="class in org.springframework.data.domain.jaxb">PageAdapter</a></li>
+<li><a href="org/springframework/data/web/PagedResourcesAssembler.html" title="class in org.springframework.data.web">PagedResourcesAssembler</a></li>
+<li><a href="org/springframework/data/web/PagedResourcesAssemblerArgumentResolver.html" title="class in org.springframework.data.web">PagedResourcesAssemblerArgumentResolver</a></li>
+<li><a href="org/springframework/data/domain/PageImpl.html" title="class in org.springframework.data.domain">PageImpl</a></li>
+<li><a href="org/springframework/data/domain/PageRequest.html" title="class in org.springframework.data.domain">PageRequest</a></li>
+<li><a href="org/springframework/data/repository/PagingAndSortingRepository.html" title="interface in org.springframework.data.repository"><span class="interfaceName">PagingAndSortingRepository</span></a></li>
+<li><a href="org/springframework/data/util/Pair.html" title="class in org.springframework.data.util">Pair</a></li>
+<li><a href="org/springframework/data/repository/query/Param.html" title="annotation in org.springframework.data.repository.query">Param</a></li>
+<li><a href="org/springframework/data/repository/query/Parameter.html" title="class in org.springframework.data.repository.query">Parameter</a></li>
+<li><a href="org/springframework/data/repository/query/ParameterAccessor.html" title="interface in org.springframework.data.repository.query"><span class="interfaceName">ParameterAccessor</span></a></li>
+<li><a href="org/springframework/data/repository/query/ParameterOutOfBoundsException.html" title="class in org.springframework.data.repository.query">ParameterOutOfBoundsException</a></li>
+<li><a href="org/springframework/data/repository/query/Parameters.html" title="class in org.springframework.data.repository.query">Parameters</a></li>
+<li><a href="org/springframework/data/repository/query/ParametersParameterAccessor.html" title="class in org.springframework.data.repository.query">ParametersParameterAccessor</a></li>
+<li><a href="org/springframework/data/util/ParameterTypes.html" title="class in org.springframework.data.util">ParameterTypes</a></li>
+<li><a href="org/springframework/data/mapping/model/ParameterValueProvider.html" title="interface in org.springframework.data.mapping.model"><span class="interfaceName">ParameterValueProvider</span></a></li>
+<li><a href="org/springframework/data/util/ParentTypeAwareTypeInformation.html" title="class in org.springframework.data.util">ParentTypeAwareTypeInformation</a></li>
+<li><a href="org/springframework/data/config/ParsingUtils.html" title="class in org.springframework.data.config">ParsingUtils</a></li>
+<li><a href="org/springframework/data/util/ParsingUtils.html" title="class in org.springframework.data.util">ParsingUtils</a></li>
+<li><a href="org/springframework/data/repository/query/parser/Part.html" title="class in org.springframework.data.repository.query.parser">Part</a></li>
+<li><a href="org/springframework/data/repository/query/parser/Part.IgnoreCaseType.html" title="enum in org.springframework.data.repository.query.parser">Part.IgnoreCaseType</a></li>
+<li><a href="org/springframework/data/repository/query/parser/Part.Type.html" title="enum in org.springframework.data.repository.query.parser">Part.Type</a></li>
+<li><a href="org/springframework/data/repository/query/parser/PartTree.html" title="class in org.springframework.data.repository.query.parser">PartTree</a></li>
+<li><a href="org/springframework/data/repository/query/parser/PartTree.OrPart.html" title="class in org.springframework.data.repository.query.parser">PartTree.OrPart</a></li>
+<li><a href="org/springframework/data/domain/Persistable.html" title="interface in org.springframework.data.domain"><span class="interfaceName">Persistable</span></a></li>
+<li><a href="org/springframework/data/support/PersistableIsNewStrategy.html" title="enum in org.springframework.data.support">PersistableIsNewStrategy</a></li>
+<li><a href="org/springframework/data/annotation/PersistenceConstructor.html" title="annotation in org.springframework.data.annotation">PersistenceConstructor</a></li>
+<li><a href="org/springframework/data/repository/core/support/PersistenceExceptionTranslationRepositoryProxyPostProcessor.html" title="class in org.springframework.data.repository.core.support">PersistenceExceptionTranslationRepositoryProxyPostProcessor</a></li>
+<li><a href="org/springframework/data/annotation/Persistent.html" title="annotation in org.springframework.data.annotation">Persistent</a></li>
+<li><a href="org/springframework/data/mapping/context/PersistentEntities.html" title="class in org.springframework.data.mapping.context">PersistentEntities</a></li>
+<li><a href="org/springframework/data/mapping/PersistentEntity.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">PersistentEntity</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/PersistentEntityInformation.html" title="class in org.springframework.data.repository.core.support">PersistentEntityInformation</a></li>
+<li><a href="org/springframework/data/mapping/model/PersistentEntityParameterValueProvider.html" title="class in org.springframework.data.mapping.model">PersistentEntityParameterValueProvider</a></li>
+<li><a href="org/springframework/data/mapping/PersistentProperty.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">PersistentProperty</span></a></li>
+<li><a href="org/springframework/data/mapping/PersistentPropertyAccessor.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">PersistentPropertyAccessor</span></a></li>
+<li><a href="org/springframework/data/mapping/model/PersistentPropertyAccessorFactory.html" title="interface in org.springframework.data.mapping.model"><span class="interfaceName">PersistentPropertyAccessorFactory</span></a></li>
+<li><a href="org/springframework/data/mapping/PersistentPropertyPath.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">PersistentPropertyPath</span></a></li>
+<li><a href="org/springframework/data/mapping/PersistentPropertyPathAccessor.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">PersistentPropertyPathAccessor</span></a></li>
+<li><a href="org/springframework/data/mapping/PersistentPropertyPaths.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">PersistentPropertyPaths</span></a></li>
+<li><a href="org/springframework/data/geo/Point.html" title="class in org.springframework.data.geo">Point</a></li>
+<li><a href="org/springframework/data/geo/format/PointFormatter.html" title="enum in org.springframework.data.geo.format">PointFormatter</a></li>
+<li><a href="org/springframework/data/geo/Polygon.html" title="class in org.springframework.data.geo">Polygon</a></li>
+<li><a href="org/springframework/data/mapping/PreferredConstructor.html" title="class in org.springframework.data.mapping">PreferredConstructor</a></li>
+<li><a href="org/springframework/data/mapping/PreferredConstructor.Parameter.html" title="class in org.springframework.data.mapping">PreferredConstructor.Parameter</a></li>
+<li><a href="org/springframework/data/mapping/model/PreferredConstructorDiscoverer.html" title="interface in org.springframework.data.mapping.model"><span class="interfaceName">PreferredConstructorDiscoverer</span></a></li>
+<li><a href="org/springframework/data/mapping/model/PreferredConstructorDiscoverer.Discoverers.html" title="enum in org.springframework.data.mapping.model">PreferredConstructorDiscoverer.Discoverers</a></li>
+<li><a href="org/springframework/data/web/ProjectedPayload.html" title="annotation in org.springframework.data.web">ProjectedPayload</a></li>
+<li><a href="org/springframework/data/web/config/ProjectingArgumentResolverRegistrar.html" title="class in org.springframework.data.web.config">ProjectingArgumentResolverRegistrar</a></li>
+<li><a href="org/springframework/data/web/ProjectingJackson2HttpMessageConverter.html" title="class in org.springframework.data.web">ProjectingJackson2HttpMessageConverter</a></li>
+<li><a href="org/springframework/data/projection/ProjectionFactory.html" title="interface in org.springframework.data.projection"><span class="interfaceName">ProjectionFactory</span></a></li>
+<li><a href="org/springframework/data/projection/ProjectionInformation.html" title="interface in org.springframework.data.projection"><span class="interfaceName">ProjectionInformation</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/PropertiesBasedNamedQueries.html" title="class in org.springframework.data.repository.core.support">PropertiesBasedNamedQueries</a></li>
+<li><a href="org/springframework/data/mapping/model/Property.html" title="class in org.springframework.data.mapping.model">Property</a></li>
+<li><a href="org/springframework/data/mapping/PropertyHandler.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">PropertyHandler</span></a></li>
+<li><a href="org/springframework/data/mapping/model/PropertyNameFieldNamingStrategy.html" title="enum in org.springframework.data.mapping.model">PropertyNameFieldNamingStrategy</a></li>
+<li><a href="org/springframework/data/mapping/PropertyPath.html" title="class in org.springframework.data.mapping">PropertyPath</a></li>
+<li><a href="org/springframework/data/mapping/PropertyReferenceException.html" title="class in org.springframework.data.mapping">PropertyReferenceException</a></li>
+<li><a href="org/springframework/data/mapping/model/PropertyValueProvider.html" title="interface in org.springframework.data.mapping.model"><span class="interfaceName">PropertyValueProvider</span></a></li>
+<li><a href="org/springframework/data/web/ProxyingHandlerMethodArgumentResolver.html" title="class in org.springframework.data.web">ProxyingHandlerMethodArgumentResolver</a></li>
+<li><a href="org/springframework/data/util/ProxyUtils.html" title="class in org.springframework.data.util">ProxyUtils</a></li>
+<li><a href="org/springframework/data/util/ProxyUtils.ProxyDetector.html" title="interface in org.springframework.data.util"><span class="interfaceName">ProxyUtils.ProxyDetector</span></a></li>
+<li><a href="org/springframework/data/querydsl/QPageRequest.html" title="class in org.springframework.data.querydsl">QPageRequest</a></li>
+<li><a href="org/springframework/data/querydsl/QSort.html" title="class in org.springframework.data.querydsl">QSort</a></li>
+<li><a href="org/springframework/data/annotation/QueryAnnotation.html" title="annotation in org.springframework.data.annotation">QueryAnnotation</a></li>
+<li><a href="org/springframework/data/repository/query/QueryByExampleExecutor.html" title="interface in org.springframework.data.repository.query"><span class="interfaceName">QueryByExampleExecutor</span></a></li>
+<li><a href="org/springframework/data/repository/query/QueryCreationException.html" title="class in org.springframework.data.repository.query">QueryCreationException</a></li>
+<li><a href="org/springframework/data/repository/core/support/QueryCreationListener.html" title="interface in org.springframework.data.repository.core.support"><span class="interfaceName">QueryCreationListener</span></a></li>
+<li><a href="org/springframework/data/querydsl/binding/QuerydslBinderCustomizer.html" title="interface in org.springframework.data.querydsl.binding"><span class="interfaceName">QuerydslBinderCustomizer</span></a></li>
+<li><a href="org/springframework/data/querydsl/binding/QuerydslBindings.html" title="class in org.springframework.data.querydsl.binding">QuerydslBindings</a></li>
+<li><a href="org/springframework/data/querydsl/binding/QuerydslBindingsFactory.html" title="class in org.springframework.data.querydsl.binding">QuerydslBindingsFactory</a></li>
+<li><a href="org/springframework/data/querydsl/binding/QuerydslPredicate.html" title="annotation in org.springframework.data.querydsl.binding">QuerydslPredicate</a></li>
+<li><a href="org/springframework/data/web/querydsl/QuerydslPredicateArgumentResolver.html" title="class in org.springframework.data.web.querydsl">QuerydslPredicateArgumentResolver</a></li>
+<li><a href="org/springframework/data/querydsl/binding/QuerydslPredicateBuilder.html" title="class in org.springframework.data.querydsl.binding">QuerydslPredicateBuilder</a></li>
+<li><a href="org/springframework/data/querydsl/QuerydslPredicateExecutor.html" title="interface in org.springframework.data.querydsl"><span class="interfaceName">QuerydslPredicateExecutor</span></a></li>
+<li><a href="org/springframework/data/querydsl/QuerydslRepositoryInvokerAdapter.html" title="class in org.springframework.data.querydsl">QuerydslRepositoryInvokerAdapter</a></li>
+<li><a href="org/springframework/data/querydsl/QuerydslUtils.html" title="class in org.springframework.data.querydsl">QuerydslUtils</a></li>
+<li><a href="org/springframework/data/web/config/QuerydslWebConfiguration.html" title="class in org.springframework.data.web.config">QuerydslWebConfiguration</a></li>
+<li><a href="org/springframework/data/repository/util/QueryExecutionConverters.html" title="class in org.springframework.data.repository.util">QueryExecutionConverters</a></li>
+<li><a href="org/springframework/data/repository/util/QueryExecutionConverters.ExecutionAdapter.html" title="interface in org.springframework.data.repository.util"><span class="interfaceName">QueryExecutionConverters.ExecutionAdapter</span></a></li>
+<li><a href="org/springframework/data/repository/util/QueryExecutionConverters.ThrowingSupplier.html" title="interface in org.springframework.data.repository.util"><span class="interfaceName">QueryExecutionConverters.ThrowingSupplier</span></a></li>
+<li><a href="org/springframework/data/repository/util/QueryExecutionConverters.WrapperType.html" title="class in org.springframework.data.repository.util">QueryExecutionConverters.WrapperType</a></li>
+<li><a href="org/springframework/data/repository/query/QueryLookupStrategy.html" title="interface in org.springframework.data.repository.query"><span class="interfaceName">QueryLookupStrategy</span></a></li>
+<li><a href="org/springframework/data/repository/query/QueryLookupStrategy.Key.html" title="enum in org.springframework.data.repository.query">QueryLookupStrategy.Key</a></li>
+<li><a href="org/springframework/data/repository/query/QueryMethod.html" title="class in org.springframework.data.repository.query">QueryMethod</a></li>
+<li><a href="org/springframework/data/repository/query/QueryMethodEvaluationContextProvider.html" title="interface in org.springframework.data.repository.query"><span class="interfaceName">QueryMethodEvaluationContextProvider</span></a></li>
+<li><a href="org/springframework/data/repository/support/QueryMethodParameterConversionException.html" title="class in org.springframework.data.repository.support">QueryMethodParameterConversionException</a></li>
+<li><a href="org/springframework/data/domain/Range.html" title="class in org.springframework.data.domain">Range</a></li>
+<li><a href="org/springframework/data/domain/Range.Bound.html" title="class in org.springframework.data.domain">Range.Bound</a></li>
+<li><a href="org/springframework/data/domain/Range.RangeBuilder.html" title="class in org.springframework.data.domain">Range.RangeBuilder</a></li>
+<li><a href="org/springframework/data/repository/reactive/ReactiveCrudRepository.html" title="interface in org.springframework.data.repository.reactive"><span class="interfaceName">ReactiveCrudRepository</span></a></li>
+<li><a href="org/springframework/data/mapping/callback/ReactiveEntityCallbacks.html" title="interface in org.springframework.data.mapping.callback"><span class="interfaceName">ReactiveEntityCallbacks</span></a></li>
+<li><a href="org/springframework/data/web/ReactivePageableHandlerMethodArgumentResolver.html" title="class in org.springframework.data.web">ReactivePageableHandlerMethodArgumentResolver</a></li>
+<li><a href="org/springframework/data/repository/query/ReactiveQueryByExampleExecutor.html" title="interface in org.springframework.data.repository.query"><span class="interfaceName">ReactiveQueryByExampleExecutor</span></a></li>
+<li><a href="org/springframework/data/querydsl/ReactiveQuerydslPredicateExecutor.html" title="interface in org.springframework.data.querydsl"><span class="interfaceName">ReactiveQuerydslPredicateExecutor</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/ReactiveRepositoryFactorySupport.html" title="class in org.springframework.data.repository.core.support">ReactiveRepositoryFactorySupport</a></li>
+<li><a href="org/springframework/data/web/ReactiveSortHandlerMethodArgumentResolver.html" title="class in org.springframework.data.web">ReactiveSortHandlerMethodArgumentResolver</a></li>
+<li><a href="org/springframework/data/repository/reactive/ReactiveSortingRepository.html" title="interface in org.springframework.data.repository.reactive"><span class="interfaceName">ReactiveSortingRepository</span></a></li>
+<li><a href="org/springframework/data/repository/util/ReactiveWrapperConverters.html" title="class in org.springframework.data.repository.util">ReactiveWrapperConverters</a></li>
+<li><a href="org/springframework/data/repository/util/ReactiveWrappers.html" title="class in org.springframework.data.repository.util">ReactiveWrappers</a></li>
+<li><a href="org/springframework/data/repository/util/ReactiveWrappers.ReactiveLibrary.html" title="enum in org.springframework.data.repository.util">ReactiveWrappers.ReactiveLibrary</a></li>
+<li><a href="org/springframework/data/convert/ReadingConverter.html" title="annotation in org.springframework.data.convert">ReadingConverter</a></li>
+<li><a href="org/springframework/data/annotation/ReadOnlyProperty.html" title="annotation in org.springframework.data.annotation">ReadOnlyProperty</a></li>
+<li><a href="org/springframework/data/annotation/Reference.html" title="annotation in org.springframework.data.annotation">Reference</a></li>
+<li><a href="org/springframework/data/convert/ReflectionEntityInstantiator.html" title="enum in org.springframework.data.convert">ReflectionEntityInstantiator</a></li>
+<li><a href="org/springframework/data/util/ReflectionUtils.html" title="class in org.springframework.data.util">ReflectionUtils</a></li>
+<li><a href="org/springframework/data/util/ReflectionUtils.AnnotationFieldFilter.html" title="class in org.springframework.data.util">ReflectionUtils.AnnotationFieldFilter</a></li>
+<li><a href="org/springframework/data/util/ReflectionUtils.DescribedFieldFilter.html" title="interface in org.springframework.data.util"><span class="interfaceName">ReflectionUtils.DescribedFieldFilter</span></a></li>
+<li><a href="org/springframework/data/repository/support/Repositories.html" title="class in org.springframework.data.repository.support">Repositories</a></li>
+<li><a href="org/springframework/data/repository/init/RepositoriesPopulatedEvent.html" title="class in org.springframework.data.repository.init">RepositoriesPopulatedEvent</a></li>
+<li><a href="org/springframework/data/repository/Repository.html" title="interface in org.springframework.data.repository"><span class="interfaceName">Repository</span></a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryBeanDefinitionParser.html" title="class in org.springframework.data.repository.config">RepositoryBeanDefinitionParser</a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryBeanDefinitionRegistrarSupport.html" title="class in org.springframework.data.repository.config">RepositoryBeanDefinitionRegistrarSupport</a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryComposition.html" title="class in org.springframework.data.repository.core.support">RepositoryComposition</a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryComposition.RepositoryFragments.html" title="class in org.springframework.data.repository.core.support">RepositoryComposition.RepositoryFragments</a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryConfiguration.html" title="interface in org.springframework.data.repository.config"><span class="interfaceName">RepositoryConfiguration</span></a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryConfigurationDelegate.html" title="class in org.springframework.data.repository.config">RepositoryConfigurationDelegate</a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryConfigurationExtension.html" title="interface in org.springframework.data.repository.config"><span class="interfaceName">RepositoryConfigurationExtension</span></a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryConfigurationExtensionSupport.html" title="class in org.springframework.data.repository.config">RepositoryConfigurationExtensionSupport</a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryConfigurationSource.html" title="interface in org.springframework.data.repository.config"><span class="interfaceName">RepositoryConfigurationSource</span></a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryConfigurationSourceSupport.html" title="class in org.springframework.data.repository.config">RepositoryConfigurationSourceSupport</a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryConfigurationUtils.html" title="interface in org.springframework.data.repository.config"><span class="interfaceName">RepositoryConfigurationUtils</span></a></li>
+<li><a href="org/springframework/data/repository/RepositoryDefinition.html" title="annotation in org.springframework.data.repository">RepositoryDefinition</a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryFactoryBeanSupport.html" title="class in org.springframework.data.repository.core.support">RepositoryFactoryBeanSupport</a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryFactoryInformation.html" title="interface in org.springframework.data.repository.core.support"><span class="interfaceName">RepositoryFactoryInformation</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryFactorySupport.html" title="class in org.springframework.data.repository.core.support">RepositoryFactorySupport</a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryFragment.html" title="interface in org.springframework.data.repository.core.support"><span class="interfaceName">RepositoryFragment</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryFragment.ImplementedRepositoryFragment.html" title="class in org.springframework.data.repository.core.support">RepositoryFragment.ImplementedRepositoryFragment</a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryFragment.StructuralRepositoryFragment.html" title="class in org.springframework.data.repository.core.support">RepositoryFragment.StructuralRepositoryFragment</a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryFragmentConfiguration.html" title="class in org.springframework.data.repository.config">RepositoryFragmentConfiguration</a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryFragmentsFactoryBean.html" title="class in org.springframework.data.repository.core.support">RepositoryFragmentsFactoryBean</a></li>
+<li><a href="org/springframework/data/repository/core/RepositoryInformation.html" title="interface in org.springframework.data.repository.core"><span class="interfaceName">RepositoryInformation</span></a></li>
+<li><a href="org/springframework/data/repository/support/RepositoryInvocationInformation.html" title="interface in org.springframework.data.repository.support"><span class="interfaceName">RepositoryInvocationInformation</span></a></li>
+<li><a href="org/springframework/data/repository/support/RepositoryInvoker.html" title="interface in org.springframework.data.repository.support"><span class="interfaceName">RepositoryInvoker</span></a></li>
+<li><a href="org/springframework/data/repository/support/RepositoryInvokerFactory.html" title="interface in org.springframework.data.repository.support"><span class="interfaceName">RepositoryInvokerFactory</span></a></li>
+<li><a href="org/springframework/data/repository/core/RepositoryMetadata.html" title="interface in org.springframework.data.repository.core"><span class="interfaceName">RepositoryMetadata</span></a></li>
+<li><a href="org/springframework/data/repository/config/RepositoryNameSpaceHandler.html" title="class in org.springframework.data.repository.config">RepositoryNameSpaceHandler</a></li>
+<li><a href="org/springframework/data/repository/init/RepositoryPopulator.html" title="interface in org.springframework.data.repository.init"><span class="interfaceName">RepositoryPopulator</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/RepositoryProxyPostProcessor.html" title="interface in org.springframework.data.repository.core.support"><span class="interfaceName">RepositoryProxyPostProcessor</span></a></li>
+<li><a href="org/springframework/data/repository/query/RepositoryQuery.html" title="interface in org.springframework.data.repository.query"><span class="interfaceName">RepositoryQuery</span></a></li>
+<li><a href="org/springframework/data/repository/init/ResourceReader.html" title="interface in org.springframework.data.repository.init"><span class="interfaceName">ResourceReader</span></a></li>
+<li><a href="org/springframework/data/repository/init/ResourceReader.Type.html" title="enum in org.springframework.data.repository.init">ResourceReader.Type</a></li>
+<li><a href="org/springframework/data/repository/init/ResourceReaderRepositoryPopulator.html" title="class in org.springframework.data.repository.init">ResourceReaderRepositoryPopulator</a></li>
+<li><a href="org/springframework/data/repository/config/ResourceReaderRepositoryPopulatorBeanDefinitionParser.html" title="class in org.springframework.data.repository.config">ResourceReaderRepositoryPopulatorBeanDefinitionParser</a></li>
+<li><a href="org/springframework/data/repository/query/ResultProcessor.html" title="class in org.springframework.data.repository.query">ResultProcessor</a></li>
+<li><a href="org/springframework/data/repository/query/ReturnedType.html" title="class in org.springframework.data.repository.query">ReturnedType</a></li>
+<li><a href="org/springframework/data/history/Revision.html" title="class in org.springframework.data.history">Revision</a></li>
+<li><a href="org/springframework/data/repository/history/support/RevisionEntityInformation.html" title="interface in org.springframework.data.repository.history.support"><span class="interfaceName">RevisionEntityInformation</span></a></li>
+<li><a href="org/springframework/data/history/RevisionMetadata.html" title="interface in org.springframework.data.history"><span class="interfaceName">RevisionMetadata</span></a></li>
+<li><a href="org/springframework/data/history/RevisionMetadata.RevisionType.html" title="enum in org.springframework.data.history">RevisionMetadata.RevisionType</a></li>
+<li><a href="org/springframework/data/repository/history/RevisionRepository.html" title="interface in org.springframework.data.repository.history"><span class="interfaceName">RevisionRepository</span></a></li>
+<li><a href="org/springframework/data/history/Revisions.html" title="class in org.springframework.data.history">Revisions</a></li>
+<li><a href="org/springframework/data/history/RevisionSort.html" title="class in org.springframework.data.history">RevisionSort</a></li>
+<li><a href="org/springframework/data/repository/reactive/RxJava2CrudRepository.html" title="interface in org.springframework.data.repository.reactive"><span class="interfaceName">RxJava2CrudRepository</span></a></li>
+<li><a href="org/springframework/data/repository/reactive/RxJava2SortingRepository.html" title="interface in org.springframework.data.repository.reactive"><span class="interfaceName">RxJava2SortingRepository</span></a></li>
+<li><a href="org/springframework/data/geo/Shape.html" title="interface in org.springframework.data.geo"><span class="interfaceName">Shape</span></a></li>
+<li><a href="org/springframework/data/mapping/SimpleAssociationHandler.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">SimpleAssociationHandler</span></a></li>
+<li><a href="org/springframework/data/querydsl/SimpleEntityPathResolver.html" title="class in org.springframework.data.querydsl">SimpleEntityPathResolver</a></li>
+<li><a href="org/springframework/data/mapping/SimplePropertyHandler.html" title="interface in org.springframework.data.mapping"><span class="interfaceName">SimplePropertyHandler</span></a></li>
+<li><a href="org/springframework/data/mapping/model/SimpleTypeHolder.html" title="class in org.springframework.data.mapping.model">SimpleTypeHolder</a></li>
+<li><a href="org/springframework/data/convert/SimpleTypeInformationMapper.html" title="class in org.springframework.data.convert">SimpleTypeInformationMapper</a></li>
+<li><a href="org/springframework/data/querydsl/binding/SingleValueBinding.html" title="interface in org.springframework.data.querydsl.binding"><span class="interfaceName">SingleValueBinding</span></a></li>
+<li><a href="org/springframework/data/domain/Slice.html" title="interface in org.springframework.data.domain"><span class="interfaceName">Slice</span></a></li>
+<li><a href="org/springframework/data/domain/SliceImpl.html" title="class in org.springframework.data.domain">SliceImpl</a></li>
+<li><a href="org/springframework/data/mapping/model/SnakeCaseFieldNamingStrategy.html" title="class in org.springframework.data.mapping.model">SnakeCaseFieldNamingStrategy</a></li>
+<li><a href="org/springframework/data/domain/Sort.html" title="class in org.springframework.data.domain">Sort</a></li>
+<li><a href="org/springframework/data/domain/Sort.Direction.html" title="enum in org.springframework.data.domain">Sort.Direction</a></li>
+<li><a href="org/springframework/data/domain/Sort.NullHandling.html" title="enum in org.springframework.data.domain">Sort.NullHandling</a></li>
+<li><a href="org/springframework/data/domain/Sort.Order.html" title="class in org.springframework.data.domain">Sort.Order</a></li>
+<li><a href="org/springframework/data/domain/Sort.TypedSort.html" title="class in org.springframework.data.domain">Sort.TypedSort</a></li>
+<li><a href="org/springframework/data/domain/jaxb/SortAdapter.html" title="class in org.springframework.data.domain.jaxb">SortAdapter</a></li>
+<li><a href="org/springframework/data/web/SortArgumentResolver.html" title="interface in org.springframework.data.web"><span class="interfaceName">SortArgumentResolver</span></a></li>
+<li><a href="org/springframework/data/web/SortDefault.html" title="annotation in org.springframework.data.web">SortDefault</a></li>
+<li><a href="org/springframework/data/web/SortDefault.SortDefaults.html" title="annotation in org.springframework.data.web">SortDefault.SortDefaults</a></li>
+<li><a href="org/springframework/data/web/SortHandlerMethodArgumentResolver.html" title="class in org.springframework.data.web">SortHandlerMethodArgumentResolver</a></li>
+<li><a href="org/springframework/data/web/config/SortHandlerMethodArgumentResolverCustomizer.html" title="interface in org.springframework.data.web.config"><span class="interfaceName">SortHandlerMethodArgumentResolverCustomizer</span></a></li>
+<li><a href="org/springframework/data/web/SortHandlerMethodArgumentResolverSupport.html" title="class in org.springframework.data.web">SortHandlerMethodArgumentResolverSupport</a></li>
+<li><a href="org/springframework/data/projection/SpelAwareProxyProjectionFactory.html" title="class in org.springframework.data.projection">SpelAwareProxyProjectionFactory</a></li>
+<li><a href="org/springframework/data/projection/SpelAwareProxyProjectionFactory.SpelAwareProjectionInformation.html" title="class in org.springframework.data.projection">SpelAwareProxyProjectionFactory.SpelAwareProjectionInformation</a></li>
+<li><a href="org/springframework/data/mapping/model/SpELContext.html" title="class in org.springframework.data.mapping.model">SpELContext</a></li>
+<li><a href="org/springframework/data/repository/query/SpelEvaluator.html" title="class in org.springframework.data.repository.query">SpelEvaluator</a></li>
+<li><a href="org/springframework/data/mapping/model/SpELExpressionEvaluator.html" title="interface in org.springframework.data.mapping.model"><span class="interfaceName">SpELExpressionEvaluator</span></a></li>
+<li><a href="org/springframework/data/mapping/model/SpELExpressionParameterValueProvider.html" title="class in org.springframework.data.mapping.model">SpELExpressionParameterValueProvider</a></li>
+<li><a href="org/springframework/data/repository/query/SpelQueryContext.html" title="class in org.springframework.data.repository.query">SpelQueryContext</a></li>
+<li><a href="org/springframework/data/repository/query/SpelQueryContext.EvaluatingSpelQueryContext.html" title="class in org.springframework.data.repository.query">SpelQueryContext.EvaluatingSpelQueryContext</a></li>
+<li><a href="org/springframework/data/web/config/SpringDataJacksonConfiguration.html" title="class in org.springframework.data.web.config">SpringDataJacksonConfiguration</a></li>
+<li><a href="org/springframework/data/web/config/SpringDataJacksonModules.html" title="interface in org.springframework.data.web.config"><span class="interfaceName">SpringDataJacksonModules</span></a></li>
+<li><a href="org/springframework/data/domain/jaxb/SpringDataJaxb.html" title="class in org.springframework.data.domain.jaxb">SpringDataJaxb</a></li>
+<li><a href="org/springframework/data/domain/jaxb/SpringDataJaxb.OrderDto.html" title="class in org.springframework.data.domain.jaxb">SpringDataJaxb.OrderDto</a></li>
+<li><a href="org/springframework/data/domain/jaxb/SpringDataJaxb.PageDto.html" title="class in org.springframework.data.domain.jaxb">SpringDataJaxb.PageDto</a></li>
+<li><a href="org/springframework/data/domain/jaxb/SpringDataJaxb.PageRequestDto.html" title="class in org.springframework.data.domain.jaxb">SpringDataJaxb.PageRequestDto</a></li>
+<li><a href="org/springframework/data/domain/jaxb/SpringDataJaxb.SortDto.html" title="class in org.springframework.data.domain.jaxb">SpringDataJaxb.SortDto</a></li>
+<li><a href="org/springframework/data/web/config/SpringDataWebConfiguration.html" title="class in org.springframework.data.web.config">SpringDataWebConfiguration</a></li>
+<li><a href="org/springframework/data/util/Streamable.html" title="interface in org.springframework.data.util"><span class="interfaceName">Streamable</span></a></li>
+<li><a href="org/springframework/data/util/StreamUtils.html" title="interface in org.springframework.data.util"><span class="interfaceName">StreamUtils</span></a></li>
+<li><a href="org/springframework/data/repository/core/support/SurroundingTransactionDetectorMethodInterceptor.html" title="enum in org.springframework.data.repository.core.support">SurroundingTransactionDetectorMethodInterceptor</a></li>
+<li><a href="org/springframework/data/projection/TargetAware.html" title="interface in org.springframework.data.projection"><span class="interfaceName">TargetAware</span></a></li>
+<li><a href="org/springframework/data/mapping/TargetAwareIdentifierAccessor.html" title="class in org.springframework.data.mapping">TargetAwareIdentifierAccessor</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.html" title="class in org.springframework.data.convert">ThreeTenBackPortConverters</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.DateToInstantConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.DateToInstantConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.DateToLocalDateConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.DateToLocalDateConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.DateToLocalDateTimeConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.DateToLocalDateTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.DateToLocalTimeConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.DateToLocalTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.InstantToDateConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.InstantToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.JavaTimeInstantToLocalDateTimeConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.JavaTimeInstantToLocalDateTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.LocalDateTimeToDateConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.LocalDateTimeToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.LocalDateTimeToJavaTimeInstantConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.LocalDateTimeToJavaTimeInstantConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.LocalDateTimeToJsr310LocalDateTimeConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.LocalDateTimeToJsr310LocalDateTimeConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.LocalDateToDateConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.LocalDateToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.LocalTimeToDateConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.LocalTimeToDateConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.StringToZoneIdConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.StringToZoneIdConverter</a></li>
+<li><a href="org/springframework/data/convert/ThreeTenBackPortConverters.ZoneIdToStringConverter.html" title="enum in org.springframework.data.convert">ThreeTenBackPortConverters.ZoneIdToStringConverter</a></li>
+<li><a href="org/springframework/data/repository/core/support/TransactionalRepositoryFactoryBeanSupport.html" title="class in org.springframework.data.repository.core.support">TransactionalRepositoryFactoryBeanSupport</a></li>
+<li><a href="org/springframework/data/annotation/Transient.html" title="annotation in org.springframework.data.annotation">Transient</a></li>
+<li><a href="org/springframework/data/mapping/TraversalContext.html" title="class in org.springframework.data.mapping">TraversalContext</a></li>
+<li><a href="org/springframework/data/repository/util/TxUtils.html" title="class in org.springframework.data.repository.util">TxUtils</a></li>
+<li><a href="org/springframework/data/annotation/TypeAlias.html" title="annotation in org.springframework.data.annotation">TypeAlias</a></li>
+<li><a href="org/springframework/data/convert/TypeAliasAccessor.html" title="interface in org.springframework.data.convert"><span class="interfaceName">TypeAliasAccessor</span></a></li>
+<li><a href="org/springframework/data/config/TypeFilterParser.html" title="class in org.springframework.data.config">TypeFilterParser</a></li>
+<li><a href="org/springframework/data/config/TypeFilterParser.Type.html" title="enum in org.springframework.data.config">TypeFilterParser.Type</a></li>
+<li><a href="org/springframework/data/util/TypeInformation.html" title="interface in org.springframework.data.util"><span class="interfaceName">TypeInformation</span></a></li>
+<li><a href="org/springframework/data/convert/TypeInformationMapper.html" title="interface in org.springframework.data.convert"><span class="interfaceName">TypeInformationMapper</span></a></li>
+<li><a href="org/springframework/data/convert/TypeMapper.html" title="interface in org.springframework.data.convert"><span class="interfaceName">TypeMapper</span></a></li>
+<li><a href="org/springframework/data/repository/init/UnmarshallerRepositoryPopulatorFactoryBean.html" title="class in org.springframework.data.repository.init">UnmarshallerRepositoryPopulatorFactoryBean</a></li>
+<li><a href="org/springframework/data/repository/init/UnmarshallingResourceReader.html" title="class in org.springframework.data.repository.init">UnmarshallingResourceReader</a></li>
+<li><a href="org/springframework/data/annotation/Version.html" title="annotation in org.springframework.data.annotation">Version</a></li>
+<li><a href="org/springframework/data/util/Version.html" title="class in org.springframework.data.util">Version</a></li>
+<li><a href="org/springframework/data/convert/WritingConverter.html" title="annotation in org.springframework.data.convert">WritingConverter</a></li>
+<li><a href="org/springframework/data/web/XmlBeamHttpMessageConverter.html" title="class in org.springframework.data.web">XmlBeamHttpMessageConverter</a></li>
+<li><a href="org/springframework/data/repository/config/XmlRepositoryConfigurationSource.html" title="class in org.springframework.data.repository.config">XmlRepositoryConfigurationSource</a></li>
+</ul>
+</div>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>EntityModel (Spring HATEOAS 1.0.0.M1 API)</title>
+<meta name="date" content="2019-03-05">
+<link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
+<script type="text/javascript" src="../../../script.js"></script>
+</head>
+<body>
+<script type="text/javascript">try{if(location.href.indexOf('is-external=true')==-1){parent.document.title="EntityModel (Spring HATEOAS 1.0.0.M1 API)";}}catch(err){}var methods={"i0":10,"i1":10,"i2":10,"i3":10};var tabs={65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};var altColor="altColor";var rowColor="rowColor";var tableTab="tableTab";var activeTableTab="activeTableTab";</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+
+<div class="topNav"><a name="navbar.top">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.top.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/EntityModel.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+<li><a href="../../../help-doc.html">Help</a></li>
+</ul>
+<div class="aboutLanguage">Spring HATEOAS</div>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../org/springframework/hateoas/CollectionModel.html" title="class in org.springframework.hateoas"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../org/springframework/hateoas/IanaLinkRelations.html" title="class in org.springframework.hateoas"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../index.html?org/springframework/hateoas/EntityModel.html" target="_top">Frames</a></li>
+<li><a href="EntityModel.html" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_top");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.top">
+
+</a></div>
+
+
+<div class="header">
+<div class="subTitle">org.springframework.hateoas</div>
+<h2 title="Class EntityModel" class="title">Class EntityModel&lt;T&gt;</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../org/springframework/hateoas/RepresentationModel.html" title="class in org.springframework.hateoas">org.springframework.hateoas.RepresentationModel</a>&lt;<a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas">EntityModel</a>&lt;T&gt;&gt;</li>
+<li>
+<ul class="inheritance">
+<li>org.springframework.hateoas.EntityModel&lt;T&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<hr>
+<br>
+<pre>public class <span class="typeNameLabel">EntityModel&lt;T&gt;</span>
+extends <a href="../../../org/springframework/hateoas/RepresentationModel.html" title="class in org.springframework.hateoas">RepresentationModel</a>&lt;<a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas">EntityModel</a>&lt;T&gt;&gt;</pre>
+<div class="block">A simple <a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas"><code>EntityModel</code></a> wrapping a domain object and adding links to it.</div>
+<dl>
+<dt><span class="simpleTagLabel">Author:</span></dt>
+<dd>Oliver Gierke, Greg Turnquist</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="constructor.summary">
+
+</a>
+<h3>Constructor Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier</th>
+<th class="colLast" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>protected </code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/springframework/hateoas/EntityModel.html#EntityModel--">EntityModel</a></span>()</code>
+<div class="block">Creates an empty <a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas"><code>EntityModel</code></a>.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/springframework/hateoas/EntityModel.html#EntityModel-T-java.lang.Iterable-">EntityModel</a></span>(<a href="../../../org/springframework/hateoas/EntityModel.html" title="type parameter in EntityModel">T</a>&nbsp;content,
+<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../org/springframework/hateoas/Link.html" title="class in org.springframework.hateoas">Link</a>&gt;&nbsp;links)</code>
+<div class="block">Creates a new <a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas"><code>EntityModel</code></a> with the given content and <a href="../../../org/springframework/hateoas/Link.html" title="class in org.springframework.hateoas"><code>Link</code></a>s.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/springframework/hateoas/EntityModel.html#EntityModel-T-org.springframework.hateoas.Link...-">EntityModel</a></span>(<a href="../../../org/springframework/hateoas/EntityModel.html" title="type parameter in EntityModel">T</a>&nbsp;content,
+<a href="../../../org/springframework/hateoas/Link.html" title="class in org.springframework.hateoas">Link</a>...&nbsp;links)</code>
+<div class="block">Creates a new <a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas"><code>EntityModel</code></a> with the given content and <a href="../../../org/springframework/hateoas/Link.html" title="class in org.springframework.hateoas"><code>Link</code></a>s (optional).</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="method.summary">
+
+</a>
+<h3>Method Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/springframework/hateoas/EntityModel.html#equals-java.lang.Object-">equals</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../org/springframework/hateoas/EntityModel.html" title="type parameter in EntityModel">T</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/springframework/hateoas/EntityModel.html#getContent--">getContent</a></span>()</code>
+<div class="block">Returns the underlying entity.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/springframework/hateoas/EntityModel.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../org/springframework/hateoas/EntityModel.html#toString--">toString</a></span>()</code>&nbsp;</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.springframework.hateoas.RepresentationModel">
+
+</a>
+<h3>Methods inherited from class&nbsp;org.springframework.hateoas.<a href="../../../org/springframework/hateoas/RepresentationModel.html" title="class in org.springframework.hateoas">RepresentationModel</a></h3>
+<code><a href="../../../org/springframework/hateoas/RepresentationModel.html#add-java.lang.Iterable-">add</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#add-org.springframework.hateoas.Link...-">add</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#add-org.springframework.hateoas.Link-">add</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#getLink-org.springframework.hateoas.LinkRelation-">getLink</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#getLink-java.lang.String-">getLink</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#getLinks--">getLinks</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#getLinks-org.springframework.hateoas.LinkRelation-">getLinks</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#getLinks-java.lang.String-">getLinks</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#getRequiredLink-org.springframework.hateoas.LinkRelation-">getRequiredLink</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#getRequiredLink-java.lang.String-">getRequiredLink</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#hasLink-org.springframework.hateoas.LinkRelation-">hasLink</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#hasLink-java.lang.String-">hasLink</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#hasLinks--">hasLinks</a>, <a href="../../../org/springframework/hateoas/RepresentationModel.html#removeLinks--">removeLinks</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
+
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#clone--" title="class or interface in java.lang">clone</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#finalize--" title="class or interface in java.lang">finalize</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="constructor.detail">
+
+</a>
+<h3>Constructor Detail</h3>
+<a name="EntityModel--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EntityModel</h4>
+<pre>protected&nbsp;EntityModel()</pre>
+<div class="block">Creates an empty <a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas"><code>EntityModel</code></a>.</div>
+</li>
+</ul>
+<a name="EntityModel-java.lang.Object-org.springframework.hateoas.Link:A-">
+
+</a><a name="EntityModel-T-org.springframework.hateoas.Link...-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EntityModel</h4>
+<pre>public&nbsp;EntityModel(<a href="../../../org/springframework/hateoas/EntityModel.html" title="type parameter in EntityModel">T</a>&nbsp;content,
+                   <a href="../../../org/springframework/hateoas/Link.html" title="class in org.springframework.hateoas">Link</a>...&nbsp;links)</pre>
+<div class="block">Creates a new <a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas"><code>EntityModel</code></a> with the given content and <a href="../../../org/springframework/hateoas/Link.html" title="class in org.springframework.hateoas"><code>Link</code></a>s (optional).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>content</code> - must not be null.</dd>
+<dd><code>links</code> - the links to add to the <a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas"><code>EntityModel</code></a>.</dd>
+</dl>
+</li>
+</ul>
+<a name="EntityModel-java.lang.Object-java.lang.Iterable-">
+
+</a><a name="EntityModel-T-java.lang.Iterable-">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>EntityModel</h4>
+<pre>public&nbsp;EntityModel(<a href="../../../org/springframework/hateoas/EntityModel.html" title="type parameter in EntityModel">T</a>&nbsp;content,
+                   <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../org/springframework/hateoas/Link.html" title="class in org.springframework.hateoas">Link</a>&gt;&nbsp;links)</pre>
+<div class="block">Creates a new <a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas"><code>EntityModel</code></a> with the given content and <a href="../../../org/springframework/hateoas/Link.html" title="class in org.springframework.hateoas"><code>Link</code></a>s.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>content</code> - must not be null.</dd>
+<dd><code>links</code> - the links to add to the <a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas"><code>EntityModel</code></a>.</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="method.detail">
+
+</a>
+<h3>Method Detail</h3>
+<a name="getContent--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getContent</h4>
+<pre>public&nbsp;<a href="../../../org/springframework/hateoas/EntityModel.html" title="type parameter in EntityModel">T</a>&nbsp;getContent()</pre>
+<div class="block">Returns the underlying entity.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the content</dd>
+</dl>
+</li>
+</ul>
+<a name="toString--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>toString</h4>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../org/springframework/hateoas/RepresentationModel.html#toString--">toString</a></code>&nbsp;in class&nbsp;<code><a href="../../../org/springframework/hateoas/RepresentationModel.html" title="class in org.springframework.hateoas">RepresentationModel</a>&lt;<a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas">EntityModel</a>&lt;<a href="../../../org/springframework/hateoas/EntityModel.html" title="type parameter in EntityModel">T</a>&gt;&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a name="equals-java.lang.Object-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>equals</h4>
+<pre>public&nbsp;boolean&nbsp;equals(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../org/springframework/hateoas/RepresentationModel.html#equals-java.lang.Object-">equals</a></code>&nbsp;in class&nbsp;<code><a href="../../../org/springframework/hateoas/RepresentationModel.html" title="class in org.springframework.hateoas">RepresentationModel</a>&lt;<a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas">EntityModel</a>&lt;<a href="../../../org/springframework/hateoas/EntityModel.html" title="type parameter in EntityModel">T</a>&gt;&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a name="hashCode--">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre>public&nbsp;int&nbsp;hashCode()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../org/springframework/hateoas/RepresentationModel.html#hashCode--">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="../../../org/springframework/hateoas/RepresentationModel.html" title="class in org.springframework.hateoas">RepresentationModel</a>&lt;<a href="../../../org/springframework/hateoas/EntityModel.html" title="class in org.springframework.hateoas">EntityModel</a>&lt;<a href="../../../org/springframework/hateoas/EntityModel.html" title="type parameter in EntityModel">T</a>&gt;&gt;</code></dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div class="bottomNav"><a name="navbar.bottom">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.bottom.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="../../../overview-summary.html">Overview</a></li>
+<li><a href="package-summary.html">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="class-use/EntityModel.html">Use</a></li>
+<li><a href="package-tree.html">Tree</a></li>
+<li><a href="../../../deprecated-list.html">Deprecated</a></li>
+<li><a href="../../../index-all.html">Index</a></li>
+<li><a href="../../../help-doc.html">Help</a></li>
+</ul>
+<div class="aboutLanguage">Spring HATEOAS</div>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="../../../org/springframework/hateoas/CollectionModel.html" title="class in org.springframework.hateoas"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../org/springframework/hateoas/IanaLinkRelations.html" title="class in org.springframework.hateoas"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="../../../index.html?org/springframework/hateoas/EntityModel.html" target="_top">Frames</a></li>
+<li><a href="EntityModel.html" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="../../../allclasses-noframe.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_bottom");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.bottom">
+
+</a></div>
+
+<p class="legalCopy"><small>Copyright &#169; 2012-2019&#x2013;2019 <a href="https://www.spring.io">Pivotal, Inc.</a>. All rights reserved.</small></p>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

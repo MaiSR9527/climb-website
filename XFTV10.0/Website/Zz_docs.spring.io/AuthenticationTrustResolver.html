@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<title>AuthenticationTrustResolver (spring-security-docs-manual 5.3.4.RELEASE API)</title>
+<link rel="stylesheet" type="text/css" href="static/css/stylesheet1.css" title="Style">
+<script type="text/javascript" src="static/js/script.js"></script>
+</head>
+<body>
+<script type="text/javascript">try{if(location.href.indexOf('is-external=true')==-1){parent.document.title="AuthenticationTrustResolver (spring-security-docs-manual 5.3.4.RELEASE API)";}}catch(err){}var methods={"i0":6,"i1":6};var tabs={65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};var altColor="altColor";var rowColor="rowColor";var tableTab="tableTab";var activeTableTab="activeTableTab";</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+
+<div class="topNav"><a name="navbar.top">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.top.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="overview-summary3.html">Overview</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/package-summary.html');">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/package-tree.html');">Tree</a></li>
+<li><a href="deprecated-list3.html">Deprecated</a></li>
+<li><a href="index-all1.html">Index</a></li>
+<li><a href="help-doc3.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/AuthenticationServiceException.html');" title="class in org.springframework.security.authentication"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/AuthenticationTrustResolverImpl.html');" title="class in org.springframework.security.authentication"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/index.html?org/springframework/security/authentication/AuthenticationTrustResolver.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="allclasses-noframe3.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_top");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.top">
+
+</a></div>
+
+
+<div class="header">
+<div class="subTitle">org.springframework.security.authentication</div>
+<h2 title="Interface AuthenticationTrustResolver" class="title">Interface AuthenticationTrustResolver</h2>
+</div>
+<div class="contentContainer">
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Known Implementing Classes:</dt>
+<dd><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/AuthenticationTrustResolverImpl.html');" title="class in org.springframework.security.authentication">AuthenticationTrustResolverImpl</a></dd>
+</dl>
+<hr>
+<br>
+<pre>public interface <span class="typeNameLabel">AuthenticationTrustResolver</span></pre>
+<div class="block">Evaluates <code>Authentication</code> tokens</div>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="method.summary">
+
+</a>
+<h3>Method Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#isAnonymous-org.springframework.security.core.Authentication-">isAnonymous</a></span>(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/Authentication.html');" title="interface in org.springframework.security.core">Authentication</a>&nbsp;authentication)</code>
+<div class="block">Indicates whether the passed <code>Authentication</code> token represents an
+anonymous user.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#isRememberMe-org.springframework.security.core.Authentication-">isRememberMe</a></span>(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/Authentication.html');" title="interface in org.springframework.security.core">Authentication</a>&nbsp;authentication)</code>
+<div class="block">Indicates whether the passed <code>Authentication</code> token represents user that
+has been remembered (i.e.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="method.detail">
+
+</a>
+<h3>Method Detail</h3>
+<a name="isAnonymous-org.springframework.security.core.Authentication-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isAnonymous</h4>
+<pre>boolean&nbsp;isAnonymous(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/Authentication.html');" title="interface in org.springframework.security.core">Authentication</a>&nbsp;authentication)</pre>
+<div class="block">Indicates whether the passed <code>Authentication</code> token represents an
+anonymous user. Typically the framework will call this method if it is trying to
+decide whether an <code>AccessDeniedException</code> should result in a final
+rejection (i.e. as would be the case if the principal was non-anonymous/fully
+authenticated) or direct the principal to attempt actual authentication (i.e. as
+would be the case if the <code>Authentication</code> was merely anonymous).</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>authentication</code> - to test (may be <code>null</code> in which case the method
+will always return <code>false</code>)</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> the passed authentication token represented an anonymous
+principal, <code>false</code> otherwise</dd>
+</dl>
+</li>
+</ul>
+<a name="isRememberMe-org.springframework.security.core.Authentication-">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>isRememberMe</h4>
+<pre>boolean&nbsp;isRememberMe(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/Authentication.html');" title="interface in org.springframework.security.core">Authentication</a>&nbsp;authentication)</pre>
+<div class="block">Indicates whether the passed <code>Authentication</code> token represents user that
+has been remembered (i.e. not a user that has been fully authenticated).
+<p>
+The method is provided to assist with custom <code>AccessDecisionVoter</code>s and
+the like that you might develop. Of course, you don't need to use this method
+either and can develop your own "trust level" hierarchy instead.</p></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>authentication</code> - to test (may be <code>null</code> in which case the method
+will always return <code>false</code>)</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>true</code> the passed authentication token represented a principal
+authenticated using a remember-me token, <code>false</code> otherwise</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div class="bottomNav"><a name="navbar.bottom">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.bottom.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="overview-summary3.html">Overview</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/package-summary.html');">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/package-tree.html');">Tree</a></li>
+<li><a href="deprecated-list3.html">Deprecated</a></li>
+<li><a href="index-all1.html">Index</a></li>
+<li><a href="help-doc3.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/AuthenticationServiceException.html');" title="class in org.springframework.security.authentication"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/AuthenticationTrustResolverImpl.html');" title="class in org.springframework.security.authentication"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/index.html?org/springframework/security/authentication/AuthenticationTrustResolver.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="allclasses-noframe3.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_bottom");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.bottom">
+
+</a></div>
+
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

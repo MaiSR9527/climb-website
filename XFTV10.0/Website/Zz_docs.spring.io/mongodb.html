@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>MongoDb Support</title>
+<link rel="stylesheet" href="static/css/spring.css">
+<link rel="stylesheet" href="static/css/font-awesome.min.css">
+<style>#header #revnumber{display:none}</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#mongodb">MongoDb Support</a>
+<ul class="sectlevel2">
+<li><a href="#mongodb-connection">Connecting to MongoDb</a>
+<ul class="sectlevel3">
+<li><a href="#blocking-or-reactive">Blocking or Reactive?</a></li>
+<li><a href="#using-mongodatabasefactory">Using <code>MongoDatabaseFactory</code></a></li>
+<li><a href="#using-reactivemongodatabasefactory">Using <code>ReactiveMongoDatabaseFactory</code></a></li>
+</ul>
+</li>
+<li><a href="#mongodb-message-store">MongoDB Message Store</a>
+<ul class="sectlevel3">
+<li><a href="#mongodb-priority-channel-message-store">MongoDB Channel Message Store</a></li>
+<li><a href="#mongodb-metadata-store">MongoDB Metadata Store</a></li>
+</ul>
+</li>
+<li><a href="#mongodb-inbound-channel-adapter">MongoDB Inbound Channel Adapter</a></li>
+<li><a href="#mongodb-change-stream-channel-adapter">MongoDB Change Stream Inbound Channel Adapter</a></li>
+<li><a href="#mongodb-outbound-channel-adapter">MongoDB Outbound Channel Adapter</a></li>
+<li><a href="#mongodb-outbound-gateway">MongoDB Outbound Gateway</a>
+<ul class="sectlevel3">
+<li><a href="#configuring-with-java-configuration">Configuring with Java Configuration</a></li>
+<li><a href="#configuring-with-the-java-dsl">Configuring with the Java DSL</a></li>
+</ul>
+</li>
+<li><a href="#mongodb-reactive-channel-adapters">MongoDB Reactive Channel Adapters</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="mongodb"><a class="anchor" href="#mongodb"></a>MongoDb Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 2.1 introduced support for <a href="javascript:window.open('https://www.mongodb.org/');">MongoDB</a>: a &#8220;high-performance, open source, document-oriented database&#8221;.</p>
+</div>
+<div class="paragraph">
+<p>You need to include this dependency into your project:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Maven</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.integration&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-integration-mongodb&lt;/artifactId&gt;
+    &lt;version&gt;5.3.2.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="groovy" class="language-groovy hljs">compile "org.springframework.integration:spring-integration-mongodb:5.3.2.RELEASE"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To download, install, and run MongoDB, see the <a href="javascript:window.open('https://www.mongodb.org/downloads');">MongoDB documentation</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="mongodb-connection"><a class="anchor" href="#mongodb-connection"></a>Connecting to MongoDb</h3>
+<div class="sect3">
+<h4 id="blocking-or-reactive"><a class="anchor" href="#blocking-or-reactive"></a>Blocking or Reactive?</h4>
+<div class="paragraph">
+<p>Beginning with version 5.3, Spring Integration provides support for reactive MongoDB drivers to enable non-blocking I/O when accessing MongoDB.
+To enable reactive support, add the MongoDB reactive streams driver to your dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+    &lt;groupId&gt;org.mongodb&lt;/groupId&gt;
+    &lt;artifactId&gt;mongodb-driver-reactivestreams&lt;/artifactId&gt;
+  &lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="groovy" class="language-groovy hljs">compile "org.mongodb:mongodb-driver-reactivestreams"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For regular synchronous client you need to add its respective driver into dependencies:</p>
+</div>
+<div class="listingblock">
+<div class="title">Maven</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+    &lt;groupId&gt;org.mongodb&lt;/groupId&gt;
+    &lt;artifactId&gt;mongodb-driver-sync&lt;/artifactId&gt;
+  &lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Gradle</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="groovy" class="language-groovy hljs">compile "org.mongodb:mongodb-driver-sync"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both of them are <code>optional</code> in the framework for better end-user choice support.</p>
+</div>
+<div class="paragraph">
+<p>To begin interacting with MongoDB, you first need to connect to it.
+Spring Integration builds on the support provided by another Spring project, <a href="javascript:window.open('https://projects.spring.io/spring-data-mongodb/');">Spring Data MongoDB</a>.
+It provides factory classes called <code>MongoDatabaseFactory</code> and <code>ReactiveMongoDatabaseFactory</code>, which simplify integration with the MongoDB Client API.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Spring Data provides provides the blocking MongoDB driver by default but you may opt-in for reactive usage by including the above dependency.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="using-mongodatabasefactory"><a class="anchor" href="#using-mongodatabasefactory"></a>Using <code>MongoDatabaseFactory</code></h4>
+<div class="paragraph">
+<p>To connect to MongoDB you can use an implementation of the <code>MongoDatabaseFactory</code> interface.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows how to use <code>SimpleMongoClientDatabaseFactory</code>, the out-of-the-box implementation, in Java:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">MongoDatabaseFactory mongoDbFactory =
+        new SimpleMongoClientDatabaseFactory(com.mongodb.client.MongoClients.create(), "test");</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example shows how to use <code>SimpleMongoClientDatabaseFactory</code> in XML configuration:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;bean id="mongoDbFactory" class="o.s.data.mongodb.core.SimpleMongoClientDatabaseFactory"&gt;
+    &lt;constructor-arg&gt;
+        &lt;bean class="com.mongodb.client.MongoClients" factory-method="create"/&gt;
+    &lt;/constructor-arg&gt;
+    &lt;constructor-arg value="test"/&gt;
+&lt;/bean&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><code>SimpleMongoClientDatabaseFactory</code> takes two arguments: a <code>MongoClient</code> instance and a <code>String</code> that specifies the name of the database.
+If you need to configure properties such as <code>host</code>, <code>port</code>, and others, you can pass those by using one of the constructors provided by the underlying <code>MongoClients</code> class.
+For more information on how to configure MongoDB, see the <a href="javascript:window.open('https://docs.spring.io/spring-data/data-mongo/docs/current/reference/html/');">Spring-Data-MongoDB</a> reference.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="using-reactivemongodatabasefactory"><a class="anchor" href="#using-reactivemongodatabasefactory"></a>Using <code>ReactiveMongoDatabaseFactory</code></h4>
+<div class="paragraph">
+<p>To connect to MongoDB with the reactive driver, you can use an implementation of the <code>ReactiveMongoDatabaseFactory</code> interface.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows how to use <code>SimpleReactiveMongoDatabaseFactory</code>, the out-of-the-box implementation, in Java:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">new SimpleReactiveMongoDatabaseFactory(com.mongodb.reactivestreams.client.MongoClients.create(), "test");</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example shows how to use <code>SimpleReactiveMongoDatabaseFactory</code> in XML configuration:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;bean id="mongoDbFactory" class="o.s.data.mongodb.core.SimpleReactiveMongoDatabaseFactory"&gt;
+    &lt;constructor-arg&gt;
+        &lt;bean class="com.mongodb.reactivestreams.client.MongoClients" factory-method="create"/&gt;
+    &lt;/constructor-arg&gt;
+    &lt;constructor-arg value="test"/&gt;
+&lt;/bean&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mongodb-message-store"><a class="anchor" href="#mongodb-message-store"></a>MongoDB Message Store</h3>
+<div class="paragraph">
+<p>As described in the <em>Enterprise Integration Patterns</em> (EIP) book, a <a href="javascript:window.open('https://www.enterpriseintegrationpatterns.com/MessageStore.html');">Message Store</a> lets you persist messages.
+Doing so can be useful when dealing with components that have the ability to buffer messages (<code>QueueChannel</code>, <code>aggregator</code>, <code>resequencer</code>, and others.) if reliability is a concern.
+In Spring Integration, the <code>MessageStore</code> strategy also provides the foundation for the <a href="javascript:window.open('https://www.enterpriseintegrationpatterns.com/StoreInLibrary.html');">claim check</a> pattern, which is described in EIP as well.</p>
+</div>
+<div class="paragraph">
+<p>Spring Integration&#8217;s MongoDB module provides the <code>MongoDbMessageStore</code>, which is an implementation of both the <code>MessageStore</code> strategy (mainly used by the claim check pattern) and the <code>MessageGroupStore</code> strategy (mainly used by the aggregator and resequencer patterns).</p>
+</div>
+<div class="paragraph">
+<p>The following example configures a <code>MongoDbMessageStore</code> to use a <code>QueueChannel</code> and an <code>aggregator</code>:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;bean id="mongoDbMessageStore" class="o.s.i.mongodb.store.MongoDbMessageStore"&gt;
+    &lt;constructor-arg ref="mongoDbFactory"/&gt;
+&lt;/bean&gt;
+
+&lt;int:channel id="somePersistentQueueChannel"&gt;
+    &lt;int:queue message-store="mongoDbMessageStore"/&gt;
+&lt;int:channel&gt;
+
+&lt;int:aggregator input-channel="inputChannel" output-channel="outputChannel"
+         message-store="mongoDbMessageStore"/&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The preceding example is a simple bean configuration, and it expects a <code>MongoDbFactory</code> as a constructor argument.</p>
+</div>
+<div class="paragraph">
+<p>The <code>MongoDbMessageStore</code> expands the <code>Message</code> as a Mongo document with all nested properties by using the Spring Data Mongo mapping mechanism.
+It is useful when you need to have access to the <code>payload</code> or <code>headers</code> for auditing or analytics&#8201;&#8212;&#8201;for example, against stored messages.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>MongoDbMessageStore</code> uses a custom <code>MappingMongoConverter</code> implementation to store <code>Message</code> instances as MongoDB documents, and there are some limitations for the properties (<code>payload</code> and <code>header</code> values) of the <code>Message</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Starting with version 5.1.6, the <code>MongoDbMessageStore</code> can be configured with custom converters which are propagated into an internal <code>MappingMongoConverter</code> implementation.
+See <code>MongoDbMessageStore.setCustomConverters(Object&#8230;&#8203; customConverters)</code> JavaDocs for more information.</p>
+</div>
+<div class="paragraph">
+<p>Spring Integration 3.0 introduced the <code>ConfigurableMongoDbMessageStore</code>.
+It implements both the <code>MessageStore</code> and <code>MessageGroupStore</code> interfaces.
+This class can receive, as a constructor argument, a <code>MongoTemplate</code>, with which you can, for example, configure a custom <code>WriteConcern</code>.
+Another constructor requires a <code>MappingMongoConverter</code> and a <code>MongoDbFactory</code>, which lets you provide some custom conversions for <code>Message</code> instances and their properties.
+Note that, by default, the <code>ConfigurableMongoDbMessageStore</code> uses standard Java serialization to write and read <code>Message</code> instances to and from MongoDB (see <code>MongoDbMessageBytesConverter</code>) and relies on default values for other properties from <code>MongoTemplate</code>.
+It builds a <code>MongoTemplate</code> from the provided <code>MongoDbFactory</code> and <code>MappingMongoConverter</code>.
+The default name for the collection stored by the <code>ConfigurableMongoDbMessageStore</code> is <code>configurableStoreMessages</code>.
+We recommend using this implementation to create robust and flexible solutions when messages contain complex data types.</p>
+</div>
+<div class="sect3">
+<h4 id="mongodb-priority-channel-message-store"><a class="anchor" href="#mongodb-priority-channel-message-store"></a>MongoDB Channel Message Store</h4>
+<div class="paragraph">
+<p>Version 4.0 introduced the new <code>MongoDbChannelMessageStore</code>.
+It is an optimized <code>MessageGroupStore</code> for use in <code>QueueChannel</code> instances.
+With <code>priorityEnabled = true</code>, you can use it in <code>&lt;int:priority-queue&gt;</code> instances to achieve priority-order polling for persisted messages.
+The priority MongoDB document field is populated from the <code>IntegrationMessageHeaderAccessor.PRIORITY</code> (<code>priority</code>) message header.</p>
+</div>
+<div class="paragraph">
+<p>In addition, all MongoDB <code>MessageStore</code> instances now have a <code>sequence</code> field for <code>MessageGroup</code> documents.
+The <code>sequence</code> value is the result of an <code>$inc</code> operation for a simple <code>sequence</code> document from the same collection, which is created on demand.
+The <code>sequence</code> field is used in <code>poll</code> operations to provide first-in-first-out (FIFO) message order (within priority, if configured) when messages are stored within the same millisecond.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+We do not recommend using the same <code>MongoDbChannelMessageStore</code> bean for priority and non-priority, because the <code>priorityEnabled</code> option applies to the entire store.
+However, the same <code>collection</code> can be used for both <code>MongoDbChannelMessageStore</code> types, because message polling from the store is sorted and uses indexes.
+To configure that scenario, you can extend one message store bean from the other, as the following example shows:
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;bean id="channelStore" class="o.s.i.mongodb.store.MongoDbChannelMessageStore"&gt;
+    &lt;constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/&gt;
+&lt;/bean&gt;
+
+&lt;int:channel id="queueChannel"&gt;
+    &lt;int:queue message-store="store"/&gt;
+&lt;/int:channel&gt;
+
+&lt;bean id="priorityStore" parent="channelStore"&gt;
+    &lt;property name="priorityEnabled" value="true"/&gt;
+&lt;/bean&gt;
+
+&lt;int:channel id="priorityChannel"&gt;
+    &lt;int:priority-queue message-store="priorityStore"/&gt;
+&lt;/int:channel&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mongodb-metadata-store"><a class="anchor" href="#mongodb-metadata-store"></a>MongoDB Metadata Store</h4>
+<div class="paragraph">
+<p>Spring Integration 4.2 introduced a new MongoDB-based <code>MetadataStore</code> (see <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/meta-data-store.html#metadata-store');">Metadata Store</a>) implementation.
+You can use the <code>MongoDbMetadataStore</code> to maintain metadata state across application restarts.
+You can use this new <code>MetadataStore</code> implementation with adapters such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/feed.html#feed-inbound-channel-adapter');">Feed</a></p>
+</li>
+<li>
+<p><a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/file.html#file-reading');">File</a></p>
+</li>
+<li>
+<p><a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/ftp.html#ftp-inbound');">FTP</a></p>
+</li>
+<li>
+<p><a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/sftp.html#sftp-inbound');">SFTP</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To instruct these adapters to use the new <code>MongoDbMetadataStore</code>, declare a Spring bean with a bean name of <code>metadataStore</code>.
+The feed inbound channel adapter automatically picks up and use the declared <code>MongoDbMetadataStore</code>.
+The following example shows how to declare a bean with a name of <code>metadataStore</code>:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+public MetadataStore metadataStore(MongoDbFactory factory) {
+    return new MongoDbMetadataStore(factory, "integrationMetadataStore");
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>MongoDbMetadataStore</code> also implements <code>ConcurrentMetadataStore</code>, letting it be reliably shared across multiple application instances, where only one instance is allowed to store or modify a key&#8217;s value.
+All these operations are atomic, thanks to MongoDB guarantees.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mongodb-inbound-channel-adapter"><a class="anchor" href="#mongodb-inbound-channel-adapter"></a>MongoDB Inbound Channel Adapter</h3>
+<div class="paragraph">
+<p>The MongoDB inbound channel adapter is a polling consumer that reads data from MongoDB and sends it as a <code>Message</code> payload.
+The following example shows how to configure a MongoDB inbound channel adapter:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int-mongodb:inbound-channel-adapter id="mongoInboundAdapter"
+       channel="replyChannel"
+       query="{'name' : 'Bob'}"
+       entity-class="java.lang.Object"
+       auto-startup="false"&gt;
+		&lt;int:poller fixed-rate="100"/&gt;
+&lt;/int-mongodb:inbound-channel-adapter&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>As the preceding configuration shows, you configure a MongoDb inbound channel adapter by using the <code>inbound-channel-adapter</code> element and providing values for various attributes, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>query</code>: A JSON query (see <a href="javascript:window.open('https://www.mongodb.org/display/DOCS/Querying');">MongoDB Querying</a>)</p>
+</li>
+<li>
+<p><code>query-expression</code>: A SpEL expression that is evaluated to a JSON query string (as the <code>query</code> attribute above) or to an instance of <code>o.s.data.mongodb.core.query.Query</code>.
+Mutually exclusive with the <code>query</code> attribute.</p>
+</li>
+<li>
+<p><code>entity-class</code>: The type of the payload object.
+If not supplied, a <code>com.mongodb.DBObject</code> is returned.</p>
+</li>
+<li>
+<p><code>collection-name</code> or <code>collection-name-expression</code>: Identifies the name of the MongoDB collection to use.</p>
+</li>
+<li>
+<p><code>mongodb-factory</code>: Reference to an instance of <code>o.s.data.mongodb.MongoDbFactory</code></p>
+</li>
+<li>
+<p><code>mongo-template</code>: Reference to an instance of <code>o.s.data.mongodb.core.MongoTemplate</code></p>
+</li>
+<li>
+<p>Other attributes that are common across all other inbound adapters (such as 'channel').</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You cannot set both <code>mongo-template</code> and <code>mongodb-factory</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The preceding example is relatively simple and static, since it has a literal value for the <code>query</code> and uses the default name for a <code>collection</code>.
+Sometimes, you may need to change those values at runtime, based on some condition.
+To do so, use their <code>-expression</code> equivalents (<code>query-expression</code> and <code>collection-name-expression</code>), where the provided expression can be any valid SpEL expression.</p>
+</div>
+<div class="paragraph">
+<p>Also, you may wish to do some post-processing to the successfully processed data that was read from the MongoDB.
+For example; you may want to move or remove a document after it has been processed.
+You can do so by using that transaction synchronization feature Spring Integration 2.2 added, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int-mongodb:inbound-channel-adapter id="mongoInboundAdapter"
+    channel="replyChannel"
+    query-expression="new BasicQuery('{''name'' : ''Bob''}').limit(100)"
+    entity-class="java.lang.Object"
+    auto-startup="false"&gt;
+        &lt;int:poller fixed-rate="200" max-messages-per-poll="1"&gt;
+            &lt;int:transactional synchronization-factory="syncFactory"/&gt;
+        &lt;/int:poller&gt;
+&lt;/int-mongodb:inbound-channel-adapter&gt;
+
+&lt;int:transaction-synchronization-factory id="syncFactory"&gt;
+    &lt;int:after-commit
+        expression="@documentCleaner.remove(#mongoTemplate, payload, headers.mongo_collectionName)"
+        channe="someChannel"/&gt;
+&lt;/int:transaction-synchronization-factory&gt;
+
+&lt;bean id="documentCleaner" class="thing1.thing2.DocumentCleaner"/&gt;
+
+&lt;bean id="transactionManager" class="o.s.i.transaction.PseudoTransactionManager"/&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example shows the <code>DocumentCleaner</code> referenced in the preceding example:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class DocumentCleaner {
+    public void remove(MongoOperations mongoOperations, Object target, String collectionName) {
+        if (target instanceof List&lt;?&gt;){
+            List&lt;?&gt; documents = (List&lt;?&gt;) target;
+            for (Object document : documents) {
+                mongoOperations.remove(new BasicQuery(JSON.serialize(document)), collectionName);
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can declare your poller to be transactional by using the <code>transactional</code> element.
+This element can reference a real transaction manager (for example, if some other part of your flow invokes JDBC).
+If you do not have a &#8220;real&#8221; transaction, you can use an instance of <code>o.s.i.transaction.PseudoTransactionManager</code>, which is an implementation of Spring&#8217;s <code>PlatformTransactionManager</code> and enables the use of the transaction synchronization features of the Mongo adapter when there is no actual transaction.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Doing so does not make MongoDB itself transactional.
+It lets the synchronization of actions be taken before or after success (commit) or after failure (rollback).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Once your poller is transactional, you can set an instance of the <code>o.s.i.transaction.TransactionSynchronizationFactory</code> on the <code>transactional</code> element.
+A <code>TransactionSynchronizationFactory</code> creates an instance of the <code>TransactionSynchronization</code>.
+For your convenience, we have exposed a default SpEL-based <code>TransactionSynchronizationFactory</code> that lets you configure SpEL expressions, with their execution being coordinated (synchronized) with a transaction.
+Expressions for before-commit, after-commit, and after-rollback events are supported, together with a channel for each event where the evaluation result (if any) is sent.
+For each child element, you can specify <code>expression</code> and <code>channel</code> attributes.
+If only the <code>channel</code> attribute is present, the received message is sent there as part of the particular synchronization scenario.
+If only the <code>expression</code> attribute is present and the result of an expression is a non-null value, a message with the result as the payload is generated and sent to a default channel (<code>NullChannel</code>) and appears in the logs (on the <code>DEBUG</code> level).
+If you want the evaluation result to go to a specific channel, add a <code>channel</code> attribute.
+If the result of an expression is null or void, no message is generated.</p>
+</div>
+<div class="paragraph">
+<p>For more information about transaction synchronization, see <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/transactions.html#transaction-synchronization');">Transaction Synchronization</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mongodb-change-stream-channel-adapter"><a class="anchor" href="#mongodb-change-stream-channel-adapter"></a>MongoDB Change Stream Inbound Channel Adapter</h3>
+<div class="paragraph">
+<p>Starting with version 5.3, the <code>spring-integration-mongodb</code> module introduces the <code>MongoDbChangeStreamMessageProducer</code> - a reactive <code>MessageProducerSupport</code> implementation for the Spring Data <code>ReactiveMongoOperations.changeStream(String, ChangeStreamOptions, Class)</code> API.
+This component produces a <code>Flux</code> of messages with a <code>body</code> of <code>ChangeStreamEvent</code> as the payload by default and some change stream related headers (see <code>MongoHeaders</code>).
+It is recommended that this <code>MongoDbChangeStreamMessageProducer</code> is combined with a <code>FluxMessageChannel</code> as the <code>outputChannel</code> for on-demand subscription and event consumption downstream.</p>
+</div>
+<div class="paragraph">
+<p>The Java DSL configuration for this channel adapter may look like this:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+IntegrationFlow changeStreamFlow(ReactiveMongoOperations mongoTemplate) {
+    return IntegrationFlows.from(
+            MongoDb.changeStreamInboundChannelAdapter(mongoTemplate)
+                    .domainType(Person.class)
+                    .collection("person")
+                    .extractBody(false))
+            .channel(MessageChannels.flux())
+            .get();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>When the <code>MongoDbChangeStreamMessageProducer</code> is stopped, or the subscription is cancelled downstream, or the MongoDb change stream produces an <code>OperationType.INVALIDATE</code>, the <code>Publisher</code> is completed.
+The channel adapter can be started again and a new <code>Publisher</code> of source data is created and it is automatically subscribed in the <code>MessageProducerSupport.subscribeToPublisher(Publisher&lt;? extends Message&lt;?&gt;&gt;)</code>.
+This channel adapter can be reconfigured for new options between starts, if there is a requirement to consume change stream events from other places.</p>
+</div>
+<div class="paragraph">
+<p>See more information about change stream support in Spring Data MongoDb <a href="javascript:window.open('https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#change-streams');">documentation</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mongodb-outbound-channel-adapter"><a class="anchor" href="#mongodb-outbound-channel-adapter"></a>MongoDB Outbound Channel Adapter</h3>
+<div class="paragraph">
+<p>The MongoDB outbound channel adapter lets you write the message payload to a MongoDB document store, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int-mongodb:outbound-channel-adapter id="fullConfigWithCollectionExpression"
+	collection-name="myCollection"
+	mongo-converter="mongoConverter"
+	mongodb-factory="mongoDbFactory" /&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>As the preceding configuration shows, you can configure a MongoDB outbound channel adapter by using the <code>outbound-channel-adapter</code> element, providing values for various attributes, such as:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>collection-name</code> or <code>collection-name-expression</code>: Identifies the name of the MongoDb collection to use.</p>
+</li>
+<li>
+<p><code>mongo-converter</code>: Reference to an instance of <code>o.s.data.mongodb.core.convert.MongoConverter</code> that assists with converting a raw Java object to a JSON document representation.</p>
+</li>
+<li>
+<p><code>mongodb-factory</code>: Reference to an instance of <code>o.s.data.mongodb.MongoDbFactory</code>.</p>
+</li>
+<li>
+<p><code>mongo-template</code>: Reference to an instance of <code>o.s.data.mongodb.core.MongoTemplate</code>.
+NOTE: you can not have both mongo-template and mongodb-factory set.</p>
+</li>
+<li>
+<p>Other attributes that are common across all other inbound adapters (such as 'channel').</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The preceding example is relatively simple and static, since it has a literal value for the <code>collection-name</code>.
+Sometimes, you may need to change this value at runtime, based on some condition.
+To do that, use <code>collection-name-expression</code>, where the provided expression is any valid SpEL expression.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mongodb-outbound-gateway"><a class="anchor" href="#mongodb-outbound-gateway"></a>MongoDB Outbound Gateway</h3>
+<div class="paragraph">
+<p>Version 5.0 introduced the MongoDB outbound gateway.
+It allows you query a database by sending a message to its request channel.
+The gateway then send the response to the reply channel.
+You can use the message payload and headers to specify the query and the collection name, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int-mongodb:outbound-gateway id="gatewayQuery"
+    mongodb-factory="mongoDbFactory"
+    mongo-converter="mongoConverter"
+    query="{firstName: 'Bob'}"
+    collection-name="myCollection"
+    request-channel="in"
+    reply-channel="out"
+    entity-class="org.springframework.integration.mongodb.test.entity$Person"/&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can use the following attributes with a MongoDB outbound Gateway:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>collection-name</code> or <code>collection-name-expression</code>: Identifies the name of the MongoDB collection to use.</p>
+</li>
+<li>
+<p><code>mongo-converter</code>: Reference to an instance of <code>o.s.data.mongodb.core.convert.MongoConverter</code> that assists with converting a raw Java object to a JSON document representation.</p>
+</li>
+<li>
+<p><code>mongodb-factory</code>: Reference to an instance of <code>o.s.data.mongodb.MongoDbFactory</code>.</p>
+</li>
+<li>
+<p><code>mongo-template</code>: Reference to an instance of <code>o.s.data.mongodb.core.MongoTemplate</code>.
+NOTE: you can not set both <code>mongo-template</code> and <code>mongodb-factory</code>.</p>
+</li>
+<li>
+<p><code>entity-class</code>: The fully qualified name of the entity class to be passed to the <code>find(..)</code> and <code>findOne(..)</code> methods in MongoTemplate.
+If this attribute is not provided, the default value is <code>org.bson.Document</code>.</p>
+</li>
+<li>
+<p><code>query</code> or <code>query-expression</code>: Specifies the MongoDB query.
+See the <a href="javascript:window.open('https://www.mongodb.org/display/DOCS/Querying');">MongoDB documentation</a> for more query samples.</p>
+</li>
+<li>
+<p><code>collection-callback</code>: Reference to an instance of <code>org.springframework.data.mongodb.core.CollectionCallback</code>.
+Preferable an instance of <code>o.s.i.mongodb.outbound.MessageCollectionCallback</code> since 5.0.11 with the request message context.
+See its Javadocs for more information.
+NOTE: You can not have both <code>collection-callback</code> and any of the query attributes.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="configuring-with-java-configuration"><a class="anchor" href="#configuring-with-java-configuration"></a>Configuring with Java Configuration</h4>
+<div class="paragraph">
+<p>The following Spring Boot application shows an example of how to configure the outbound gateway with Java configuration:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@SpringBootApplication
+public class MongoDbJavaApplication {
+
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(MongoDbJavaApplication.class)
+            .web(false)
+            .run(args);
+    }
+
+    @Autowired
+    private MongoDbFactory mongoDbFactory;
+
+    @Bean
+    @ServiceActivator(inputChannel = "requestChannel")
+    public MessageHandler mongoDbOutboundGateway() {
+        MongoDbOutboundGateway gateway = new MongoDbOutboundGateway(this.mongoDbFactory);
+        gateway.setCollectionNameExpressionString("'myCollection'");
+        gateway.setQueryExpressionString("'{''name'' : ''Bob''}'");
+        gateway.setExpectSingleResult(true);
+        gateway.setEntityClass(Person.class);
+        gateway.setOutputChannelName("replyChannel");
+        return gateway;
+    }
+
+    @Bean
+    @ServiceActivator(inputChannel = "replyChannel")
+    public MessageHandler handler() {
+        return message -&gt; System.out.println(message.getPayload());
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="configuring-with-the-java-dsl"><a class="anchor" href="#configuring-with-the-java-dsl"></a>Configuring with the Java DSL</h4>
+<div class="paragraph">
+<p>The following Spring Boot application show an example of how to configure the outbound gateway with the Java DSL:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@SpringBootApplication
+public class MongoDbJavaApplication {
+
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(MongoDbJavaApplication.class)
+            .web(false)
+            .run(args);
+    }
+
+    @Autowired
+    private MongoDbFactory;
+
+    @Autowired
+    private MongoConverter;
+
+
+    @Bean
+    public IntegrationFlow gatewaySingleQueryFlow() {
+        return f -&gt; f
+                .handle(queryOutboundGateway())
+                .channel(c -&gt; c.queue("retrieveResults"));
+    }
+
+    private MongoDbOutboundGatewaySpec queryOutboundGateway() {
+        return MongoDb.outboundGateway(this.mongoDbFactory, this.mongoConverter)
+                .query("{name : 'Bob'}")
+                .collectionNameFunction(m -&gt; m.getHeaders().get("collection"))
+                .expectSingleResult(true)
+                .entityClass(Person.class);
+    }
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>As an alternate to the <code>query</code> and <code>query-expression</code> properties, you can specify other database operations by using the <code>collectionCallback</code> property as a reference to the <code>MessageCollectionCallback</code> functional interface implementation.
+The following example specifies a count operation:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">private MongoDbOutboundGatewaySpec collectionCallbackOutboundGateway() {
+    return MongoDb.outboundGateway(this.mongoDbFactory, this.mongoConverter)
+            .collectionCallback((collection, requestMessage) -&gt; collection.count())
+            .collectionName("myCollection");
+    }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mongodb-reactive-channel-adapters"><a class="anchor" href="#mongodb-reactive-channel-adapters"></a>MongoDB Reactive Channel Adapters</h3>
+<div class="paragraph">
+<p>Starting with version 5.3, the <code>ReactiveMongoDbStoringMessageHandler</code> and <code>ReactiveMongoDbMessageSource</code> implementations are provided.
+They are based on the <code>ReactiveMongoOperations</code> from Spring Data and requires a <code>org.mongodb:mongodb-driver-reactivestreams</code> dependency.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ReactiveMongoDbStoringMessageHandler</code> is an implementation of the <code>ReactiveMessageHandler</code> which is supported natively in the framework when reactive streams composition is involved in the integration flow definition.
+See more information in the <a href="reactive-streams.html#reactive-message-handler">ReactiveMessageHandler</a>.</p>
+</div>
+<div class="paragraph">
+<p>From configuration perspective there is no difference with many other standard channel adapters.
+For example with Java DSL such a channel adapter could be used like:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+public IntegrationFlow reactiveMongoDbFlow(ReactiveMongoDatabaseFactory mongoDbFactory) {
+    return f -&gt; f
+            .channel(MessageChannels.flux())
+            .handle(MongoDb.reactiveOutboundChannelAdapter(mongoDbFactory));
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>In this sample we are going to connect to the MongoDb via provided <code>ReactiveMongoDatabaseFactory</code> and store a data from request message into a default collection with the <code>data</code> name.
+The real operation is going to be performed on-demand from the reactive stream composition in the internally created <code>ReactiveStreamsConsumer</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>ReactiveMongoDbMessageSource</code> is an <code>AbstractMessageSource</code> implementation based on the provided <code>ReactiveMongoDatabaseFactory</code> or <code>ReactiveMongoOperations</code> and MongoDb query (or expression), calls <code>find()</code> or <code>findOne()</code> operation according an <code>expectSingleResult</code> option with an expected <code>entityClass</code> type to convert a query result.
+A query execution and result evaluation is performed on demand when <code>Publisher</code> (<code>Flux</code> or <code>Mono</code> according <code>expectSingleResult</code> option) in the payload of produced message is subscribed.
+The framework can subscribe to such a payload automatically (essentially <code>flatMap</code>) when splitter and <code>FluxMessageChannel</code> are used downstream.
+Otherwise it is target application responsibility to subscribe into a polled publishers in downstream endpoints.</p>
+</div>
+<div class="paragraph">
+<p>With Java DSL such a channel adapter could be configured like:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+public IntegrationFlow reactiveMongoDbFlow(ReactiveMongoDatabaseFactory mongoDbFactory) {
+    return IntegrationFlows
+            .from(MongoDb.reactiveInboundChannelAdapter(mongoDbFactory, "{'name' : 'Name'}")
+                            .entityClass(Person.class),
+                    c -&gt; c.poller(Pollers.fixedDelay(1000)))
+            .split()
+            .channel(c -&gt; c.flux("output"))
+            .get();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 5.3.2.RELEASE<br>
+Last updated 2020-07-22 17:49:12 UTC
+</div>
+</div>
+<link rel="stylesheet" href="static/css/github.min.css">
+<script src="static/js/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+<script type="text/javascript" src="static/js/tocbot.min.js"></script>
+<script type="text/javascript" src="static/js/toc.js"></script>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

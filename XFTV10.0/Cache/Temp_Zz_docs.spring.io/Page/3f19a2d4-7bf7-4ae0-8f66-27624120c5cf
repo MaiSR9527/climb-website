@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Error Handling</title>
+<link rel="stylesheet" href="css/spring.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>#header #revnumber{display:none}</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#error-handling">Error Handling</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="error-handling"><a class="anchor" href="#error-handling"></a>Error Handling</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As described in the <a href="./overview.html#overview">overview</a> at the very beginning of this manual, one of the main motivations behind a message-oriented framework such as Spring Integration is to promote loose coupling between components.
+The message channel plays an important role, in that producers and consumers do not have to know about each other.
+However, the advantages also have some drawbacks.
+Some things become more complicated in a loosely coupled environment, and one example is error handling.</p>
+</div>
+<div class="paragraph">
+<p>When sending a message to a channel, the component that ultimately handles that message may or may not be operating within the same thread as the sender.
+If using a simple default <code>DirectChannel</code> (when the <code>&lt;channel&gt;</code> element that has no <code>&lt;queue&gt;</code> child element and no 'task-executor' attribute), the message handling occurs in the same thread that sends the initial message.
+In that case, if an <code>Exception</code> is thrown, it can be caught by the sender (or it may propagate past the sender if it is an uncaught <code>RuntimeException</code>).
+This is the same behavior as an exception-throwing operation in a normal Java call stack.</p>
+</div>
+<div class="paragraph">
+<p>A message flow that runs on a caller thread might be invoked through a messaging gateway (see <a href="./gateway.html#gateway">Messaging Gateways</a>) or a <code>MessagingTemplate</code> (see <a href="./channel.html#channel-template"><code>MessagingTemplate</code></a>).
+In either case, the default behavior is to throw any exceptions to the caller.
+For the messaging gateway, see <a href="./gateway.html#gateway-error-handling">Error Handling</a> for details about how the exception is thrown and how to configure the gateway to route the errors to an error channel instead.
+When using a <code>MessagingTemplate</code> or sending to a <code>MessageChannel</code> directly, exceptions are always thrown to the caller.</p>
+</div>
+<div class="paragraph">
+<p>When adding asynchronous processing, things become rather more complicated.
+For instance, if the 'channel' element does provide a 'queue' child element (<code>QueueChannel</code> in Java &amp; Annotations Configuration), the component that handles the message operates in a different thread than the sender.
+The same is true when an <code>ExecutorChannel</code> is used.
+The sender may have dropped the <code>Message</code> into the channel and moved on to other things.
+There is no way for the <code>Exception</code> to be thrown directly back to that sender by using standard <code>Exception</code> throwing techniques.
+Instead, handling errors for asynchronous processes requires that the error-handling mechanism also be asynchronous.</p>
+</div>
+<div class="paragraph">
+<p>Spring Integration supports error handling for its components by publishing errors to a message channel.
+Specifically, the <code>Exception</code> becomes the payload of a Spring Integration <code>ErrorMessage</code>.
+That <code>Message</code> is then sent to a message channel that is resolved in a way that is similar to the 'replyChannel' resolution.
+First, if the request <code>Message</code> being handled at the time the <code>Exception</code> occurred contains an 'errorChannel' header (the header name is defined in the <code>MessageHeaders.ERROR_CHANNEL</code> constant), the <code>ErrorMessage</code> is sent to that channel.
+Otherwise, the error handler sends to a &#8220;global&#8221; channel whose bean name is <code>errorChannel</code> (this is also defined as a constant: <code>IntegrationContextUtils.ERROR_CHANNEL_BEAN_NAME</code>).</p>
+</div>
+<div class="paragraph">
+<p>A default <code>errorChannel</code> bean is created internally by the Framework.
+However, you can define your own if you want to control the settings.
+The following example shows how to define an error channel in XML configuration backed by a queue with a capacity of <code>500</code>:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:channel id="errorChannel"&gt;
+    &lt;int:queue capacity="500"/&gt;
+&lt;/int:channel&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The default error channel is a <code>PublishSubscribeChannel</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The most important thing to understand here is that the messaging-based error handling applies only to exceptions that are thrown by a Spring Integration task that is executing within a <code>TaskExecutor</code>.
+This does not apply to exceptions thrown by a handler that operates within the same thread as the sender (for example, through a <code>DirectChannel</code> as described earlier in this section).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When exceptions occur in a scheduled poller task&#8217;s execution, those exceptions are wrapped in <code>ErrorMessage</code> instances and sent to the 'errorChannel' as well.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To enable global error handling, register a handler on that channel.
+For example, you can configure Spring Integration&#8217;s <code>ErrorMessageExceptionTypeRouter</code> as the handler of an endpoint that is subscribed to the 'errorChannel'.
+That router can then spread the error messages across multiple channels, based on the <code>Exception</code> type.</p>
+</div>
+<div class="paragraph">
+<p>Starting with version 4.3.10, Spring Integration provides the <code>ErrorMessagePublisher</code> and the <code>ErrorMessageStrategy</code>.
+You can use them as a general mechanism for publishing <code>ErrorMessage</code> instances.
+You can call or extend them in any error handling scenarios.
+The <code>ErrorMessageSendingRecoverer</code> extends this class as a <code>RecoveryCallback</code> implementation that can be used with retry, such as the
+<a href="./handler-advice.html#retry-advice"><code>RequestHandlerRetryAdvice</code></a>.
+The <code>ErrorMessageStrategy</code> is used to build an <code>ErrorMessage</code> based on the provided exception and an <code>AttributeAccessor</code> context.
+It can be injected into any <code>MessageProducerSupport</code> or <code>MessagingGatewaySupport</code>.
+The <code>requestMessage</code> is stored under <code>ErrorMessageUtils.INPUT_MESSAGE_CONTEXT_KEY</code> in the <code>AttributeAccessor</code> context.
+The <code>ErrorMessageStrategy</code> can use that <code>requestMessage</code> as the <code>originalMessage</code> property of the <code>ErrorMessage</code> it creates.
+The <code>DefaultErrorMessageStrategy</code> does exactly that.</p>
+</div>
+<div class="paragraph">
+<p>Starting with version 5.2, all the <code>MessageHandlingException</code> instances thrown by the framework components, includes a component <code>BeanDefinition</code> resource and source to determine a configuration point form the exception.
+In case of XML configuration, a resource is an XML file path and source an XML tag with its <code>id</code> attribute.
+With Java &amp; Annotation configuration, a resource is a <code>@Configuration</code> class and source is a <code>@Bean</code> method.
+In most case the target integration flow solution is based on the out-of-the-box components and their configuration options.
+When an exception happens at runtime, there is no any end-user code involved in stack trace because an execution is against beans, not their configuration.
+Including a resource and source of the bean definition helps to determine possible configuration mistakes and provides better developer experience.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 5.3.2.RELEASE<br>
+Last updated 2020-07-22 17:49:12 UTC
+</div>
+</div>
+<link rel="stylesheet" href="js/highlight/styles/github.min.css">
+<script src="js/highlight/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+<script type="text/javascript" src="js/tocbot/tocbot.min.js"></script>
+<script type="text/javascript" src="js/toc.js"></script>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

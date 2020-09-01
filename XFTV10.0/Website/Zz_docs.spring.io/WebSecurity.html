@@ -1,0 +1,621 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<title>WebSecurity (spring-security-docs-manual 5.3.4.RELEASE API)</title>
+<link rel="stylesheet" type="text/css" href="static/css/stylesheet1.css" title="Style">
+<script type="text/javascript" src="static/js/script.js"></script>
+</head>
+<body>
+<script type="text/javascript">try{if(location.href.indexOf('is-external=true')==-1){parent.document.title="WebSecurity (spring-security-docs-manual 5.3.4.RELEASE API)";}}catch(err){}var methods={"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};var tabs={65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};var altColor="altColor";var rowColor="rowColor";var tableTab="tableTab";var activeTableTab="activeTableTab";</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+
+<div class="topNav"><a name="navbar.top">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.top.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="overview-summary3.html">Overview</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/package-summary.html');">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/package-tree.html');">Tree</a></li>
+<li><a href="deprecated-list3.html">Deprecated</a></li>
+<li><a href="index-all1.html">Index</a></li>
+<li><a href="help-doc3.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/HttpSecurity.RequestMatcherConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/WebSecurity.IgnoredRequestConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/index.html?org/springframework/security/config/annotation/web/builders/WebSecurity.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="allclasses-noframe3.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_top");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.top">
+
+</a></div>
+
+
+<div class="header">
+<div class="subTitle">org.springframework.security.config.annotation.web.builders</div>
+<h2 title="Class WebSecurity" class="title">Class WebSecurity</h2>
+</div>
+<div class="contentContainer">
+<ul class="inheritance">
+<li>java.lang.Object</li>
+<li>
+<ul class="inheritance">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractSecurityBuilder.html');" title="class in org.springframework.security.config.annotation">org.springframework.security.config.annotation.AbstractSecurityBuilder</a>&lt;O&gt;</li>
+<li>
+<ul class="inheritance">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html');" title="class in org.springframework.security.config.annotation">org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder</a>&lt;javax.servlet.Filter,<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&gt;</li>
+<li>
+<ul class="inheritance">
+<li>org.springframework.security.config.annotation.web.builders.WebSecurity</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd>org.springframework.beans.factory.Aware, org.springframework.context.ApplicationContextAware, <a href="SecurityBuilder.html" title="interface in org.springframework.security.config.annotation">SecurityBuilder</a>&lt;javax.servlet.Filter&gt;</dd>
+</dl>
+<hr>
+<br>
+<pre>public final class <span class="typeNameLabel">WebSecurity</span>
+extends <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html');" title="class in org.springframework.security.config.annotation">AbstractConfiguredSecurityBuilder</a>&lt;javax.servlet.Filter,<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&gt;
+implements <a href="SecurityBuilder.html" title="interface in org.springframework.security.config.annotation">SecurityBuilder</a>&lt;javax.servlet.Filter&gt;, org.springframework.context.ApplicationContextAware</pre>
+<div class="block"><p>
+The <a href="" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity</code></a> is created by <a href="WebSecurityConfiguration.html" title="class in org.springframework.security.config.annotation.web.configuration"><code>WebSecurityConfiguration</code></a> to create the
+<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/FilterChainProxy.html');" title="class in org.springframework.security.web"><code>FilterChainProxy</code></a> known as the Spring Security Filter Chain
+(springSecurityFilterChain). The springSecurityFilterChain is the <code>Filter</code> that
+the <code>DelegatingFilterProxy</code> delegates to.
+</p>
+<p>
+Customizations to the <a href="" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity</code></a> can be made by creating a
+<a href="WebSecurityConfigurer.html" title="interface in org.springframework.security.config.annotation.web"><code>WebSecurityConfigurer</code></a> or more likely by overriding
+<a href="WebSecurityConfigurerAdapter.html" title="class in org.springframework.security.config.annotation.web.configuration"><code>WebSecurityConfigurerAdapter</code></a>.
+</p></div>
+<dl>
+<dt><span class="simpleTagLabel">Since:</span></dt>
+<dd>3.2</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="EnableWebSecurity.html" title="annotation in org.springframework.security.config.annotation.web.configuration"><code>EnableWebSecurity</code></a>,
+<a href="WebSecurityConfiguration.html" title="class in org.springframework.security.config.annotation.web.configuration"><code>WebSecurityConfiguration</code></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+
+</a>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/WebSecurity.IgnoredRequestConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity.IgnoredRequestConfigurer</a></span></code>
+<div class="block">Allows registering <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/util/matcher/RequestMatcher.html');" title="interface in org.springframework.security.web.util.matcher"><code>RequestMatcher</code></a> instances that should be ignored by
+Spring Security.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/WebSecurity.MvcMatchersIgnoredRequestConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity.MvcMatchersIgnoredRequestConfigurer</a></span></code>
+<div class="block">An <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/WebSecurity.IgnoredRequestConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity.IgnoredRequestConfigurer</code></a> that allows optionally configuring the
+<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/servlet/util/matcher/MvcRequestMatcher.html#setMethod-org.springframework.http.HttpMethod-');"><code>MvcRequestMatcher.setMethod(HttpMethod)</code></a></div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="constructor.summary">
+
+</a>
+<h3>Constructor Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="#WebSecurity-org.springframework.security.config.annotation.ObjectPostProcessor-">WebSecurity</a></span>(<a href="ObjectPostProcessor.html" title="interface in org.springframework.security.config.annotation">ObjectPostProcessor</a>&lt;java.lang.Object&gt;&nbsp;objectPostProcessor)</code>
+<div class="block">Creates a new instance</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="method.summary">
+
+</a>
+<h3>Method Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#addSecurityFilterChainBuilder-org.springframework.security.config.annotation.SecurityBuilder-">addSecurityFilterChainBuilder</a></span>(<a href="SecurityBuilder.html" title="interface in org.springframework.security.config.annotation">SecurityBuilder</a>&lt;? extends <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/SecurityFilterChain.html');" title="interface in org.springframework.security.web">SecurityFilterChain</a>&gt;&nbsp;securityFilterChainBuilder)</code>
+<div class="block">
+Adds builders to create <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/SecurityFilterChain.html');" title="interface in org.springframework.security.web"><code>SecurityFilterChain</code></a> instances.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#debug-boolean-">debug</a></span>(boolean&nbsp;debugEnabled)</code>
+<div class="block">Controls debugging support for Spring Security.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#expressionHandler-org.springframework.security.access.expression.SecurityExpressionHandler-">expressionHandler</a></span>(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression">SecurityExpressionHandler</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/FilterInvocation.html');" title="class in org.springframework.security.web">FilterInvocation</a>&gt;&nbsp;expressionHandler)</code>
+<div class="block">Set the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression"><code>SecurityExpressionHandler</code></a> to be used.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression">SecurityExpressionHandler</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/FilterInvocation.html');" title="class in org.springframework.security.web">FilterInvocation</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#getExpressionHandler--">getExpressionHandler</a></span>()</code>
+<div class="block">Gets the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression"><code>SecurityExpressionHandler</code></a> to be used.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access">WebInvocationPrivilegeEvaluator</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#getPrivilegeEvaluator--">getPrivilegeEvaluator</a></span>()</code>
+<div class="block">Gets the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access"><code>WebInvocationPrivilegeEvaluator</code></a> to be used.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#httpFirewall-org.springframework.security.web.firewall.HttpFirewall-">httpFirewall</a></span>(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/firewall/HttpFirewall.html');" title="interface in org.springframework.security.web.firewall">HttpFirewall</a>&nbsp;httpFirewall)</code>
+<div class="block">Allows customizing the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/firewall/HttpFirewall.html');" title="interface in org.springframework.security.web.firewall"><code>HttpFirewall</code></a>.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/WebSecurity.IgnoredRequestConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity.IgnoredRequestConfigurer</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#ignoring--">ignoring</a></span>()</code>
+<div class="block">
+Allows adding <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/util/matcher/RequestMatcher.html');" title="interface in org.springframework.security.web.util.matcher"><code>RequestMatcher</code></a> instances that Spring Security
+should ignore.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>protected javax.servlet.Filter</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#performBuild--">performBuild</a></span>()</code>
+<div class="block">Subclasses must implement this method to build the object that is being returned.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#postBuildAction-java.lang.Runnable-">postBuildAction</a></span>(java.lang.Runnable&nbsp;postBuildAction)</code>
+<div class="block">Executes the Runnable immediately after the build takes place</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#privilegeEvaluator-org.springframework.security.web.access.WebInvocationPrivilegeEvaluator-">privilegeEvaluator</a></span>(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access">WebInvocationPrivilegeEvaluator</a>&nbsp;privilegeEvaluator)</code>
+<div class="block">Set the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access"><code>WebInvocationPrivilegeEvaluator</code></a> to be used.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#securityInterceptor-org.springframework.security.web.access.intercept.FilterSecurityInterceptor-">securityInterceptor</a></span>(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/intercept/FilterSecurityInterceptor.html');" title="class in org.springframework.security.web.access.intercept">FilterSecurityInterceptor</a>&nbsp;securityInterceptor)</code>
+<div class="block">Sets the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/intercept/FilterSecurityInterceptor.html');" title="class in org.springframework.security.web.access.intercept"><code>FilterSecurityInterceptor</code></a>.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#setApplicationContext-org.springframework.context.ApplicationContext-">setApplicationContext</a></span>(org.springframework.context.ApplicationContext&nbsp;applicationContext)</code>&nbsp;</td>
+</tr>
+</table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder">
+
+</a>
+<h3>Methods inherited from class&nbsp;org.springframework.security.config.annotation.<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html');" title="class in org.springframework.security.config.annotation">AbstractConfiguredSecurityBuilder</a></h3>
+<code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#apply-C-');">apply</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#apply-C-');">apply</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#beforeConfigure--');">beforeConfigure</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#beforeInit--');">beforeInit</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#doBuild--');">doBuild</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#getConfigurer-java.lang.Class-');">getConfigurer</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#getConfigurers-java.lang.Class-');">getConfigurers</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#getOrBuild--');">getOrBuild</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#getSharedObject-java.lang.Class-');">getSharedObject</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#getSharedObjects--');">getSharedObjects</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#objectPostProcessor-org.springframework.security.config.annotation.ObjectPostProcessor-');">objectPostProcessor</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#postProcess-P-');">postProcess</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#removeConfigurer-java.lang.Class-');">removeConfigurer</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#removeConfigurers-java.lang.Class-');">removeConfigurers</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#setSharedObject-java.lang.Class-C-');">setSharedObject</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.springframework.security.config.annotation.AbstractSecurityBuilder">
+
+</a>
+<h3>Methods inherited from class&nbsp;org.springframework.security.config.annotation.<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractSecurityBuilder.html');" title="class in org.springframework.security.config.annotation">AbstractSecurityBuilder</a></h3>
+<code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractSecurityBuilder.html#build--');">build</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractSecurityBuilder.html#getObject--');">getObject</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
+
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+<code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.org.springframework.security.config.annotation.SecurityBuilder">
+
+</a>
+<h3>Methods inherited from interface&nbsp;org.springframework.security.config.annotation.<a href="SecurityBuilder.html" title="interface in org.springframework.security.config.annotation">SecurityBuilder</a></h3>
+<code><a href="SecurityBuilder.html#build--">build</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="constructor.detail">
+
+</a>
+<h3>Constructor Detail</h3>
+<a name="WebSecurity-org.springframework.security.config.annotation.ObjectPostProcessor-">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>WebSecurity</h4>
+<pre>public&nbsp;WebSecurity(<a href="ObjectPostProcessor.html" title="interface in org.springframework.security.config.annotation">ObjectPostProcessor</a>&lt;java.lang.Object&gt;&nbsp;objectPostProcessor)</pre>
+<div class="block">Creates a new instance</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>objectPostProcessor</code> - the <a href="ObjectPostProcessor.html" title="interface in org.springframework.security.config.annotation"><code>ObjectPostProcessor</code></a> to use</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="WebSecurityConfiguration.html" title="class in org.springframework.security.config.annotation.web.configuration"><code>WebSecurityConfiguration</code></a></dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+
+<ul class="blockList">
+<li class="blockList"><a name="method.detail">
+
+</a>
+<h3>Method Detail</h3>
+<a name="ignoring--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ignoring</h4>
+<pre>public&nbsp;<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/WebSecurity.IgnoredRequestConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity.IgnoredRequestConfigurer</a>&nbsp;ignoring()</pre>
+<div class="block"><p>
+Allows adding <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/util/matcher/RequestMatcher.html');" title="interface in org.springframework.security.web.util.matcher"><code>RequestMatcher</code></a> instances that Spring Security
+should ignore. Web Security provided by Spring Security (including the
+<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/context/SecurityContext.html');" title="interface in org.springframework.security.core.context"><code>SecurityContext</code></a>) will not be available on <code>HttpServletRequest</code> that
+match. Typically the requests that are registered should be that of only static
+resources. For requests that are dynamic, consider mapping the request to allow all
+users instead.
+</p>
+Example Usage:
+<pre> webSecurityBuilder.ignoring()
+ // ignore all URLs that start with /resources/ or /static/
+                .antMatchers(&quot;/resources/**&quot;, &quot;/static/**&quot;);
+ </pre>
+Alternatively this will accomplish the same result:
+<pre> webSecurityBuilder.ignoring()
+ // ignore all URLs that start with /resources/ or /static/
+                .antMatchers(&quot;/resources/**&quot;).antMatchers(&quot;/static/**&quot;);
+ </pre>
+Multiple invocations of ignoring() are also additive, so the following is also
+equivalent to the previous two examples:
+<pre> webSecurityBuilder.ignoring()
+ // ignore all URLs that start with /resources/
+                .antMatchers(&quot;/resources/**&quot;);
+ webSecurityBuilder.ignoring()
+ // ignore all URLs that start with /static/
+                .antMatchers(&quot;/static/**&quot;);
+ // now both URLs that start with /resources/ and /static/ will be ignored
+ </pre></div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/WebSecurity.IgnoredRequestConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity.IgnoredRequestConfigurer</code></a> to use for registering request that
+should be ignored</dd>
+</dl>
+</li>
+</ul>
+<a name="httpFirewall-org.springframework.security.web.firewall.HttpFirewall-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>httpFirewall</h4>
+<pre>public&nbsp;<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&nbsp;httpFirewall(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/firewall/HttpFirewall.html');" title="interface in org.springframework.security.web.firewall">HttpFirewall</a>&nbsp;httpFirewall)</pre>
+<div class="block">Allows customizing the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/firewall/HttpFirewall.html');" title="interface in org.springframework.security.web.firewall"><code>HttpFirewall</code></a>. The default is
+<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/firewall/StrictHttpFirewall.html');" title="class in org.springframework.security.web.firewall"><code>StrictHttpFirewall</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>httpFirewall</code> - the custom <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/firewall/HttpFirewall.html');" title="interface in org.springframework.security.web.firewall"><code>HttpFirewall</code></a></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity</code></a> for further customizations</dd>
+</dl>
+</li>
+</ul>
+<a name="debug-boolean-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>debug</h4>
+<pre>public&nbsp;<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&nbsp;debug(boolean&nbsp;debugEnabled)</pre>
+<div class="block">Controls debugging support for Spring Security.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>debugEnabled</code> - if true, enables debug support with Spring Security. Default is
+false.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity</code></a> for further customization.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="EnableWebSecurity.html#debug--"><code>EnableWebSecurity.debug()</code></a></dd>
+</dl>
+</li>
+</ul>
+<a name="addSecurityFilterChainBuilder-org.springframework.security.config.annotation.SecurityBuilder-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addSecurityFilterChainBuilder</h4>
+<pre>public&nbsp;<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&nbsp;addSecurityFilterChainBuilder(<a href="SecurityBuilder.html" title="interface in org.springframework.security.config.annotation">SecurityBuilder</a>&lt;? extends <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/SecurityFilterChain.html');" title="interface in org.springframework.security.web">SecurityFilterChain</a>&gt;&nbsp;securityFilterChainBuilder)</pre>
+<div class="block"><p>
+Adds builders to create <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/SecurityFilterChain.html');" title="interface in org.springframework.security.web"><code>SecurityFilterChain</code></a> instances.
+</p>
+<p>
+Typically this method is invoked automatically within the framework from
+<a href="WebSecurityConfigurerAdapter.html#init-org.springframework.security.config.annotation.web.builders.WebSecurity-"><code>WebSecurityConfigurerAdapter.init(WebSecurity)</code></a>
+</p></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>securityFilterChainBuilder</code> - the builder to use to create the
+<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/SecurityFilterChain.html');" title="interface in org.springframework.security.web"><code>SecurityFilterChain</code></a> instances</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity</code></a> for further customizations</dd>
+</dl>
+</li>
+</ul>
+<a name="privilegeEvaluator-org.springframework.security.web.access.WebInvocationPrivilegeEvaluator-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>privilegeEvaluator</h4>
+<pre>public&nbsp;<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&nbsp;privilegeEvaluator(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access">WebInvocationPrivilegeEvaluator</a>&nbsp;privilegeEvaluator)</pre>
+<div class="block">Set the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access"><code>WebInvocationPrivilegeEvaluator</code></a> to be used. If this is not specified,
+then a <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/DefaultWebInvocationPrivilegeEvaluator.html');" title="class in org.springframework.security.web.access"><code>DefaultWebInvocationPrivilegeEvaluator</code></a> will be created when
+<a href="#securityInterceptor-org.springframework.security.web.access.intercept.FilterSecurityInterceptor-"><code>securityInterceptor(FilterSecurityInterceptor)</code></a> is non null.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>privilegeEvaluator</code> - the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access"><code>WebInvocationPrivilegeEvaluator</code></a> to use</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity</code></a> for further customizations</dd>
+</dl>
+</li>
+</ul>
+<a name="expressionHandler-org.springframework.security.access.expression.SecurityExpressionHandler-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>expressionHandler</h4>
+<pre>public&nbsp;<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&nbsp;expressionHandler(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression">SecurityExpressionHandler</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/FilterInvocation.html');" title="class in org.springframework.security.web">FilterInvocation</a>&gt;&nbsp;expressionHandler)</pre>
+<div class="block">Set the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression"><code>SecurityExpressionHandler</code></a> to be used. If this is not specified,
+then a <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/expression/DefaultWebSecurityExpressionHandler.html');" title="class in org.springframework.security.web.access.expression"><code>DefaultWebSecurityExpressionHandler</code></a> will be used.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>expressionHandler</code> - the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression"><code>SecurityExpressionHandler</code></a> to use</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity</code></a> for further customizations</dd>
+</dl>
+</li>
+</ul>
+<a name="getExpressionHandler--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getExpressionHandler</h4>
+<pre>public&nbsp;<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression">SecurityExpressionHandler</a>&lt;<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/FilterInvocation.html');" title="class in org.springframework.security.web">FilterInvocation</a>&gt;&nbsp;getExpressionHandler()</pre>
+<div class="block">Gets the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression"><code>SecurityExpressionHandler</code></a> to be used.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/access/expression/SecurityExpressionHandler.html');" title="interface in org.springframework.security.access.expression"><code>SecurityExpressionHandler</code></a> for further customizations</dd>
+</dl>
+</li>
+</ul>
+<a name="getPrivilegeEvaluator--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPrivilegeEvaluator</h4>
+<pre>public&nbsp;<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access">WebInvocationPrivilegeEvaluator</a>&nbsp;getPrivilegeEvaluator()</pre>
+<div class="block">Gets the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access"><code>WebInvocationPrivilegeEvaluator</code></a> to be used.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/WebInvocationPrivilegeEvaluator.html');" title="interface in org.springframework.security.web.access"><code>WebInvocationPrivilegeEvaluator</code></a> for further customizations</dd>
+</dl>
+</li>
+</ul>
+<a name="securityInterceptor-org.springframework.security.web.access.intercept.FilterSecurityInterceptor-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>securityInterceptor</h4>
+<pre>public&nbsp;<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&nbsp;securityInterceptor(<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/intercept/FilterSecurityInterceptor.html');" title="class in org.springframework.security.web.access.intercept">FilterSecurityInterceptor</a>&nbsp;securityInterceptor)</pre>
+<div class="block">Sets the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/intercept/FilterSecurityInterceptor.html');" title="class in org.springframework.security.web.access.intercept"><code>FilterSecurityInterceptor</code></a>. This is typically invoked by
+<a href="WebSecurityConfigurerAdapter.html" title="class in org.springframework.security.config.annotation.web.configuration"><code>WebSecurityConfigurerAdapter</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>securityInterceptor</code> - the <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/web/access/intercept/FilterSecurityInterceptor.html');" title="class in org.springframework.security.web.access.intercept"><code>FilterSecurityInterceptor</code></a> to use</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity</code></a> for further customizations</dd>
+</dl>
+</li>
+</ul>
+<a name="postBuildAction-java.lang.Runnable-">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>postBuildAction</h4>
+<pre>public&nbsp;<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&nbsp;postBuildAction(java.lang.Runnable&nbsp;postBuildAction)</pre>
+<div class="block">Executes the Runnable immediately after the build takes place</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>postBuildAction</code> - </dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the <a href="" title="class in org.springframework.security.config.annotation.web.builders"><code>WebSecurity</code></a> for further customizations</dd>
+</dl>
+</li>
+</ul>
+<a name="performBuild--">
+
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>performBuild</h4>
+<pre>protected&nbsp;javax.servlet.Filter&nbsp;performBuild()
+                                     throws java.lang.Exception</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#performBuild--');">AbstractConfiguredSecurityBuilder</a></code></span></div>
+<div class="block">Subclasses must implement this method to build the object that is being returned.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html#performBuild--');">performBuild</a></code>&nbsp;in class&nbsp;<code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/AbstractConfiguredSecurityBuilder.html');" title="class in org.springframework.security.config.annotation">AbstractConfiguredSecurityBuilder</a>&lt;javax.servlet.Filter,<a href="" title="class in org.springframework.security.config.annotation.web.builders">WebSecurity</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Object to be buit or null if the implementation allows it</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.Exception</code></dd>
+</dl>
+</li>
+</ul>
+<a name="setApplicationContext-org.springframework.context.ApplicationContext-">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>setApplicationContext</h4>
+<pre>public&nbsp;void&nbsp;setApplicationContext(org.springframework.context.ApplicationContext&nbsp;applicationContext)
+                           throws org.springframework.beans.BeansException</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>setApplicationContext</code>&nbsp;in interface&nbsp;<code>org.springframework.context.ApplicationContextAware</code></dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>org.springframework.beans.BeansException</code></dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div class="bottomNav"><a name="navbar.bottom">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.bottom.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="overview-summary3.html">Overview</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/package-summary.html');">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/package-tree.html');">Tree</a></li>
+<li><a href="deprecated-list3.html">Deprecated</a></li>
+<li><a href="index-all1.html">Index</a></li>
+<li><a href="help-doc3.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/HttpSecurity.RequestMatcherConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/config/annotation/web/builders/WebSecurity.IgnoredRequestConfigurer.html');" title="class in org.springframework.security.config.annotation.web.builders"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/index.html?org/springframework/security/config/annotation/web/builders/WebSecurity.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="allclasses-noframe3.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_bottom");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.bottom">
+
+</a></div>
+
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

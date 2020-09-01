@@ -1,0 +1,3463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.2">
+<meta name="author" content="Oliver Gierke, Greg Turnquist, Jay Bryant">
+<title>Spring HATEOAS - Reference Documentation</title>
+<link rel="stylesheet" href="static/css/spring4.css">
+<link rel="stylesheet" href="static/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Spring HATEOAS - Reference Documentation</h1>
+<div class="details">
+<span id="author" class="author">Oliver Gierke</span><br>
+<span id="author2" class="author">Greg Turnquist</span><br>
+<span id="author3" class="author">Jay Bryant</span><br>
+<span id="revnumber">version 1.1.1.RELEASE,</span>
+<span id="revdate">2020-07-30</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#preface">1. Preface</a>
+<ul class="sectlevel2">
+<li><a href="#migrate-to-1.0">1.1. Migrating to Spring HATEOAS 1.0</a>
+<ul class="sectlevel3">
+<li><a href="#migrate-to-1.0.changes">1.1.1. The changes</a>
+<ul class="sectlevel4">
+<li><a href="#migrate-to-1.0.changes.representation-models">Representation models</a></li>
+</ul>
+</li>
+<li><a href="#migrate-to-1.0.script">1.1.2. The migration script</a></li>
+<li><a href="#migration.1-0-M3-to-1-0-RC1">1.1.3. Migrating from 1.0 M3 to 1.0 RC1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#fundamentals">2. Fundamentals</a>
+<ul class="sectlevel2">
+<li><a href="#fundamentals.links">2.1. Links</a></li>
+<li><a href="#fundamentals.uri-templates">2.2. URI templates</a></li>
+<li><a href="#fundamentals.link-relations">2.3. Link relations</a>
+<ul class="sectlevel3">
+<li><a href="#fundamentals.link-relations.iana">2.3.1. IANA link relations</a></li>
+</ul>
+</li>
+<li><a href="#fundamentals.representation-models">2.4. Representation models</a>
+<ul class="sectlevel3">
+<li><a href="#fundamentals.entity-model">2.4.1. Item resource representation model</a></li>
+<li><a href="#">2.4.2. Collection resource representation model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#server">3. Server-side support</a>
+<ul class="sectlevel2">
+<li><a href="#server.link-builder.webmvc">3.1. Building links in Spring MVC</a>
+<ul class="sectlevel4">
+<li><a href="#fundamentals.obtaining-links.builder.methods">Building links that point to methods</a></li>
+</ul>
+</li>
+<li><a href="#server.link-builder.webflux">3.2. Building links in Spring WebFlux</a></li>
+<li><a href="#server.affordances">3.3. Affordances</a>
+<ul class="sectlevel3">
+<li><a href="#server.affordances.api">3.3.1. Building affordances manually</a></li>
+</ul>
+</li>
+<li><a href="#server.link-builder.forwarded-headers">3.4. Forwarded header handling</a></li>
+<li><a href="#server.entity-links">3.5. Using the EntityLinks interface</a>
+<ul class="sectlevel3">
+<li><a href="#server.entity-links.controller">3.5.1. EntityLinks based on Spring MVC controllers</a></li>
+<li><a href="#server.entity-links.api">3.5.2. EntityLinks API in detail</a>
+<ul class="sectlevel4">
+<li><a href="#server.entity-links.api.typed">TypedEntityLinks</a></li>
+</ul>
+</li>
+<li><a href="#server.entity-links.spi">3.5.3. EntityLinks as SPI</a></li>
+</ul>
+</li>
+<li><a href="#server.representation-model-assembler">3.6. Representation model assembler</a></li>
+<li><a href="#server.processors">3.7. Representation Model Processors</a></li>
+<li><a href="#server.rel-provider">3.8. Using the <code>LinkRelationProvider</code> API</a></li>
+</ul>
+</li>
+<li><a href="#mediatypes">4. Media types</a>
+<ul class="sectlevel2">
+<li><a href="#mediatypes.hal">4.1. HAL – Hypertext Application Language</a>
+<ul class="sectlevel3">
+<li><a href="#mediatypes.hal.models">4.1.1. Building HAL representation models</a></li>
+<li><a href="#mediatypes.hal.configuration">4.1.2. Configuring link rendering</a></li>
+<li><a href="#mediatypes.hal.i18n">4.1.3. Link title internationalization</a></li>
+<li><a href="#mediatypes.hal.curie-provider">4.1.4. Using the <code>CurieProvider</code> API</a></li>
+</ul>
+</li>
+<li><a href="#mediatypes.hal-forms">4.2. HAL-FORMS</a>
+<ul class="sectlevel3">
+<li><a href="#mediatypes.hal-forms.metadata">4.2.1. Defining HAL-FORMS metadata</a></li>
+<li><a href="#mediatypes.hal-forms.i18n">4.2.2. Internationalization of form attributes</a>
+<ul class="sectlevel4">
+<li><a href="#">Template titles</a></li>
+<li><a href="#">Property prompts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#mediatypes.http-problem">4.3. HTTP Problem Details</a></li>
+<li><a href="#mediatypes.collection-json">4.4. Collection+JSON</a></li>
+<li><a href="#mediatypes.uber">4.5. UBER - Uniform Basis for Exchanging Representations</a></li>
+<li><a href="#mediatypes.alps">4.6. ALPS - Application-Level Profile Semantics</a></li>
+<li><a href="#mediatypes.community">4.7. Community-based media types</a>
+<ul class="sectlevel3">
+<li><a href="#mediatypes.community.json:api">4.7.1. JSON:API</a></li>
+<li><a href="#mediatypes.community.siren">4.7.2. Siren</a></li>
+</ul>
+</li>
+<li><a href="#mediatypes.custom">4.8. Registering a custom media type</a>
+<ul class="sectlevel3">
+<li><a href="#mediatypes.custom.configuration">4.8.1. Custom media type configuration</a></li>
+<li><a href="#mediatypes.custom.recommendation">4.8.2. Recommendations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#configuration">5. Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#configuration.at-enable">5.1. Using <code>@EnableHypermediaSupport</code></a>
+<ul class="sectlevel3">
+<li><a href="#configuration.at-enable.stacks">5.1.1. Explicitly enabling support for dedicated web stacks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#client">6. Client-side Support</a>
+<ul class="sectlevel2">
+<li><a href="#client.traverson">6.1. Traverson</a>
+<ul class="sectlevel3">
+<li><a href="#">6.1.1. <code>EntityModel&lt;T&gt;</code> vs. <code>CollectionModel&lt;T&gt;</code></a></li>
+</ul>
+</li>
+<li><a href="#client.link-discoverer">6.2. Using <code>LinkDiscoverer</code> Instances</a></li>
+<li><a href="#client.web-client">6.3. Configuring WebClient instances</a></li>
+<li><a href="#client.web-test-client">6.4. Configuring <code>WebTestClient</code> Instances</a></li>
+<li><a href="#client.rest-template">6.5. Configuring RestTemplate instances</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project provides some APIs to ease creating REST representations that follow the <a href="javascript:window.open('https://en.wikipedia.org/wiki/HATEOAS');">HATEOAS</a> principle when working with Spring and especially Spring MVC. The core problem it tries to address is link creation and representation assembly.</p>
+</div>
+<div class="paragraph">
+<p>&#169; 2012-2019 The original authors.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="preface"><a class="anchor" href="#preface"></a>1. Preface</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="migrate-to-1.0"><a class="anchor" href="#migrate-to-1.0"></a>1.1. Migrating to Spring HATEOAS 1.0</h3>
+<div class="paragraph">
+<p>For 1.0 we took the chance to re-evaluate some of the design and package structure choices we had made for the 0.x branch.
+There had been an incredible amount of feedback on it and the major version bump seemed to be the most natural place to refactor those.</p>
+</div>
+<div class="sect3">
+<h4 id="migrate-to-1.0.changes"><a class="anchor" href="#migrate-to-1.0.changes"></a>1.1.1. The changes</h4>
+<div class="paragraph">
+<p>The biggest changes in package structure were driven by the introduction of a hypermedia type registration API to support additional media types in Spring HATEOAS.
+This lead to the clear separation of client and server APIs (packages named respectively) as well as media type implementations in the package <code>mediatype</code>.</p>
+</div>
+<div class="paragraph">
+<p>The easiest way to get your code base upgraded to the new API is by using the <a href="#migrate-to-1.0.script">migration script</a>.
+Before we jump to that, here are the changes at a quick glance.</p>
+</div>
+<div class="sect4">
+<h5 id="migrate-to-1.0.changes.representation-models"><a class="anchor" href="#migrate-to-1.0.changes.representation-models"></a>Representation models</h5>
+<div class="paragraph">
+<p>The <code>ResourceSupport</code>/<code>Resource</code>/<code>Resources</code>/<code>PagedResources</code> group of classes never really felt appropriately named.
+After all, these types do not actually manifest resources but rather representation models that can be enriched with hypermedia information and affordances.
+Here&#8217;s how new names map to the old ones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ResourceSupport</code> is now <code>RepresentationModel</code></p>
+</li>
+<li>
+<p><code>Resource</code> is now <code>EntityModel</code></p>
+</li>
+<li>
+<p><code>Resources</code> is now <code>CollectionModel</code></p>
+</li>
+<li>
+<p><code>PagedResources</code> is now <code>PagedModel</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Consequently, <code>ResourceAssembler</code> has been renamed to <code>RepresentationModelAssembler</code> and its methods <code>toResource(…)</code> and <code>toResources(…)</code> have been renamed to <code>toModel(…)</code> and <code>toCollectionModel(…)</code> respectively.
+Also the name changes have been reflected in the classes contained in <code>TypeReferences</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>RepresentationModel.getLinks()</code> now exposes a <code>Links</code> instance (over a <code>List&lt;Link&gt;</code>) as that exposes additional API to concatenate and merge different <code>Links</code> instances using various strategies.
+Also it has been turned into a self-bound generic type to allow the methods that add links to the instance return the instance itself.</p>
+</li>
+<li>
+<p>The <code>LinkDiscoverer</code> API has been moved to the <code>client</code> package.</p>
+</li>
+<li>
+<p>The <code>LinkBuilder</code> and <code>EntityLinks</code> APIs have been moved to the <code>server</code> package.</p>
+</li>
+<li>
+<p><code>ControllerLinkBuilder</code> has been moved into <code>server.mvc</code> and deprecated to be replaced by <code>WebMvcLinkBuilder</code>.</p>
+</li>
+<li>
+<p><code>RelProvider</code> has been renamed to <code>LinkRelationProvider</code> and returns <code>LinkRelation</code> instances instead of <code>String</code>s.</p>
+</li>
+<li>
+<p><code>VndError</code> has been moved to the <code>mediatype.vnderror</code> package.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="migrate-to-1.0.script"><a class="anchor" href="#migrate-to-1.0.script"></a>1.1.2. The migration script</h4>
+<div class="paragraph">
+<p>You can find <a href="javascript:window.open('https://github.com/spring-projects/spring-hateoas/tree/master/etc');">a script</a> to run from your application root that will update all import statements and static method references to Spring HATEOAS types that moved in our source code repository.
+Simply download that, run it from your project root.
+By default it will inspect all Java source files and replace the legacy Spring HATEOAS type references with the new ones.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. Sample application of the migration script</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ ./migrate-to-1.0.sh
+
+Migrating Spring HATEOAS references to 1.0 for files : *.java
+
+Adapting ./src/main/java/…
+…
+
+Done!</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the script will not necessarily be able to entirely fix all changes, but it should cover the most important refactorings.</p>
+</div>
+<div class="paragraph">
+<p>Now verify the changes made to the files in your favorite Git client and commit as appropriate.
+In case you find method or type references unmigrated, please open a ticket in out issue tracker.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="migration.1-0-M3-to-1-0-RC1"><a class="anchor" href="#migration.1-0-M3-to-1-0-RC1"></a>1.1.3. Migrating from 1.0 M3 to 1.0 RC1</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Link.andAffordance(…)</code> taking Affordance details have been moved to <code>Affordances</code>. To manually build up <code>Affordance</code> instances now use <code>Affordances.of(link).afford(…)</code>. Also note the new <code>AffordanceBuilder</code> type exposed from <code>Affordances</code> for fluent usage. See <a href="#server.affordances">Affordances</a> for details.</p>
+</li>
+<li>
+<p><code>AffordanceModelFactory.getAffordanceModel(…)</code> now receives <code>InputPayloadMetadata</code> and <code>PayloadMetadata</code> instances instead of <code>ResolvableType</code>s to allow non-type-based implementations. Custom media type implementations have to be adapted to that accordingly.</p>
+</li>
+<li>
+<p>HAL Forms now does not render property attributes if their value adheres to what&#8217;s defined as default in the spec. I.e. if previously <code>required</code> was explicitly set to <code>false</code>, we now just omit the entry for <code>required</code>.
+We also now only force them to be non-required for templates that use <code>PATCH</code> as the HTTP method.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="fundamentals"><a class="anchor" href="#fundamentals"></a>2. Fundamentals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section covers the basics of Spring HATEOAS and its fundamental domain abstractions.</p>
+</div>
+<div class="sect2">
+<h3 id="fundamentals.links"><a class="anchor" href="#fundamentals.links"></a>2.1. Links</h3>
+<div class="paragraph">
+<p>The fundamental idea of hypermedia is to enrich the representation of a resource with hypermedia elements.
+The simplest form of that are links.
+They indicate a client that it can navigate to a certain resource.
+The semantics of a related resource are defined in a so-called link relation.
+You might have seen this in the header of an HTML file already:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. A link in an HTML document</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="html" class="language-html hljs">&lt;link href="theme.css" rel="stylesheet" type="text/css" /&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see the link points to a resource <code>theme.css</code> and indicates that it is a style sheet.
+Links often carry additional information, like the media type that the resource pointed to will return.
+However, the fundamental building blocks of a link are its reference and relation.</p>
+</div>
+<div class="paragraph">
+<p>Spring HATEOAS lets you work with links through its immutable <code>Link</code> value type.
+Its constructor takes both a hypertext reference and a link relation, the latter being defaulted to the IANA link relation <code>self</code>.
+Read more on the latter in <a href="#fundamentals.link-relations">Link relations</a>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 3. Using links</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Link link = Link.of("/something");
+assertThat(link.getHref()).isEqualTo("/something");
+assertThat(link.getRel()).isEqualTo(IanaLinkRelations.SELF);
+
+link = Link.of("/something", "my-rel");
+assertThat(link.getHref()).isEqualTo("/something");
+assertThat(link.getRel()).isEqualTo(LinkRelation.of("my-rel"));</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><code>Link</code> exposes other attributes as defined in <a href="javascript:window.open('https://tools.ietf.org/html/rfc8288');">RFC-8288</a>.
+You can set them by calling the corresponding wither method on a <code>Link</code> instance.</p>
+</div>
+<div class="paragraph">
+<p>Find more information on how to create links pointing to Spring MVC and Spring WebFlux controllers in <a href="#server.link-builder.webmvc"><a id="fundamentals.obtaining-links"></a> <a id="fundamentals.obtaining-links.builder"></a> Building links in Spring MVC and <a href="#server.link-builder.webflux">Building links in Spring WebFlux</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fundamentals.uri-templates"><a class="anchor" href="#fundamentals.uri-templates"></a>2.2. URI templates</h3>
+<div class="paragraph">
+<p>For a Spring HATEOAS <code>Link</code>, the hypertext reference can not only be a URI, but also a URI template according to <a href="javascript:window.open('https://tools.ietf.org/html/rfc6570');">RFC-6570</a>.
+A URI template contains so-called template variables and allows expansion of these parameters.
+This allows clients to turn parameterized templates into URIs without having to know about the structure of the final URI, it only needs to know about the names of the variables.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 4. Using links with templated URIs</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Link link = Link.of("/{segment}/something{?parameter}");
+assertThat(link.isTemplated()).isTrue(); <i class="conum" data-value="1"></i><b>(1)</b>
+assertThat(link.getVariableNames()).contains("segment", "parameter"); <i class="conum" data-value="2"></i><b>(2)</b>
+
+Map&lt;String, Object&gt; values = new HashMap&lt;&gt;();
+values.put("segment", "path");
+values.put("parameter", 42);
+
+assertThat(link.expand(values).getHref()) <i class="conum" data-value="3"></i><b>(3)</b>
+    .isEqualTo("/path/something?parameter=42");</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>Link</code> instance indicates that is templated, i.e. it contains a URI template.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>It exposes the parameters contained in the template.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>It allows expansion of the parameters.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>URI templates can be constructed manually and template variables added later on.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 5. Working with URI templates</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">UriTemplate template = UriTemplate.of("/{segment}/something")
+  .with(new TemplateVariable("parameter", VariableType.REQUEST_PARAM);
+
+assertThat(template.toString()).isEqualTo("/{segment}/something{?parameter}");</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fundamentals.link-relations"><a class="anchor" href="#fundamentals.link-relations"></a>2.3. Link relations</h3>
+<div class="paragraph">
+<p>To indicate the relationship of the target resource to the current one so-called link relations are used.
+Spring HATEOAS provides a <code>LinkRelation</code> type to easily create <code>String</code>-based instances of it.</p>
+</div>
+<div class="sect3">
+<h4 id="fundamentals.link-relations.iana"><a class="anchor" href="#fundamentals.link-relations.iana"></a>2.3.1. IANA link relations</h4>
+<div class="paragraph">
+<p>The Internet Assigned Numbers Authority contains a set of <a href="javascript:window.open('https://www.iana.org/assignments/link-relations/link-relations.xhtml');">predefined link relations</a>.
+They can be referred to via <code>IanaLinkRelations</code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 6. Using IANA link relations</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Link link = Link.of("/some-resource"), IanaLinkRelations.NEXT);
+
+assertThat(link.getRel()).isEqualTo(LinkRelation.of("next"));
+assertThat(IanaLinkRelation.isIanaRel(link.getRel())).isTrue();</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fundamentals.representation-models"><a class="anchor" href="#fundamentals.representation-models"></a>2.4. <a id="fundamentals.resources"></a> Representation models</h3>
+<div class="paragraph">
+<p>To easily create hypermedia enriched representations, Spring HATEOAS provides a set of classes with <code>RepresentationModel</code> at their root.
+It&#8217;s basically a container for a collection of <code>Link</code>s and has convenient methods to add those to the model.
+The models can later be rendered into various media type formats that will define how the hypermedia elements look in the representation.
+For more information on this, have a look at <a href="#mediatypes">Media types</a>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 7. The <code>RepresentationModel</code> class hierarchy</div>
+<div class="content">
+<div class="literalblock">
+<div class="content">
+<pre>class RepresentationModel
+class EntityModel
+class CollectionModel
+class PagedModel
+
+EntityModel -|&gt; RepresentationModel
+CollectionModel -|&gt; RepresentationModel
+PagedModel -|&gt; CollectionModel</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The default way to work with a <code>RepresentationModel</code> is to create a subclass of it to contain all the properties the representation is supposed to contain, create instances of that class, populate the properties and enrich it with links.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 8. A sample representation model type</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">class PersonModel extends RepresentationModel&lt;PersonModel&gt; {
+
+  String firstname, lastname;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The generic self-typing is necessary to let <code>RepresentationModel.add(…)</code> return instances of itself.
+The model type can now be used like this:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 9. Using the person representation model</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">PersonModel model = new PersonModel();
+model.firstname = "Dave";
+model.lastname = "Matthews";
+model.add(Link.of("https://myhost/people/42"));</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you returned such an instance from a Spring MVC or WebFlux controller and the client sent an <code>Accept</code> header set to <code>application/hal+json</code>, the response would look as follows:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 10. The HAL representation generated for the person representation model</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "_links" : {
+    "self" : {
+      "href" : "https://myhost/people/42"
+    }
+  },
+  "firstname" : "Dave",
+  "lastname" : "Matthews"
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="fundamentals.entity-model"><a class="anchor" href="#fundamentals.entity-model"></a>2.4.1. Item resource representation model</h4>
+<div class="paragraph">
+<p>For a resource that&#8217;s backed by a singular object or concept, a convenience <code>EntityModel</code> type exists.
+Instead of creating a custom model type for each concept, you can just reuse an already existing type and wrap instances of it into the <code>EntityModel</code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 11. Using <code>EntityModel</code> to wrap existing objects</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Person person = new Person("Dave", "Matthews");
+EntityModel&lt;Person&gt; model = EntityModel.of(person);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4>2.4.2. Collection resource representation model</h4>
+<div class="paragraph">
+<p>For resources that are conceptually collections, a <code>CollectionModel</code> is available.
+Its elements can either be simple objects or <code>RepresentationModel</code> instances in turn.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 12. Using <code>CollectionModel</code> to wrap a collection of existing objects</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Collection&lt;Person&gt; people = Collections.singleton(new Person("Dave", "Matthews"));
+CollectionModel&lt;Person&gt; model = CollectionModel.of(people);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="server"><a class="anchor" href="#server"></a>3. Server-side support</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="server.link-builder.webmvc"><a class="anchor" href="#server.link-builder.webmvc"></a>3.1. <a id="fundamentals.obtaining-links"></a> <a id="fundamentals.obtaining-links.builder"></a> Building links in Spring MVC</h3>
+<div class="paragraph">
+<p>Now we have the domain vocabulary in place, but the main challenge remains: how to create the actual URIs to be wrapped into <code>Link</code> instances in a less fragile way. Right now, we would have to duplicate URI strings all over the place. Doing so is brittle and unmaintainable.</p>
+</div>
+<div class="paragraph">
+<p>Assume you have your Spring MVC controllers implemented as follows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Controller
+class PersonController {
+
+  @GetMapping("/people")
+  HttpEntity&lt;PersonModel&gt; showAll() { … }
+
+  @GetMapping(value = "/{person}", method = RequestMethod.GET)
+  HttpEntity&lt;PersonModel&gt; show(@PathVariable Long person) { … }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>We see two conventions here. The first is a collection resource that is exposed through <code>@GetMapping</code> annotation of the controller method, with individual elements of that collection exposed as direct sub resources. The collection resource might be exposed at a simple URI (as just shown) or more complex ones (such as <code>/people/{id}/addresses</code>). Suppose you would like to link to the collection resource of all people. Following the approach from above would cause two problems:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To create an absolute URI, you would need to look up the protocol, hostname, port, servlet base, and other values. This is cumbersome and requires ugly manual string concatenation code.</p>
+</li>
+<li>
+<p>You probably do not want to concatenate the <code>/people</code> on top of your base URI, because you would then have to maintain the information in multiple places. If you change the mapping, you then have to change all the clients pointing to it.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Spring HATEOAS now provides a <code>WebMvcLinkBuilder</code> that lets you create links by pointing to controller classes.
+The following example shows how to do so:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">import static org.sfw.hateoas.server.mvc.WebMvcLinkBuilder.*;
+
+Link link = linkTo(PersonController.class).withRel("people");
+
+assertThat(link.getRel()).isEqualTo(LinkRelation.of("people"));
+assertThat(link.getHref()).endsWith("/people");</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>WebMvcLinkBuilder</code> uses Spring&#8217;s <code>ServletUriComponentsBuilder</code> under the hood to obtain the basic URI information from the current request. Assuming your application runs at <code><a href="javascript:window.open('http://localhost:8080/your-app');" class="bare">localhost:8080/your-app</a></code>, this is exactly the URI on top of which you are constructing additional parts. The builder now inspects the given controller class for its root mapping and thus ends up with <code><a href="javascript:window.open('http://localhost:8080/your-app/people');" class="bare">localhost:8080/your-app/people</a></code>. You can also build more nested links as well.
+The following example shows how to do so:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Person person = new Person(1L, "Dave", "Matthews");
+//                 /person                 /     1
+Link link = linkTo(PersonController.class).slash(person.getId()).withSelfRel();
+assertThat(link.getRel(), is(IanaLinkRelation.SELF.value()));
+assertThat(link.getHref(), endsWith("/people/1"));</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The builder also allows creating URI instances to build up (for example, response header values):</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">HttpHeaders headers = new HttpHeaders();
+headers.setLocation(linkTo(PersonController.class).slash(person).toUri());
+
+return new ResponseEntity&lt;PersonModel&gt;(headers, HttpStatus.CREATED);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="fundamentals.obtaining-links.builder.methods"><a class="anchor" href="#fundamentals.obtaining-links.builder.methods"></a>Building links that point to methods</h5>
+<div class="paragraph">
+<p>You can even build links that point to methods or create dummy controller method invocations.
+The first approach is to hand a <code>Method</code> instance to the <code>WebMvcLinkBuilder</code>.
+The following example shows how to do so:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Method method = PersonController.class.getMethod("show", Long.class);
+Link link = linkTo(method, 2L).withSelfRel();
+
+assertThat(link.getHref()).endsWith("/people/2"));</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This is still a bit dissatisfying, as we have to first get a <code>Method</code> instance, which throws an exception and is generally quite cumbersome. At least we do not repeat the mapping. An even better approach is to have a dummy method invocation of the target method on a controller proxy, which we can create by using the <code>methodOn(…)</code> helper.
+The following example shows how to do so:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Link link = linkTo(methodOn(PersonController.class).show(2L)).withSelfRel();
+
+assertThat(link.getHref()).endsWith("/people/2");</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><code>methodOn(…)</code> creates a proxy of the controller class that records the method invocation and exposes it in a proxy created for the return type of the method. This allows the fluent expression of the method for which we want to obtain the mapping. However, there are a few constraints on the methods that can be obtained by using this technique:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The return type has to be capable of proxying, as we need to expose the method invocation on it.</p>
+</li>
+<li>
+<p>The parameters handed into the methods are generally neglected (except the ones referred to through <code>@PathVariable</code>, because they make up the URI).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server.link-builder.webflux"><a class="anchor" href="#server.link-builder.webflux"></a>3.2. Building links in Spring WebFlux</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server.affordances"><a class="anchor" href="#server.affordances"></a>3.3. Affordances</h3>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The affordances of the environment are what it offers …​ what it provides or furnishes, either for good or ill. The verb 'to afford' is found in the dictionary, but the noun 'affordance' is not. I have made it up.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; James J. Gibson<br>
+<cite>The Ecological Approach to Visual Perception (page 126)</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>REST-based resources provide not just data but controls.
+The last ingredient to form a flexible service are detailed <strong>affordances</strong> on how to use the various controls.
+Because affordances are associated with links, Spring HATEOAS provides an API to attach as many related methods as needed to a link.
+Just as you can create links by pointing to Spring MVC controller methods (see <a href="#server.link-builder.webmvc"><a id="fundamentals.obtaining-links"></a> <a id="fundamentals.obtaining-links.builder"></a> Building links in Spring MVC for details) you &#8230;&#8203;</p>
+</div>
+<div class="paragraph">
+<p>The following code shows how to take a <strong>self</strong> link and associate two more affordances:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 13. Connecting affordances to <code>GET /employees/{id}</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@GetMapping("/employees/{id}")
+public EntityModel&lt;Employee&gt; findOne(@PathVariable Integer id) {
+
+  Class&lt;EmployeeController&gt; controllerClass = EmployeeController.class;
+
+  // Start the affordance with the "self" link, i.e. this method.
+  Link findOneLink = linkTo(methodOn(controllerClass).findOne(id)).withSelfRel(); <i class="conum" data-value="1"></i><b>(1)</b>
+
+  // Return the affordance + a link back to the entire collection resource.
+  return EntityModel.of(EMPLOYEES.get(id), //
+      findOneLink //
+          .andAffordance(afford(methodOn(controllerClass).updateEmployee(null, id))) <i class="conum" data-value="2"></i><b>(2)</b>
+          .andAffordance(afford(methodOn(controllerClass).partiallyUpdateEmployee(null, id)))); <i class="conum" data-value="3"></i><b>(3)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Create the <strong>self</strong> link.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Associate the <code>updateEmployee</code> method with the <code>self</code> link.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Associate the <code>partiallyUpdateEmployee</code> method with the <code>self</code> link.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Using <code>.andAffordance(afford(&#8230;&#8203;))</code>, you can use the controller&#8217;s methods to connect a <code>PUT</code> and a <code>PATCH</code> operation to a <code>GET</code> operation.
+Imagine that the related methods <strong>afforded</strong> above look like this:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 14. <code>updateEmpoyee</code> method that responds to <code>PUT /employees/{id}</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@PutMapping("/employees/{id}")
+public ResponseEntity&lt;?&gt; updateEmployee( //
+    @RequestBody EntityModel&lt;Employee&gt; employee, @PathVariable Integer id)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 15. <code>partiallyUpdateEmployee</code> method that responds to <code>PATCH /employees/{id}</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@PatchMapping("/employees/{id}")
+public ResponseEntity&lt;?&gt; partiallyUpdateEmployee( //
+    @RequestBody EntityModel&lt;Employee&gt; employee, @PathVariable Integer id)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Pointing to those methods using the <code>afford(…)</code> methods will cause Spring HATEOAS to analyze the request body and response types and capture metadata to allow different media type implementations to use that information to translate that into descriptions of the input and outputs.</p>
+</div>
+<div class="sect3">
+<h4 id="server.affordances.api"><a class="anchor" href="#server.affordances.api"></a>3.3.1. Building affordances manually</h4>
+<div class="paragraph">
+<p>While the primary way to register affordances for a link, it might be necessary to build some of them manually.
+This can be achieved by using the <code>Affordances</code> API:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 16. Using the <code>Affordances</code> API to manually register affordances</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">var methodInvocation = methodOn(EmployeeController.class).all();
+
+var link = Affordances.of(linkTo(methodInvocation).withSelfRel()) <i class="conum" data-value="1"></i><b>(1)</b>
+
+    .afford(HttpMethod.POST) <i class="conum" data-value="2"></i><b>(2)</b>
+    .withInputAndOutput(Employee.class) //
+    .withName("createEmployee") //
+
+    .andAfford(HttpMethod.GET) <i class="conum" data-value="3"></i><b>(3)</b>
+    .withOutput(Employee.class) //
+    .addParameters(//
+        QueryParameter.optional("name"), //
+        QueryParameter.optional("role")) //
+    .withName("search") //
+
+    .toLink();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>You start by creating an instance of <code>Affordances</code> from a <code>Link</code> instance creating the context for describing the affordances.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Each affordance starts with the HTTP method it&#8217;s supposed to support. We then register a type as payload description and name the affordance explicitly. The latter can be omitted and a default name will be derived from the HTTP method and input type name. This effectively creates the same affordance as the pointer to <code>EmployeeController.newEmployee(…)</code> created.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The next affordance is built to reflect what&#8217;s happening for the pointer to <code>EmployeeController.search(…)</code>. Here we define <code>Employee</code> to be the model for the response created and explicitly register <code>QueryParameter</code>s.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Affordances are backed by media type specific affordance models that translate the general affordance metadata into specific representations.
+Please make sure to check the section on affordances in the <a href="#mediatypes">Media types</a> section to find more details about how to control the exposure of that metadata.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server.link-builder.forwarded-headers"><a class="anchor" href="#server.link-builder.forwarded-headers"></a>3.4. Forwarded header handling</h3>
+<div class="paragraph">
+<p><a href="javascript:window.open('https://tools.ietf.org/html/rfc7239');">RFC-7239 forwarding headers</a> are most commonly used when your application is behind a proxy, behind a load balancer, or in the cloud.
+The node that actually receives the web request is part of the infrastructure, and <em>forwards</em> the request to your application.</p>
+</div>
+<div class="paragraph">
+<p>Your application may be running on <code>localhost:8080</code>, but to the outside world you&#8217;re expected to be at <code>reallycoolsite.com</code> (and on the web&#8217;s standard port 80).
+By having the proxy include extra headers (which many already do), Spring HATEOAS can generate links properly as it uses Spring Framework functionality to obtain the base URI of the original request.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Anything that can change the root URI based on external inputs must be properly guarded.
+That&#8217;s why, by default, forwarded header handling is <strong>disabled</strong>.
+You MUST enable it to be operational.
+If you are deploying to the cloud or into a configuration where you control the proxies and load balancers, then you&#8217;ll certainly want to use this feature.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To enable forwarded header handling you need to register Spring&#8217;s <code>ForwardedHeaderFilter</code> for Spring MVC (details <a href="web.html#filters-forwarded-headers">here</a>) or <code>ForwardedHeaderTransformer</code> for Spring WebFlux (details <a href="web-reactive.html#webflux-forwarded-headers">here</a>) in your application.
+In a Spring Boot application those components can be simply declared as Spring beans as described <a href="javascript:window.open('https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-developing-web-applications.html#boot-features-embedded-container-servlets-filters-listeners-beans');">here</a>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 17. Registering a <code>ForwardedHeaderFilter</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+ForwardedHeaderFilter forwardedHeaderFilter() {
+    return new ForwardedHeaderFilter();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a servlet filter that processes all the <code>X-Forwarded-…</code> headers.
+And it will register it properly with the servlet handlers.</p>
+</div>
+<div class="paragraph">
+<p>For a Spring WebFlux application, the reactive counterpart is <code>ForwardedHeaderTransformer</code>:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 18. Registering a <code>ForwardedHeaderTransformer</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+ForwardedHeaderTransformer forwardedHeaderTransformer() {
+    return new ForwardedHeaderTransformer();
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This will create a function that transforms reactive web requests, processing <code>X-Forwarded-…</code> headers.
+And it will register it properly with WebFlux.</p>
+</div>
+<div class="paragraph">
+<p>With configuration as shown above in place, a request passing <code>X-Forwarded-…</code> headers will see those reflected in the links generated:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 19. A request using <code>X-Forwarded-…</code> headers</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="bash" class="language-bash hljs">curl -v localhost:8080/employees \
+    -H 'X-Forwarded-Proto: https' \
+    -H 'X-Forwarded-Host: example.com' \
+    -H 'X-Forwarded-Port: 9001'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 20. The corresponding response with the links generated to consider those headers</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "_embedded": {
+    "employees": [
+      {
+        "id": 1,
+        "name": "Bilbo Baggins",
+        "role": "burglar",
+        "_links": {
+          "self": {
+            "href": "https://example.com:9001/employees/1"
+          },
+          "employees": {
+            "href": "https://example.com:9001/employees"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "https://example.com:9001/employees"
+    },
+    "root": {
+      "href": "https://example.com:9001"
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server.entity-links"><a class="anchor" href="#server.entity-links"></a>3.5. <a id="fundamentals.obtaining-links.entity-links"></a> Using the EntityLinks interface</h3>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>EntityLinks</code> and its various implementations are NOT currently provided out-of-the-box for Spring WebFlux applications.
+The contract defined in the <code>EntityLinks</code> SPI was originally aimed at Spring Web MVC and doesn&#8217;t consider Reactor types.
+Developing a comparable contract that supports reactive programming is still in progress.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>So far, we have created links by pointing to the web framework implementations (that is, the Spring MVC controllers) and inspected the mapping.
+In many cases, these classes essentially read and write representations backed by a model class.</p>
+</div>
+<div class="paragraph">
+<p>The <code>EntityLinks</code> interface now exposes an API to look up a <code>Link</code> or <code>LinkBuilder</code> based on the model types.
+The methods essentially return links that point either to the collection resource (such as <code>/people</code>) or to an item resource (such as <code>/people/1</code>).
+The following example shows how to use <code>EntityLinks</code>:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">EntityLinks links = …;
+LinkBuilder builder = links.linkFor(Customer.class);
+Link link = links.linkToItemResource(Customer.class, 1L);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><code>EntityLinks</code> is available via dependency injection by activating <code>@EnableHypermediaSupport</code> in your Spring MVC configuration.
+This will cause a variety of default implementations of <code>EntityLinks</code> being registered.
+The most fundamental one is <code>ControllerEntityLinks</code> that inspects SpringMVC controller classes.
+If you want to register your own implementation of <code>EntityLinks</code>, check out <a href="#server.entity-links.spi">this section</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="server.entity-links.controller"><a class="anchor" href="#server.entity-links.controller"></a>3.5.1. EntityLinks based on Spring MVC controllers</h4>
+<div class="paragraph">
+<p>Activating entity links functionality causes all the Spring MVC controllers available in the current <code>ApplicationContext</code> to be inspected for the <code>@ExposesResourceFor(…)</code> annotation.
+The annotation exposes which model type the controller manages.
+Beyond that, we assume that you adhere to the following URI mapping setup and conventions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A type level <code>@ExposesResourceFor(…)</code> declaring which entity type the controller exposes collection and item resources for.</p>
+</li>
+<li>
+<p>A class level base mapping that represents the collection resource.</p>
+</li>
+<li>
+<p>An additional method level mapping that extends the mapping to append an identifier as additional path segment.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following example shows an implementation of an <code>EntityLinks</code>-capable controller:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Controller
+@ExposesResourceFor(Order.class) <i class="conum" data-value="1"></i><b>(1)</b>
+@RequestMapping("/orders") <i class="conum" data-value="2"></i><b>(2)</b>
+class OrderController {
+
+  @GetMapping <i class="conum" data-value="3"></i><b>(3)</b>
+  ResponseEntity orders(…) { … }
+
+  @GetMapping("{id}") <i class="conum" data-value="4"></i><b>(4)</b>
+  ResponseEntity order(@PathVariable("id") … ) { … }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The controller indicates it&#8217;s exposing collection and item resources for the entity <code>Order</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Its collection resource is exposed under <code>/orders</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>That collection resource can handle <code>GET</code> requests. Add more methods for other HTTP methods at your convenience.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>An additional controller method to handle a subordinate resource taking a path variable to expose an item resource, i.e. a single <code>Order</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>With this in place, when you enable <code>EntityLinks</code> <code>@EnableHypermediaSupport</code> in your Spring MVC configuration, you can create links to the controller as follows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Controller
+class PaymentController {
+
+  private final EntityLinks entityLinks;
+
+  PaymentController(EntityLinks entityLinks) { <i class="conum" data-value="1"></i><b>(1)</b>
+    this.entityLinks = entityLinks;
+  }
+
+  @PutMapping(…)
+  ResponseEntity payment(@PathVariable Long orderId) {
+
+    Link link = entityLinks.linkToItemResource(Order.class, orderId); <i class="conum" data-value="2"></i><b>(2)</b>
+    …
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Inject <code>EntityLinks</code> made available by <code>@EnableHypermediaSupport</code> in your configuration.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use the APIs to build links by using the entity types instead of controller classes.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see, you can refer to resources managing <code>Order</code> instances without referring to <code>OrderController</code> explicitly.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="server.entity-links.api"><a class="anchor" href="#server.entity-links.api"></a>3.5.2. EntityLinks API in detail</h4>
+<div class="paragraph">
+<p>Fundamentally, <code>EntityLinks</code> allows to build <code>LinkBuilder</code>s and <code>Link</code> instances to collection and item resources of an entity type.
+Methods starting with <code>linkFor…</code> will produce <code>LinkBuilder</code> instances for you to extend and augment with additional path segments, parameters, etc.
+Methods starting with <code>linkTo</code> produce fully prepared <code>Link</code> instances.</p>
+</div>
+<div class="paragraph">
+<p>While for collection resources providing an entity type is sufficient, links to item resources will need an identifier provided.
+This usually looks like this:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 21. Obtaining a link to an item resource</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">entityLinks.linkToItemResource(order, order.getId());</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you find yourself repeating those method calls the identifier extraction step can be pulled out into a reusable <code>Function</code> to be reused throughout different invocations:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Function&lt;Order, Object&gt; idExtractor = Order::getId; <i class="conum" data-value="1"></i><b>(1)</b>
+
+entityLinks.linkToItemResource(order, idExtractor); <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The identifier extraction is externalized so that it can be held in a field or constant.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The link lookup using the extractor.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="server.entity-links.api.typed"><a class="anchor" href="#server.entity-links.api.typed"></a>TypedEntityLinks</h5>
+<div class="paragraph">
+<p>As controller implementations are often grouped around entity types, you&#8217;ll very often find yourself using the same extractor function (see <a href="#server.entity-links.api">EntityLinks API in detail</a> for details) all over the controller class.
+We can centralize the identifier extraction logic even more by obtaining a <code>TypedEntityLinks</code> instance providing the extractor once, so that the actual lookups don&#8217;t have to deal with the extraction anymore at all.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 22. Using TypedEntityLinks</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">class OrderController {
+
+  private final TypedEntityLinks&lt;Order&gt; links;
+
+  OrderController(EntityLinks entityLinks) { <i class="conum" data-value="1"></i><b>(1)</b>
+    this.links = entityLinks.forType(Order::getId); <i class="conum" data-value="2"></i><b>(2)</b>
+  }
+
+  @GetMapping
+  ResponseEntity&lt;Order&gt; someMethod(…) {
+
+    Order order = … // lookup order
+
+    Link link = links.linkToItemResource(order); <i class="conum" data-value="3"></i><b>(3)</b>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Inject an <code>EntityLinks</code> instance.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Indicate you&#8217;re going to look up <code>Order</code> instances with a certain identifier extractor function.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Look up item resource links based on a sole <code>Order</code> instance.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="server.entity-links.spi"><a class="anchor" href="#server.entity-links.spi"></a>3.5.3. EntityLinks as SPI</h4>
+<div class="paragraph">
+<p>The <code>EntityLinks</code> instance created by <code>@EnableHypermediaSupport</code> is of type <code>DelegatingEntityLinks</code> which will in turn pick up all other <code>EntityLinks</code> implementations available as beans in the <code>ApplicationContext</code>.
+It&#8217;s registered as primary bean so that it&#8217;s always the sole injection candidate when you inject <code>EntityLinks</code> in general.
+<code>ControllerEntityLinks</code> is the default implementation that will be included in the setup, but users are free to implement and register their own implementations.
+Making those available to the <code>EntityLinks</code> instance available for injection is a matter of registering your implementation as Spring bean.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 23. Declaring a custom EntityLinks implementation</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+class CustomEntityLinksConfiguration {
+
+  @Bean
+  MyEntityLinks myEntityLinks(…) {
+    return new MyEntityLinks(…);
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>An example for the extensibility of this mechanism is Spring Data REST&#8217;s <a href="javascript:window.open('https://github.com/spring-projects/spring-data-rest/blob/3a0cba94a2cc8739375ecf24086da2f7c3bbf038/spring-data-rest-webmvc/src/main/java/org/springframework/data/rest/webmvc/support/RepositoryEntityLinks.java');"><code>RepositoryEntityLinks</code></a>, which uses the repository mapping information to create links pointing to resources backed by Spring Data repositories.
+At the same time, it even exposes additional lookup methods for other types of resources.
+If you want to make use of these, simply inject <code>RepositoryEntityLinks</code> explicitly.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server.representation-model-assembler"><a class="anchor" href="#server.representation-model-assembler"></a>3.6. <a id="fundamentals.resource-assembler"></a> Representation model assembler</h3>
+<div class="paragraph">
+<p>As the mapping from an entity to a representation model must be used in multiple places, it makes sense to create a dedicated class responsible for doing so. The conversion contains very custom steps but also a few boilerplate steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Instantiation of the model class</p>
+</li>
+<li>
+<p>Adding a link with a <code>rel</code> of <code>self</code> pointing to the resource that gets rendered.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Spring HATEOAS now provides a <code>RepresentationModelAssemblerSupport</code> base class that helps reduce the amount of code you need to write.
+The following example shows how to use it:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">class PersonModelAssembler extends RepresentationModelAssemblerSupport&lt;Person, PersonModel&gt; {
+
+  public PersonModelAssembler() {
+    super(PersonController.class, PersonModel.class);
+  }
+
+  @Override
+  public PersonModel toModel(Person person) {
+
+    PersonModel resource = createResource(person);
+    // … do further mapping
+    return resource;
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>createResource(&#8230;&#8203;)</code> is code you write to instantiate a <code>PersonModel</code> object given a <code>Person</code> object. It should only focus on setting attributes, not populating <code>Links</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Setting the class up as we did in the preceding example gives you the following benefits:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>There are a handful of <code>createModelWithId(…)</code> methods that let you create an instance of the resource and have a <code>Link</code> with a rel of <code>self</code> added to it. The href of that link is determined by the configured controller&#8217;s request mapping plus the ID of the entity (for example, <code>/people/1</code>).</p>
+</li>
+<li>
+<p>The resource type gets instantiated by reflection and expects a no-arg constructor. If you want to use a dedicated constructor or avoid the reflection performance overhead, you can override <code>instantiateModel(…)</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can then use the assembler to either assemble a <code>RepresentationModel</code> or a <code>CollectionModel</code>.
+The following example creates a <code>CollectionModel</code> of <code>PersonModel</code> instances:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Person person = new Person(…);
+Iterable&lt;Person&gt; people = Collections.singletonList(person);
+
+PersonModelAssembler assembler = new PersonModelAssembler();
+PersonModel model = assembler.toModel(person);
+CollectionModel&lt;PersonModel&gt; model = assembler.toCollectionModel(people);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server.processors"><a class="anchor" href="#server.processors"></a>3.7. Representation Model Processors</h3>
+<div class="paragraph">
+<p>Sometimes you need to tweak and adjust hypermedia representations after they have been <a href="#server.representation-model-assembler">assembled</a>.</p>
+</div>
+<div class="paragraph">
+<p>A perfect example is when you have a controller that deals with order fulfillment, but you need to add links related to making payments.</p>
+</div>
+<div class="paragraph">
+<p>Imagine having your ordering system producing this type of hypermedia:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="json" class="language-json hljs">{
+  "orderId" : "42",
+  "state" : "AWAITING_PAYMENT",
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost/orders/999"
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You wish to add a link so the client can make payment, but don&#8217;t want to mix details about your <code>PaymentController</code> into
+the <code>OrderController</code>.</p>
+</div>
+<div class="paragraph">
+<p>Instead of polluting the details of your ordering system, you can write a <code>RepresentationModelProcessor</code> like this:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public class PaymentProcessor implements RepresentationModelProcessor&lt;EntityModel&lt;Order&gt;&gt; { <i class="conum" data-value="1"></i><b>(1)</b>
+
+  @Override
+  public EntityModel&lt;Order&gt; process(EntityModel&lt;Order&gt; model) {
+
+    model.add( <i class="conum" data-value="2"></i><b>(2)</b>
+        Link.of("/payments/{orderId}").withRel(LinkRelation.of("payments")) //
+            .expand(model.getContent().getOrderId()));
+
+    return model; <i class="conum" data-value="3"></i><b>(3)</b>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This processor will only be applied to <code>EntityModel&lt;Order&gt;</code> objects.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Manipulate the existing <code>EntityModel</code> object by adding an unconditional link.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Return the <code>EntityModel</code> so it can be serialized into the requested media type.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Register the processor with your application:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+public class PaymentProcessingApp {
+
+  @Bean
+  PaymentProcessor paymentProcessor() {
+    return new PaymentProcessor();
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Now when you issue a hypermedia respresentation of an <code>Order</code>, the client receives this:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">{
+  "orderId" : "42",
+  "state" : "AWAITING_PAYMENT",
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost/orders/999"
+    },
+    "payments" : { <i class="conum" data-value="1"></i><b>(1)</b>
+      "href" : "/payments/42" <i class="conum" data-value="2"></i><b>(2)</b>
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>You see the <code>LinkRelation.of("payments")</code> plugged in as this link&#8217;s relation.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The URI was provided by the processor.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This example is quite simple, but you can easily:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use <code>WebMvcLinkBuilder</code> or <code>WebFluxLinkBuilder</code> to construct a dynamic link to your <code>PaymentController</code>.</p>
+</li>
+<li>
+<p>Inject any services needed to conditionally add other links (e.g. <code>cancel</code>, <code>amend</code>) that are driven by state.</p>
+</li>
+<li>
+<p>Leverage cross cutting services like Spring Security to add, remove, or revise links based upon the current user&#8217;s context.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Also, in this example, the <code>PaymentProcessor</code> alters the provided <code>EntityModel&lt;Order&gt;</code>. You also have the power to
+<em>replace</em> it with another object. Just be advised the API requires the return type to equal the input type.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server.rel-provider"><a class="anchor" href="#server.rel-provider"></a>3.8. <a id="spis.rel-provider"></a> Using the <code>LinkRelationProvider</code> API</h3>
+<div class="paragraph">
+<p>When building links, you usually need to determine the relation type to be used for the link. In most cases, the relation type is directly associated with a (domain) type. We encapsulate the detailed algorithm to look up the relation types behind a <code>LinkRelationProvider</code> API that lets you determine the relation types for single and collection resources. The algorithm for looking up the relation type follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If the type is annotated with <code>@Relation</code>, we use the values configured in the annotation.</p>
+</li>
+<li>
+<p>If not, we default to the uncapitalized simple class name plus an appended <code>List</code> for the collection <code>rel</code>.</p>
+</li>
+<li>
+<p>If the <a href="javascript:window.open('https://github.com/atteo/evo-inflector');">EVO inflector</a> JAR is in the classpath, we use the plural of the single resource <code>rel</code> provided by the pluralizing algorithm.</p>
+</li>
+<li>
+<p><code>@Controller</code> classes annotated with <code>@ExposesResourceFor</code> (see <a href="#server.entity-links"><a id="fundamentals.obtaining-links.entity-links"></a> Using the EntityLinks interface for details) transparently look up the relation types for the type configured in the annotation, so that you can use <code>LinkRelationProvider.getItemResourceRelFor(MyController.class)</code> and get the relation type of the domain type exposed.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>A <code>LinkRelationProvider</code> is automatically exposed as a Spring bean when you use <code>@EnableHypermediaSupport</code>. You can plug in custom providers by implementing the interface and exposing them as Spring beans in turn.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="mediatypes"><a class="anchor" href="#mediatypes"></a>4. Media types</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="mediatypes.hal"><a class="anchor" href="#mediatypes.hal"></a>4.1. HAL – Hypertext Application Language</h3>
+<div class="paragraph">
+<p><a href="javascript:window.open('https://tools.ietf.org/html/draft-kelly-json-hal-08');">JSON Hypertext Application Language</a> or HAL is one of the simplest
+and most widely adopted hypermedia media types adopted when not discussing specific web stacks.</p>
+</div>
+<div class="paragraph">
+<p>It was the first spec-based media type adopted by Spring HATEOAS.</p>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.hal.models"><a class="anchor" href="#mediatypes.hal.models"></a>4.1.1. Building HAL representation models</h4>
+<div class="paragraph">
+<p>As of Spring HATEOAS 1.1, we ship a dedicated <code>HalModelBuilder</code> that allows to create <code>RepresentationModel</code> instances through a HAL-idiomatic API.
+These are its fundamental assumptions:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A HAL representation can be backed by an arbitrary object (an entity) that builds up the domain fields contained in the representation.</p>
+</li>
+<li>
+<p>The representation can be enriched by a variety of embedded documents, which can be either arbitrary objects or HAL representations themselves (i.e. containing nested embeddeds and links).</p>
+</li>
+<li>
+<p>Certain HAL specific patterns (e.g. previews) can be directly used in the API so that the code setting up the representation reads like you&#8217;d describe a HAL representation following those idioms.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Here&#8217;s an example of the API used:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">// An order
+var order = new Order(…); <i class="conum" data-value="1"></i><b>(1)</b>
+
+// The customer who placed the order
+var customer = customer.findById(order.getCustomerId());
+
+var customerLink = Link.of("/orders/{id}/customer") <i class="conum" data-value="2"></i><b>(2)</b>
+  .expand(order.getId())
+  .withRel("customer");
+
+var additional = …
+
+var model = HalModelBuilder.halModel(order)
+  .preview(new CustomerSummary(customer)) <i class="conum" data-value="3"></i><b>(3)</b>
+  .forLink(customerLink) <i class="conum" data-value="4"></i><b>(4)</b>
+  .embed(additional) <i class="conum" data-value="5"></i><b>(5)</b>
+  .link(Link.of(…, IanaLinkRelations.SELF));
+  .build();</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>We set up some domain type. In this case, an order that has a relationship to the customer that placed it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>We prepare a link pointing to a resource that will expose customer details</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>We start building a preview by providing the payload that&#8217;s supposed to be rendered inside the <code>_embeddable</code> clause.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>We conclude that preview by providing the target link. It transparently gets added to the <code>_links</code> object and its link relation is used as the key for the object provided in the previous step.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Other objects can be added to show up under <code>_embedded</code>.
+The key under which they&#8217;re listed is derived from the objects relation settings. They&#8217;re customizable via <code>@Relation</code> or a dedicated <code>LinkRelationProvider</code> (see <a href="#server.rel-provider"><a id="spis.rel-provider"></a> Using the <code>LinkRelationProvider</code> API for details).</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "_links" : {
+    "self" : { "href" : "…" }, <i class="conum" data-value="1"></i><b>(1)</b>
+    "customer" : { "href" : "/orders/4711/customer" } <i class="conum" data-value="2"></i><b>(2)</b>
+  },
+  "_embedded" : {
+    "customer" : { … }, <i class="conum" data-value="3"></i><b>(3)</b>
+    "additional" : { … } <i class="conum" data-value="4"></i><b>(4)</b>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>self</code> link as explicitly provided.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>customer</code> link transparently added through <code>….preview(…).forLink(…)</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The preview object provided.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Additional elements added via explicit <code>….embed(…)</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In HAL <code>_embedded</code> is also used to represent top collections.
+They&#8217;re usually grouped under the link relation derived from the object&#8217;s type.
+I.e. a list of orders would look like this in HAL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "_embedded" : {
+    "orders : [
+      … <i class="conum" data-value="1"></i><b>(1)</b>
+    ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Individual order documents go here.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Creating such a representation is as easy as this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Collection&lt;Order&gt; orders = …;
+
+HalModelBuilder.emptyHalDocument()
+  .embed(orders);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That said, if the order is empty, there&#8217;s no way to derive the link relation to appear inside <code>_embedded</code>, so that the document will stay empty if the collection is empty.</p>
+</div>
+<div class="paragraph">
+<p>If you prefer to explicitly communicate an empty collection, a type can be handed into the overload of the <code>….embed(…)</code> method taking a <code>Collection</code>.
+If the collection handed into the method is empty, this will cause a field rendered with its link relation derived from the given type.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">HalModelBuilder.emptyHalModel()
+  .embed(Collections.emptyList(), Order.class);
+  // or
+  .embed(Collections.emptyList(), LinkRelation.of("orders"));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>will create the following, more explicit representation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "_embedded" : {
+    "orders" : []
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.hal.configuration"><a class="anchor" href="#mediatypes.hal.configuration"></a>4.1.2. Configuring link rendering</h4>
+<div class="paragraph">
+<p>In HAL, the <code>_links</code> entry is a JSON object. The property names are <a href="#fundamentals.link-relations">link relations</a> and
+each value is either <a href="javascript:window.open('https://tools.ietf.org/html/draft-kelly-json-hal-07#section-4.1.1');">a link object or an array of link objects</a>.</p>
+</div>
+<div class="paragraph">
+<p>For a given link relation that has two or more links, the spec is clear on representation:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 24. HAL document with two links associated with one relation</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "_links": {
+    "item": [
+      { "href": "https://myhost/cart/42" },
+      { "href": "https://myhost/inventory/12" }
+    ]
+  },
+  "customer": "Dave Matthews"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>But if there is only one link for a given relation, the spec is ambiguous. You could render that as either a single object
+or as a single-item array.</p>
+</div>
+<div class="paragraph">
+<p>By default, Spring HATEOAS uses the most terse approach and renders a single-link relation like this:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 25. HAL document with single link rendered as an object</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "_links": {
+    "item": { "href": "https://myhost/inventory/12" }
+  },
+  "customer": "Dave Matthews"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Some users prefer to not switch between arrays and objects when consuming HAL. They would prefer this type of rendering:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 26. HAL with single link rendered as an array</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "_links": {
+    "item": [{ "href": "https://myhost/inventory/12" }]
+  },
+  "customer": "Dave Matthews"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you wish to customize this policy, all you have to do is inject a <code>HalConfiguration</code> bean into your application configuration.
+There are multiple choices.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 27. Global HAL single-link rendering policy</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+public HalConfiguration globalPolicy() {
+  return new HalConfiguration() //
+      .withRenderSingleLinks(RenderSingleLinks.AS_ARRAY); <i class="conum" data-value="1"></i><b>(1)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Override Spring HATEOAS&#8217;s default by rendering ALL single-link relations as arrays.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you prefer to only override some particular link relations, you can create a <code>HalConfiguration</code>
+bean like this:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 28. Link relation-based HAL single-link rendering policy</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+public HalConfiguration linkRelationBasedPolicy() {
+  return new HalConfiguration() //
+      .withRenderSingleLinksFor( //
+          IanaLinkRelations.ITEM, RenderSingleLinks.AS_ARRAY) <i class="conum" data-value="1"></i><b>(1)</b>
+      .withRenderSingleLinksFor( //
+          LinkRelation.of("prev"), RenderSingleLinks.AS_SINGLE); <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Always render <code>item</code> link relations as an array.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Render <code>prev</code> link relations as an object when there is only one link.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If neither of these match your needs, you can use an Ant-style path pattern:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 29. Pattern-based HAL single-link rendering policy</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+public HalConfiguration patternBasedPolicy() {
+  return new HalConfiguration() //
+      .withRenderSingleLinksFor( //
+          "http*", RenderSingleLinks.AS_ARRAY); <i class="conum" data-value="1"></i><b>(1)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Render all link relations that start with <code>http</code> as an array.</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The pattern-based approach uses Spring&#8217;s <code>AntPathMatcher</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>All of these <code>HalConfiguration</code> withers can be combined to form one comprehensive policy. Be sure to test your API
+extensively to avoid surprises.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.hal.i18n"><a class="anchor" href="#mediatypes.hal.i18n"></a>4.1.3. Link title internationalization</h4>
+<div class="paragraph">
+<p>HAL defines a <code>title</code> attribute for its link objects.
+These titles can be populated by using Spring&#8217;s resource bundle abstraction and a resource bundle named <code>rest-messages</code> so that clients can use them in their UIs directly.
+This bundle will be set up automatically and is used during HAL link serialization.</p>
+</div>
+<div class="paragraph">
+<p>To define a title for a link, use the key template <code>_links.$relationName.title</code> as follows:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 30. A sample <code>rest-messages.properties</code></div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">_links.cancel.title=Cancel order
+_links.payment.title=Proceed to checkout</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This will result in the following HAL representation:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 31. A sample HAL document with link titles defined</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "_links" : {
+    "cancel" : {
+      "href" : "…"
+      "title" : "Cancel order"
+    },
+    "payment" : {
+      "href" : "…"
+      "title" : "Proceed to checkout"
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.hal.curie-provider"><a class="anchor" href="#mediatypes.hal.curie-provider"></a>4.1.4. <a id="spis.curie-provider"></a> Using the <code>CurieProvider</code> API</h4>
+<div class="paragraph">
+<p>The <a href="javascript:window.open('https://tools.ietf.org/html/rfc8288#section-2.1');">Web Linking RFC</a> describes registered and extension link relation types. Registered rels are well-known strings registered with the <a href="javascript:window.open('https://www.iana.org/assignments/link-relations/link-relations.xhtml');">IANA registry of link relation types</a>. Extension <code>rel</code> URIs can be used by applications that do not wish to register a relation type. Each one is a URI that uniquely identifies the relation type. The <code>rel</code> URI can be serialized as a compact URI or <a href="javascript:window.open('https://www.w3.org/TR/curie');">Curie</a>. For example, a curie of <code>ex:persons</code> stands for the link relation type <code><a href="javascript:window.open('https://example.com/rels/persons');" class="bare">example.com/rels/persons</a></code> if <code>ex</code> is defined as <code><a href="javascript:window.open('https://example.com/rels/{rel}');" class="bare">example.com/rels/{rel}</a></code>. If curies are used, the base URI must be present in the response scope.</p>
+</div>
+<div class="paragraph">
+<p>The <code>rel</code> values created by the default <code>RelProvider</code> are extension relation types and, as a result, must be URIs, which can cause a lot of overhead. The <code>CurieProvider</code> API takes care of that: It lets you define a base URI as a URI template and a prefix that stands for that base URI. If a <code>CurieProvider</code> is present, the <code>RelProvider</code> prepends all <code>rel</code> values with the curie prefix. Furthermore a <code>curies</code> link is automatically added to the HAL resource.</p>
+</div>
+<div class="paragraph">
+<p>The following configuration defines a default curie provider:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+@EnableWebMvc
+@EnableHypermediaSupport(type= {HypermediaType.HAL})
+public class Config {
+
+  @Bean
+  public CurieProvider curieProvider() {
+    return new DefaultCurieProvider("ex", new UriTemplate("https://www.example.com/rels/{rel}"));
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that now the <code>ex:</code> prefix automatically appears before all rel values that are not registered with IANA, as in <code>ex:orders</code>. Clients can use the <code>curies</code> link to resolve a curie to its full form.
+The following example shows how to do so:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "_links": {
+    "self": {
+      "href": "https://myhost/person/1"
+    },
+    "curies": {
+      "name": "ex",
+      "href": "https://example.com/rels/{rel}",
+      "templated": true
+    },
+    "ex:orders": {
+      "href": "https://myhost/person/1/orders"
+    }
+  },
+  "firstname": "Dave",
+  "lastname": "Matthews"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Since the purpose of the <code>CurieProvider</code> API is to allow for automatic curie creation, you can define only one <code>CurieProvider</code> bean per application scope.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mediatypes.hal-forms"><a class="anchor" href="#mediatypes.hal-forms"></a>4.2. HAL-FORMS</h3>
+<div class="paragraph">
+<p><a href="javascript:window.open('https://rwcbook.github.io/hal-forms/');" target="_blank" rel="noopener">HAL-FORMS</a> is designed to add runtime FORM support to the <a href="#mediatypes.hal">HAL media type</a>.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>HAL-FORMS "looks like HAL." However, it is important to keep in mind that HAL-FORMS is not the same as HAL — the two
+should not be thought of as interchangeable in any way.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Mike Amundsen<br>
+<cite>HAL-FORMS spec</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>To enable this media type, put the following configuration in your code:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 32. HAL-FORMS enabled application</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+@EnableHypermediaSupport(type = HypermediaType.HAL_FORMS)
+public class HalFormsApplication {
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Anytime a client supplies an <code>Accept</code> header with <code>application/prs.hal-forms+json</code>, you can expect something like this:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 33. HAL-FORMS sample document</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "firstName" : "Frodo",
+  "lastName" : "Baggins",
+  "role" : "ring bearer",
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost:8080/employees/1"
+    }
+  },
+  "_templates" : {
+    "default" : {
+      "method" : "put",
+      "contentType" : "",
+      "properties" : [ {
+        "name" : "firstName",
+        "required" : true
+      }, {
+        "name" : "lastName",
+        "required" : true
+      }, {
+        "name" : "role",
+        "required" : true
+      } ]
+    },
+    "partiallyUpdateEmployee" : {
+      "method" : "patch",
+      "contentType" : "",
+      "properties" : [ {
+        "name" : "firstName",
+        "required" : false
+      }, {
+        "name" : "lastName",
+        "required" : false
+      }, {
+        "name" : "role",
+        "required" : false
+      } ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Check out the <a href="javascript:window.open('https://rwcbook.github.io/hal-forms/');">HAL-FORMS spec</a> to understand the details of the <strong>_templates</strong> attribute.
+Read about the <a href="#server.affordances">Affordances API</a> to augment your controllers with this extra metadata.</p>
+</div>
+<div class="paragraph">
+<p>As for single-item (<code>EntityModel</code>) and aggregate root collections (<code>CollectionModel</code>), Spring HATEOAS renders them
+identically to <a href="#mediatypes.hal">HAL documents</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.hal-forms.metadata"><a class="anchor" href="#mediatypes.hal-forms.metadata"></a>4.2.1. Defining HAL-FORMS metadata</h4>
+<div class="paragraph">
+<p>HAL-FORMS allows to describe criterias for each form field.
+Spring HATEOAS allows to customize those by shaping the model type for the input and output types and using annotations on them.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Attribute</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>readOnly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set to <code>true</code> if there&#8217;s no setter method for the property. If that is present, use Jackson&#8217;s <code>@JsonProperty(Access.READ_ONLY)</code> on the accessors or field explicitly. Not rendered by default, thus defaulting to <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>regex</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can be customized by using JSR-303&#8217;s <code>@Pattern</code> annotation either on the field or a type. In case of the latter the pattern will be used for every property declared as that particular type. Not rendered by default.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>required</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Can be customized by using JSR-303&#8217;s <code>@NotNull</code>. Not rendered by default and thus defaulting to <code>false</code>. Templates using <code>PATCH</code> as method will automatically have all properties set to not required.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For types that you cannot annotate manually, you can register a custom pattern via a <code>HalFormsConfiguration</code> bean present in the application context.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+class CustomConfiguration {
+
+  @Bean
+  HalFormsConfiguration halFormsConfiguration() {
+
+    HalFormsConfiguration configuration = new HalFormsConfiguration();
+    configuration.registerPatternFor(CreditCardNumber.class, "[0-9]{16}");
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This setup will cause the HAL-FORMS template properties for representation model properties of type <code>CreditCardNumber</code> to declare a <code>regex</code> field with value <code>[0-9]{16}</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.hal-forms.i18n"><a class="anchor" href="#mediatypes.hal-forms.i18n"></a>4.2.2. Internationalization of form attributes</h4>
+<div class="paragraph">
+<p>HAL-FORMS contains attributes that are intended for human interpretation, like a template&#8217;s title or property prompts.
+These can be defined and internationalized using Spring&#8217;s resource bundle support and the <code>rest-messages</code> resource bundle configured by Spring HATEOAS by default.</p>
+</div>
+<div class="sect4">
+<h5>Template titles</h5>
+<div class="paragraph">
+<p>To define a template title use the following pattern: <code>_templates.$affordanceName.title</code>. Note that in HAL-FORMS, the name of a template is <code>default</code> if it is the only one.
+This means that you&#8217;ll usually have to qualify the key with the local or fully qualified input type name that affordance describes.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 34. Defining HAL-FORMS template titles</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">_templates.default.title=Some title <i class="conum" data-value="1"></i><b>(1)</b>
+_templates.putEmployee.title=Create employee <i class="conum" data-value="2"></i><b>(2)</b>
+Employee._templates.default.title=Create employee <i class="conum" data-value="3"></i><b>(3)</b>
+com.acme.Employee._templates.default.title=Create employee <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A global definition for the title using <code>default</code> as key.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>A global definition for the title using the actual affordance name as key. Unless defined explicitly when creating the affordance, this defaults to <code>$httpMethod + $simpleInputTypeName</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A locally defined title to be applied to all types named <code>Employee</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>A title definition using the fully-qualified type name.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Keys using the actual affordance name enjoy preference over the defaulted ones.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5>Property prompts</h5>
+<div class="paragraph">
+<p>Property prompts can also be resolved via the <code>rest-messages</code> resource bundle automatically configured by Spring HATEOAS.
+The keys can be defined globally, locally or fully-qualified and need an <code>._prompt</code> concatenated to the actual property key:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 35. Defining prompts for an <code>email</code> property</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">firstName._prompt=Firstname <i class="conum" data-value="1"></i><b>(1)</b>
+Employee.firstName._prompt=Firstname <i class="conum" data-value="2"></i><b>(2)</b>
+com.acme.Employee.firstName._prompt=Firstname <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>All properties named <code>firstName</code> will get "Firstname" rendered, independent of the type they&#8217;re declared in.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The <code>firstName</code> property in types named <code>Employee</code> will be prompted "Firstname".</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>firstName</code> property of <code>com.acme.Employee</code> will get a prompt of "Firstname" assigned.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>A sample document with both template titles and property prompts defined would then look something like this:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 36. A sample HAL-FORMS document with internationalized template titles and property prompts</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">{
+  …,
+  "_templates" : {
+    "default" : {
+      "title" : "Create employee",
+      "method" : "put",
+      "contentType" : "",
+      "properties" : [ {
+        "name" : "firstName",
+        "prompt" : "Firstname",
+        "required" : true
+      }, {
+        "name" : "lastName",
+        "prompt" : "Lastname",
+        "required" : true
+      }, {
+        "name" : "role",
+        "prompt" : "Role",
+        "required" : true
+      } ]
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mediatypes.http-problem"><a class="anchor" href="#mediatypes.http-problem"></a>4.3. HTTP Problem Details</h3>
+<div class="paragraph">
+<p><a href="javascript:window.open('https://tools.ietf.org/html/rfc7807');">Problem Details for HTTP APIs</a> is a media type to carry machine-readable details of errors in a HTTP response to avoid the need to define new error response formats for HTTP APIs.</p>
+</div>
+<div class="paragraph">
+<p>HTTP Problem Details defines a set of JSON properties that carry additional information to describe error details to HTTP clients.
+Find more details about those properties in particular in the relevant section of the <a href="javascript:window.open('https://tools.ietf.org/html/rfc7807#section-3.1');">RFC document</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can create such a JSON response by using the <code>Problem</code> media type domain type in your Spring MVC Controller:</p>
+</div>
+<div class="listingblock">
+<div class="title">Reporting problem details using Spring HATEOAS' <code>Problem</code> type</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@RestController
+class PaymentController {
+
+  @PutMapping
+  ResponseEntity&lt;?&gt; issuePayment(@RequestBody PaymentRequest request) {
+
+    PaymentResult result = payments.issuePayment(request.orderId, request.amount);
+
+    if (result.isSuccess()) {
+      return ResponseEntity.ok(result);
+    }
+
+    String title = messages.getMessage("payment.out-of-credit");
+    String detail = messages.getMessage("payment.out-of-credit.details", //
+        new Object[] { result.getBalance(), result.getCost() });
+
+    Problem problem = Problem.create() <i class="conum" data-value="1"></i><b>(1)</b>
+        .withType(OUT_OF_CREDIT_URI) //
+        .withTitle(title) <i class="conum" data-value="2"></i><b>(2)</b>
+        .withDetail(detail) //
+        .withInstance(PAYMENT_ERROR_INSTANCE.expand(result.getPaymentId())) //
+        .withProperties(map -&gt; { <i class="conum" data-value="3"></i><b>(3)</b>
+          map.put("balance", result.getBalance());
+          map.put("accounts", Arrays.asList( //
+              ACCOUNTS.expand(result.getSourceAccountId()), //
+              ACCOUNTS.expand(result.getTargetAccountId()) //
+          ));
+        });
+
+    return ResponseEntity.status(HttpStatus.FORBIDDEN) //
+        .body(problem);
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>You start by creating an instance of <code>Problem</code> using the factory methods exposed.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>You can define the values for the default properties defined by the media type, e.g. the type URI, the title and details using internationalization features of Spring (see above).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Custom properties can be added via a <code>Map</code> or an explicit object (see below).</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To use a dedicated object for custom properties, declare a type, create and populate an instance of it and hand this into the <code>Problem</code> instance either via <code>….withProperties(…)</code> or on instance creation via <code>Problem.create(…)</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">Using a dedicated type to capture extended problem properties</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">class AccountDetails {
+  int balance;
+  List&lt;URI&gt; accounts;
+}
+
+problem.withProperties(result.getDetails());
+
+// or
+
+Problem.create(result.getDetails());</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will result in a response looking like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">A sample HTTP Problem Details response</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">{
+  "type": "https://example.com/probs/out-of-credit",
+  "title": "You do not have enough credit.",
+  "detail": "Your current balance is 30, but that costs 50.",
+  "instance": "/account/12345/msgs/abc",
+  "balance": 30,
+  "accounts": ["/account/12345",
+               "/account/67890"]
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mediatypes.collection-json"><a class="anchor" href="#mediatypes.collection-json"></a>4.4. Collection+JSON</h3>
+<div class="paragraph">
+<p><a href="javascript:window.open('http://amundsen.com/media-types/collection/format/');" target="_blank" rel="noopener">Collection+JSON</a> is a JSON spec registered with IANA-approved media type <code>application/vnd.collection+json</code>.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><a href="javascript:window.open('http://amundsen.com/media-types/collection/');" target="_blank" rel="noopener">Collection+JSON</a> is a JSON-based read/write hypermedia-type designed to support
+management and querying of simple collections.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Mike Amundsen<br>
+<cite>Collection+JSON spec</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>Collection+JSON provides a uniform way to represent both single item resources as well as collections.
+To enable this media type, put the following configuration in your code:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 37. Collection+JSON enabled application</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+@EnableHypermediaSupport(type = HypermediaType.COLLECTION_JSON)
+public class CollectionJsonApplication {
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This configuration will make your application respond to requests that have an <code>Accept</code> header of <code>application/vnd.collection+json</code>
+as shown below.</p>
+</div>
+<div class="paragraph">
+<p>The following example from the spec shows a single item:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 38. Collection+JSON single item example</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "collection": {
+    "version": "1.0",
+    "href": "https://example.org/friends/", <i class="conum" data-value="1"></i><b>(1)</b>
+    "links": [   <i class="conum" data-value="2"></i><b>(2)</b>
+      {
+        "rel": "feed",
+        "href": "https://example.org/friends/rss"
+      },
+      {
+        "rel": "queries",
+        "href": "https://example.org/friends/?queries"
+      },
+      {
+        "rel": "template",
+        "href": "https://example.org/friends/?template"
+      }
+    ],
+    "items": [  <i class="conum" data-value="3"></i><b>(3)</b>
+      {
+        "href": "https://example.org/friends/jdoe",
+        "data": [  <i class="conum" data-value="4"></i><b>(4)</b>
+          {
+            "name": "fullname",
+            "value": "J. Doe",
+            "prompt": "Full Name"
+          },
+          {
+            "name": "email",
+            "value": "<a href="email-protection.html" class="__cf_email__" data-cfemail="a2c8c6cdc7e2c7dac3cfd2cec78ccdd0c5">[email&#160;protected]</a>",
+            "prompt": "Email"
+          }
+        ],
+        "links": [ <i class="conum" data-value="5"></i><b>(5)</b>
+          {
+            "rel": "blog",
+            "href": "https://examples.org/blogs/jdoe",
+            "prompt": "Blog"
+          },
+          {
+            "rel": "avatar",
+            "href": "https://examples.org/images/jdoe",
+            "prompt": "Avatar",
+            "render": "image"
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The <code>self</code> link is stored in the document&#8217;s <code>href</code> attribute.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The document&#8217;s top <code>links</code> section contains collection-level links (minus the <code>self</code> link).</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The <code>items</code> section contains a collection of data. Since this is a single-item document, it only has one entry.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The <code>data</code> section contains actual content. It&#8217;s made up of properties.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The item&#8217;s individual <code>links</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The previous fragment was lifted from the spec. When Spring HATEOAS renders an <code>EntityModel</code>, it will:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Put the <code>self</code> link into both the document&#8217;s <code>href</code> attribute and the item-level <code>href</code> attribute.</p>
+</li>
+<li>
+<p>Put the rest of the model&#8217;s links into both the top-level <code>links</code> as well as the item-level <code>links</code>.</p>
+</li>
+<li>
+<p>Extract the properties from the <code>EntityModel</code> and turn them into &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When rendering a collection of resources, the document is almost the same, except there will be multiple entries inside
+the <code>items</code> JSON array, one for each entry.</p>
+</div>
+<div class="paragraph">
+<p>Spring HATEOAS more specifically will:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Put the entire collection&#8217;s <code>self</code> link into the top-level <code>href</code> attribute.</p>
+</li>
+<li>
+<p>The <code>CollectionModel</code> links (minus <code>self</code>) will be put into the top-level <code>links</code>.</p>
+</li>
+<li>
+<p>Each item-level <code>href</code> will contain the corresponding <code>self</code> link for each entry from the <code>CollectionModel.content</code> collection.</p>
+</li>
+<li>
+<p>Each item-level <code>links</code> will contain all other links for each entry from <code>CollectionModel.content</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mediatypes.uber"><a class="anchor" href="#mediatypes.uber"></a>4.5. UBER - Uniform Basis for Exchanging Representations</h3>
+<div class="paragraph">
+<p><a href="javascript:window.open('https://rawgit.com/uber-hypermedia/specification/master/uber-hypermedia.html');" target="_blank" rel="noopener">UBER</a> is an experimental JSON spec</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The UBER document format is a minimal read/write hypermedia type designed to support simple state transfers and ad-hoc
+hypermedia-based transitions.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Mike Amundsen<br>
+<cite>UBER spec</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>UBER provides a uniform way to represent both single item resources as well as collections. To enable this media type, put the following configuration in your code:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 39. UBER+JSON enabled application</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+@EnableHypermediaSupport(type = HypermediaType.UBER)
+public class UberApplication {
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This configuration will make your application respond to requests using the <code>Accept</code> header <code>application/vnd.amundsen-uber+json</code>
+as show below:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 40. UBER sample document</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="javascript" class="language-javascript hljs">{
+  "uber" : {
+    "version" : "1.0",
+    "data" : [ {
+      "rel" : [ "self" ],
+      "url" : "/employees/1"
+    }, {
+      "name" : "employee",
+      "data" : [ {
+        "name" : "role",
+        "value" : "ring bearer"
+      }, {
+        "name" : "name",
+        "value" : "Frodo"
+      } ]
+    } ]
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This media type is still under development as is the spec itself. Feel free to
+<a href="javascript:window.open('https://github.com/spring-projects/spring-hateoas/issues');" target="_blank" rel="noopener">open a ticket</a> if you run into issues using it.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<strong>UBER media type</strong> is not associated in any way with <strong>Uber Technologies Inc.</strong>, the ride sharing company.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mediatypes.alps"><a class="anchor" href="#mediatypes.alps"></a>4.6. ALPS - Application-Level Profile Semantics</h3>
+<div class="paragraph">
+<p><a href="javascript:window.open('https://tools.ietf.org/html/draft-amundsen-richardson-foster-alps-01');" target="_blank" rel="noopener">ALPS</a> is a media type for providing
+profile-based metadata about another resource.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>An ALPS document can be used as a profile to
+explain the application semantics of a document with an application-
+agnostic media type (such as HTML, HAL, Collection+JSON, Siren,
+etc.). This increases the reusability of profile documents across
+media types.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Mike Amundsen<br>
+<cite>ALPS spec</cite>
+</div>
+</div>
+<div class="paragraph">
+<p>ALPS requires no special activation. Instead you "build" an <code>Alps</code> record and return it from either a Spring MVC or a Spring WebFlux web method as shown below:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 41. Building an <code>Alps</code> record</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@GetMapping(value = "/profile", produces = ALPS_JSON_VALUE)
+Alps profile() {
+
+  return Alps.alps() //
+      .doc(doc() //
+          .href("https://example.org/samples/full/doc.html") //
+          .value("value goes here") //
+          .format(Format.TEXT) //
+          .build()) //
+      .descriptor(getExposedProperties(Employee.class).stream() //
+          .map(property -&gt; Descriptor.builder() //
+              .id("class field [" + property.getName() + "]") //
+              .name(property.getName()) //
+              .type(Type.SEMANTIC) //
+              .ext(Ext.builder() //
+                  .id("ext [" + property.getName() + "]") //
+                  .href("https://example.org/samples/ext/" + property.getName()) //
+                  .value("value goes here") //
+                  .build()) //
+              .rt("rt for [" + property.getName() + "]") //
+              .descriptor(Collections.singletonList(Descriptor.builder().id("embedded").build())) //
+              .build()) //
+          .collect(Collectors.toList()))
+      .build();
+}</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>This example leverages <code>PropertyUtils.getExposedProperties()</code> to extract metadata about the domain object&#8217;s attributes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This fragment has test data plugged in. It yields JSON like this:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 42. ALPS JSON</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "version": "1.0",
+  "doc": {
+    "format": "TEXT",
+    "href": "https://example.org/samples/full/doc.html",
+    "value": "value goes here"
+  },
+  "descriptor": [
+    {
+      "id": "class field [name]",
+      "name": "name",
+      "type": "SEMANTIC",
+      "descriptor": [
+        {
+          "id": "embedded"
+        }
+      ],
+      "ext": {
+        "id": "ext [name]",
+        "href": "https://example.org/samples/ext/name",
+        "value": "value goes here"
+      },
+      "rt": "rt for [name]"
+    },
+    {
+      "id": "class field [role]",
+      "name": "role",
+      "type": "SEMANTIC",
+      "descriptor": [
+        {
+          "id": "embedded"
+        }
+      ],
+      "ext": {
+        "id": "ext [role]",
+        "href": "https://example.org/samples/ext/role",
+        "value": "value goes here"
+      },
+      "rt": "rt for [role]"
+    }
+  ]
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Instead of linking each field "automatically" to a domain object&#8217;s fields, you can write them by hand if you like. It&#8217;s also possible
+to use Spring Framework&#8217;s message bundles and the <code>MessageSource</code> interface. This gives you the ability to delegate these values to
+locale-specific message bundles and even internationalize the metadata.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mediatypes.community"><a class="anchor" href="#mediatypes.community"></a>4.7. Community-based media types</h3>
+<div class="paragraph">
+<p>Thanks to the <a href="#mediatypes.custom">ability to create your own media type</a>, there are several community-led efforts to build additional media types.</p>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.community.json:api"><a class="anchor" href="#mediatypes.community.json:api"></a>4.7.1. JSON:API</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="javascript:window.open('https://jsonapi.org/');">Specification</a></p>
+</li>
+<li>
+<p>Media type designation: <code>application/vnd.api+json</code></p>
+</li>
+<li>
+<p><a href="javascript:window.open('https://toedter.github.io/spring-hateoas-jsonapi');">Reference documentation</a></p>
+</li>
+<li>
+<p><a href="javascript:window.open('https://toedter.github.io/spring-hateoas-jsonapi/javadoc/index.html');">javadocs</a></p>
+</li>
+<li>
+<p><a href="javascript:window.open('https://github.com/toedter/spring-hateoas-jsonapi');">Source</a></p>
+</li>
+<li>
+<p>Project Lead: <a href="javascript:window.open('https://github.com/toedter');">Kai Toedter</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Maven coordinates</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+    &lt;groupId&gt;com.toedter&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-hateoas-jsonapi&lt;/artifactId&gt;
+    &lt;version&gt;{see project page for current version}&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Gradle coordinates</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">implementation 'com.toedter:spring-hateoas-jsonapi:{see project page for current version}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Visit the project page for more details if you want snapshot releases.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.community.siren"><a class="anchor" href="#mediatypes.community.siren"></a>4.7.2. Siren</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="javascript:window.open('https://github.com/kevinswiber/siren');">Specification</a></p>
+</li>
+<li>
+<p>Media type designation: <code>application/vnd.siren+json</code></p>
+</li>
+<li>
+<p><a href="javascript:window.open('https://spring-hateoas-siren.ingogriebsch.de/');">Reference documentation</a></p>
+</li>
+<li>
+<p><a href="javascript:window.open('https://spring-hateoas-siren.ingogriebsch.de/apidocs');">javadocs</a></p>
+</li>
+<li>
+<p><a href="javascript:window.open('https://github.com/ingogriebsch/spring-hateoas-siren');">Source</a></p>
+</li>
+<li>
+<p>Project Lead: <a href="javascript:window.open('https://github.com/ingogriebsch');">Ingo Griebsch</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Maven coordinates</div>
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;dependency&gt;
+    &lt;groupId&gt;de.ingogriebsch.hateoas&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-hateoas-siren&lt;/artifactId&gt;
+    &lt;version&gt;{see project page for current version}&lt;/version&gt;
+    &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Gradle coordinates</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">implementation 'de.ingogriebsch.hateoas:spring-hateoas-siren:{see project page for current version}'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="mediatypes.custom"><a class="anchor" href="#mediatypes.custom"></a>4.8. Registering a custom media type</h3>
+<div class="paragraph">
+<p>Spring HATEOAS allows you to integrate custom media types through an SPI.
+The building blocks of such an implementation are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Some form of Jackson <code>ObjectMapper</code> customization. In its most simple case that&#8217;s a Jackson <code>Module</code> implementation.</p>
+</li>
+<li>
+<p>A <code>LinkDiscoverer</code> implementation so that the client-side support is able to detect links in representations.</p>
+</li>
+<li>
+<p>A small bit of infrastructure configuration that will allow Spring HATEOAS to find the custom implementation and pick it up.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.custom.configuration"><a class="anchor" href="#mediatypes.custom.configuration"></a>4.8.1. Custom media type configuration</h4>
+<div class="paragraph">
+<p>Custom media type implementations are picked up by Spring HATEOAS by scanning the application context for any implementations of the <code>HypermediaMappingInformation</code> interface.
+Each media type must implement this interface in order to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Be applied to <a href="#client.web-client"><code>WebClient</code></a>, <a href="#client.web-test-client"><code>WebTestClient</code></a>, or <a href="#client.rest-template"><code>RestTemplate</code></a> instances.</p>
+</li>
+<li>
+<p>Support serving that media type from Spring Web MVC and Spring WebFlux controllers.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To define your own media type could look as simple as this:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Configuration
+class MyMediaTypeConfiguration implements HypermediaMappingInformation {
+
+  @Override
+  public List&lt;MediaType&gt; getMediaTypes() {
+    return MediaType.parse("application/vnd-acme-media-type") <i class="conum" data-value="1"></i><b>(1)</b>
+  }
+
+  @Override
+  public Module getJacksonModule() {
+    return new Jackson2MyMediaTypeModule(); <i class="conum" data-value="2"></i><b>(2)</b>
+  }
+
+  @Bean
+  MyLinkDiscoverer myLinkDiscoverer() {
+    return new MyLinkDiscoverer(); <i class="conum" data-value="3"></i><b>(3)</b>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The configuration class returns the media type it supports. This applies to both server-side and client-side scenarios.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>It overrides <code>getJacksonModule()</code> to provide custom serializers to create the media type specific representations.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>It also declares a custom <code>LinkDiscoverer</code> implementation for further client-side support.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The Jackson module usually declares <code>Serializer</code> and <code>Deserializer</code> implementations for the representation model types <code>RepresentationModel</code>, <code>EntityModel</code>, <code>CollectionModel</code> and <code>PagedModel</code>.
+In case you need further customization of the Jackson <code>ObjectMapper</code> (like a custom <code>HandlerInstantiator</code>), you can alternatively override <code>configureObjectMapper(…)</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Prior versions of reference documentation has mentioned implementing the <code>MediaTypeConfigurationProvider</code> interface and registering it with <code>spring.factories</code>.
+This is NOT necessary.
+This SPI is ONLY used for out-of-the-box media types provided by Spring HATEOAS.
+Merely implementing the <code>HypermediaMappingInformation</code> interface and registering it as a Spring bean is all that&#8217;s needed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mediatypes.custom.recommendation"><a class="anchor" href="#mediatypes.custom.recommendation"></a>4.8.2. Recommendations</h4>
+<div class="paragraph">
+<p>The preferred way to implement media type representations is by providing a type hierarchy that matches the expected format and can be serialized by Jackson as is.
+In the <code>Serializer</code> and <code>Deserializer</code> implementations registered for <code>RepresentationModel</code>, convert the instances into the media type-specific model types and then lookup the Jackson serializer for those.</p>
+</div>
+<div class="paragraph">
+<p>The media types supported by default use the same configuration mechanism as third-party implementations would do.
+So it&#8217;s worth studying the implementations in <a href="javascript:window.open('https://github.com/spring-projects/spring-hateoas/tree/master/src/main/java/org/springframework/hateoas/mediatype');">the <code>mediatype</code> package</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration"><a class="anchor" href="#configuration"></a>5. Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes how to configure Spring HATEOAS.</p>
+</div>
+<div class="sect2">
+<h3 id="configuration.at-enable"><a class="anchor" href="#configuration.at-enable"></a>5.1. Using <code>@EnableHypermediaSupport</code></h3>
+<div class="paragraph">
+<p>To let the <code>RepresentationModel</code> subtypes be rendered according to the specification of various hypermedia representation types, you can activate support for a particular hypermedia representation format through <code>@EnableHypermediaSupport</code>. The annotation takes a <code>HypermediaType</code> enumeration as its argument. Currently, we support <a href="javascript:window.open('https://tools.ietf.org/html/draft-kelly-json-hal');">HAL</a> as well as a default rendering. Using the annotation triggers the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>It registers necessary Jackson modules to render <code>EntityModel</code> and <code>CollectionModel</code> in the hypermedia specific format.</p>
+</li>
+<li>
+<p>If JSONPath is on the classpath, it automatically registers a <code>LinkDiscoverer</code> instance to look up links by their <code>rel</code> in plain JSON representations (see <a href="#client.link-discoverer">Using <code>LinkDiscoverer</code> Instances</a>).</p>
+</li>
+<li>
+<p>By default, it enables <a href="#fundamentals.obtaining-links.entity-links">entity links</a> and automatically picks up <code>EntityLinks</code> implementations and bundles them into a <code>DelegatingEntityLinks</code> instance that you can autowire.</p>
+</li>
+<li>
+<p>It automatically picks up all <code>RelProvider</code> implementations in the <code>ApplicationContext</code> and bundles them into a <code>DelegatingRelProvider</code> that you can autowire. It registers providers to consider <code>@Relation</code> on domain types as well as Spring MVC controllers. If the <a href="javascript:window.open('https://github.com/atteo/evo-inflector');">EVO inflector</a> is on the classpath, collection <code>rel</code> values are derived by using the pluralizing algorithm implemented in the library (see <a href="#spis.rel-provider">[spis.rel-provider]</a>).</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="configuration.at-enable.stacks"><a class="anchor" href="#configuration.at-enable.stacks"></a>5.1.1. Explicitly enabling support for dedicated web stacks</h4>
+<div class="paragraph">
+<p>By default, <code>@EnableHypermediaSupport</code> will reflectively detect the web application stack you&#8217;re using and hook into the Spring components registered for those to enable support for hypermedia representations.
+However, there are situations in which you&#8217;d only explicitly want to activate support for a particular stack.
+E.g. if your Spring WebMVC based application uses WebFlux' <code>WebClient</code> to make outgoing requests and that one is not supposed to work with hypermedia elements, you can restrict the functionality to be enabled by explicitly declaring WebMVC in the configuration:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 43. Explicitly activating hypermedia support for a particular web stack</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@EnableHypermediaSupport(…, stacks = WebStack.WEBMVC)
+class MyHypermediaConfiguration { … }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="client"><a class="anchor" href="#client"></a>6. Client-side Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section describes Spring HATEOAS&#8217;s support for clients.</p>
+</div>
+<div class="sect2">
+<h3 id="client.traverson"><a class="anchor" href="#client.traverson"></a>6.1. Traverson</h3>
+<div class="paragraph">
+<p>Spring HATEOAS provides an API for client-side service traversal. It is inspired by the <a href="javascript:window.open('https://blog.codecentric.de/en/2013/11/traverson/');">Traverson JavaScript library</a>.
+The following example shows how to use it:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Map&lt;String, Object&gt; parameters = new HashMap&lt;&gt;();
+parameters.put("user", 27);
+
+Traverson traverson = new Traverson(URI.create("http://localhost:8080/api/"), MediaTypes.HAL_JSON);
+String name = traverson
+    .follow("movies", "movie", "actor").withTemplateParameters(parameters)
+    .toObject("$.name");</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can set up a <code>Traverson</code> instance by pointing it to a REST server and configuring the media types you want to set as <code>Accept</code> headers. You can then define the relation names you want to discover and follow. Relation names can either be simple names or JSONPath expressions (starting with an <code>$</code>).</p>
+</div>
+<div class="paragraph">
+<p>The sample then hands a parameter map into the execution. The parameters are used to expand URIs (which are templated) found during the traversal. The traversal is concluded by accessing the representation of the final traversal. In the preceding example, we evaluate a JSONPath expression to access the actor&#8217;s name.</p>
+</div>
+<div class="paragraph">
+<p>The preceding example is the simplest version of traversal, where the <code>rel</code> values are strings and, at each hop, the same template parameters are applied.</p>
+</div>
+<div class="paragraph">
+<p>There are more options to customize template parameters at each level.
+The following example shows these options.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">ParameterizedTypeReference&lt;EntityModel&lt;Item&gt;&gt; resourceParameterizedTypeReference = new ParameterizedTypeReference&lt;EntityModel&lt;Item&gt;&gt;() {};
+
+EntityModel&lt;Item&gt; itemResource = traverson.//
+    follow(rel("items").withParameter("projection", "noImages")).//
+    follow("$._embedded.items[0]._links.self.href").//
+    toObject(resourceParameterizedTypeReference);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The static <code>rel(&#8230;&#8203;)</code> function is a convenient way to define a single <code>Hop</code>. Using <code>.withParameter(key, value)</code> makes it simple to specify URI template variables.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>.withParameter()</code> returns a new <code>Hop</code> object that is chainable. You can string together as many <code>.withParameter</code> as you like. The result is a single <code>Hop</code> definition.
+The following example shows one way to do so:
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">ParameterizedTypeReference&lt;EntityModel&lt;Item&gt;&gt; resourceParameterizedTypeReference = new ParameterizedTypeReference&lt;EntityModel&lt;Item&gt;&gt;() {};
+
+Map&lt;String, Object&gt; params = Collections.singletonMap("projection", "noImages");
+
+EntityModel&lt;Item&gt; itemResource = traverson.//
+    follow(rel("items").withParameters(params)).//
+    follow("$._embedded.items[0]._links.self.href").//
+    toObject(resourceParameterizedTypeReference);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also load an entire <code>Map</code> of parameters by using <code>.withParameters(Map)</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>follow()</code> is chainable, meaning you can string together multiple hops, as shown in the preceding examples. You can either put multiple string-based <code>rel</code> values (<code>follow("items", "item")</code>) or a single hop with specific parameters.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4>6.1.1. <code>EntityModel&lt;T&gt;</code> vs. <code>CollectionModel&lt;T&gt;</code></h4>
+<div class="paragraph">
+<p>The examples shown so far demonstrate how to sidestep Java&#8217;s type erasure and convert a single JSON-formatted resource into a <code>EntityModel&lt;Item&gt;</code> object. However, what if you get a collection like an <code>\_embedded</code> HAL collection?
+You can do so with only one slight tweak, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">CollectionModelType&lt;Item&gt; collectionModelType =
+    TypeReferences.CollectionModelType&lt;Item&gt;() {};
+
+CollectionModel&lt;Item&gt; itemResource = traverson.//
+    follow(rel("items")).//
+    toObject(collectionModelType);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Instead of fetching a single resource, this one deserializes a collection into <code>CollectionModel</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client.link-discoverer"><a class="anchor" href="#client.link-discoverer"></a>6.2. Using <code>LinkDiscoverer</code> Instances</h3>
+<div class="paragraph">
+<p>When working with hypermedia enabled representations, a common task is to find a link with a particular relation type in it. Spring HATEOAS provides <a href="javascript:window.open('https://code.google.com/p/json-path');">JSONPath</a>-based implementations of the <code>LinkDiscoverer</code> interface for either the default representation rendering or HAL out of the box. When using <code>@EnableHypermediaSupport</code>, we automatically expose an instance supporting the configured hypermedia type as a Spring bean.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can set up and use an instance as follows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">String content = "{'_links' :  { 'foo' : { 'href' : '/foo/bar' }}}";
+LinkDiscoverer discoverer = new HalLinkDiscoverer();
+Link link = discoverer.findLinkWithRel("foo", content);
+
+assertThat(link.getRel(), is("foo"));
+assertThat(link.getHref(), is("/foo/bar"));</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client.web-client"><a class="anchor" href="#client.web-client"></a>6.3. Configuring WebClient instances</h3>
+<div class="paragraph">
+<p>If you need configure a <code>WebClient</code> to speak hypermedia, it&#8217;s easy. Get a hold of the <code>HypermediaWebClientConfigurer</code> as shown below:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 44. Configuring a <code>WebClient</code> yourself</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+WebClient.Builder hypermediaWebClient(HypermediaWebClientConfigurer configurer) { <i class="conum" data-value="1"></i><b>(1)</b>
+ return configurer.registerHypermediaTypes(WebClient.builder()); <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Inside your <code>@Configuration</code> class, get a copy of the <code>HypermediaWebClientConfigurer</code> bean Spring HATEOAS registers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>After creating a <code>WebClient.Builder</code>, use the configurer to register hypermedia types.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+What <code>HypermediaWebClientConfigurer</code> does it register all the right encoders and decoders with a <code>WebClient.Builder</code>. To make use of it,
+you need to inject the builder somewhere into your application, and run the <code>build()</code> method to produce a <code>WebClient</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re using Spring Boot, there is another way: the <code>WebClientCustomizer</code>.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 45. Letting Spring Boot configure things</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean <i class="conum" data-value="4"></i><b>(4)</b>
+WebClientCustomizer hypermediaWebClientCustomizer(HypermediaWebClientConfigurer configurer) { <i class="conum" data-value="1"></i><b>(1)</b>
+    return webClientBuilder -&gt; { <i class="conum" data-value="2"></i><b>(2)</b>
+        configurer.registerHypermediaTypes(webClientBuilder); <i class="conum" data-value="3"></i><b>(3)</b>
+    };
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>When creating a Spring bean, request a copy of Spring HATEOAS&#8217;s <code>HypermediaWebClientConfigurer</code> bean.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use a Java 8 lambda expression to define a <code>WebClientCustomizer</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Inside the function call, apply the <code>registerHypermediaTypes</code> method.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Return the whole thing as a Spring bean so Spring Boot can pick it up and apply it to its autoconfigured <code>WebClient.Builder</code> bean.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>At this stage, whenever you need a concrete <code>WebClient</code>, simply inject <code>WebClient.Builder</code> into your code, and use <code>build()</code>. The <code>WebClient</code> instance
+will be able to interact using hypermedia.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client.web-test-client"><a class="anchor" href="#client.web-test-client"></a>6.4. Configuring <code>WebTestClient</code> Instances</h3>
+<div class="paragraph">
+<p>When working with hypermedia-enabled representations, a common task is to execute various tests using <code>WebTestClient</code>.</p>
+</div>
+<div class="paragraph">
+<p>To configure an instance of <code>WebTestClient</code> in a test case, check out this example:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 46. Configuring <code>WebTestClient</code> when using Spring HATEOAS</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Test // #1225
+void webTestClientShouldSupportHypermediaDeserialization() {
+
+  // Configure an application context programmatically.
+  AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+  context.register(HalConfig.class); <i class="conum" data-value="1"></i><b>(1)</b>
+  context.refresh();
+
+  // Create an instance of a controller for testing
+  WebFluxEmployeeController controller = context.getBean(WebFluxEmployeeController.class);
+  controller.reset();
+
+  // Extract the WebTestClientConfigurer from the app context.
+  HypermediaWebTestClientConfigurer configurer = context.getBean(HypermediaWebTestClientConfigurer.class);
+
+  // Create a WebTestClient by binding to the controller and applying the hypermedia configurer.
+  WebTestClient client = WebTestClient.bindToApplicationContext(context).build().mutateWith(configurer); <i class="conum" data-value="2"></i><b>(2)</b>
+
+  // Exercise the controller.
+  client.get().uri("http://localhost/employees").accept(HAL_JSON) //
+      .exchange() //
+      .expectStatus().isOk() //
+      .expectBody(new TypeReferences.CollectionModelType&lt;EntityModel&lt;Employee&gt;&gt;() {}) <i class="conum" data-value="3"></i><b>(3)</b>
+      .consumeWith(result -&gt; {
+        CollectionModel&lt;EntityModel&lt;Employee&gt;&gt; model = result.getResponseBody(); <i class="conum" data-value="4"></i><b>(4)</b>
+
+        // Assert against the hypermedia model.
+        assertThat(model.getRequiredLink(IanaLinkRelations.SELF)).isEqualTo(Link.of("http://localhost/employees"));
+        assertThat(model.getContent()).hasSize(2);
+      });
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Register your configuration class that uses <code>@EnableHypermediaSupport</code> to enable HAL support.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use <code>HypermediaWebTestClientConfigurer</code> to apply hypermedia support.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Ask for a response of <code>CollectionModel&lt;EntityModel&lt;Employee&gt;&gt;</code> using Spring HATEOAS&#8217;s <code>TypeReferences.CollectionModelType</code> helper.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>After getting the "body" in Spring HATEOAS format, assert against it!</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>WebTestClient</code> is an immutable value type, so you can&#8217;t alter it in place. <code>HypermediaWebClientConfigurer</code> returns a mutated
+variant that you must then capture to use it.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you are using Spring Boot, there are additional options, like this:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 47. Configuring <code>WebTestClient</code> when using Spring Boot</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@SpringBootTest
+@AutoConfigureWebTestClient <i class="conum" data-value="1"></i><b>(1)</b>
+class WebClientBasedTests {
+
+    @Test
+    void exampleTest(@Autowired WebTestClient.Builder builder, @Autowired HypermediaWebTestClientConfigurer configurer) { <i class="conum" data-value="2"></i><b>(2)</b>
+        client = builder.apply(configurer).build(); <i class="conum" data-value="3"></i><b>(3)</b>
+
+        client.get().uri("/") //
+                .exchange() //
+                .expectBody(new TypeReferences.EntityModelType&lt;Employee&gt;() {}) <i class="conum" data-value="4"></i><b>(4)</b>
+                .consumeWith(result -&gt; {
+                    // assert against this EntityModel&lt;Employee&gt;!
+                });
+    }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>This is Spring Boot&#8217;s test annotation that will configure a <code>WebTestClient.Builder</code> for this test class.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Autowire Spring Boot&#8217;s <code>WebTestClient.Builder</code> into <code>builder</code> and Spring HATEOAS&#8217;s configurer as method parameters.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Use <code>HypermediaWebTestClientConfigurer</code> to register support for hypermedia.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Signal you want an <code>EntityModel&lt;Employee&gt;</code> returned using <code>TypeReferences</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Again, you can use similar assertions as the earlier example.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>There are many other ways to fashion test cases. <code>WebTestClient</code> can be bound to controllers, functions, and URLs. This section isn&#8217;t meant to show all that. Instead, this gives you some examples to get started. The important thing is that by applying <code>HypermediaWebTestClientConfigurer</code>, any instance of <code>WebTestClient</code> can be altered to handle hypermedia.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client.rest-template"><a class="anchor" href="#client.rest-template"></a>6.5. Configuring RestTemplate instances</h3>
+<div class="paragraph">
+<p>If you want to create your own copy of <code>RestTemplate</code>, configured to speak hypermedia, you can use the <code>HypermediaRestTemplateConfigurer</code>:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 48. Configuring <code>RestTemplate</code> yourself</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">/**
+ * Use the {@link HypermediaRestTemplateConfigurer} to configure a {@link RestTemplate}.
+ */
+@Bean
+RestTemplate hypermediaRestTemplate(HypermediaRestTemplateConfigurer configurer) { <i class="conum" data-value="1"></i><b>(1)</b>
+	return configurer.registerHypermediaTypes(new RestTemplate()); <i class="conum" data-value="2"></i><b>(2)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Inside your <code>@Configuration</code> class, get a copy of the <code>HypermediaRestTemplateConfigurer</code> bean Spring HATEOAS registers.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>After creating a <code>RestTemplate</code>, use the configurer to apply hypermedia types.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You are free to apply this pattern to any instance of <code>RestTemplate</code> that you need, whether is to create a registered bean, or inside a service you define.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re using Spring Boot, there is another approach.</p>
+</div>
+<div class="paragraph">
+<p>In general, Spring Boot has moved away from the concept of registering a <code>RestTemplate</code> bean in the application context.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When talking to different services, you often need different credentials.</p>
+</li>
+<li>
+<p>When <code>RestTemplate</code> uses an underlying connection pool, you run into additional issues.</p>
+</li>
+<li>
+<p>Users often need different instances rather than a single bean.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To compensate for this, Spring Boot provides a <code>RestTemplateBuilder</code>. This autoconfigured bean lets you define various beans used to fashion
+a <code>RestTemplate</code> instance. You ask for a <code>RestTemplateBuilder</code> bean, execute its <code>build()</code> method, and then apply final settings (like credentials, etc.).</p>
+</div>
+<div class="paragraph">
+<p>To register hypermedia-based message converters, add the following to your code:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 49. Letting Spring Boot configure things</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean <i class="conum" data-value="4"></i><b>(4)</b>
+RestTemplateCustomizer hypermediaRestTemplateCustomizer(HypermediaRestTemplateConfigurer configurer) { <i class="conum" data-value="1"></i><b>(1)</b>
+    return restTemplate -&gt; { <i class="conum" data-value="2"></i><b>(2)</b>
+        configurer.registerHypermediaTypes(restTemplate); <i class="conum" data-value="3"></i><b>(3)</b>
+    };
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>When creating a Spring bean, request a copy of Spring HATEOAS&#8217;s <code>HypermediaRestTemplateConfigurer</code> bean.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use a Java 8 lambda expression to define a <code>RestTemplateCustomizer</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Inside the function call, apply the <code>registerHypermediaTypes</code> method.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Return the whole thing as a Spring bean so Spring Boot can pick it up and apply it to its autoconfigured <code>RestTemplateBuilder</code>.</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>At this stage, whenever you need a concrete <code>RestTemplate</code>, simply inject <code>RestTemplateBuilder</code> into your code, and use <code>build()</code>. The <code>RestTemplate</code> instance
+will be able to interact using hypermedia.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.1.1.RELEASE<br>
+Last updated 2020-07-30 18:52:01 UTC
+</div>
+</div>
+<link rel="stylesheet" href="static/css/github.min.css">
+<script data-cfasync="false" src="static/js/email-decode.min.js"></script><script src="static/js/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+<script type="text/javascript" src="static/js/tocbot.min.js"></script>
+<script type="text/javascript" src="static/js/toc.js"></script>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

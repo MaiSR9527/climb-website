@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Message Store</title>
+<link rel="stylesheet" href="css/spring.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>#header #revnumber{display:none}</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel2">
+<li><a href="#message-store">Message Store</a>
+<ul class="sectlevel3">
+<li><a href="#message-group-factory">Using <code>MessageGroupFactory</code></a></li>
+<li><a href="#lazy-load-message-group">Persistent <code>MessageGroupStore</code> and Lazy-load</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="message-store"><a class="anchor" href="#message-store"></a>Message Store</h3>
+<div class="paragraph">
+<p>The <a href="https://www.enterpriseintegrationpatterns.com/"><em>Enterprise Integration Patterns</em></a> (EIP) book identifies several patterns that have the ability to buffer messages.
+For example, an aggregator buffers messages until they can be released, and a <code>QueueChannel</code> buffers messages until consumers explicitly receive those messages from that channel.
+Because of the failures that can occur at any point within your message flow, EIP components that buffer messages also introduce a point where messages could be lost.</p>
+</div>
+<div class="paragraph">
+<p>To mitigate the risk of losing messages, EIP defines the <a href="https://www.enterpriseintegrationpatterns.com/MessageStore.html">message store</a> pattern, which lets EIP components store messages, typically in some type of persistent store (such as an RDBMS).</p>
+</div>
+<div class="paragraph">
+<p>Spring Integration provides support for the message store pattern by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Defining an <code>org.springframework.integration.store.MessageStore</code> strategy interface</p>
+</li>
+<li>
+<p>Providing several implementations of this interface</p>
+</li>
+<li>
+<p>Exposing a <code>message-store</code> attribute on all components that have the capability to buffer messages so that you can inject any instance that implements the <code>MessageStore</code> interface.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Details on how to configure a specific message store implementation and how to inject a <code>MessageStore</code> implementation into a specific buffering component are described throughout the manual (see the specific component, such as <a href="./channel.html#channel-configuration-queuechannel">QueueChannel</a>, <a href="./aggregator.html#aggregator">Aggregator</a>, <a href="./delayer.html#delayer">Delayer</a>, and others).
+The following pair of examples show how to add a reference to a message store for a <code>QueueChannel</code> and for an aggregator:</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 1. QueueChannel</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:channel id="myQueueChannel"&gt;
+    &lt;int:queue message-store="refToMessageStore"/&gt;
+&lt;int:channel&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="exampleblock">
+<div class="title">Example 2. Aggregator</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:aggregator … message-store="refToMessageStore"/&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, messages are stored in-memory by using <code>o.s.i.store.SimpleMessageStore</code>, an implementation of <code>MessageStore</code>.
+That might be fine for development or simple low-volume environments where the potential loss of non-persistent messages is not a concern.
+However, the typical production application needs a more robust option, not only to mitigate the risk of message loss but also to avoid potential out-of-memory errors.
+Therefore, we also provide <code>MessageStore</code> implementations for a variety of data-stores.
+The following is a complete list of supported implementations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="./jdbc.html#jdbc-message-store">JDBC Message Store</a>: Uses an RDBMS to store messages</p>
+</li>
+<li>
+<p><a href="./redis.html#redis-message-store">Redis Message Store</a>: Uses a Redis key/value datastore to store messages</p>
+</li>
+<li>
+<p><a href="./mongodb.html#mongodb-message-store">MongoDB Message Store</a>: Uses a MongoDB document store to store messages</p>
+</li>
+<li>
+<p><a href="./gemfire.html#gemfire-message-store">Gemfire Message Store</a>: Uses a Gemfire distributed cache to store messages</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>However, be aware of some limitations while using persistent implementations of the <code>MessageStore</code>.</p>
+</div>
+<div class="paragraph">
+<p>The Message data (payload and headers) is serialized and deserialized by using different serialization strategies, depending on the implementation of the <code>MessageStore</code>.
+For example, when using <code>JdbcMessageStore</code>, only <code>Serializable</code> data is persisted by default.
+In this case, non-Serializable headers are removed before serialization occurs.
+Also, be aware of the protocol-specific headers that are injected by transport adapters (such as FTP, HTTP, JMS, and others).
+For example, <code>&lt;http:inbound-channel-adapter/&gt;</code> maps HTTP headers into message headers, and one of them is an <code>ArrayList</code> of non-serializable <code>org.springframework.http.MediaType</code> instances.
+However, you can inject your own implementation of the <code>Serializer</code> and <code>Deserializer</code> strategy interfaces into some <code>MessageStore</code> implementations (such as <code>JdbcMessageStore</code>) to change the behavior of serialization and deserialization.</p>
+</div>
+<div class="paragraph">
+<p>Pay special attention to the headers that represent certain types of data.
+For example, if one of the headers contains an instance of some Spring bean, upon deserialization, you may end up with a different instance of that bean, which directly affects some of the implicit headers created by the framework (such as <code>REPLY_CHANNEL</code> or <code>ERROR_CHANNEL</code>).
+Currently, they are not serializable, but, even if they were, the deserialized channel would not represent the expected instance.</p>
+</div>
+<div class="paragraph">
+<p>Beginning with Spring Integration version 3.0, you can resolve this issue with a header enricher configured to replace these headers with a name after registering the channel with the <code>HeaderChannelRegistry</code>.</p>
+</div>
+<div class="paragraph">
+<p>Also, consider what happens when you configure a message-flow as follows: gateway &#8594; queue-channel (backed by a persistent Message Store) &#8594; service-activator.
+That gateway creates a temporary reply channel, which is lost by the time the service-activator&#8217;s poller reads from the queue.
+Again, you can use the header enricher to replace the headers with a <code>String</code> representation.</p>
+</div>
+<div class="paragraph">
+<p>For more information, see <a href="./content-enrichment.html#header-enricher">Header Enricher</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Spring Integration 4.0 introduced two new interfaces:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ChannelMessageStore</code>: To implement operations specific for <code>QueueChannel</code> instances</p>
+</li>
+<li>
+<p><code>PriorityCapableChannelMessageStore</code>: To mark <code>MessageStore</code> implementations to be used for <code>PriorityChannel</code> instances and to provide priority order for persisted messages.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The real behavior depends on the implementation.
+The framework provides the following implementations, which can be used as a persistent <code>MessageStore</code> for <code>QueueChannel</code> and <code>PriorityChannel</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="./redis.html#redis-cms">Redis Channel Message Stores</a></p>
+</li>
+<li>
+<p><a href="./mongodb.html#mongodb-priority-channel-message-store">MongoDB Channel Message Store</a></p>
+</li>
+<li>
+<p><a href="./jdbc.html#jdbc-message-store-channels">Backing Message Channels</a></p>
+</li>
+</ul>
+</div>
+<div id="sms-caution" class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="title">Caution about <code>SimpleMessageStore</code></div>
+<div class="paragraph">
+<p>Starting with version 4.1, the <code>SimpleMessageStore</code> no longer copies the message group when calling <code>getMessageGroup()</code>.
+For large message groups, this was a significant performance problem.
+4.0.1 introduced a boolean <code>copyOnGet</code> property that lets you control this behavior.
+When used internally by the aggregator, this property was set to <code>false</code> to improve performance.
+It is now <code>false</code> by default.</p>
+</div>
+<div class="paragraph">
+<p>Users accessing the group store outside of components such as aggregators now get a direct reference to the group being used by the aggregator instead of a copy.
+Manipulation of the group outside of the aggregator may cause unpredictable results.</p>
+</div>
+<div class="paragraph">
+<p>For this reason, you should either not perform such manipulation or set the <code>copyOnGet</code> property to <code>true</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="message-group-factory"><a class="anchor" href="#message-group-factory"></a>Using <code>MessageGroupFactory</code></h4>
+<div class="paragraph">
+<p>Starting with version 4.3, some <code>MessageGroupStore</code> implementations can be injected with a custom
+<code>MessageGroupFactory</code> strategy to create and customize the <code>MessageGroup</code> instances used by the <code>MessageGroupStore</code>.
+This defaults to a <code>SimpleMessageGroupFactory</code>, which produces <code>SimpleMessageGroup</code> instances based on the <code>GroupType.HASH_SET</code>
+(<code>LinkedHashSet</code>) internal collection.
+Other possible options are <code>SYNCHRONISED_SET</code> and <code>BLOCKING_QUEUE</code>, where the last one can be used to reinstate the
+previous <code>SimpleMessageGroup</code> behavior.
+Also the <code>PERSISTENT</code> option is available.
+See the next section for more information.
+Starting with version 5.0.1, the <code>LIST</code> option is also available for when the order and uniqueness of messages in the group does not matter.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="lazy-load-message-group"><a class="anchor" href="#lazy-load-message-group"></a>Persistent <code>MessageGroupStore</code> and Lazy-load</h4>
+<div class="paragraph">
+<p>Starting with version 4.3, all persistent <code>MessageGroupStore</code> instances retrieve <code>MessageGroup</code> instances and their <code>messages</code>
+from the store in the lazy-load manner.
+In most cases, it is useful for the correlation <code>MessageHandler</code> instances (see <a href="./aggregator.html#aggregator">Aggregator</a> and <a href="./resequencer.html#resequencer">Resequencer</a>),
+when it would add overhead to load entire the <code>MessageGroup</code> from the store on each correlation operation.</p>
+</div>
+<div class="paragraph">
+<p>You can use the <code>AbstractMessageGroupStore.setLazyLoadMessageGroups(false)</code> option to switch off the lazy-load behavior from the configuration.</p>
+</div>
+<div class="paragraph">
+<p>Our performance tests for lazy-load on MongoDB <code>MessageStore</code> (<a href="./mongodb.html#mongodb-message-store">MongoDB Message Store</a>) and
+<code>&lt;aggregator&gt;</code> (<a href="./aggregator.html#aggregator">Aggregator</a>)
+use a custom <code>release-strategy</code> similar to the following:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:aggregator input-channel="inputChannel"
+                output-channel="outputChannel"
+                message-store="mongoStore"
+                release-strategy-expression="size() == 1000"/&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>It produces results similar to the following for 1000 simple messages:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">...
+StopWatch 'Lazy-Load Performance': running time (millis) = 38918
+-----------------------------------------
+ms     %     Task name
+-----------------------------------------
+02652  007%  Lazy-Load
+36266  093%  Eager
+...</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 5.3.2.RELEASE<br>
+Last updated 2020-07-22 17:49:12 UTC
+</div>
+</div>
+<link rel="stylesheet" href="js/highlight/styles/github.min.css">
+<script src="js/highlight/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+<script type="text/javascript" src="js/tocbot/tocbot.min.js"></script>
+<script type="text/javascript" src="js/toc.js"></script>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

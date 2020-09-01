@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>Spring Cloud中文网-关于我们</title>
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="author" content="Spring Cloud官方文档中文版">
+    <meta name="robots" content="index,follow">
+    <meta name="application-name" content="springcloud.cc">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link href="css/sweet-alert.min.css" rel="stylesheet">
+    <link href="css/site.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png">
+    <link rel="shortcut icon" href="images/favicon.png">
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-sm" href="//springcloud.cc">Spring Cloud中文网</a>
+        </div>
+        <div class="navbar-collapse collapse" role="navigation">
+            <ul class="nav navbar-nav">
+                <li><a href="spring-cloud-config.html" target="_blank">Config</a></li>
+                <li><a href="spring-cloud-netflix.html" target="_blank">Netflix</a></li>
+                <li><a href="spring-cloud-consul.html" target="_blank">Consul</a></li>
+                <li><a href="spring-reference.html" target="_blank">Spring中文文档</a></li>
+                <li><a href="rankings.html" target="_blank">贡献榜</a></li>
+            </ul>
+            <div class="navbar-text navbar-right">
+                <span id="loginbar">
+                    <a class="navbar-link" href="/register">注册</a>
+                    <a class="navbar-link" href="/login">登录</a>
+                </span>
+                <a class="navbar-link" href="javascript:springcloud.donation()">捐赠</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header class="jumbotron subhead">
+    <div class="container">
+        <h1>关于 Spring Cloud 中文网</h1>
+        <p class="lead">Spring Cloud中文网致力于Spring生态下的官方文档布道，降低学习门槛，提供可持续的文档管理和更新，加快Spring Cloud最佳实践在中国的传播速度，为推动中国互联网工业革命贡献一点微薄之力。</p>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 ">
+            <div id="toc" class="bc-sidebar">
+
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <article class="post page">
+                <section class="post-content">
+                    <h2>技术课题</h2>
+                    <p>研究和传播高可用性、大并发、集成模式、容器编排、消息队列、服务降级等技术方案；为持续集成、研发迭代、品质管控提供可靠的参考文档；给秒杀、限流、自动扩容等业务领域提供指导；为Spring Cloud技术实施、团队培训、知识管理提供解决方案。</p>
+                    <h2>参与贡献</h2>
+                    <p>如果你是Spring Cloud的粉丝，有足够一定的英文理解能力，愿意为Spring Cloud布道提供贡献且能保质保量的完成适当的文档翻译及校对工作，欢迎您加入到我们的行列。</p>
+                    <p>Spring Cloud中文网已实现文档选译校对，片段互阅，译文互评等功能。让文档使用者参与进来，一起完善文档翻译工作，提高译文质量，加快协作速度，为提供可持续的文档翻译和版本管理建立生态。</p>
+                    <blockquote>
+                        <p>文档翻译需要你的支持和参与才能持续发展，您可以通过提交翻译建议、或捐赠的方式提升贡献值。<br>捐赠支付宝： <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bcc4c5c9c9fcc4c5c9c992d2d9c8">[email&#160;protected]</a></p>
+                    </blockquote>
+                    <h2>关于我们</h2>
+                    <p>Spring Cloud中文网 -- springcloud.cc 创建于2016年。起因是国内没有较好的关于Spring Cloud的中文教程和交流渠道，因此，我们对Spring Cloud的文档进行了翻译整理，并且建立了QQ群，方便更多热爱Spring Cloud的架构师们分享、交流自己在架构设计、开发方面的心得。</p>
+                    <h2>友情链接</h2>
+                    <ul class="list-inline">
+                        <li><a href="http://www.didispace.com/" target="_blank">程序猿DD</a></li>
+                        <li><a href="http://www.bysocket.com/" target="_blank">泥瓦匠BYSocket</a></li>
+                        <li><a href="http://springcloud.cn/" target="_blank">Spring Cloud中国社区</a></li>
+                        <li><a href="http://spring4all.com/" target="_blank">Spring For All社区</a></li>
+                    </ul>
+                </section>
+            </article>
+        </div>
+    </div>
+</div>
+ 
+<!-- /.container -->
+<footer class="footer ">
+    <div class="container">
+        <div class="row footer-top">
+            <div class="col-sm-5 col-lg-6">
+                <h4>
+                    <img src="images/logo.png">
+                </h4>
+                <p>本网站所列开源项目的中文文档全部使用官方文档翻译整理。</p>
+            </div>
+            <div class="col-sm-7  col-lg-5 col-lg-offset-1">
+                <div class="row about">
+                    <div class="col-xs-3">
+                        <h4>关于</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="/about.html">关于我们</a></li>
+                            <li><a href="/cooperate.html">广告合作</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3">
+                        <h4>联系方式</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="https://www.zhihu.com/people/gan-ming-51" title="甘明的知乎" target="_blank" rel="nofollow">作者知乎</a></li>
+                            <li><a href="/cdn-cgi/l/email-protection#91f0f5fcf8ffd1e2e1e3f8fff6f2fdfee4f5bff2f2" rel="nofollow">电子邮件</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3">
+                        <h4>软件作品</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="https://github.com/XYUU/BatteryUtils" target="_blank" rel="nofollow">电源管理</a></li>
+                            <li><a href="https://github.com/XYUU/ChaZD" target="_blank" rel="nofollow">记单词</a></li>
+                            <li><a href="https://github.com/XYUU/JDO" target="_blank">反混淆器</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3">
+                        <h4>Thymeleaf</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="https://www.amazon.cn/Thymeleaf-3-%E5%AE%8C%E5%85%A8%E6%89%8B%E5%86%8C-%E7%94%98%E6%98%8E/dp/B06ZZHV8N4/ref=sr_1_1?ie=UTF8&qid=1496194453&sr=8-1&keywords=thymeleaf" target="_blank" rel="nofollow">Kindle版</a></li>
+                            <li><a href="http://www.duokan.com/book/139633" target="_blank" rel="nofollow">手机版</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr/>
+        <div class="row footer-bottom">
+            <ul class="list-inline text-center">
+                <li>Spring Cloud中文网 版权所有</li>
+                <li><a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow">鄂ICP备16000202号-2</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.unveil.min.js"></script>
+<script src="js/jquery.scrollUp.min.js"></script>
+<script src="js/toc.min.js"></script>
+<script src="js/jquery.matchHeight-min.js"></script>
+<script src="js/site.min.js"></script>
+<script src="js/springcloud.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
+        <title> | </title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GoBook 0.1">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        
+        
+    
+</head>
+<body>
+
+<link rel="stylesheet" href="static/css/style.css">
+
+<div class="book" data-level="0" data-basepath="." data-revision="1419950039633">
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control">
+    </div>
+    <ul class="summary">
+        <li>
+            <a href="index.html" target="blank" class="custom-link">返回书本首页</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+        <ul>
+<li><a href="index1.html">创建Orm引擎</a>
+
+<ul>
+<li><a href="1.engine.html">单库引擎</a></li>
+<li><a href="2.engine_group.html">引擎组</a></li>
+<li><a href="3.policy.html">引擎组策略</a></li>
+</ul></li>
+<li><a href="index2.html">定义表结构体</a>
+
+<ul>
+<li><a href="1.mapping.html">名称映射规则</a></li>
+<li><a href="2.prefix.html">前缀映射，后缀映射和缓存映射</a></li>
+<li><a href="3.tags.html">使用Table和Tag改变名称映射</a></li>
+<li><a href="4.columns.html">Column属性定义</a></li>
+<li><a href="5.types.html">Go与字段类型对应表</a></li>
+</ul></li>
+<li><a href="index3.html">表结构操作</a>
+
+<ul>
+<li><a href="1.metas.html">获取数据库信息</a></li>
+<li><a href="2.tables.html">表操作</a></li>
+<li><a href="3.indexes.html">创建索引和唯一索引</a></li>
+<li><a href="4.sync.html">同步数据库结构</a></li>
+<li><a href="5.dumpimport.html">导出导入SQL脚本</a></li>
+</ul></li>
+<li><a href="index4.html">插入数据</a>
+
+<ul>
+<li><a href="1.created.html">创建时间Created</a></li>
+</ul></li>
+<li><a href="index5.html">查询和统计数据</a>
+
+<ul>
+<li><a href="1.conditions.html">查询条件方法</a></li>
+<li><a href="2.overrides.html">临时开关方法</a></li>
+<li><a href="3.get.html">Get方法</a></li>
+<li><a href="10.exist.html">Exist方法</a></li>
+<li><a href="4.find.html">Find方法</a></li>
+<li><a href="5.join.html">Join的使用</a></li>
+<li><a href="6.iterate.html">Iterate方法</a></li>
+<li><a href="7.count.html">Count方法</a></li>
+<li><a href="8.rows.html">Rows方法</a></li>
+<li><a href="9.sums.html">Sum系列方法</a></li>
+</ul></li>
+<li><a href="index6.html">更新数据</a>
+
+<ul>
+<li><a href="">乐观锁Version</a></li>
+<li><a href="2.updated.html">更新时间Updated</a></li>
+</ul></li>
+<li><a href="index7.html">删除数据</a>
+
+<ul>
+<li><a href="1.deleted.html">软删除Deleted</a></li>
+</ul></li>
+<li><a href="index8.html">执行SQL查询</a></li>
+<li><a href="index9.html">执行SQL命令</a></li>
+<li><a href="index10.html">事务处理</a></li>
+<li><a href="index11.html">缓存</a></li>
+<li><a href="index12.html">事件</a></li>
+<li><a href="index13.html">Reverse 工具</a></li>
+<li><a href="index14.html">常见问题</a></li>
+<li><a href="index15.html">案例</a></li>
+</ul>
+
+    </li>
+        <li class="divider"></li>
+        <li>
+            <a href="index16.html" target="blank" class="gitbook-link">GoBook出品</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+
+            <div class="buttons">
+                <button type="button" id="reduce-font-size" class="button size-2">A</button>
+                <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+            </div>
+
+            <div class="buttons font-family-list">
+                <button type="button" data-font="0" class="button">Serif</button>
+                <button type="button" data-font="1" class="button">Sans</button>
+            </div>
+
+            <div class="buttons color-theme-list">
+                <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+                <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+                <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+        </div>
+    </div>
+
+    
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="index6.html"></a>
+    </h1>
+</div>
+
+    <div class="page-wrapper" tabindex="-1">
+        <div class="page-inner">
+            <section class="normal" id="section-gitbook_2">
+            <h3>乐观锁Version</h3>
+
+<p>要使用乐观锁，需要使用version标记</p>
+
+<pre><code class="language-Go">type User struct {
+    Id int64
+    Name string
+    Version int `xorm:&quot;version&quot;`
+}
+</code></pre>
+
+<p>在Insert时，version标记的字段将会被设置为1，在Update时，Update的内容必须包含version原来的值。</p>
+
+<pre><code class="language-Go">var user User
+engine.Id(1).Get(&amp;user)
+// SELECT * FROM user WHERE id = ?
+engine.Id(1).Update(&amp;user)
+// UPDATE user SET ..., version = version + 1 WHERE id = ? AND version = ?
+</code></pre>
+
+            </section>
+        </div>
+    </div>
+</div>
+
+        
+
+    </div>
+</div>
+
+<script src="static/js/app.js"></script>
+
+    
+
+    <script src="static/js/plugin.js"></script>
+
+
+
+    </body>
+</html>

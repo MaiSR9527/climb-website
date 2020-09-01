@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Reactive Streams Support</title>
+<link rel="stylesheet" href="static/css/spring.css">
+<link rel="stylesheet" href="static/css/font-awesome.min.css">
+<style>#header #revnumber{display:none}</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#reactive-streams">Reactive Streams Support</a>
+<ul class="sectlevel2">
+<li><a href="#preface">Preface</a></li>
+<li><a href="#messaging-gateway">Messaging Gateway</a></li>
+<li><a href="#reactive-reply-payload">Reactive Reply Payload</a></li>
+<li><a href="#fluxmessagechannel-and-reactivestreamsconsumer"><code>FluxMessageChannel</code> and <code>ReactiveStreamsConsumer</code></a></li>
+<li><a href="#source-polling-channel-adapter">Source Polling Channel Adapter</a></li>
+<li><a href="#event-driven-channel-adapter">Event-Driven Channel Adapter</a></li>
+<li><a href="#message-source-to-reactive-streams">Message Source to Reactive Streams</a></li>
+<li><a href="#splitter-and-aggregator">Splitter and Aggregator</a></li>
+<li><a href="#java-dsl">Java DSL</a></li>
+<li><a href="#reactive-message-handler"><code>ReactiveMessageHandler</code></a></li>
+<li><a href="#reactive-channel-adapters">Reactive Channel Adapters</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="reactive-streams"><a class="anchor" href="#reactive-streams"></a>Reactive Streams Support</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Integration provides support for <a href="javascript:window.open('https://www.reactive-streams.org/');">Reactive Streams</a> interaction in some places of the framework and from different aspects.
+We will discuss most of them here with appropriate links to the target chapters for details whenever necessary.</p>
+</div>
+<div class="sect2">
+<h3 id="preface"><a class="anchor" href="#preface"></a>Preface</h3>
+<div class="paragraph">
+<p>To recap, Spring Integration extends the Spring programming model to support the well-known Enterprise Integration Patterns.
+Spring Integration enables lightweight messaging within Spring-based applications and supports integration with external systems via declarative adapters.
+Spring Integration’s primary goal is to provide a simple model for building enterprise integration solutions while maintaining the separation of concerns that is essential for producing maintainable, testable code.
+This goal is achieved in the target application using first class citizens like <code>message</code>, <code>channel</code> and <code>endpoint</code>, which allow us to build an integration flow (pipeline), where (in most cases) one endpoint produces messages into a channel to be consumed by another endpoint.
+This way we distinguish an integration interaction model from the target business logic.
+The crucial part here is a channel in between: the flow behavior depends from its implementation leaving endpoints untouched.</p>
+</div>
+<div class="paragraph">
+<p>On the other hand, the Reactive Streams is a standard for asynchronous stream processing with non-blocking back pressure.
+The main goal of Reactive Streams is to govern the exchange of stream data across an asynchronous boundary – like passing elements on to another thread or thread-pool – while ensuring that the receiving side is not forced to buffer arbitrary amounts of data.
+In other words, back pressure is an integral part of this model in order to allow the queues which mediate between threads to be bounded.
+The intention of Reactive Streams implementation, such as <a href="javascript:window.open('https://projectreactor.io/');">Project Reactor</a>, is to preserve these benefits and characteristics across the whole processing graph of a stream application.
+The ultimate goal of Reactive Streams libraries is to provide types, set of operators and supporting API for a target application in a transparent and smooth manner as is possible with available programming language structure, but the final solution is not as imperative as it is with a normal function chain invocation.
+It is divided into to phases: definition and execution, which happens some time later during subscription to the final reactive publisher, and demand for data is pushed from the bottom of the definition to the top applying back-pressure as needed - we request as many events as we can handle at the moment.
+The reactive application looks like a <code>"stream"</code> or as we got used to in Spring Integration terms - <code>"flow"</code>.
+In fact the Reactive Streams SPI since Java 9 is presented in the <code>java.util.concurrent.Flow</code> class.</p>
+</div>
+<div class="paragraph">
+<p>From here it may look like Spring Integration flows are really a good fit for writing Reactive Streams applications when we apply some reactive framework operators on endpoints, but in fact the problems is much broader and we need to keep in mind that not all endpoints (e.g. <code>JdbcMessageHandler</code>) can be processed in a reactive stream transparently.
+Of course, the main goal for Reactive Streams support in Spring Integration is to allow the whole process to be fully reactive, on demand initiated and back-pressure ready.
+It is not going to be possible until the target protocols and systems for channel adapters provide a Reactive Streams interaction model.
+In the sections below we will describe what components and approaches are provided in Spring Integration for developing reactive application preserving integration flow structures.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All the Reactive Streams interaction in Spring Integration implemented with <a href="javascript:window.open('https://projectreactor.io/');">Project Reactor</a> types, such as <code>Mono</code> and <code>Flux</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="messaging-gateway"><a class="anchor" href="#messaging-gateway"></a>Messaging Gateway</h3>
+<div class="paragraph">
+<p>The simplest point of interaction with Reactive Streams is a <code>@MessagingGateway</code> where we just make a return type of the gateway method as a <code>Mono&lt;?&gt;</code> - and the whole integration flow behind a gateway method call is going to be performed when a subscription happens on the returned <code>Mono</code> instance.
+See <a href="gateway.html#reactor-mono">Reactor <code>Mono</code></a> for more information.
+A similar <code>Mono</code>-reply approach is used in the framework internally for inbound gateways which are fully based on Reactive Streams compatible protocols (see <a href="#reactive-channel-adapters">Reactive Channel Adapters</a> below for more information).
+The send-and-receive operation is wrapped into a <code>Mono.deffer()</code> with chaining a reply evaluation from the <code>replyChannel</code> header whenever it is available.
+This way an inbound component for the particular reactive protocol (e.g. Netty) is going to be as a subscriber and initiator for a reactive flow performed on the Spring Integration.
+If the request payload is a reactive type, it would be better to handle it withing a reactive stream definition deferring a process to the initiator subscription.
+For this purpose a handler method must return a reactive type as well.
+See the next section for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reactive-reply-payload"><a class="anchor" href="#reactive-reply-payload"></a>Reactive Reply Payload</h3>
+<div class="paragraph">
+<p>When a reply producing <code>MessageHandler</code> returns a reactive type payload for a reply message, it is processed in an asynchronous manner with a regular <code>MessageChannel</code> implementation provided for the <code>outputChannel</code> and flattened with on demand subscription when the output channel is a <code>ReactiveStreamsSubscribableChannel</code> implementation, e.g. <code>FluxMessageChannel</code>.
+With a standard imperative <code>MessageChannel</code> use-case, and if a reply payload is a <strong>multi-value</strong> publisher (see <code>ReactiveAdapter.isMultiValue()</code> for more information), it is wrapped into a <code>Mono.just()</code>.
+A result of this, the <code>Mono</code> has to be subscribed explicitly downstream or flattened by the <code>FluxMessageChannel</code> downstream.
+With a <code>ReactiveStreamsSubscribableChannel</code> for the <code>outputChannel</code>, there is no need to be concerned about return type and subscription; everything is processed smoothly by the framework internally.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/service-activator.html#async-service-activator');">Asynchronous Service Activator</a> for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fluxmessagechannel-and-reactivestreamsconsumer"><a class="anchor" href="#fluxmessagechannel-and-reactivestreamsconsumer"></a><code>FluxMessageChannel</code> and <code>ReactiveStreamsConsumer</code></h3>
+<div class="paragraph">
+<p>The <code>FluxMessageChannel</code> is a combined implementation of <code>MessageChannel</code> and <code>Publisher&lt;Message&lt;?&gt;&gt;</code>.
+A <code>Flux</code>, as a hot source, is created internally for sinking incoming messages from the <code>send()</code> implementation.
+The <code>Publisher.subscribe()</code> implementation is delegated to that internal <code>Flux</code>.
+Also, for on demand upstream consumption, the <code>FluxMessageChannel</code> provides an implementation for the <code>ReactiveStreamsSubscribableChannel</code> contract.
+Any upstream <code>Publisher</code> (see Source Polling Channel Adapter and splitter below, for example) provided for this channel is auto-subscribed when subscription is ready for this channel.
+Events from this delegating publishers are sunk into an internal <code>Flux</code> mentioned above.</p>
+</div>
+<div class="paragraph">
+<p>A consumer for the <code>FluxMessageChannel</code> must be a <code>org.reactivestreams.Subscriber</code> instance for honoring the Reactive Streams contract.
+Fortunately, all of the <code>MessageHandler</code> implementations in Spring Integration also implement a <code>CoreSubscriber</code> from project Reactor.
+And thanks to a <code>ReactiveStreamsConsumer</code> implementation in between, the whole integration flow configuration is left transparent for target developers.
+In this case, the flow behavior is changed from an imperative push model to a reactive pull model.
+A <code>ReactiveStreamsConsumer</code> can also be used to turn any <code>MessageChannel</code> into a reactive source using <code>MessageChannelReactiveUtils</code>, making an integration flow partially reactive.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="channel.html#flux-message-channel"><code>FluxMessageChannel</code></a> for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="source-polling-channel-adapter"><a class="anchor" href="#source-polling-channel-adapter"></a>Source Polling Channel Adapter</h3>
+<div class="paragraph">
+<p>Usually, the <code>SourcePollingChannelAdapter</code> relies on the task which is initiated by the <code>TaskScheduler</code>.
+A polling trigger is built from the provided options and used for periodic scheduling a task to poll a target source of data or events.
+When an <code>outputChannel</code> is a <code>ReactiveStreamsSubscribableChannel</code>, the same <code>Trigger</code> is used to determine the next time for execution, but instead of scheduling tasks, the <code>SourcePollingChannelAdapter</code> creates a <code>Flux&lt;Message&lt;?&gt;&gt;</code> based on the <code>Flux.generate()</code> for the <code>nextExecutionTime</code> values and <code>Mono.delay()</code> for a duration from the previous step.
+A <code>Flux.flatMapMany()</code> is used then to poll <code>maxMessagesPerPoll</code> and sink them into an output <code>Flux</code>.
+This generator <code>Flux</code> is subscribed by the provided <code>ReactiveStreamsSubscribableChannel</code> honoring a back-pressure downstream.
+This way, any <code>MessageSource</code> implementation can be turned into a reactive hot source.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/polling-consumer.html#polling-consumer');">Polling Consumer</a> for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="event-driven-channel-adapter"><a class="anchor" href="#event-driven-channel-adapter"></a>Event-Driven Channel Adapter</h3>
+<div class="paragraph">
+<p><code>MessageProducerSupport</code> is the base class for event-driven channel adapters and, typically, its <code>sendMessage(Message&lt;?&gt;)</code> is used as a listener callback in the producing driver API.
+This callback can also be easily plugged into the <code>doOnNext()</code> Reactor operator when a message producer implementation builds a <code>Flux</code> of messages instead of listener-based functionality.
+In fact, this is done in the framework when an <code>outputChannel</code> of the message producer is not a <code>ReactiveStreamsSubscribableChannel</code>.
+However, for improved end-user experience, and to allow more back-pressure ready functionality, the <code>MessageProducerSupport</code> provides a <code>subscribeToPublisher(Publisher&lt;? extends Message&lt;?&gt;&gt;)</code> API to be used in the target implementation when a <code>Publisher&lt;Message&lt;?&gt;&gt;&gt;</code> is the source of data from the target system.
+Typically, it is used from the <code>doStart()</code> implementation when target driver API is called for a <code>Publisher</code> of source data.
+It is recommended to combine a reactive <code>MessageProducerSupport</code> implementation with a <code>FluxMessageChannel</code> as the <code>outputChannel</code> for on-demand subscription and event consumption downstream.
+The channel adapter goes to a stopped state when a subscription to the <code>Publisher</code> is cancelled.
+Calling <code>stop()</code> on such a channel adapter completes the producing from the source <code>Publisher</code>.
+The channel adapter can be restarted with automatic subscription to a newly created source <code>Publisher</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="message-source-to-reactive-streams"><a class="anchor" href="#message-source-to-reactive-streams"></a>Message Source to Reactive Streams</h3>
+<div class="paragraph">
+<p>Starting with version 5.3, a <code>ReactiveMessageSourceProducer</code> is provided.
+It is a combination of a provided <code>MessageSource</code> and event-driven production into the configured <code>outputChannel</code>.
+Internally it wraps a <code>MessageSource</code> into the repeatedly resubscribed <code>Mono</code> producing a <code>Flux&lt;Message&lt;?&gt;&gt;</code> to be subscribed in the <code>subscribeToPublisher(Publisher&lt;? extends Message&lt;?&gt;&gt;)</code> mentioned above.
+The subscription for this <code>Mono</code> is done using <code>Schedulers.boundedElastic()</code> to avoid possible blocking in the target <code>MessageSource</code>.
+When the message source returns <code>null</code> (no data to pull), the <code>Mono</code> is turned into a <code>repeatWhenEmpty()</code> state with a <code>delay</code> for a subsequent re-subscription based on a <code>IntegrationReactiveUtils.DELAY_WHEN_EMPTY_KEY</code> <code>Duration</code> entry from the subscriber context.
+By default it is 1 second.
+If the <code>MessageSource</code> produces messages with a <code>IntegrationMessageHeaderAccessor.ACKNOWLEDGMENT_CALLBACK</code> information in the headers, it is acknowledged (if necessary) in the <code>doOnSuccess()</code> of the original <code>Mono</code> and rejected in the <code>doOnError()</code> if the downstream flow throws a <code>MessagingException</code> with the failed message to reject.
+This <code>ReactiveMessageSourceProducer</code> could be used for any use-case when a a polling channel adapter&#8217;s features should be turned into a reactive, on demand solution for any existing <code>MessageSource&lt;?&gt;</code> implementation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="splitter-and-aggregator"><a class="anchor" href="#splitter-and-aggregator"></a>Splitter and Aggregator</h3>
+<div class="paragraph">
+<p>When an <code>AbstractMessageSplitter</code> gets a <code>Publisher</code> for its logic, the process goes naturally over the items in the <code>Publisher</code> to map them into messages for sending to the <code>outputChannel</code>.
+If this channel is a <code>ReactiveStreamsSubscribableChannel</code>, the <code>Flux</code> wrapper for the <code>Publisher</code> is subscribed on demand from that channel and this splitter behavior looks more like a <code>flatMap</code> Reactor operator, when we map an incoming event into multi-value output <code>Publisher</code>.
+It makes most sense when the whole integration flow is built with a <code>FluxMessageChannel</code> before and after the splitter, aligning Spring Integration configuration with a Reactive Streams requirements and its operators for event processing.
+With a regular channel, a <code>Publisher</code> is converted into an <code>Iterable</code> for standard iterate-and-produce splitting logic.</p>
+</div>
+<div class="paragraph">
+<p>A <code>FluxAggregatorMessageHandler</code> is another sample of specific Reactive Streams logic implementation which could be treated as a <code>"reactive operator"</code> in terms of Project Reactor.
+It is based on the <code>Flux.groupBy()</code> and <code>Flux.window()</code> (or <code>buffer()</code>) operators.
+The incoming messages are sunk into a <code>Flux.create()</code> initiated when a <code>FluxAggregatorMessageHandler</code> is created, making it as a hot source.
+This <code>Flux</code> is subscribed to by a <code>ReactiveStreamsSubscribableChannel</code> on demand, or directly in the <code>FluxAggregatorMessageHandler.start()</code> when the <code>outputChannel</code> is not reactive.
+This <code>MessageHandler</code> has its power, when the whole integration flow is built with a <code>FluxMessageChannel</code> before and after this component, making the whole logic back-pressure ready.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/splitter.html#split-stream-and-flux');">Stream and Flux Splitting</a> and <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/aggregator.html#flux-aggregator');">Flux Aggregator</a> for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="java-dsl"><a class="anchor" href="#java-dsl"></a>Java DSL</h3>
+<div class="paragraph">
+<p>An <code>IntegrationFlow</code> in Java DSL can start from any <code>Publisher</code> instance (see <code>IntegrationFlows.from(Publisher&lt;Message&lt;T&gt;&gt;)</code>).
+Also, with an <code>IntegrationFlowBuilder.toReactivePublisher()</code> operator, the <code>IntegrationFlow</code> can be turned into a reactive hot source.
+A <code>FluxMessageChannel</code> is used internally in both cases; it can subscribe to an inbound <code>Publisher</code> according to its <code>ReactiveStreamsSubscribableChannel</code> contract and it is a <code>Publisher&lt;Message&lt;?&gt;&gt;</code> by itself for downstream subscribers.
+With a dynamic <code>IntegrationFlow</code> registration we can implement a powerful logic combining Reactive Streams with this integration flow bringing to/from <code>Publisher</code>.</p>
+</div>
+<div class="paragraph">
+<p>For the exact opposite use-case, when <code>IntegrationFlow</code> should call a reactive stream and continue after completion, a <code>fluxTransform()</code> operator is provided in the <code>IntegrationFlowDefinition</code>.
+The flow at this point is turned into a <code>FluxMessageChannel</code> which is propagated into a provided <code>fluxFunction</code>, performed in the <code>Flux.transform()</code> operator.
+A result of the function is wrapped into a <code>Mono&lt;Message&lt;?&gt;&gt;</code> for flat-mapping into an output <code>Flux</code> which is subscribed by another <code>FluxMessageChannel</code> for downstream flow.</p>
+</div>
+<div class="paragraph">
+<p>See <a href="dsl.html#java-dsl">Java DSL Chapter</a> for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reactive-message-handler"><a class="anchor" href="#reactive-message-handler"></a><code>ReactiveMessageHandler</code></h3>
+<div class="paragraph">
+<p>Starting with version 5.3, the <code>ReactiveMessageHandler</code> is supported natively in the framework.
+This type of message handler is designed for reactive clients which return a reactive type for on-demand subscription for low-level operation execution and doesn&#8217;t provide any reply data to continue a reactive stream composition.
+When a <code>ReactiveMessageHandler</code> is used in the imperative integration flow, the <code>handleMessage()</code> result in subscribed immediately after return, just because there is no reactive streams composition in such a flow to honor back-pressure.
+In this case the framework wraps this <code>ReactiveMessageHandler</code> into a <code>ReactiveMessageHandlerAdapter</code> - a plain implementation of <code>MessageHandler</code>.
+However when a <code>ReactiveStreamsConsumer</code> is involved in the flow (e.g. when channel to consume is a <code>FluxMessageChannel</code>), such a <code>ReactiveMessageHandler</code> is composed to the whole reactive stream with a <code>flatMap()</code> Reactor operator to honor back-pressure during consumption.</p>
+</div>
+<div class="paragraph">
+<p>One of the out-of-the-box <code>ReactiveMessageHandler</code> implementation is a <code>ReactiveMongoDbStoringMessageHandler</code> for Outbound Channel Adapter.
+See <a href="mongodb.html#mongodb-reactive-channel-adapters">MongoDB Reactive Channel Adapters</a> for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reactive-channel-adapters"><a class="anchor" href="#reactive-channel-adapters"></a>Reactive Channel Adapters</h3>
+<div class="paragraph">
+<p>When the target protocol for integration provides a Reactive Streams solution, it becomes straightforward to implement channel adapters in Spring Integration.</p>
+</div>
+<div class="paragraph">
+<p>An inbound, event-driven channel adapter implementation is about wrapping a request (if necessary) into a deferred <code>Mono</code> or <code>Flux</code> and perform a send (and produce reply, if any) only when a protocol component initiates a subscription into a <code>Mono</code> returned from the listener method.
+This way we have a reactive stream solution encapsulated exactly in this component.
+Of course, downstream integration flow subscribed on the output channel should honor Reactive Streams specification and be performed in the on demand, back-pressure ready manner.
+This is not always available by the nature (or the current implementation) of <code>MessageHandler</code> processor used in the integration flow.
+This limitation can be handled using thread pools and queues or <code>FluxMessageChannel</code> (see above) before and after integration endpoints when there is no reactive implementation.</p>
+</div>
+<div class="paragraph">
+<p>A reactive outbound channel adapter implementation is about initiation (or continuation) of a reactive stream to interaction with an external system according provided reactive API for the target protocol.
+An inbound payload could be a reactive type per se or as an event of the whole integration flow which is a part of reactive stream on top.
+A returned reactive type can be subscribed immediately if we are in one-way, fire-and-forget scenario, or it is propagated downstream (request-reply scenarios) for further integration flow or an explicit subscription in the target business logic, but still downstream preserving reactive streams semantics.</p>
+</div>
+<div class="paragraph">
+<p>Currently Spring Integration provides channel adapter (or gateway) implementations for <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/webflux.html#webflux');">WebFlux</a>, <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/rsocket.html#rsocket');">RSocket</a> and <a href="mongodb.html#mongodb">MongoDb</a>.
+Also an <a href="javascript:window.open('https://github.com/spring-projects/spring-integration-extensions/tree/master/spring-integration-cassandra');">Apache Cassandra Extension</a> provides a <code>MessageHandler</code> implementation for the Cassandra reactive driver.
+More reactive channel adapters are coming, for example for <a href="javascript:window.open('https://r2dbc.io/');">R2DBC</a>, for Apache Kafka in <a href="javascript:window.open('https://github.com/spring-projects/spring-integration-kafka');">Spring Integration Kafka</a> based on the <code>ReactiveKafkaProducerTemplate</code> and <code>ReactiveKafkaConsumerTemplate</code> from <a href="javascript:window.open('https://spring.io/projects/spring-kafka');">Spring for Apache Kafka</a> etc.
+For many other non-reactive channel adapters thread pools are recommended to avoid blocking during reactive stream processing.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 5.3.2.RELEASE<br>
+Last updated 2020-07-22 17:49:12 UTC
+</div>
+</div>
+<link rel="stylesheet" href="static/css/github.min.css">
+<script src="static/js/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+<script type="text/javascript" src="static/js/tocbot.min.js"></script>
+<script type="text/javascript" src="static/js/toc.js"></script>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

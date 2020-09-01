@@ -1,0 +1,357 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Overview (Spring Data Core 2.3.2.RELEASE API)</title>
+<meta name="date" content="2020-07-22">
+<link rel="stylesheet" type="text/css" href="spring-javadoc.css" title="Style">
+<script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+<script type="text/javascript">try{if(location.href.indexOf('is-external=true')==-1){parent.document.title="Overview (Spring Data Core 2.3.2.RELEASE API)";}}catch(err){}</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+
+<div class="topNav"><a name="navbar.top">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.top.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li class="navBarCell1Rev">Overview</li>
+<li>Package</li>
+<li>Class</li>
+<li>Use</li>
+<li><a href="overview-tree.html">Tree</a></li>
+<li><a href="deprecated-list.html">Deprecated</a></li>
+<li><a href="index-all.html">Index</a></li>
+<li><a href="help-doc.html">Help</a></li>
+</ul>
+<div class="aboutLanguage">Spring Data Core</div>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li>Prev</li>
+<li>Next</li>
+</ul>
+<ul class="navList">
+<li><a href="index.html?overview-summary.html" target="_top">Frames</a></li>
+<li><a href="overview-summary.html" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_top");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<a name="skip.navbar.top">
+
+</a></div>
+
+<div class="header">
+<h1 class="title">Spring Data Core 2.3.2.RELEASE API</h1>
+</div>
+<div class="contentContainer">
+<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0" summary="Packages table, listing packages, and an explanation">
+<caption><span>Packages</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Package</th>
+<th class="colLast" scope="col">Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/annotation/package-summary.html">org.springframework.data.annotation</a></td>
+<td class="colLast">
+<div class="block">Core annotations being used by Spring Data.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/auditing/package-summary.html">org.springframework.data.auditing</a></td>
+<td class="colLast">
+<div class="block">General support for entity auditing.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/auditing/config/package-summary.html">org.springframework.data.auditing.config</a></td>
+<td class="colLast">
+<div class="block">Types to abstract authentication concepts.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/config/package-summary.html">org.springframework.data.config</a></td>
+<td class="colLast">
+<div class="block">Basic support for creating custom Spring namespaces and JavaConfig.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/convert/package-summary.html">org.springframework.data.convert</a></td>
+<td class="colLast">
+<div class="block">General purpose conversion framework to read objects from a data store abstraction and write it back.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/crossstore/package-summary.html">org.springframework.data.crossstore</a></td>
+<td class="colLast">
+<div class="block">Support for cross-store persistence.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/domain/package-summary.html">org.springframework.data.domain</a></td>
+<td class="colLast">
+<div class="block">Central domain abstractions especially to be used in combination with the
+<a href="org/springframework/data/repository/Repository.html" title="interface in org.springframework.data.repository"><code>Repository</code></a> abstraction.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/domain/jaxb/package-summary.html">org.springframework.data.domain.jaxb</a></td>
+<td class="colLast">
+<div class="block">Central domain abstractions especially to be used in combination with the
+<a href="org/springframework/data/repository/Repository.html" title="interface in org.springframework.data.repository"><code>Repository</code></a> abstraction.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/geo/package-summary.html">org.springframework.data.geo</a></td>
+<td class="colLast">
+<div class="block">Value types representing geo-spatial concepts.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/geo/format/package-summary.html">org.springframework.data.geo.format</a></td>
+<td class="colLast">
+<div class="block">Formatters for geo-spatial types.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/history/package-summary.html">org.springframework.data.history</a></td>
+<td class="colLast">
+<div class="block">Basic interfaces and value objects for histography API.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/mapping/package-summary.html">org.springframework.data.mapping</a></td>
+<td class="colLast">
+<div class="block">Base package for the mapping subsystem.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/mapping/callback/package-summary.html">org.springframework.data.mapping.callback</a></td>
+<td class="colLast">
+<div class="block">Mapping callback API and implementation base classes.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/mapping/context/package-summary.html">org.springframework.data.mapping.context</a></td>
+<td class="colLast">
+<div class="block">Mapping context API and implementation base classes.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/mapping/model/package-summary.html">org.springframework.data.mapping.model</a></td>
+<td class="colLast">
+<div class="block">Core implementation of the mapping subsystem's model.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/projection/package-summary.html">org.springframework.data.projection</a></td>
+<td class="colLast">
+<div class="block">Projection subsystem.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/querydsl/package-summary.html">org.springframework.data.querydsl</a></td>
+<td class="colLast">
+<div class="block">Querydsl integration support classes.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/querydsl/binding/package-summary.html">org.springframework.data.querydsl.binding</a></td>
+<td class="colLast">
+<div class="block">Base classes to implement CDI support for repositories.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/repository/package-summary.html">org.springframework.data.repository</a></td>
+<td class="colLast">
+<div class="block">Central interfaces for repository abstraction.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/repository/cdi/package-summary.html">org.springframework.data.repository.cdi</a></td>
+<td class="colLast">
+<div class="block">Base classes to implement CDI support for repositories.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/repository/config/package-summary.html">org.springframework.data.repository.config</a></td>
+<td class="colLast">
+<div class="block">Support classes for repository namespace and JavaConfig integration.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/repository/core/package-summary.html">org.springframework.data.repository.core</a></td>
+<td class="colLast">
+<div class="block">Core abstractions for repository implementation.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/repository/core/support/package-summary.html">org.springframework.data.repository.core.support</a></td>
+<td class="colLast">
+<div class="block">Base classes to implement repositories for various data stores.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/repository/history/package-summary.html">org.springframework.data.repository.history</a></td>
+<td class="colLast">
+<div class="block">API for repositories using historiography.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/repository/history/support/package-summary.html">org.springframework.data.repository.history.support</a></td>
+<td class="colLast">
+<div class="block">Value objects to implement core repository interfaces for historiography.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/repository/init/package-summary.html">org.springframework.data.repository.init</a></td>
+<td class="colLast">
+<div class="block">Support for repository initialization using XML and JSON.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/repository/query/package-summary.html">org.springframework.data.repository.query</a></td>
+<td class="colLast">
+<div class="block">Support classes to work with query methods.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/repository/query/parser/package-summary.html">org.springframework.data.repository.query.parser</a></td>
+<td class="colLast">
+<div class="block">Support classes for parsing queries from method names.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/repository/reactive/package-summary.html">org.springframework.data.repository.reactive</a></td>
+<td class="colLast">
+<div class="block">Support for reactive repositories.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/repository/support/package-summary.html">org.springframework.data.repository.support</a></td>
+<td class="colLast">
+<div class="block">Support classes for integration of the repository programming model with 3rd party frameworks.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/repository/util/package-summary.html">org.springframework.data.repository.util</a></td>
+<td class="colLast">
+<div class="block">Utility classes for repository implementations.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/spel/package-summary.html">org.springframework.data.spel</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/spel/spi/package-summary.html">org.springframework.data.spel.spi</a></td>
+<td class="colLast">
+<div class="block">Service provider interfaces to extend the query execution mechanism.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/support/package-summary.html">org.springframework.data.support</a></td>
+<td class="colLast">
+<div class="block">Core support classes.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/transaction/package-summary.html">org.springframework.data.transaction</a></td>
+<td class="colLast">
+<div class="block">Contains advanced support for transactions, e.g. a best-effort delegating transaction manager.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/type/package-summary.html">org.springframework.data.type</a></td>
+<td class="colLast">
+<div class="block">Core support package for type introspection.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/type/classreading/package-summary.html">org.springframework.data.type.classreading</a></td>
+<td class="colLast">
+<div class="block">Support classes for reading annotation and class-level metadata.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/util/package-summary.html">org.springframework.data.util</a></td>
+<td class="colLast">
+<div class="block">Core utility APIs such as a type information framework to resolve generic types.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/web/package-summary.html">org.springframework.data.web</a></td>
+<td class="colLast">
+<div class="block">Integration with Spring MVC.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="org/springframework/data/web/config/package-summary.html">org.springframework.data.web.config</a></td>
+<td class="colLast">
+<div class="block">Spring Data web configuration.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="org/springframework/data/web/querydsl/package-summary.html">org.springframework.data.web.querydsl</a></td>
+<td class="colLast">
+<div class="block">Querydsl-specific web support.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="bottomNav"><a name="navbar.bottom">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.bottom.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li class="navBarCell1Rev">Overview</li>
+<li>Package</li>
+<li>Class</li>
+<li>Use</li>
+<li><a href="overview-tree.html">Tree</a></li>
+<li><a href="deprecated-list.html">Deprecated</a></li>
+<li><a href="index-all.html">Index</a></li>
+<li><a href="help-doc.html">Help</a></li>
+</ul>
+<div class="aboutLanguage">Spring Data Core</div>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li>Prev</li>
+<li>Next</li>
+</ul>
+<ul class="navList">
+<li><a href="index.html?overview-summary.html" target="_top">Frames</a></li>
+<li><a href="overview-summary.html" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="allclasses-noframe.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_bottom");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<a name="skip.navbar.bottom">
+
+</a></div>
+
+<p class="legalCopy"><small>Copyright &#169; 2011&#x2013;2020 <a href="https://www.spring.io">Pivotal Software, Inc.</a>. All rights reserved.</small></p>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

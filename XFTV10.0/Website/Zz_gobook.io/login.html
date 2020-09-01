@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="theme-">
+<head data-suburl="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>登录 -  Gitea: Git with a cup of tea </title>
+	<link rel="manifest" href="https://gitea.com/manifest.json" crossorigin="use-credentials">
+	<meta name="theme-color" content="#6cc644">
+	<meta name="author" content="Gitea - Git with a cup of tea">
+	<meta name="description" content="Gitea (Git with a cup of tea) is a painless self-hosted Git service written in Go">
+	<meta name="keywords" content="go,git,self-hosted,gitea">
+	<meta name="referrer" content="no-referrer">
+	<meta name="_csrf" content="aT5ZVhx84wX8T7injKaNS7ZAeRw6MTU5Njg1NTUxODM5Mzc4OTkwMQ">
+	
+	
+	
+
+	<script>
+	/*
+	@licstart  The following is the entire license notice for the
+        JavaScript code in this page.
+
+	Copyright (c) 2016 The Gitea Authors
+	Copyright (c) 2015 The Gogs Authors
+
+	Permission is hereby granted, free of charge, to any person obtaining a copy
+	of this software and associated documentation files (the "Software"), to deal
+	in the Software without restriction, including without limitation the rights
+	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	copies of the Software, and to permit persons to whom the Software is
+	furnished to do so, subject to the following conditions:
+
+	The above copyright notice and this permission notice shall be included in
+	all copies or substantial portions of the Software.
+
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	THE SOFTWARE.
+	---
+	Licensing information for additional javascript libraries can be found at:
+	  {{StaticUrlPrefix}}/js/licenses.txt
+
+	@licend  The above is the entire license notice
+        for the JavaScript code in this page.
+	*/
+	</script>
+	<script>
+		window.config = {
+			AppVer: '1.13.0\x2bdev-346-ge67c04251',
+			AppSubUrl: '',
+			StaticUrlPrefix: 'https:\/\/s.gitea.com',
+			UseServiceWorker:  false ,
+			csrf: 'aT5ZVhx84wX8T7injKaNS7ZAeRw6MTU5Njg1NTUxODM5Mzc4OTkwMQ',
+			HighlightJS: false,
+			Minicolors: false,
+			SimpleMDE: false,
+			Tribute: false,
+			U2F: false,
+			Heatmap: false,
+			heatmapUser: null,
+			NotificationSettings: {
+				MinTimeout:  10000 ,
+				TimeoutStep:   10000 ,
+				MaxTimeout:  60000 ,
+				EventSourceUpdateTime:  10000 ,
+			},
+      
+		};
+	</script>
+	
+	
+	
+
+	<link rel="stylesheet" href="static/css/index-007fdafa30e5b7d253d21c4ab4.css">
+	<noscript>
+		<style>
+			.dropdown:hover > .menu { display: block; }
+			.ui.secondary.menu .dropdown.item > .menu { margin-top: 0; }
+		</style>
+	</noscript>
+
+	<style class="list-search-style"></style>
+
+	<meta property="og:title" content="Gitea: Git with a cup of tea">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="https://s.gitea.com/img/gitea-lg.png">
+	<meta property="og:url" content="https://gitea.com/">
+	<meta property="og:description" content="Gitea (Git with a cup of tea) is a painless self-hosted Git service written in Go">
+
+<meta property="og:site_name" content="Gitea: Git with a cup of tea">
+
+
+</head>
+<body>
+	
+
+	<div class="full height">
+		<noscript>使用 JavaScript能使本网站更好的工作。</noscript>
+
+		
+
+		
+			<div class="ui top secondary stackable main menu following bar light">
+				<div class="ui container" id="navbar">
+	<div class="item brand" style="justify-content: space-between;">
+		<a href="javascript:;">
+			<img class="ui mini image" src="static/picture/gitea-sm.png">
+		</a>
+		<div class="ui basic icon button mobile-only" id="navbar-expand-toggle">
+			<i class="sidebar icon"></i>
+		</div>
+	</div>
+
+	
+		<a class="item " href="javascript:;">首页</a>
+		<a class="item " href="javascript:;">探索</a>
+	
+
+	
+
+	
+
+
+	
+		<a class="item" target="_blank" rel="noopener noreferrer" href="javascript:;">帮助</a>
+		<div class="right stackable menu">
+			
+				<a class="item" href="javascript:;">
+					<svg viewbox="0 0 16 16" class="svg octicon-person" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10.5 5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm.061 3.073a4 4 0 10-5.123 0 6.004 6.004 0 00-3.431 5.142.75.75 0 001.498.07 4.5 4.5 0 018.99 0 .75.75 0 101.498-.07 6.005 6.005 0 00-3.432-5.142z"></path></svg> 注册
+				</a>
+			
+			<a class="item active" rel="nofollow" href="javascript:;">
+				<svg viewbox="0 0 16 16" class="svg octicon-sign-in" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M2 2.75C2 1.784 2.784 1 3.75 1h2.5a.75.75 0 010 1.5h-2.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h2.5a.75.75 0 010 1.5h-2.5A1.75 1.75 0 012 13.25V2.75zm6.56 4.5l1.97-1.97a.75.75 0 10-1.06-1.06L6.22 7.47a.75.75 0 000 1.06l3.25 3.25a.75.75 0 101.06-1.06L8.56 8.75h5.69a.75.75 0 000-1.5H8.56z"></path></svg> 登录
+			</a>
+		</div>
+	
+</div>
+
+			</div>
+		
+
+
+<div class="user signin">
+	
+<div class="ui secondary pointing tabular top attached borderless menu new-menu navbar">
+	<a class="active item" rel="nofollow" href="javascript:;">
+		登录
+	</a>
+	
+	<a class=" item" rel="nofollow" href="javascript:;">
+		<i class="fa fa-openid"></i>
+		&nbsp;OpenID
+	</a>
+	
+	
+</div>
+
+
+	<div class="ui container">
+				
+		
+
+
+
+		
+		<h4 class="ui top attached header center">
+			
+				登录
+			
+		</h4>
+		<div class="ui attached segment">
+			<form class="ui form" action="/user/login" method="post">
+			<input type="hidden" name="_csrf" value="aT5ZVhx84wX8T7injKaNS7ZAeRw6MTU5Njg1NTUxODM5Mzc4OTkwMQ">
+			<div class="required inline field ">
+				<label for="user_name">登录名或电子邮箱地址</label>
+				<input id="user_name" type="text" name="user_name" value="" autofocus="" required="">
+			</div>
+			
+			<div class="required inline field ">
+				<label for="password">密码</label>
+				<input id="password" name="password" type="password" value="" autocomplete="off" required="">
+			</div>
+			
+			
+			<div class="inline field">
+				<label></label>
+				<div class="ui checkbox">
+					<label>记住登录</label>
+					<input name="remember" type="checkbox">
+				</div>
+			</div>
+			
+
+			<div class="inline field">
+				<label></label>
+				<button class="ui green button">
+					
+						登录
+					
+				</button>
+				<a href="javascript:;">忘记密码？</a>
+			</div>
+
+			
+				<div class="inline field">
+					<label></label>
+					<a href="javascript:;">还没帐户？马上注册。</a>
+				</div>
+			
+
+			
+			<div class="ui attached segment">
+				<div class="oauth2 center">
+					<div id="oauth2-login-loader" class="ui disabled centered  loader"></div>
+					<div>
+						<div id="oauth2-login-navigator">
+							<p>登录方式</p>
+							
+								
+								<a href="javascript:;">
+									<img alt="GitHub" title="GitHub" class="github" src="static/picture/github1.png" onclick="window.onOAuthLoginClick()"></a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			</form>
+		</div>
+
+	</div>
+</div>
+
+
+	
+
+	</div>
+
+	
+<script async="" src="static/js/js-UA-130935389-1.js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-130935389-1');
+</script>
+
+
+	<footer>
+	<div class="ui container">
+		<div class="ui left">
+			© Gitea 当前版本: 1.13.0&#43;dev-346-ge67c04251 页面: <strong>6ms</strong> 模板: <strong>0ms</strong>
+		</div>
+		<div class="ui right links">
+		<a href="javascript:;">沪ICP备16025802号</a>&nbsp; &nbsp;
+		
+                Powered By <a href="javascript:;">DiDi Cloud</a>
+			<div class="ui language bottom floating slide up dropdown link item">
+				<i class="world icon"></i>
+				<div class="text">简体中文</div>
+				<div class="menu">
+					
+						<a class="item active selected" href="javascript:;">简体中文</a>
+					
+						<a class="item " href="javascript:;">English</a>
+					
+						<a class="item " href="javascript:;">繁體中文（香港）</a>
+					
+						<a class="item " href="javascript:;">繁體中文（台灣）</a>
+					
+						<a class="item " href="javascript:;">Deutsch</a>
+					
+						<a class="item " href="javascript:;">français</a>
+					
+						<a class="item " href="javascript:;">Nederlands</a>
+					
+						<a class="item " href="javascript:;">latviešu</a>
+					
+						<a class="item " href="javascript:;">русский</a>
+					
+						<a class="item " href="javascript:;">Українська</a>
+					
+						<a class="item " href="javascript:;">日本語</a>
+					
+						<a class="item " href="javascript:;">español</a>
+					
+						<a class="item " href="javascript:;">português do Brasil</a>
+					
+						<a class="item " href="javascript:;">Português de Portugal</a>
+					
+						<a class="item " href="javascript:;">polski</a>
+					
+						<a class="item " href="javascript:;">български</a>
+					
+						<a class="item " href="javascript:;">italiano</a>
+					
+						<a class="item " href="javascript:;">suomi</a>
+					
+						<a class="item " href="javascript:;">Türkçe</a>
+					
+						<a class="item " href="javascript:;">čeština</a>
+					
+						<a class="item " href="javascript:;">српски</a>
+					
+						<a class="item " href="javascript:;">svenska</a>
+					
+						<a class="item " href="javascript:;">한국어</a>
+					
+				</div>
+			</div>
+			<a href="javascript:;" data-jslicense="1">JavaScript licenses</a>
+			<a href="javascript:;">API</a>
+			<a target="_blank" rel="noopener noreferrer" href="javascript:;">官方网站</a>
+		</div>
+	</div>
+</footer>
+
+
+
+
+
+
+	<script src="static/js/index-007fdafa30e5b7d253d21c4ab4.js"></script>
+
+
+</body>
+</html>
+

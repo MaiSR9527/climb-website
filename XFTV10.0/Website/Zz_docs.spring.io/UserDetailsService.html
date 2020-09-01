@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<title>UserDetailsService (spring-security-docs-manual 5.3.4.RELEASE API)</title>
+<link rel="stylesheet" type="text/css" href="static/css/stylesheet1.css" title="Style">
+<script type="text/javascript" src="static/js/script.js"></script>
+</head>
+<body>
+<script type="text/javascript">try{if(location.href.indexOf('is-external=true')==-1){parent.document.title="UserDetailsService (spring-security-docs-manual 5.3.4.RELEASE API)";}}catch(err){}var methods={"i0":6};var tabs={65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};var altColor="altColor";var rowColor="rowColor";var tableTab="tableTab";var activeTableTab="activeTableTab";</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+
+<div class="topNav"><a name="navbar.top">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.top.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="overview-summary3.html">Overview</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/package-summary.html');">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/package-tree.html');">Tree</a></li>
+<li><a href="deprecated-list3.html">Deprecated</a></li>
+<li><a href="index-all1.html">Index</a></li>
+<li><a href="help-doc3.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UserDetailsPasswordService.html');" title="interface in org.springframework.security.core.userdetails"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UsernameNotFoundException.html');" title="class in org.springframework.security.core.userdetails"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/index.html?org/springframework/security/core/userdetails/UserDetailsService.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_top">
+<li><a href="allclasses-noframe3.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_top");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.top">
+
+</a></div>
+
+
+<div class="header">
+<div class="subTitle">org.springframework.security.core.userdetails</div>
+<h2 title="Interface UserDetailsService" class="title">Interface UserDetailsService</h2>
+</div>
+<div class="contentContainer">
+<div class="description">
+<ul class="blockList">
+<li class="blockList">
+<dl>
+<dt>All Known Subinterfaces:</dt>
+<dd><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/provisioning/UserDetailsManager.html');" title="interface in org.springframework.security.provisioning">UserDetailsManager</a></dd>
+</dl>
+<dl>
+<dt>All Known Implementing Classes:</dt>
+<dd><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/CachingUserDetailsService.html');" title="class in org.springframework.security.authentication">CachingUserDetailsService</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/provisioning/InMemoryUserDetailsManager.html');" title="class in org.springframework.security.provisioning">InMemoryUserDetailsManager</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/jdbc/JdbcDaoImpl.html');" title="class in org.springframework.security.core.userdetails.jdbc">JdbcDaoImpl</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/provisioning/JdbcUserDetailsManager.html');" title="class in org.springframework.security.provisioning">JdbcUserDetailsManager</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/ldap/userdetails/LdapUserDetailsManager.html');" title="class in org.springframework.security.ldap.userdetails">LdapUserDetailsManager</a>, <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/ldap/userdetails/LdapUserDetailsService.html');" title="class in org.springframework.security.ldap.userdetails">LdapUserDetailsService</a></dd>
+</dl>
+<hr>
+<br>
+<pre>public interface <span class="typeNameLabel">UserDetailsService</span></pre>
+<div class="block">Core interface which loads user-specific data.
+<p>
+It is used throughout the framework as a user DAO and is the strategy used by the
+<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/dao/DaoAuthenticationProvider.html');" title="class in org.springframework.security.authentication.dao"><code>DaoAuthenticationProvider</code></a>.
+<p>
+The interface requires only one read-only method, which simplifies support for new
+data-access strategies.</p></div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/authentication/dao/DaoAuthenticationProvider.html');" title="class in org.springframework.security.authentication.dao"><code>DaoAuthenticationProvider</code></a>,
+<a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UserDetails.html');" title="interface in org.springframework.security.core.userdetails"><code>UserDetails</code></a></dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="summary">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="method.summary">
+
+</a>
+<h3>Method Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UserDetails.html');" title="interface in org.springframework.security.core.userdetails">UserDetails</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="#loadUserByUsername-java.lang.String-">loadUserByUsername</a></span>(java.lang.String&nbsp;username)</code>
+<div class="block">Locates the user based on the username.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="details">
+<ul class="blockList">
+<li class="blockList">
+
+<ul class="blockList">
+<li class="blockList"><a name="method.detail">
+
+</a>
+<h3>Method Detail</h3>
+<a name="loadUserByUsername-java.lang.String-">
+
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>loadUserByUsername</h4>
+<pre><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UserDetails.html');" title="interface in org.springframework.security.core.userdetails">UserDetails</a>&nbsp;loadUserByUsername(java.lang.String&nbsp;username)
+                        throws <a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UsernameNotFoundException.html');" title="class in org.springframework.security.core.userdetails">UsernameNotFoundException</a></pre>
+<div class="block">Locates the user based on the username. In the actual implementation, the search
+may possibly be case sensitive, or case insensitive depending on how the
+implementation instance is configured. In this case, the <code>UserDetails</code>
+object that comes back may have a username that is of a different case than what
+was actually requested..</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>username</code> - the username identifying the user whose data is required.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a fully populated user record (never <code>null</code>)</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UsernameNotFoundException.html');" title="class in org.springframework.security.core.userdetails">UsernameNotFoundException</a></code> - if the user could not be found or the user has no
+GrantedAuthority</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div class="bottomNav"><a name="navbar.bottom">
+
+</a>
+<div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a></div>
+<a name="navbar.bottom.firstrow">
+
+</a>
+<ul class="navList" title="Navigation">
+<li><a href="overview-summary3.html">Overview</a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/package-summary.html');">Package</a></li>
+<li class="navBarCell1Rev">Class</li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/package-tree.html');">Tree</a></li>
+<li><a href="deprecated-list3.html">Deprecated</a></li>
+<li><a href="index-all1.html">Index</a></li>
+<li><a href="help-doc3.html">Help</a></li>
+</ul>
+</div>
+<div class="subNav">
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UserDetailsPasswordService.html');" title="interface in org.springframework.security.core.userdetails"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/core/userdetails/UsernameNotFoundException.html');" title="class in org.springframework.security.core.userdetails"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+</ul>
+<ul class="navList">
+<li><a href="javascript:window.open('https://docs.spring.io/spring-security/site/docs/current/api/index.html?org/springframework/security/core/userdetails/UserDetailsService.html');" target="_top">Frames</a></li>
+<li><a href="" target="_top">No&nbsp;Frames</a></li>
+</ul>
+<ul class="navList" id="allclasses_navbar_bottom">
+<li><a href="allclasses-noframe3.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript">allClassesLink=document.getElementById("allclasses_navbar_bottom");if(window==top){allClassesLink.style.display="block";}else{allClassesLink.style.display="none";}</script>
+</div>
+<div>
+<ul class="subNavList">
+<li>Summary:&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.summary">Method</a></li>
+</ul>
+<ul class="subNavList">
+<li>Detail:&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#method.detail">Method</a></li>
+</ul>
+</div>
+<a name="skip.navbar.bottom">
+
+</a></div>
+
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

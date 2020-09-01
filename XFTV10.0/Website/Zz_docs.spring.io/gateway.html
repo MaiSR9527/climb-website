@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Messaging Gateways</title>
+<link rel="stylesheet" href="static/css/spring.css">
+<link rel="stylesheet" href="static/css/font-awesome.min.css">
+<style>#header #revnumber{display:none}</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel2">
+<li><a href="#gateway">Messaging Gateways</a>
+<ul class="sectlevel3">
+<li><a href="#gateway-proxy">Enter the <code>GatewayProxyFactoryBean</code></a></li>
+<li><a href="#gateway-namespace">Gateway XML Namespace Support</a></li>
+<li><a href="#gateway-default-reply-channel">Setting the Default Reply Channel</a></li>
+<li><a href="#gateway-configuration-annotations">Gateway Configuration with Annotations and XML</a>
+<ul class="sectlevel4">
+<li><a href="#expressions-and-global-headers">Expressions and &#8220;Global&#8221; Headers</a></li>
+</ul>
+</li>
+<li><a href="#gateway-mapping">Mapping Method Arguments to a Message</a>
+<ul class="sectlevel4">
+<li><a href="#mapping-method-arguments">Mapping Method Arguments</a></li>
+</ul>
+</li>
+<li><a href="#messaging-gateway-annotation"><code>@MessagingGateway</code> Annotation</a></li>
+<li><a href="#gateway-calling-no-argument-methods">Invoking No-Argument Methods</a></li>
+<li><a href="#gateway-calling-default-methods">Invoking <code>default</code> Methods</a></li>
+<li><a href="#gateway-error-handling">Error Handling</a></li>
+<li><a href="#gateway-timeouts">Gateway Timeouts</a></li>
+<li><a href="#async-gateway">Asynchronous Gateway</a>
+<ul class="sectlevel4">
+<li><a href="#listenablefuture"><code>ListenableFuture</code></a></li>
+<li><a href="#gateway-asynctaskexecutor"><code>AsyncTaskExecutor</code></a></li>
+<li><a href="#gw-completable-future"><code>CompletableFuture</code></a></li>
+<li><a href="#reactor-mono">Reactor <code>Mono</code></a></li>
+<li><a href="#downstream-flows-returning-an-asynchronous-type">Downstream Flows Returning an Asynchronous Type</a></li>
+<li><a href="#void-return-type"><code>void</code> Return Type</a></li>
+</ul>
+</li>
+<li><a href="#gateway-no-response">Gateway Behavior When No response Arrives</a>
+<ul class="sectlevel4">
+<li><a href="#long-running-process-downstream">Long-running Process Downstream</a></li>
+<li><a href="#downstream-component-returns-null">Downstream Component Returns 'null'</a></li>
+<li><a href="#downstream-component-return-signature-is-void-while-gateway-method-signature-is-non-void">Downstream Component Return Signature is 'void' While Gateway Method Signature Is Non-void</a></li>
+<li><a href="#downstream-component-results-in-runtime-exception">Downstream Component Results in Runtime Exception</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect2">
+<h3 id="gateway"><a class="anchor" href="#gateway"></a>Messaging Gateways</h3>
+<div class="paragraph">
+<p>A gateway hides the messaging API provided by Spring Integration.
+It lets your application&#8217;s business logic be unaware of the Spring Integration API.
+By using a generic Gateway, your code interacts with only a simple interface.</p>
+</div>
+<div class="sect3">
+<h4 id="gateway-proxy"><a class="anchor" href="#gateway-proxy"></a>Enter the <code>GatewayProxyFactoryBean</code></h4>
+<div class="paragraph">
+<p>As mentioned earlier, it would be great to have no dependency on the Spring Integration API&#8201;&#8212;&#8201;including the gateway class.
+For that reason, Spring Integration provides the <code>GatewayProxyFactoryBean</code>, which generates a proxy for any interface and internally invokes the gateway methods shown below.
+By using dependency injection, you can then expose the interface to your business methods.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows an interface that can be used to interact with Spring Integration:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">package org.cafeteria;
+
+public interface Cafe {
+
+    void placeOrder(Order order);
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gateway-namespace"><a class="anchor" href="#gateway-namespace"></a>Gateway XML Namespace Support</h4>
+<div class="paragraph">
+<p>Namespace support is also provided.
+It lets you configure an interface as a service, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway id="cafeService"
+         service-interface="org.cafeteria.Cafe"
+         default-request-channel="requestChannel"
+         default-reply-timeout="10000"
+         default-reply-channel="replyChannel"/&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>With this configuration defined, the <code>cafeService</code> can now be injected into other beans, and the code that invokes the methods on that proxied instance of the <code>Cafe</code> interface has no awareness of the Spring Integration API.
+The general approach is similar to that of Spring Remoting (RMI, HttpInvoker, and so on).
+See the <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/samples.html#samples');">&#8220;Samples&#8221;</a> Appendix for an example that uses the <code>gateway</code> element (in the Cafe demo).</p>
+</div>
+<div class="paragraph">
+<p>The defaults in the preceding configuration are applied to all methods on the gateway interface.
+If a reply timeout is not specified, the calling thread waits indefinitely for a reply.
+See <a href="#gateway-no-response">Gateway Behavior When No response Arrives</a>.</p>
+</div>
+<div class="paragraph">
+<p>The defaults can be overridden for individual methods.
+See <a href="#gateway-configuration-annotations">Gateway Configuration with Annotations and XML</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gateway-default-reply-channel"><a class="anchor" href="#gateway-default-reply-channel"></a>Setting the Default Reply Channel</h4>
+<div class="paragraph">
+<p>Typically, you need not specify the <code>default-reply-channel</code>, since a Gateway auto-creates a temporary, anonymous reply channel, where it listens for the reply.
+However, some cases may prompt you to define a <code>default-reply-channel</code> (or <code>reply-channel</code> with adapter gateways, such as HTTP, JMS, and others).</p>
+</div>
+<div class="paragraph">
+<p>For some background, we briefly discuss some of the inner workings of the gateway.
+A gateway creates a temporary point-to-point reply channel.
+It is anonymous and is added to the message headers with the name, <code>replyChannel</code>.
+When providing an explicit <code>default-reply-channel</code> (<code>reply-channel</code> with remote adapter gateways), you can point to a publish-subscribe channel, which is so named because you can add more than one subscriber to it.
+Internally, Spring Integration creates a bridge between the temporary <code>replyChannel</code> and the explicitly defined <code>default-reply-channel</code>.</p>
+</div>
+<div class="paragraph">
+<p>Suppose you want your reply to go not only to the gateway but also to some other consumer.
+In this case, you want two things:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A named channel to which you can subscribe</p>
+</li>
+<li>
+<p>That channel to be a publish-subscribe-channel</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The default strategy used by the gateway does not satisfy those needs, because the reply channel added to the header is anonymous and point-to-point.
+This means that no other subscriber can get a handle to it and, even if it could, the channel has point-to-point behavior such that only one subscriber would get the message.
+By defining a <code>default-reply-channel</code> you can point to a channel of your choosing.
+In this case, that is a <code>publish-subscribe-channel</code>.
+The gateway creates a bridge from it to the temporary, anonymous reply channel that is stored in the header.</p>
+</div>
+<div class="paragraph">
+<p>You might also want to explicitly provide a reply channel for monitoring or auditing through an interceptor (for example, <a href="channel.html#channel-wiretap">wiretap</a>).
+To configure a channel interceptor, you need a named channel.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gateway-configuration-annotations"><a class="anchor" href="#gateway-configuration-annotations"></a>Gateway Configuration with Annotations and XML</h4>
+<div class="paragraph">
+<p>Consider the following example, which expands on the previous <code>Cafe</code> interface example by adding a <code>@Gateway</code> annotation:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public interface Cafe {
+
+    @Gateway(requestChannel="orders")
+    void placeOrder(Order order);
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>@Header</code> annotation lets you add values that are interpreted as message headers, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public interface FileWriter {
+
+    @Gateway(requestChannel="filesOut")
+    void write(byte[] content, @Header(FileHeaders.FILENAME) String filename);
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you prefer the XML approach to configuring gateway methods, you can add <code>method</code> elements to the gateway configuration, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway id="myGateway" service-interface="org.foo.bar.TestGateway"
+      default-request-channel="inputC"&gt;
+  &lt;int:default-header name="calledMethod" expression="#gatewayMethod.name"/&gt;
+  &lt;int:method name="echo" request-channel="inputA" reply-timeout="2" request-timeout="200"/&gt;
+  &lt;int:method name="echoUpperCase" request-channel="inputB"/&gt;
+  &lt;int:method name="echoViaDefault"/&gt;
+&lt;/int:gateway&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also use XML to provide individual headers for each method invocation.
+This could be useful if the headers you want to set are static in nature and you do not want to embed them in the gateway&#8217;s method signature by using <code>@Header</code> annotations.
+For example, in the loan broker example, we want to influence how aggregation of the loan quotes is done, based on what type of request was initiated (single quote or all quotes).
+Determining the type of the request by evaluating which gateway method was invoked, although possible, would violate the separation of concerns paradigm (the method is a Java artifact).
+However, expressing your intention (meta information) in message headers is natural in a messaging architecture.
+The following example shows how to add a different message header for each of two methods:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway id="loanBrokerGateway"
+         service-interface="org.springframework.integration.loanbroker.LoanBrokerGateway"&gt;
+  &lt;int:method name="getLoanQuote" request-channel="loanBrokerPreProcessingChannel"&gt;
+    &lt;int:header name="RESPONSE_TYPE" value="BEST"/&gt;
+  &lt;/int:method&gt;
+  &lt;int:method name="getAllLoanQuotes" request-channel="loanBrokerPreProcessingChannel"&gt;
+    &lt;int:header name="RESPONSE_TYPE" value="ALL"/&gt;
+  &lt;/int:method&gt;
+&lt;/int:gateway&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>In the preceding example a different value is set for the 'RESPONSE_TYPE' header, based on the gateway&#8217;s method.</p>
+</div>
+<div class="sect4">
+<h5 id="expressions-and-global-headers"><a class="anchor" href="#expressions-and-global-headers"></a>Expressions and &#8220;Global&#8221; Headers</h5>
+<div class="paragraph">
+<p>The <code>&lt;header/&gt;</code> element supports <code>expression</code> as an alternative to <code>value</code>.
+The SpEL expression is evaluated to determine the value of the header.
+Starting with version 5.2, the <code>#root</code> object of the evaluation context is a <code>MethodArgsHolder</code> with <code>getMethod()</code> and <code>getArgs()</code> accessors.</p>
+</div>
+<div class="paragraph">
+<p>These two expression evaluation context variables are deprecated since version 5.2:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>#args: An <code>Object[]</code> containing the method arguments</p>
+</li>
+<li>
+<p>#gatewayMethod: The object (derived from <code>java.reflect.Method</code>) that represents the method in the <code>service-interface</code> that was invoked.
+A header containing this variable can be used later in the flow (for example, for routing).
+For example, if you wish to route on the simple method name, you might add a header with the following expression: <code>#gatewayMethod.name</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>java.reflect.Method</code> is not serializable.
+A header with an expression of <code>method</code> is lost if you later serialize the message.
+Consequently, you may wish to use <code>method.name</code> or <code>method.toString()</code> in those cases.
+The <code>toString()</code> method provides a <code>String</code> representation of the method, including parameter and return types.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Since version 3.0, <code>&lt;default-header/&gt;</code> elements can be defined to add headers to all the messages produced by the gateway, regardless of the method invoked.
+Specific headers defined for a method take precedence over default headers.
+Specific headers defined for a method here override any <code>@Header</code> annotations in the service interface.
+However, default headers do NOT override any <code>@Header</code> annotations in the service interface.</p>
+</div>
+<div class="paragraph">
+<p>The gateway now also supports a <code>default-payload-expression</code>, which is applied for all methods (unless overridden).</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gateway-mapping"><a class="anchor" href="#gateway-mapping"></a>Mapping Method Arguments to a Message</h4>
+<div class="paragraph">
+<p>Using the configuration techniques in the previous section allows control of how method arguments are mapped to message elements (payload and headers).
+When no explicit configuration is used, certain conventions are used to perform the mapping.
+In some cases, these conventions cannot determine which argument is the payload and which should be mapped to headers.
+Consider the following example:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public String send1(Object thing1, Map thing2);
+
+public String send2(Map thing1, Map thing2);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>In the first case, the convention is to map the first argument to the payload (as long as it is not a <code>Map</code>) and the contents of the second argument become headers.</p>
+</div>
+<div class="paragraph">
+<p>In the second case (or the first when the argument for parameter <code>thing1</code> is a <code>Map</code>), the framework cannot determine which argument should be the payload.
+Consequently, mapping fails.
+This can generally be resolved using a <code>payload-expression</code>, a <code>@Payload</code> annotation, or a <code>@Headers</code> annotation.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively (and whenever the conventions break down), you can take the entire responsibility for mapping the method calls to messages.
+To do so, implement an <code>MethodArgsMessageMapper</code> and provide it to the <code>&lt;gateway/&gt;</code> by using the <code>mapper</code> attribute.
+The mapper maps a <code>MethodArgsHolder</code>, which is a simple class that wraps the <code>java.reflect.Method</code> instance and an <code>Object[]</code> containing the arguments.
+When providing a custom mapper, the <code>default-payload-expression</code> attribute and <code>&lt;default-header/&gt;</code> elements are not allowed on the gateway.
+Similarly, the <code>payload-expression</code> attribute and <code>&lt;header/&gt;</code> elements are not allowed on any <code>&lt;method/&gt;</code> elements.</p>
+</div>
+<div class="sect4">
+<h5 id="mapping-method-arguments"><a class="anchor" href="#mapping-method-arguments"></a>Mapping Method Arguments</h5>
+<div class="paragraph">
+<p>The following examples show how method arguments can be mapped to the message and shows some examples of invalid configuration:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public interface MyGateway {
+
+    void payloadAndHeaderMapWithoutAnnotations(String s, Map&lt;String, Object&gt; map);
+
+    void payloadAndHeaderMapWithAnnotations(@Payload String s, @Headers Map&lt;String, Object&gt; map);
+
+    void headerValuesAndPayloadWithAnnotations(@Header("k1") String x, @Payload String s, @Header("k2") String y);
+
+    void mapOnly(Map&lt;String, Object&gt; map); // the payload is the map and no custom headers are added
+
+    void twoMapsAndOneAnnotatedWithPayload(@Payload Map&lt;String, Object&gt; payload, Map&lt;String, Object&gt; headers);
+
+    @Payload("#args[0] + #args[1] + '!'")
+    void payloadAnnotationAtMethodLevel(String a, String b);
+
+    @Payload("@someBean.exclaim(#args[0])")
+    void payloadAnnotationAtMethodLevelUsingBeanResolver(String s);
+
+    void payloadAnnotationWithExpression(@Payload("toUpperCase()") String s);
+
+    void payloadAnnotationWithExpressionUsingBeanResolver(@Payload("@someBean.sum(#this)") String s); //  <i class="conum" data-value="1"></i><b>(1)</b>
+
+    // invalid
+    void twoMapsWithoutAnnotations(Map&lt;String, Object&gt; m1, Map&lt;String, Object&gt; m2);
+
+    // invalid
+    void twoPayloads(@Payload String s1, @Payload String s2);
+
+    // invalid
+    void payloadAndHeaderAnnotationsOnSameParameter(@Payload @Header("x") String s);
+
+    // invalid
+    void payloadAndHeadersAnnotationsOnSameParameter(@Payload @Headers Map&lt;String, Object&gt; map);
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Note that, in this example, the SpEL variable, <code>#this</code>, refers to the argument&#8201;&#8212;&#8201;in this case, the value of <code>s</code>.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The XML equivalent looks a little different, since there is no <code>#this</code> context for the method argument.
+However, expressions can refer to method arguments by using the <code>#args</code> variable, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway id="myGateway" service-interface="org.something.MyGateway"&gt;
+  &lt;int:method name="send1" payload-expression="#args[0] + 'thing2'"/&gt;
+  &lt;int:method name="send2" payload-expression="@someBean.sum(#args[0])"/&gt;
+  &lt;int:method name="send3" payload-expression="#method"/&gt;
+  &lt;int:method name="send4"&gt;
+    &lt;int:header name="thing1" expression="#args[2].toUpperCase()"/&gt;
+  &lt;/int:method&gt;
+&lt;/int:gateway&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="messaging-gateway-annotation"><a class="anchor" href="#messaging-gateway-annotation"></a><code>@MessagingGateway</code> Annotation</h4>
+<div class="paragraph">
+<p>Starting with version 4.0, gateway service interfaces can be marked with a <code>@MessagingGateway</code> annotation instead of requiring the definition of a <code>&lt;gateway /&gt;</code> xml element for configuration.
+The following pair of examples compares the two approaches for configuring the same gateway:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway id="myGateway" service-interface="org.something.TestGateway"
+      default-request-channel="inputC"&gt;
+  &lt;int:default-header name="calledMethod" expression="#gatewayMethod.name"/&gt;
+  &lt;int:method name="echo" request-channel="inputA" reply-timeout="2" request-timeout="200"/&gt;
+  &lt;int:method name="echoUpperCase" request-channel="inputB"&gt;
+    &lt;int:header name="thing1" value="thing2"/&gt;
+  &lt;/int:method&gt;
+  &lt;int:method name="echoViaDefault"/&gt;
+&lt;/int:gateway&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@MessagingGateway(name = "myGateway", defaultRequestChannel = "inputC",
+		  defaultHeaders = @GatewayHeader(name = "calledMethod",
+		                           expression="#gatewayMethod.name"))
+public interface TestGateway {
+
+   @Gateway(requestChannel = "inputA", replyTimeout = 2, requestTimeout = 200)
+   String echo(String payload);
+
+   @Gateway(requestChannel = "inputB", headers = @GatewayHeader(name = "thing1", value="thing2"))
+   String echoUpperCase(String payload);
+
+   String echoViaDefault(String payload);
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Similarly to the XML version, when Spring Integration discovers these annotations during a component scan, it creates the <code>proxy</code> implementation with its messaging infrastructure.
+To perform this scan and register the <code>BeanDefinition</code> in the application context, add the <code>@IntegrationComponentScan</code> annotation to a <code>@Configuration</code> class.
+The standard <code>@ComponentScan</code> infrastructure does not deal with interfaces.
+Consequently, we introduced the custom <code>@IntegrationComponentScan</code> logic to fine the <code>@MessagingGateway</code> annotation on the interfaces and register <code>GatewayProxyFactoryBean</code> instances for them.
+See also <a href="configuration1.html#annotations">Annotation Support</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Along with the <code>@MessagingGateway</code> annotation you can mark a service interface with the <code>@Profile</code> annotation to avoid the bean creation, if such a profile is not active.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you have no XML configuration, the <code>@EnableIntegration</code> annotation is required on at least one <code>@Configuration</code> class.
+See <a href="overview.html#configuration-enable-integration">Configuration and <code>@EnableIntegration</code></a> for more information.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gateway-calling-no-argument-methods"><a class="anchor" href="#gateway-calling-no-argument-methods"></a>Invoking No-Argument Methods</h4>
+<div class="paragraph">
+<p>When invoking methods on a Gateway interface that do not have any arguments, the default behavior is to receive a <code>Message</code> from a <code>PollableChannel</code>.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes, however, you may want to trigger no-argument methods so that you can interact with other components downstream that do not require user-provided parameters, such as triggering no-argument SQL calls or stored procedures.</p>
+</div>
+<div class="paragraph">
+<p>To achieve send-and-receive semantics, you must provide a payload.
+To generate a payload, method parameters on the interface are not necessary.
+You can either use the <code>@Payload</code> annotation or the <code>payload-expression</code> attribute in XML on the <code>method</code> element.
+The following list includes a few examples of what the payloads could be:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a literal string</p>
+</li>
+<li>
+<p>#gatewayMethod.name</p>
+</li>
+<li>
+<p>new java.util.Date()</p>
+</li>
+<li>
+<p>@someBean.someMethod()'s return value</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following example shows how to use the <code>@Payload</code> annotation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">public interface Cafe {
+
+    @Payload("new java.util.Date()")
+    List&lt;Order&gt; retrieveOpenOrders();
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If a method has no argument and no return value but does contain a payload expression, it is treated as a send-only operation.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gateway-calling-default-methods"><a class="anchor" href="#gateway-calling-default-methods"></a>Invoking <code>default</code> Methods</h4>
+<div class="paragraph">
+<p>An interface for gateway proxy may have <code>default</code> methods as well and starting with version 5.3, the framework injects a <code>DefaultMethodInvokingMethodInterceptor</code> into a proxy for calling <code>default</code> methods using a <code>java.lang.invoke.MethodHandle</code> approach instead of proxying.
+The interfaces from JDK, such as <code>java.util.function.Function</code>, still can be used for gateway proxy, but their <code>default</code> methods cannot be called because of internal Java security reasons for a <code>MethodHandles.Lookup</code> instantiation against JDK classes.
+These methods also can be proxied (losing their implementation logic and, at the same time, restoring previous gateway proxy behavior) using an explicit <code>@Gateway</code> annotation on the method, or <code>proxyDefaultMethods</code> on the <code>@MessagingGateway</code> annotation or <code>&lt;gateway&gt;</code> XML component.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gateway-error-handling"><a class="anchor" href="#gateway-error-handling"></a>Error Handling</h4>
+<div class="paragraph">
+<p>The gateway invocation can result in errors.
+By default, any error that occurs downstream is re-thrown &#8220;as is&#8221; upon the gateway&#8217;s method invocation.
+For example, consider the following simple flow:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">gateway -&gt; service-activator</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If the service invoked by the service activator throws a <code>MyException</code> (for example), the framework wraps it in a <code>MessagingException</code> and attaches the message passed to the service activator in the <code>failedMessage</code> property.
+Consequently, any logging performed by the framework has full the context of the failure.
+By default, when the exception is caught by the gateway, the <code>MyException</code> is unwrapped and thrown to the caller.
+You can configure a <code>throws</code> clause on the gateway method declaration to match the particular exception type in the cause chain.
+For example, if you want to catch a whole <code>MessagingException</code> with all the messaging information of the reason of downstream error, you should have a gateway method similar to the following:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public interface MyGateway {
+
+    void performProcess() throws MessagingException;
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Since we encourage POJO programming, you may not want to expose the caller to messaging infrastructure.</p>
+</div>
+<div class="paragraph">
+<p>If your gateway method does not have a <code>throws</code> clause, the gateway traverses the cause tree, looking for a <code>RuntimeException</code> that is not a <code>MessagingException</code>.
+If none is found, the framework throws the <code>MessagingException</code>.
+If the <code>MyException</code> in the preceding discussion has a cause of <code>SomeOtherException</code> and your method <code>throws SomeOtherException</code>, the gateway further unwraps that and throws it to the caller.</p>
+</div>
+<div class="paragraph">
+<p>When a gateway is declared with no <code>service-interface</code>, an internal framework interface <code>RequestReplyExchanger</code> is used.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public interface RequestReplyExchanger {
+
+	Message&lt;?&gt; exchange(Message&lt;?&gt; request) throws MessagingException;
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before version 5.0, this <code>exchange</code> method did not have a <code>throws</code> clause and, as a result, the exception was unwrapped.
+If you use this interface and want to restore the previous unwrap behavior, use a custom <code>service-interface</code> instead or access the <code>cause</code> of the <code>MessagingException</code> yourself.</p>
+</div>
+<div class="paragraph">
+<p>However, you may want to log the error rather than propagating it or you may want to treat an exception as a valid reply (by mapping it to a message that conforms to some "error message" contract that the caller understands).
+To accomplish this, the gateway provides support for a message channel dedicated to the errors by including support for the <code>error-channel</code> attribute.
+In the following example, a 'transformer' creates a reply <code>Message</code> from the <code>Exception</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway id="sampleGateway"
+    default-request-channel="gatewayChannel"
+    service-interface="foo.bar.SimpleGateway"
+    error-channel="exceptionTransformationChannel"/&gt;
+
+&lt;int:transformer input-channel="exceptionTransformationChannel"
+        ref="exceptionTransformer" method="createErrorResponse"/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>exceptionTransformer</code> could be a simple POJO that knows how to create the expected error response objects.
+That becomes the payload that is sent back to the caller.
+You could do many more elaborate things in such an &#8220;error flow&#8221;, if necessary.
+It might involve routers (including Spring Integration&#8217;s <code>ErrorMessageExceptionTypeRouter</code>), filters, and so on.
+Most of the time, a simple 'transformer' should be sufficient, however.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you might want to only log the exception (or send it somewhere asynchronously).
+If you provide a one-way flow, nothing would be sent back to the caller.
+If you want to completely suppress exceptions, you can provide a reference to the global <code>nullChannel</code> (essentially a <code>/dev/null</code> approach).
+Finally, as mentioned above, if no <code>error-channel</code> is defined, then the exceptions propagate as usual.</p>
+</div>
+<div class="paragraph">
+<p>When you use the <code>@MessagingGateway</code> annotation (see <code><a href="#messaging-gateway-annotation"><code>@MessagingGateway</code> Annotation</a></code>), you can use use the <code>errorChannel</code> attribute.</p>
+</div>
+<div class="paragraph">
+<p>Starting with version 5.0, when you use a gateway method with a <code>void</code> return type (one-way flow), the <code>error-channel</code> reference (if provided) is populated in the standard <code>errorChannel</code> header of each sent message.
+This feature allows a downstream asynchronous flow, based on the standard <code>ExecutorChannel</code> configuration (or a <code>QueueChannel</code>), to override a default global <code>errorChannel</code> exceptions sending behavior.
+Previously you had to manually specify an <code>errorChannel</code> header with the <code>@GatewayHeader</code> annotation or the <code>&lt;header&gt;</code> element.
+The <code>error-channel</code> property was ignored for <code>void</code> methods with an asynchronous flow.
+Instead, error messages were sent to the default <code>errorChannel</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Exposing the messaging system through simple POJI Gateways provides benefits, but &#8220;hiding&#8221; the reality of the underlying messaging system does come at a price, so there are certain things you should consider.
+We want our Java method to return as quickly as possible and not hang for an indefinite amount of time while the caller is waiting on it to return (whether void, a return value, or a thrown Exception).
+When regular methods are used as a proxies in front of the messaging system, we have to take into account the potentially asynchronous nature of the underlying messaging.
+This means that there might be a chance that a message that was initiated by a gateway could be dropped by a filter and never reach a component that is responsible for producing a reply.
+Some service activator method might result in an exception, thus providing no reply (as we do not generate null messages).
+In other words, multiple scenarios can cause a reply message to never come.
+That is perfectly natural in messaging systems.
+However, think about the implication on the gateway method. The gateway&#8217;s method input arguments were incorporated into a message and sent downstream.
+The reply message would be converted to a return value of the gateway&#8217;s method.
+So you might want to ensure that, for each gateway call, there is always a reply message.
+Otherwise, your gateway method might never return and hang indefinitely.
+One way to handle this situation is by using an asynchronous gateway (explained later in this section).
+Another way of handling it is to explicitly set the <code>reply-timeout</code> attribute.
+That way, the gateway does not hang any longer than the time specified by the <code>reply-timeout</code> and returns 'null' if that timeout does elapse.
+Finally, you might want to consider setting downstream flags, such as 'requires-reply', on a service-activator or 'throw-exceptions-on-rejection' on a filter. These options are discussed in more detail in the final section of this chapter.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the downstream flow returns an <code>ErrorMessage</code>, its <code>payload</code> (a <code>Throwable</code>) is treated as a regular downstream error.
+If there is an <code>error-channel</code> configured, it is sent to the error flow.
+Otherwise the payload is thrown to the caller of the gateway.
+Similarly, if the error flow on the <code>error-channel</code> returns an <code>ErrorMessage</code>, its payload is thrown to the caller.
+The same applies to any message with a <code>Throwable</code> payload.
+This can be useful in asynchronous situations when when you need to propagate an <code>Exception</code> directly to the caller.
+To do so, you can either return an <code>Exception</code> (as the <code>reply</code> from some service) or throw it.
+Generally, even with an asynchronous flow, the framework takes care of propagating an exception thrown by the downstream flow back to the gateway.
+The <a href="javascript:window.open('https://github.com/spring-projects/spring-integration-samples/tree/master/intermediate/tcp-client-server-multiplex');">TCP Client-Server Multiplex</a> sample demonstrates both techniques to return the exception to the caller.
+It emulates a socket IO error to the waiting thread by using an <code>aggregator</code> with <code>group-timeout</code> (see <a href="javascript:window.open('https://docs.spring.io/spring-integration/reference/html/aggregator.html#agg-and-group-to');">Aggregator and Group Timeout</a>) and a <code>MessagingTimeoutException</code> reply on the discard flow.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gateway-timeouts"><a class="anchor" href="#gateway-timeouts"></a>Gateway Timeouts</h4>
+<div class="paragraph">
+<p>Gateways have two timeout properties: <code>requestTimeout</code> and <code>replyTimeout</code>.
+The request timeout applies only if the channel can block (for example, a bounded <code>QueueChannel</code> that is full).
+The <code>replyTimeout</code> value is how long the gateway waits for a reply or returns <code>null</code>.
+It defaults to infinity.</p>
+</div>
+<div class="paragraph">
+<p>The timeouts can be set as defaults for all methods on the gateway (<code>defaultRequestTimeout</code> and <code>defaultReplyTimeout</code>) or on the <code>MessagingGateway</code> interface annotation.
+Individual methods can override these defaults (in <code>&lt;method/&gt;</code> child elements) or on the <code>@Gateway</code> annotation.</p>
+</div>
+<div class="paragraph">
+<p>Starting with version 5.0, the timeouts can be defined as expressions, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Gateway(payloadExpression = "#args[0]", requestChannel = "someChannel",
+        requestTimeoutExpression = "#args[1]", replyTimeoutExpression = "#args[2]")
+String lateReply(String payload, long requestTimeout, long replyTimeout);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The evaluation context has a <code>BeanResolver</code> (use <code>@someBean</code> to reference other beans), and the <code>#args</code> array variable is available.</p>
+</div>
+<div class="paragraph">
+<p>When configuring with XML, the timeout attributes can be a long value or a SpEL expression, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;method name="someMethod" request-channel="someRequestChannel"
+                      payload-expression="#args[0]"
+                      request-timeout="1000"
+                      reply-timeout="#args[1]"&gt;
+&lt;/method&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="async-gateway"><a class="anchor" href="#async-gateway"></a>Asynchronous Gateway</h4>
+<div class="paragraph">
+<p>As a pattern, the messaging gateway offers a nice way to hide messaging-specific code while still exposing the full capabilities of the messaging system.
+As <a href="#gateway-proxy">described earlier</a>, the <code>GatewayProxyFactoryBean</code> provides a convenient way to expose a proxy over a service-interface giving you POJO-based access to a messaging system (based on objects in your own domain, primitives/Strings, or other objects).
+However, when a gateway is exposed through simple POJO methods that return values, it implies that, for each request message (generated when the method is invoked), there must be a reply message (generated when the method has returned).
+Since messaging systems are naturally asynchronous, you may not always be able to guarantee the contract where &#8220;for each request, there will always be be a reply&#8221;. Spring Integration 2.0 introduced support for an asynchronous gateway, which offers a convenient way to initiate flows when you may not know if a reply is expected or how long it takes for replies to arrive.</p>
+</div>
+<div class="paragraph">
+<p>To handle these types of scenarios, Spring Integration uses <code>java.util.concurrent.Future</code> instances to support an asynchronous gateway.</p>
+</div>
+<div class="paragraph">
+<p>From the XML configuration, nothing changes, and you still define asynchronous gateway the same way as you define a regular gateway, as the following example shows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway id="mathService" 
+     service-interface="org.springframework.integration.sample.gateway.futures.MathServiceGateway"
+     default-request-channel="requestChannel"/&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However, the gateway interface (a service interface) is a little different, as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">public interface MathServiceGateway {
+
+  Future&lt;Integer&gt; multiplyByTwo(int i);
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As the preceding example shows, the return type for the gateway method is a <code>Future</code>.
+When <code>GatewayProxyFactoryBean</code> sees that the return type of the gateway method is a <code>Future</code>, it immediately switches to the asynchronous mode by using an <code>AsyncTaskExecutor</code>.
+That is the extent of the differences.
+The call to such a method always returns immediately with a <code>Future</code> instance.
+Then you can interact with the <code>Future</code> at your own pace to get the result, cancel, and so on.
+Also, as with any other use of <code>Future</code> instances, calling <code>get()</code> may reveal a timeout, an execution exception, and so on.
+The following example shows how to use a <code>Future</code> that returns from an asynchronous gateway:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">MathServiceGateway mathService = ac.getBean("mathService", MathServiceGateway.class);
+Future&lt;Integer&gt; result = mathService.multiplyByTwo(number);
+// do something else here since the reply might take a moment
+int finalResult =  result.get(1000, TimeUnit.SECONDS);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>For a more detailed example, see the <a href="javascript:window.open('https://github.com/spring-projects/spring-integration-samples/tree/master/intermediate/async-gateway');">async-gateway</a> sample in the Spring Integration samples.</p>
+</div>
+<div class="sect4">
+<h5 id="listenablefuture"><a class="anchor" href="#listenablefuture"></a><code>ListenableFuture</code></h5>
+<div class="paragraph">
+<p>Starting with version 4.1, asynchronous gateway methods can also return <code>ListenableFuture</code> (introduced in Spring Framework 4.0).
+These return types let you provide a callback, which is invoked when the result is available (or an exception occurs).
+When the gateway detects this return type and the <a href="#gateway-asynctaskexecutor">task executor</a> is an <code>AsyncListenableTaskExecutor</code>, the executor&#8217;s <code>submitListenable()</code> method is invoked.
+The following example shows how to use a <code>ListenableFuture</code>:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">ListenableFuture&lt;String&gt; result = this.asyncGateway.async("something");
+result.addCallback(new ListenableFutureCallback&lt;String&gt;() {
+
+    @Override
+    public void onSuccess(String result) {
+        ...
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+        ...
+    }
+});</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="gateway-asynctaskexecutor"><a class="anchor" href="#gateway-asynctaskexecutor"></a><code>AsyncTaskExecutor</code></h5>
+<div class="paragraph">
+<p>By default, the <code>GatewayProxyFactoryBean</code> uses <code>org.springframework.core.task.SimpleAsyncTaskExecutor</code> when submitting internal <code>AsyncInvocationTask</code> instances for any gateway method whose return type is a <code>Future</code>.
+However, the <code>async-executor</code> attribute in the <code>&lt;gateway/&gt;</code> element&#8217;s configuration lets you provide a reference to any implementation of <code>java.util.concurrent.Executor</code> available within the Spring application context.</p>
+</div>
+<div class="paragraph">
+<p>The (default) <code>SimpleAsyncTaskExecutor</code> supports both <code>Future</code> and <code>ListenableFuture</code> return types, returning <code>FutureTask</code> or <code>ListenableFutureTask</code> respectively.
+See <a href="#gw-completable-future"><code>CompletableFuture</code></a>.
+Even though there is a default executor, it is often useful to provide an external one so that you can identify its threads in logs (when using XML, the thread name is based on the executor&#8217;s bean name), as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@Bean
+public AsyncTaskExecutor exec() {
+    SimpleAsyncTaskExecutor simpleAsyncTaskExecutor = new SimpleAsyncTaskExecutor();
+    simpleAsyncTaskExecutor.setThreadNamePrefix("exec-");
+    return simpleAsyncTaskExecutor;
+}
+
+@MessagingGateway(asyncExecutor = "exec")
+public interface ExecGateway {
+
+    @Gateway(requestChannel = "gatewayChannel")
+    Future&lt;?&gt; doAsync(String foo);
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you wish to return a different <code>Future</code> implementation, you can provide a custom executor or disable the executor altogether and return the <code>Future</code> in the reply message payload from the downstream flow.
+To disable the executor, set it to <code>null</code> in the <code>GatewayProxyFactoryBean</code> (by using <code>setAsyncTaskExecutor(null)</code>).
+When configuring the gateway with XML, use <code>async-executor=""</code>.
+When configuring by using the <code>@MessagingGateway</code> annotation, use code similar to the following:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@MessagingGateway(asyncExecutor = AnnotationConstants.NULL)
+public interface NoExecGateway {
+
+    @Gateway(requestChannel = "gatewayChannel")
+    Future&lt;?&gt; doAsync(String foo);
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+If the return type is a specific concrete <code>Future</code> implementation or some other sub-interface that is not supported by the configured executor, the flow runs on the caller&#8217;s thread and the flow must return the required type in the reply message payload.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="gw-completable-future"><a class="anchor" href="#gw-completable-future"></a><code>CompletableFuture</code></h5>
+<div class="paragraph">
+<p>Starting with version 4.2, gateway methods can now return <code>CompletableFuture&lt;?&gt;</code>.
+There are two modes of operation when returning this type:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When an async executor is provided and the return type is exactly <code>CompletableFuture</code> (not a subclass), the framework runs the task on the executor and immediately returns a <code>CompletableFuture</code> to the caller.
+<code>CompletableFuture.supplyAsync(Supplier&lt;U&gt; supplier, Executor executor)</code> is used to create the future.</p>
+</li>
+<li>
+<p>When the async executor is explicitly set to <code>null</code> and the return type is <code>CompletableFuture</code> or the return type is a subclass of <code>CompletableFuture</code>, the flow is invoked on the caller&#8217;s thread.
+In this scenario, the downstream flow is expected to return a <code>CompletableFuture</code> of the appropriate type.</p>
+</li>
+</ul>
+</div>
+<div class="sect5">
+<h6 id="usage-scenarios"><a class="anchor" href="#usage-scenarios"></a>Usage Scenarios</h6>
+<div class="paragraph">
+<p>In the following scenario, the caller thread returns immediately with a <code>CompletableFuture&lt;Invoice&gt;</code>, which is completed when the downstream flow replies to the gateway (with an <code>Invoice</code> object).</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">CompletableFuture&lt;Invoice&gt; order(Order order);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway service-interface="something.Service" default-request-channel="orders" /&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>In the following scenario, the caller thread returns with a <code>CompletableFuture&lt;Invoice&gt;</code> when the downstream flow provides it as the payload of the reply to the gateway.
+Some other process must complete the future when the invoice is ready.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">CompletableFuture&lt;Invoice&gt; order(Order order);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway service-interface="foo.Service" default-request-channel="orders"
+    async-executor="" /&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>In the following scenario, the caller thread returns with a <code>CompletableFuture&lt;Invoice&gt;</code> when the downstream flow provides it as the payload of the reply to the gateway.
+Some other process must complete the future when the invoice is ready.
+If <code>DEBUG</code> logging is enabled, a log entry is emitted, indicating that the async executor cannot be used for this scenario.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">MyCompletableFuture&lt;Invoice&gt; order(Order order);</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="xml" class="language-xml hljs">&lt;int:gateway service-interface="foo.Service" default-request-channel="orders" /&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><code>CompletableFuture</code> instances can be used to perform additional manipulation on the reply, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">CompletableFuture&lt;String&gt; process(String data);
+
+...
+
+CompletableFuture result = process("foo")
+    .thenApply(t -&gt; t.toUpperCase());
+
+...
+
+String out = result.get(10, TimeUnit.SECONDS);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="reactor-mono"><a class="anchor" href="#reactor-mono"></a>Reactor <code>Mono</code></h5>
+<div class="paragraph">
+<p>Starting with version 5.0, the <code>GatewayProxyFactoryBean</code> allows the use of <a href="javascript:window.open('https://projectreactor.io/');">Project Reactor</a> with gateway interface methods, using a <a href="javascript:window.open('https://github.com/reactor/reactor-core');"><code>Mono&lt;T&gt;</code></a> return type.
+The internal <code>AsyncInvocationTask</code> is wrapped in a <code>Mono.fromCallable()</code>.</p>
+</div>
+<div class="paragraph">
+<p>A <code>Mono</code> can be used to retrieve the result later (similar to a <code>Future&lt;?&gt;</code>), or you can consume from it with the dispatcher by invoking your <code>Consumer</code> when the result is returned to the gateway.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The <code>Mono</code> is not immediately flushed by the framework.
+Consequently, the underlying message flow is not started before the gateway method returns (as it is with a <code>Future&lt;?&gt;</code> <code>Executor</code> task).
+The flow starts when the <code>Mono</code> is subscribed to.
+Alternatively, the <code>Mono</code> (being a &#8220;Composable&#8221;) might be a part of Reactor stream, when the <code>subscribe()</code> is related to the entire <code>Flux</code>.
+The following example shows how to create a gateway with Project Reactor:
+</td>
+</tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@MessagingGateway
+public static interface TestGateway {
+
+	@Gateway(requestChannel = "promiseChannel")
+	Mono&lt;Integer&gt; multiply(Integer value);
+
+	}
+
+	    ...
+
+	@ServiceActivator(inputChannel = "promiseChannel")
+	public Integer multiply(Integer value) {
+			return value * 2;
+	}
+
+		...
+
+    Flux.just("1", "2", "3", "4", "5")
+            .map(Integer::parseInt)
+            .flatMap(this.testGateway::multiply)
+            .collectList()
+            .subscribe(integers -&gt; ...);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Another example that uses Project Reactor is a simple callback scenario, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">Mono&lt;Invoice&gt; mono = service.process(myOrder);
+
+mono.subscribe(invoice -&gt; handleInvoice(invoice));</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>The calling thread continues, with <code>handleInvoice()</code> being called when the flow completes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="downstream-flows-returning-an-asynchronous-type"><a class="anchor" href="#downstream-flows-returning-an-asynchronous-type"></a>Downstream Flows Returning an Asynchronous Type</h5>
+<div class="paragraph">
+<p>As mentioned in the <code>ListenableFuture</code> section above, if you wish some downstream component to return a message with an async payload (<code>Future</code>, <code>Mono</code>, and others), you must explicitly set the async executor to <code>null</code> (or <code>""</code> when using XML configuration).
+The flow is then invoked on the caller thread and the result can be retrieved later.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="void-return-type"><a class="anchor" href="#void-return-type"></a><code>void</code> Return Type</h5>
+<div class="paragraph">
+<p>Unlike the return types mentioned earlier, when the method return type is <code>void</code>, the framework cannot implicitly determine that you wish the downstream flow to run asynchronously, with the caller thread returning immediately.
+In this case, you must annotate the interface method with <code>@Async</code>, as the following example shows:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code data-lang="java" class="language-java hljs">@MessagingGateway
+public interface MyGateway {
+
+    @Gateway(requestChannel = "sendAsyncChannel")
+    @Async
+    void sendAsync(String payload);
+
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Unlike the <code>Future&lt;?&gt;</code> return types, there is no way to inform the caller if some exception is thrown by the flow, unless some custom <code>TaskExecutor</code> (such as an <code>ErrorHandlingTaskExecutor</code>) is associated with the <code>@Async</code> annotation.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="gateway-no-response"><a class="anchor" href="#gateway-no-response"></a>Gateway Behavior When No response Arrives</h4>
+<div class="paragraph">
+<p>As <a href="#gateway-proxy">explained earlier</a>, the gateway provides a convenient way of interacting with a messaging system through POJO method invocations.
+However, a typical method invocation, which is generally expected to always return (even with an Exception), might not always map one-to-one to message exchanges (for example, a reply message might not arrive&#8201;&#8212;&#8201;the equivalent to a method not returning).</p>
+</div>
+<div class="paragraph">
+<p>The rest of this section covers various scenarios and how to make the gateway behave more predictably.
+Certain attributes can be configured to make synchronous gateway behavior more predictable, but some of them might not always work as you might expect.
+One of them is <code>reply-timeout</code> (at the method level or <code>default-reply-timeout</code> at the gateway level).
+We examine the <code>reply-timeout</code> attribute to see how it can and cannot influence the behavior of the synchronous gateway in various scenarios.
+We examine a single-threaded scenario (all components downstream are connected through a direct channel) and multi-threaded scenarios (for example, somewhere downstream you may have a pollable or executor channel that breaks the single-thread boundary).</p>
+</div>
+<div class="sect4">
+<h5 id="long-running-process-downstream"><a class="anchor" href="#long-running-process-downstream"></a>Long-running Process Downstream</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Sync Gateway, single-threaded</dt>
+<dd>
+<p>If a component downstream is still running (perhaps because of an infinite loop or a slow service), setting a <code>reply-timeout</code> has no effect, and the gateway method call does not return until the downstream service exits (by returning or throwing an exception).</p>
+</dd>
+<dt class="hdlist1">Sync Gateway, multi-threaded</dt>
+<dd>
+<p>If a component downstream is still running (perhaps because of an infinite loop or a slow service) in a multi-threaded message flow, setting the <code>reply-timeout</code> has an effect by allowing gateway method invocation to return once the timeout has been reached, because the <code>GatewayProxyFactoryBean</code>  polls on the reply channel, waiting for a message until the timeout expires.
+However, if the timeout has been reached before the actual reply was produced, it could result in a 'null' return from the gateway method. 
+You should understand that the reply message (if produced) is sent to a reply channel after the gateway method invocation might have returned, so you must be aware of that and design your flow with it in mind.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="downstream-component-returns-null"><a class="anchor" href="#downstream-component-returns-null"></a>Downstream Component Returns 'null'</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Sync Gateway&#8201;&#8212;&#8201;single-threaded</dt>
+<dd>
+<p>If a component downstream returns 'null' and no <code>reply-timeout</code> has been configured, the gateway method call hangs indefinitely, unless a <code>reply-timeout</code> has been configured or the <code>requires-reply</code> attribute has been set on the downstream component (for example, a service activator) that might return 'null'.
+In this case, an exception would be thrown and propagated to the gateway.</p>
+</dd>
+<dt class="hdlist1">Sync Gateway&#8201;&#8212;&#8201;multi-threaded</dt>
+<dd>
+<p>The behavior is the same as the previous case.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="downstream-component-return-signature-is-void-while-gateway-method-signature-is-non-void"><a class="anchor" href="#downstream-component-return-signature-is-void-while-gateway-method-signature-is-non-void"></a>Downstream Component Return Signature is 'void' While Gateway Method Signature Is Non-void</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Sync Gateway&#8201;&#8212;&#8201;single-threaded</dt>
+<dd>
+<p>If a component downstream returns 'void' and no <code>reply-timeout</code> has been configured, the gateway method call hangs indefinitely unless a <code>reply-timeout</code> has been configured.</p>
+</dd>
+<dt class="hdlist1">Sync Gateway&#8201;&#8212;&#8201;multi-threaded</dt>
+<dd>
+<p>The behavior is the same as the previous case.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect4">
+<h5 id="downstream-component-results-in-runtime-exception"><a class="anchor" href="#downstream-component-results-in-runtime-exception"></a>Downstream Component Results in Runtime Exception</h5>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Sync Gateway&#8201;&#8212;&#8201;single-threaded</dt>
+<dd>
+<p>If a component downstream throws a runtime exception, the exception is propagated through an error message back to the gateway and re-thrown.</p>
+</dd>
+<dt class="hdlist1">Sync Gateway&#8201;&#8212;&#8201;multi-threaded</dt>
+<dd>
+<p>The behavior is the same as the previous case.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You should understand that, by default, <code>reply-timeout</code> is unbounded.
+Consequently, if you do not explicitly set the <code>reply-timeout</code>, your gateway method invocation might hang indefinitely.
+So, to make sure you analyze your flow and if there is even a remote possibility of one of these scenarios to occur, you should set the <code>reply-timeout</code> attribute to a "'safe'" value.
+Even better, you can set the <code>requires-reply</code> attribute of the downstream component to 'true' to ensure a timely response, as produced by the throwing of an exception as soon as that downstream component returns null internally.
+However you should also realize that there are some scenarios (see <a href="#long-running-process-downstream">the first one</a>) where <code>reply-timeout</code> does not help.
+That means it is also important to analyze your message flow and decide when to use a synchronous gateway rather than an asynchrnous gateway.
+As <a href="#async-gateway">described earlier</a>, the latter case is a matter of defining gateway methods that return <code>Future</code> instances.
+Then you are guaranteed to receive that return value, and you have more granular control over the results of the invocation.
+Also, when dealing with a router, you should remember that setting the <code>resolution-required</code> attribute to 'true' results in an exception thrown by the router if it can not resolve a particular channel.
+Likewise, when dealing with a Filter, you can set the <code>throw-exception-on-rejection</code> attribute.
+In both of these cases, the resulting flow behaves like it contain a service activator with the 'requires-reply' attribute.
+In other words, it helps to ensure a timely response from the gateway method invocation.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>reply-timeout</code> is unbounded for <code>&lt;gateway/&gt;</code> elements (created by the <code>GatewayProxyFactoryBean</code>).
+Inbound gateways for external integration (WS, HTTP, and so on) share many characteristics and attributes with these gateways.
+However, for those inbound gateways, the default <code>reply-timeout</code> is 1000 milliseconds (one second).
+If a downstream asynchronous hand-off is made to another thread, you may need to increase this attribute to allow enough time for the flow to complete before the gateway times out.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You should understand that the timer starts when the thread returns to the gateway&#8201;&#8212;&#8201;that is, when the flow completes or a message is handed off to another thread.
+At that time, the calling thread starts waiting for the reply.
+If the flow was completely synchronous, the reply is immediately available.
+For asynchronous flows, the thread waits for up to this time.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>See <a href="dsl.html#java-dsl-gateway"><code>IntegrationFlow</code> as Gateway</a> in the Java DSL chapter for options to define gateways through <code>IntegrationFlows</code>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 5.3.2.RELEASE<br>
+Last updated 2020-07-22 17:49:12 UTC
+</div>
+</div>
+<link rel="stylesheet" href="static/css/github.min.css">
+<script src="static/js/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+<script type="text/javascript" src="static/js/tocbot.min.js"></script>
+<script type="text/javascript" src="static/js/toc.js"></script>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

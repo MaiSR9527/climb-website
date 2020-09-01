@@ -1,0 +1,1757 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="slene, Unknown" />
+
+<title>模型定义 - beego: 简约 &amp; 强大并存的 Go 应用框架</title>
+
+<link rel="shortcut icon" href="/static/img/favicon.png" />
+
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/bootstrap.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/bootstrap-theme.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/font-awesome.min.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/prettify.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/select2.css?ver=1409586500" />
+	<script>/* end */</script>
+<!--[if IE 7]>
+<script>/* Beego Compress group `ie7` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/font-awesome-ie7.min.css?ver=1409586500" />
+	<script>/* end */</script>
+<![endif]-->
+<script>/* Beego Compress group `app` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/base.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/markdown.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/main.css?ver=1409586500" />
+	<script>/* end */</script>
+
+<!--[if lt IE 9]>
+	<script>/* Beego Compress group `ie9` begin */</script>
+	<script type="text/javascript" src="/static_source/js/html5shiv.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/respond.min.js?ver=1409586500"></script>
+	<script>/* end */</script>
+<![endif]-->
+		
+	</head>
+	<body id="front">
+		<noscript>请启用您浏览器的 JavaScript 选项！</noscript>
+		<div id="wrapper">
+			<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" data-toggle="clingify">
+        <div class="row">
+            <div class="navbar-header">
+                
+                <span class="visible-xs">
+                    <a id="docs-collapse-btn" class="navbar-btn" data-toggle="jpanel-menu" data-target="#docs-collapse">
+                        <span class="sr-only">Toggle docs menu</span>
+                        <i class="icon icon-angle-right"></i>
+                    </a>
+                </span>
+                
+                <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="hidden-xs logo" href="/">
+                    <img style="height:32px;width:102px;" src="/static/img/beego_purple.png">
+                </a>
+                <div class="visible-xs text-center">
+                    <a class="navbar-brand" href="/">
+                        Beego
+                    </a>
+                    
+                    <span class="nav-github">
+                        <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    </span>
+                    
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" role="navigation" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ><a href="/">首页</a></li>
+                    <li ><a href="/quickstart">快速入门</a></li>
+                    <li ><a href="/community">开发者社区</a></li>
+                    <li class="active"><a href="/docs/intro/">开发文档</a></li>
+                    <li ><a href="/video">视频教程</a></li>
+                    <li ><a href="/products">产品案例</a></li>
+                    <li ><a href="/blog">官方博客</a></li>
+                </ul>
+                <div class="hidden-sm hidden-xs nav-lang pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-xs btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="hidden-sm hidden-xs nav-github pull-right">
+                    <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    <span rel="show-github" data-user="astaxie" data-repo="beego" data-type="fork"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+			<div id="main">
+				
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-2 col-sm-3">
+            <div id="docs-collapse" class="collapse navbar-collapse docs-sidenav">
+                
+                    
+                    
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/intro/">beego 简介</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/intro/contributing.md">为 beego 贡献</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/intro/releases.md">发布版本</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/intro/upgrade.md">升级指南</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/install/">beego 安装升级</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/install/bee.md">Bee 工具的使用</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/quickstart/">快速入门</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/new.md">新建项目</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/router.md">路由设置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/controller.md">Controller 运行机制</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/model.md">model 逻辑</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/view.md">view 编写</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/static.md">静态文件处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/mvc/">beego 的 MVC 架构</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                controller 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/config.md">参数配置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/router.md">路由设置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/controller.md">控制器函数</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/xsrf.md">XSRF 过滤</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/params.md">请求数据处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/session.md">session 控制</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/filter.md">过滤器</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/flash.md">flash 数据</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/urlbuilding.md">URL构建</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/jsonxml.md">多种格式数据输出</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/validation.md">表单数据验证</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/errors.md">错误处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/logs.md">日志处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                model 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/overview.md">概述</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/orm.md">ORM 使用</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/object.md">CRUD 操作</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/query.md">高级查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/rawsql.md">原生 SQL 查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/querybuilder.md">构造查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/transaction.md">事务处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class="active item" href="/docs/mvc/model/models.md">模型定义</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/cmd.md">命令模式</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/test.md">测试用例</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/custom_fields.md">自定义字段</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/faq.md">FAQ</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                view 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/tutorial.md">模板语法指南</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/view.md">模板处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/template.md">模板函数</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/static.md">静态文件处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/page.md">模板分页处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/module/">beego 的模块设计</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/session.md">session 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/grace.md">grace 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/cache.md">cache 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/logs.md">logs 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/httplib.md">httplib 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/context.md">context 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/toolbox.md">toolbox 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/config.md">config 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/i18n.md">i18n 模块</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/advantage/">beego 高级编程</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/advantage/monitor.md">进程内监控</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/advantage/docs.md">API 自动化文档</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/deploy/">应用部署</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/deploy/beego.md">独立部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/deploy/supervisor.md">supervisor 部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/deploy/nginx.md">Nginx 部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/deploy/apache.md">apache 部署</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/contributed/">beego 第三方库</a>
+                            
+                            </div>
+                            
+    
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/examples/">应用例子</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/examples/chat.md">在线聊天室</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/examples/shorturl.md">短域名服务</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/examples/todo.md">Todo 列表</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                beego实用库
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/utils/captcha.md">验证码</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/utils/page.md">分页</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/faq/">FAQ</a>
+                            
+                            </div>
+                            
+    
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+    
+
+                
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-9">
+            <div class="box">
+				<div>
+					<script>
+					  (function() {
+					    var cx = '014389342508982455625:6zv6mwcpcck';
+					    var gcse = document.createElement('script');
+					    gcse.type = 'text/javascript';
+					    gcse.async = true;
+					    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					        '//www.google.com/cse/cse.js?cx=' + cx;
+					    var s = document.getElementsByTagName('script')[0];
+					    s.parentNode.insertBefore(gcse, s);
+					  })();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+                <div class="cell slim page-box">
+                    <p>
+                        <a href="https://github.com/beego/beedoc/blob/master/zh-CN/mvc/model/models.md" class="pull-right btn btn-info" target="_blank">到 GitHub 上改进本页面</a>
+                        <span class="clearfix"></span>
+                    </p>
+                    <div class="markdown docs-markdown">
+                        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="Blackfriday Markdown Processor v1.1" />
+  <meta charset="utf-8" />
+</head>
+<body>
+
+<h1>模型定义</h1>
+
+<p>复杂的模型定义不是必须的，此功能用作数据库数据转换和<a href="cmd.md#自动建表">自动建表</a></p>
+
+<p>默认的表名规则，使用驼峰转蛇形：</p>
+
+<pre><code>AuthUser -&gt; auth_user
+Auth_User -&gt; auth__user
+DB_AuthUser -&gt; d_b__auth_user
+</code></pre>
+
+<p>除了开头的大写字母以外，遇到大写会增加 <code>_</code>，原名称中的下划线保留。</p>
+
+<h2>自定义表名</h2>
+
+<pre lang="go"><code>type User struct {
+    Id int
+    Name string
+}
+
+func (u *User) TableName() string {
+    return &quot;auth_user&quot;
+}
+</code></pre>
+
+<p>如果<a href="orm.md#registermodelwithprefix">前缀设置</a>为 <code>prefix_</code> 那么表名为：prefix_auth_user</p>
+
+<h2>自定义索引</h2>
+
+<p>为单个或多个字段增加索引</p>
+
+<pre lang="go"><code>type User struct {
+    Id    int
+    Name  string
+    Email string
+}
+
+// 多字段索引
+func (u *User) TableIndex() [][]string {
+    return [][]string{
+        []string{&quot;Id&quot;, &quot;Name&quot;},
+    }
+}
+
+// 多字段唯一键
+func (u *User) TableUnique() [][]string {
+    return [][]string{
+        []string{&quot;Name&quot;, &quot;Email&quot;},
+    }
+}
+</code></pre>
+
+<h2>自定义引擎</h2>
+
+<p>仅支持 MySQL</p>
+
+<p>默认使用的引擎，为当前数据库的默认引擎，这个是由你的 mysql 配置参数决定的。</p>
+
+<p>你可以在模型里设置 TableEngine 函数，指定使用的引擎</p>
+
+<pre lang="go"><code>type User struct {
+    Id    int
+    Name  string
+    Email string
+}
+
+// 设置引擎为 INNODB
+func (u *User) TableEngine() string {
+    return &quot;INNODB&quot;
+}
+</code></pre>
+
+<h2>设置参数</h2>
+
+<pre lang="go"><code>orm:&quot;null;rel(fk)&quot;
+</code></pre>
+
+<p>多个设置间使用 <code>;</code> 分隔，设置的值如果是多个，使用 <code>,</code> 分隔。</p>
+
+<h4>忽略字段</h4>
+
+<p>设置 <code>-</code> 即可忽略 struct 中的字段</p>
+
+<pre lang="go"><code>type User struct {
+...
+    AnyField string `orm:&quot;-&quot;`
+...
+}
+</code></pre>
+
+<h4>auto</h4>
+
+<p>当 Field 类型为 int, int32, int64, uint, uint32, uint64 时，可以设置字段为自增健</p>
+
+<ul>
+<li>当模型定义里没有主键时，符合上述类型且名称为 <code>Id</code> 的 Field 将被视为自增健。<br /></li>
+</ul>
+
+<p>鉴于 go 目前的设计，即使使用了 uint64，但你也不能存储到他的最大值。依然会作为 int64 处理。</p>
+
+<p>参见 issue <a href="http://code.google.com/p/go/issues/detail?id=6113">6113</a></p>
+
+<h4>pk</h4>
+
+<p>设置为主键，适用于自定义其他类型为主键</p>
+
+<h4>null</h4>
+
+<p>数据库表默认为 <code>NOT NULL</code>，设置 null 代表 <code>ALLOW NULL</code></p>
+
+<pre lang="go"><code>Name string `orm:&quot;null&quot;`
+</code></pre>
+
+<h4>index</h4>
+
+<p>为单个字段增加索引</p>
+
+<h4>unique</h4>
+
+<p>为单个字段增加 unique 键</p>
+
+<pre lang="go"><code>Name string `orm:&quot;unique&quot;`
+</code></pre>
+
+<h4>column</h4>
+
+<p>为字段设置 db 字段的名称</p>
+
+<pre lang="go"><code>Name string `orm:&quot;column(user_name)&quot;`
+</code></pre>
+
+<h4>size</h4>
+
+<p>string 类型字段默认为 varchar(255)</p>
+
+<p>设置 size 以后，db type 将使用 varchar(size)</p>
+
+<pre lang="go"><code>Title string `orm:&quot;size(60)&quot;`
+</code></pre>
+
+<h4>digits / decimals</h4>
+
+<p>设置 float32, float64 类型的浮点精度</p>
+
+<pre lang="go"><code>Money float64 `orm:&quot;digits(12);decimals(4)&quot;`
+</code></pre>
+
+<p>总长度 12 小数点后 4 位 eg: <code>99999999.9999</code></p>
+
+<h4>auto_now / auto_now_add</h4>
+
+<pre lang="go"><code>Created time.Time `orm:&quot;auto_now_add;type(datetime)&quot;`
+Updated time.Time `orm:&quot;auto_now;type(datetime)&quot;`
+</code></pre>
+
+<ul>
+<li>auto_now 每次 model 保存时都会对时间自动更新<br /></li>
+<li>auto_now_add 第一次保存时才设置时间<br /></li>
+</ul>
+
+<p>对于批量的 update 此设置是不生效的</p>
+
+<h4>type</h4>
+
+<p>设置为 date 时，time.Time 字段的对应 db 类型使用 date</p>
+
+<pre lang="go"><code>Created time.Time `orm:&quot;auto_now_add;type(date)&quot;`
+</code></pre>
+
+<p>设置为 datetime 时，time.Time 字段的对应 db 类型使用 datetime</p>
+
+<pre lang="go"><code>Created time.Time `orm:&quot;auto_now_add;type(datetime)&quot;`
+</code></pre>
+
+<h4>default</h4>
+
+<p>为字段设置默认值，类型必须符合（目前仅用于级联删除时的默认值）</p>
+
+<pre lang="go"><code>type User struct {
+    ...
+    Status int `orm:&quot;default(1)&quot;`
+    ...
+}
+</code></pre>
+
+<h4>Comment</h4>
+
+<p>为字段添加注释</p>
+
+<pre lang="go"><code>type User struct {
+    ...
+    Status int `orm:&quot;default(1)&quot; description:&quot;这是状态字段&quot;`
+    ...
+}
+</code></pre>
+
+<p>注意: 注释中禁止包含引号</p>
+
+<h2>表关系设置</h2>
+
+<h4>rel / reverse</h4>
+
+<p><strong>RelOneToOne</strong>:</p>
+
+<pre lang="go"><code>type User struct {
+    ...
+    Profile *Profile `orm:&quot;null;rel(one);on_delete(set_null)&quot;`
+    ...
+}
+</code></pre>
+
+<p>对应的反向关系 <strong>RelReverseOne</strong>:</p>
+
+<pre lang="go"><code>type Profile struct {
+    ...
+    User *User `orm:&quot;reverse(one)&quot;`
+    ...
+}
+</code></pre>
+
+<p><strong>RelForeignKey</strong>:</p>
+
+<pre lang="go"><code>type Post struct {
+    ...
+    User *User `orm:&quot;rel(fk)&quot;` // RelForeignKey relation
+    ...
+}
+</code></pre>
+
+<p>对应的反向关系 <strong>RelReverseMany</strong>:</p>
+
+<pre lang="go"><code>type User struct {
+    ...
+    Posts []*Post `orm:&quot;reverse(many)&quot;` // fk 的反向关系
+    ...
+}
+</code></pre>
+
+<p><strong>RelManyToMany</strong>:</p>
+
+<pre lang="go"><code>type Post struct {
+    ...
+    Tags []*Tag `orm:&quot;rel(m2m)&quot;` // ManyToMany relation
+    ...
+}
+</code></pre>
+
+<p>对应的反向关系 <strong>RelReverseMany</strong>:</p>
+
+<pre lang="go"><code>type Tag struct {
+    ...
+    Posts []*Post `orm:&quot;reverse(many)&quot;`
+    ...
+}
+</code></pre>
+
+<h4>rel_table / rel_through</h4>
+
+<p>此设置针对 <code>orm:&quot;rel(m2m)&quot;</code> 的关系字段</p>
+
+<pre><code>rel_table       设置自动生成的 m2m 关系表的名称
+rel_through     如果要在 m2m 关系中使用自定义的 m2m 关系表
+                通过这个设置其名称，格式为 pkg.path.ModelName
+                eg: app.models.PostTagRel
+                PostTagRel 表需要有到 Post 和 Tag 的关系
+</code></pre>
+
+<p>当设置 rel_table 时会忽略 rel_through</p>
+
+<p>设置方法：</p>
+
+<p><code>orm:&quot;rel(m2m);rel_table(the_table_name)&quot;</code></p>
+
+<p><code>orm:&quot;rel(m2m);rel_through(pkg.path.ModelName)&quot;</code></p>
+
+<h4>on_delete</h4>
+
+<p>设置对应的 rel 关系删除时，如何处理关系字段。</p>
+
+<pre><code>cascade        级联删除(默认值)
+set_null       设置为 NULL，需要设置 null = true
+set_default    设置为默认值，需要设置 default 值
+do_nothing     什么也不做，忽略
+</code></pre>
+
+<pre lang="go"><code>type User struct {
+    ...
+    Profile *Profile `orm:&quot;null;rel(one);on_delete(set_null)&quot;`
+    ...
+}
+type Profile struct {
+    ...
+    User *User `orm:&quot;reverse(one)&quot;`
+    ...
+}
+
+// 删除 Profile 时将设置 User.Profile 的数据库字段为 NULL
+</code></pre>
+
+<h4>关于 on_delete 的相关例子</h4>
+
+<pre lang="go"><code>type User struct {
+    Id int
+    Name string
+}
+
+type Post struct {
+    Id int
+    Title string
+    User *User `orm:&quot;rel(fk)&quot;`
+}
+</code></pre>
+
+<p>假设 Post -&gt; User 是 ManyToOne 的关系，也就是外键。</p>
+
+<pre><code>o.Filter(&quot;Id&quot;, 1).Delete()
+</code></pre>
+
+<p>这个时候即会删除 Id 为 1 的 User 也会删除其发布的 Post</p>
+
+<p>不想删除的话，需要设置 set_null</p>
+
+<pre lang="go"><code>type Post struct {
+    Id int
+    Title string
+    User *User `orm:&quot;rel(fk);null;on_delete(set_null)&quot;`
+}
+</code></pre>
+
+<p>那这个时候，删除 User 只会把对应的 Post.user_id 设置为 NULL</p>
+
+<p>当然有时候为了高性能的需要，多存点数据无所谓啊，造成批量删除才是问题。</p>
+
+<pre lang="go"><code>type Post struct {
+    Id int
+    Title string
+    User *User `orm:&quot;rel(fk);null;on_delete(do_nothing)&quot;`
+}
+</code></pre>
+
+<p>那么只要删除的时候，不操作 Post 就可以了。</p>
+
+<h2>模型字段与数据库类型的对应</h2>
+
+<p>在此列出 ORM 推荐的对应数据库类型，自动建表功能也会以此为标准。</p>
+
+<p>默认所有的字段都是 <strong>NOT NULL</strong></p>
+
+<h4>MySQL</h4>
+
+<table>
+<thead>
+<tr>
+<td align="left">go</td>
+<td align="left">mysql</td>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">int, int32 - 设置 auto 或者名称为 <code>Id</code> 时</td>
+<td align="left">integer AUTO_INCREMENT</td>
+</tr>
+
+<tr>
+<td align="left">int64 - 设置 auto 或者名称为 <code>Id</code> 时</td>
+<td align="left">bigint AUTO_INCREMENT</td>
+</tr>
+
+<tr>
+<td align="left">uint, uint32 - 设置 auto 或者名称为 <code>Id</code> 时</td>
+<td align="left">integer unsigned AUTO_INCREMENT</td>
+</tr>
+
+<tr>
+<td align="left">uint64 - 设置 auto 或者名称为 <code>Id</code> 时</td>
+<td align="left">bigint unsigned AUTO_INCREMENT</td>
+</tr>
+
+<tr>
+<td align="left">bool</td>
+<td align="left">bool</td>
+</tr>
+
+<tr>
+<td align="left">string - 默认为 size 255</td>
+<td align="left">varchar(size)</td>
+</tr>
+
+<tr>
+<td align="left">string - 设置 type(char) 时</td>
+<td align="left">char(size)</td>
+</tr>
+
+<tr>
+<td align="left">string - 设置 type(text) 时</td>
+<td align="left">longtext</td>
+</tr>
+
+<tr>
+<td align="left">time.Time - 设置 type 为 date 时</td>
+<td align="left">date</td>
+</tr>
+
+<tr>
+<td align="left">time.Time</td>
+<td align="left">datetime</td>
+</tr>
+
+<tr>
+<td align="left">byte</td>
+<td align="left">tinyint unsigned</td>
+</tr>
+
+<tr>
+<td align="left">rune</td>
+<td align="left">integer</td>
+</tr>
+
+<tr>
+<td align="left">int</td>
+<td align="left">integer</td>
+</tr>
+
+<tr>
+<td align="left">int8</td>
+<td align="left">tinyint</td>
+</tr>
+
+<tr>
+<td align="left">int16</td>
+<td align="left">smallint</td>
+</tr>
+
+<tr>
+<td align="left">int32</td>
+<td align="left">integer</td>
+</tr>
+
+<tr>
+<td align="left">int64</td>
+<td align="left">bigint</td>
+</tr>
+
+<tr>
+<td align="left">uint</td>
+<td align="left">integer unsigned</td>
+</tr>
+
+<tr>
+<td align="left">uint8</td>
+<td align="left">tinyint unsigned</td>
+</tr>
+
+<tr>
+<td align="left">uint16</td>
+<td align="left">smallint unsigned</td>
+</tr>
+
+<tr>
+<td align="left">uint32</td>
+<td align="left">integer unsigned</td>
+</tr>
+
+<tr>
+<td align="left">uint64</td>
+<td align="left">bigint unsigned</td>
+</tr>
+
+<tr>
+<td align="left">float32</td>
+<td align="left">double precision</td>
+</tr>
+
+<tr>
+<td align="left">float64</td>
+<td align="left">double precision</td>
+</tr>
+
+<tr>
+<td align="left">float64 - 设置 digits, decimals 时</td>
+<td align="left">numeric(digits, decimals)</td>
+</tr>
+</tbody>
+</table>
+
+<h4>Sqlite3</h4>
+
+<table>
+<thead>
+<tr>
+<td align="left">go</td>
+<td align="left">sqlite3</td>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">int, int32, int64, uint, uint32, uint64 - 设置 auto 或者名称为 <code>Id</code> 时</td>
+<td align="left">integer AUTOINCREMENT</td>
+</tr>
+
+<tr>
+<td align="left">bool</td>
+<td align="left">bool</td>
+</tr>
+
+<tr>
+<td align="left">string - 默认为 size 255</td>
+<td align="left">varchar(size)</td>
+</tr>
+
+<tr>
+<td align="left">string - 设置 type(char) 时</td>
+<td align="left">character(size)</td>
+</tr>
+
+<tr>
+<td align="left">string - 设置 type(text) 时</td>
+<td align="left">text</td>
+</tr>
+
+<tr>
+<td align="left">time.Time - 设置 type 为 date 时</td>
+<td align="left">date</td>
+</tr>
+
+<tr>
+<td align="left">time.Time</td>
+<td align="left">datetime</td>
+</tr>
+
+<tr>
+<td align="left">byte</td>
+<td align="left">tinyint unsigned</td>
+</tr>
+
+<tr>
+<td align="left">rune</td>
+<td align="left">integer</td>
+</tr>
+
+<tr>
+<td align="left">int</td>
+<td align="left">integer</td>
+</tr>
+
+<tr>
+<td align="left">int8</td>
+<td align="left">tinyint</td>
+</tr>
+
+<tr>
+<td align="left">int16</td>
+<td align="left">smallint</td>
+</tr>
+
+<tr>
+<td align="left">int32</td>
+<td align="left">integer</td>
+</tr>
+
+<tr>
+<td align="left">int64</td>
+<td align="left">bigint</td>
+</tr>
+
+<tr>
+<td align="left">uint</td>
+<td align="left">integer unsigned</td>
+</tr>
+
+<tr>
+<td align="left">uint8</td>
+<td align="left">tinyint unsigned</td>
+</tr>
+
+<tr>
+<td align="left">uint16</td>
+<td align="left">smallint unsigned</td>
+</tr>
+
+<tr>
+<td align="left">uint32</td>
+<td align="left">integer unsigned</td>
+</tr>
+
+<tr>
+<td align="left">uint64</td>
+<td align="left">bigint unsigned</td>
+</tr>
+
+<tr>
+<td align="left">float32</td>
+<td align="left">real</td>
+</tr>
+
+<tr>
+<td align="left">float64</td>
+<td align="left">real</td>
+</tr>
+
+<tr>
+<td align="left">float64 - 设置 digits, decimals 时</td>
+<td align="left">decimal</td>
+</tr>
+</tbody>
+</table>
+
+<h4>PostgreSQL</h4>
+
+<table>
+<thead>
+<tr>
+<td align="left">go</td>
+<td align="left">postgres</td>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">int, int32, int64, uint, uint32, uint64 - 设置 auto 或者名称为 <code>Id</code> 时</td>
+<td align="left">serial</td>
+</tr>
+
+<tr>
+<td align="left">bool</td>
+<td align="left">bool</td>
+</tr>
+
+<tr>
+<td align="left">string - 若没有指定 size 默认为 text</td>
+<td align="left">varchar(size)</td>
+</tr>
+
+<tr>
+<td align="left">string - 设置 type(char) 时</td>
+<td align="left">char(size)</td>
+</tr>
+
+<tr>
+<td align="left">string - 设置 type(text) 时</td>
+<td align="left">text</td>
+</tr>
+
+<tr>
+<td align="left">string - 设置 type(json) 时</td>
+<td align="left">json</td>
+</tr>
+
+<tr>
+<td align="left">string - 设置 type(jsonb) 时</td>
+<td align="left">jsonb</td>
+</tr>
+
+<tr>
+<td align="left">time.Time - 设置 type 为 date 时</td>
+<td align="left">date</td>
+</tr>
+
+<tr>
+<td align="left">time.Time</td>
+<td align="left">timestamp with time zone</td>
+</tr>
+
+<tr>
+<td align="left">byte</td>
+<td align="left">smallint CHECK(&ldquo;column&rdquo; &gt;= 0 AND &ldquo;column&rdquo; &lt;= 255)</td>
+</tr>
+
+<tr>
+<td align="left">rune</td>
+<td align="left">integer</td>
+</tr>
+
+<tr>
+<td align="left">int</td>
+<td align="left">integer</td>
+</tr>
+
+<tr>
+<td align="left">int8</td>
+<td align="left">smallint CHECK(&ldquo;column&rdquo; &gt;= -127 AND &ldquo;column&rdquo; &lt;= 128)</td>
+</tr>
+
+<tr>
+<td align="left">int16</td>
+<td align="left">smallint</td>
+</tr>
+
+<tr>
+<td align="left">int32</td>
+<td align="left">integer</td>
+</tr>
+
+<tr>
+<td align="left">int64</td>
+<td align="left">bigint</td>
+</tr>
+
+<tr>
+<td align="left">uint</td>
+<td align="left">bigint CHECK(&ldquo;column&rdquo; &gt;= 0)</td>
+</tr>
+
+<tr>
+<td align="left">uint8</td>
+<td align="left">smallint CHECK(&ldquo;column&rdquo; &gt;= 0 AND &ldquo;column&rdquo; &lt;= 255)</td>
+</tr>
+
+<tr>
+<td align="left">uint16</td>
+<td align="left">integer CHECK(&ldquo;column&rdquo; &gt;= 0)</td>
+</tr>
+
+<tr>
+<td align="left">uint32</td>
+<td align="left">bigint CHECK(&ldquo;column&rdquo; &gt;= 0)</td>
+</tr>
+
+<tr>
+<td align="left">uint64</td>
+<td align="left">bigint CHECK(&ldquo;column&rdquo; &gt;= 0)</td>
+</tr>
+
+<tr>
+<td align="left">float32</td>
+<td align="left">double precision</td>
+</tr>
+
+<tr>
+<td align="left">float64</td>
+<td align="left">double precision</td>
+</tr>
+
+<tr>
+<td align="left">float64 - 设置 digits, decimals 时</td>
+<td align="left">numeric(digits, decimals)</td>
+</tr>
+</tbody>
+</table>
+
+<h2>关系型字段</h2>
+
+<p>其字段类型取决于对应的主键。</p>
+
+<ul>
+<li>RelForeignKey<br /></li>
+<li>RelOneToOne<br /></li>
+<li>RelManyToMany<br /></li>
+<li>RelReverseOne<br /></li>
+<li>RelReverseMany<br /></li>
+</ul>
+
+</body>
+</html>
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var disqus_url = 'http://beego.me/docs/' + 'mvc\/model\/models.md?lang=zh-CN';
+            </script>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+     
+    var disqus_shortname = 'beego'; 
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+</div>
+
+		    </div>
+		    <div class="wrapper-push"></div>
+		</div>
+		<footer id="footer">
+    <div class="container">
+        <div class="row footer-wrap">
+            <div class="col-md-12 desc">
+                <div class="pull-right">
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                        <a class="btn btn-success" href="/donate"><i class="icon-dollar"></i> 捐赠我们</a>
+                    
+                    
+                </div>
+                
+                <p>
+                    <a href="/about"><strong>关于</strong></a>
+                    |
+                    <a href="/team"><strong>团队</strong></a>
+                    |
+                    <a target="_blank" href="https://github.com/astaxie/beego" target="_blank"><strong><i class="icon-github-sign"></i> Github</strong></a>
+                    - 26ms.
+                </p>
+
+                <p>
+                    版权所有 © 2012-2014 Beego 授权许可遵循 <a href="http://www.apache.org/licenses/LICENSE-2.0.html">apache 2.0 licence</a> Logo由 <a target="_blank" href="http://mdong.org">Tengfei</a> 设计
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39123845-1', 'beego.me');
+  ga('send', 'pageview');
+
+</script>
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<script type="text/javascript" src="/static_source/js/jquery.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jquery.extend.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/bootstrap.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/lib.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/prettify.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jStorage.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jquery.jpanelmenu.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jRespond.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jquery.clingify.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/imagesloaded.pkgd.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/masonry.pkgd.min.js?ver=1409586500"></script>
+	<script>/* end */</script>
+<script>/* Beego Compress group `app` begin */</script>
+	<script type="text/javascript" src="/static_source/js/main.js?ver=1409586500"></script>
+	<script>/* end */</script>
+	</body>
+</html>
+
+
+

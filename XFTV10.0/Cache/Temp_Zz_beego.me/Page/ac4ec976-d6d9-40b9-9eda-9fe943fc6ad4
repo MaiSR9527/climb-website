@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="author" content="slene, Unknown" />
+
+<title>Bee 工具的使用 - beego: 简约 &amp; 强大并存的 Go 应用框架</title>
+
+<link rel="shortcut icon" href="/static/img/favicon.png" />
+
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/bootstrap.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/bootstrap-theme.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/font-awesome.min.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/prettify.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/select2.css?ver=1409586500" />
+	<script>/* end */</script>
+<!--[if IE 7]>
+<script>/* Beego Compress group `ie7` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/font-awesome-ie7.min.css?ver=1409586500" />
+	<script>/* end */</script>
+<![endif]-->
+<script>/* Beego Compress group `app` begin */</script>
+	<link rel="stylesheet" href="/static_source/css/base.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/markdown.css?ver=1409586500" />
+	<link rel="stylesheet" href="/static_source/css/main.css?ver=1409586500" />
+	<script>/* end */</script>
+
+<!--[if lt IE 9]>
+	<script>/* Beego Compress group `ie9` begin */</script>
+	<script type="text/javascript" src="/static_source/js/html5shiv.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/respond.min.js?ver=1409586500"></script>
+	<script>/* end */</script>
+<![endif]-->
+		
+	</head>
+	<body id="front">
+		<noscript>请启用您浏览器的 JavaScript 选项！</noscript>
+		<div id="wrapper">
+			<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container" data-toggle="clingify">
+        <div class="row">
+            <div class="navbar-header">
+                
+                <span class="visible-xs">
+                    <a id="docs-collapse-btn" class="navbar-btn" data-toggle="jpanel-menu" data-target="#docs-collapse">
+                        <span class="sr-only">Toggle docs menu</span>
+                        <i class="icon icon-angle-right"></i>
+                    </a>
+                </span>
+                
+                <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="hidden-xs logo" href="/">
+                    <img style="height:32px;width:102px;" src="/static/img/beego_purple.png">
+                </a>
+                <div class="visible-xs text-center">
+                    <a class="navbar-brand" href="/">
+                        Beego
+                    </a>
+                    
+                    <span class="nav-github">
+                        <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    </span>
+                    
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" role="navigation" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li ><a href="/">首页</a></li>
+                    <li ><a href="/quickstart">快速入门</a></li>
+                    <li ><a href="/community">开发者社区</a></li>
+                    <li class="active"><a href="/docs/intro/">开发文档</a></li>
+                    <li ><a href="/video">视频教程</a></li>
+                    <li ><a href="/products">产品案例</a></li>
+                    <li ><a href="/blog">官方博客</a></li>
+                </ul>
+                <div class="hidden-sm hidden-xs nav-lang pull-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-xs btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="hidden-sm hidden-xs nav-github pull-right">
+                    <span rel="show-github" data-user="astaxie" data-repo="beego"></span>
+                    <span rel="show-github" data-user="astaxie" data-repo="beego" data-type="fork"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+			<div id="main">
+				
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-2 col-sm-3">
+            <div id="docs-collapse" class="collapse navbar-collapse docs-sidenav">
+                
+                    
+                    
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/intro/">beego 简介</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/intro/contributing.md">为 beego 贡献</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/intro/releases.md">发布版本</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/intro/upgrade.md">升级指南</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/install/">beego 安装升级</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class="active item" href="/docs/install/bee.md">Bee 工具的使用</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/quickstart/">快速入门</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/new.md">新建项目</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/router.md">路由设置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/controller.md">Controller 运行机制</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/model.md">model 逻辑</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/view.md">view 编写</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/quickstart/static.md">静态文件处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/mvc/">beego 的 MVC 架构</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                controller 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/config.md">参数配置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/router.md">路由设置</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/controller.md">控制器函数</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/xsrf.md">XSRF 过滤</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/params.md">请求数据处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/session.md">session 控制</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/filter.md">过滤器</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/flash.md">flash 数据</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/urlbuilding.md">URL构建</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/jsonxml.md">多种格式数据输出</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/validation.md">表单数据验证</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/errors.md">错误处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/controller/logs.md">日志处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                model 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/overview.md">概述</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/orm.md">ORM 使用</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/object.md">CRUD 操作</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/query.md">高级查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/rawsql.md">原生 SQL 查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/querybuilder.md">构造查询</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/transaction.md">事务处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/models.md">模型定义</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/cmd.md">命令模式</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/test.md">测试用例</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/custom_fields.md">自定义字段</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/model/faq.md">FAQ</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                view 设计
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/tutorial.md">模板语法指南</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/view.md">模板处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/template.md">模板函数</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/static.md">静态文件处理</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/mvc/view/page.md">模板分页处理</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/module/">beego 的模块设计</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/session.md">session 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/grace.md">grace 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/cache.md">cache 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/logs.md">logs 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/httplib.md">httplib 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/context.md">context 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/toolbox.md">toolbox 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/config.md">config 模块</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/module/i18n.md">i18n 模块</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/advantage/">beego 高级编程</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/advantage/monitor.md">进程内监控</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/advantage/docs.md">API 自动化文档</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/deploy/">应用部署</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/deploy/beego.md">独立部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/deploy/supervisor.md">supervisor 部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/deploy/nginx.md">Nginx 部署</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/deploy/apache.md">apache 部署</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/contributed/">beego 第三方库</a>
+                            
+                            </div>
+                            
+    
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/examples/">应用例子</a>
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/examples/chat.md">在线聊天室</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/examples/shorturl.md">短域名服务</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/examples/todo.md">Todo 列表</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                beego实用库
+                            
+                            </div>
+                            
+    
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/utils/captcha.md">验证码</a></li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li><a class=" item" href="/docs/utils/page.md">分页</a></li>
+                    
+                
+            </ul>
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+            <ul class="list-unstyled">
+                
+                    
+                        <li class="group">
+                            <div class="section">
+                            
+                                <a class=" item" href="/docs/faq/">FAQ</a>
+                            
+                            </div>
+                            
+    
+        
+    
+
+                        </li>
+                    
+                
+            </ul>
+        
+    
+
+                
+            </div>
+        </div>
+        <div class="col-md-10 col-sm-9">
+            <div class="box">
+				<div>
+					<script>
+					  (function() {
+					    var cx = '014389342508982455625:6zv6mwcpcck';
+					    var gcse = document.createElement('script');
+					    gcse.type = 'text/javascript';
+					    gcse.async = true;
+					    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+					        '//www.google.com/cse/cse.js?cx=' + cx;
+					    var s = document.getElementsByTagName('script')[0];
+					    s.parentNode.insertBefore(gcse, s);
+					  })();
+					</script>
+					<gcse:search></gcse:search>
+				</div>
+                <div class="cell slim page-box">
+                    <p>
+                        <a href="https://github.com/beego/beedoc/blob/master/zh-CN/install/bee.md" class="pull-right btn btn-info" target="_blank">到 GitHub 上改进本页面</a>
+                        <span class="clearfix"></span>
+                    </p>
+                    <div class="markdown docs-markdown">
+                        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="Blackfriday Markdown Processor v1.1" />
+  <meta charset="utf-8" />
+</head>
+<body>
+
+<h1>bee 工具简介</h1>
+
+<p>bee 工具是一个为了协助快速开发 beego 项目而创建的项目，通过 bee 您可以很容易的进行 beego 项目的创建、热编译、开发、测试、和部署。</p>
+
+<h2>bee 工具的安装</h2>
+
+<p>您可以通过如下的方式安装 bee 工具：</p>
+
+<pre><code>go get github.com/beego/bee
+</code></pre>
+
+<p>安装完之后，<code>bee</code> 可执行文件默认存放在 <code>$GOPATH/bin</code> 里面，所以您需要把 <code>$GOPATH/bin</code> 添加到您的环境变量中，才可以进行下一步。</p>
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>如何添加环境变量，请自行搜索<br />
+如果你本机设置了 <code>GOBIN</code>，那么上面的命令就会安装到 <code>GOBIN</code> 下，请添加 GOBIN 到你的环境变量中</p>
+</blockquote>
+</blockquote>
+</blockquote>
+
+<h2>bee 工具命令详解</h2>
+
+<p>我们在命令行输入 <code>bee</code>，可以看到如下的信息：</p>
+
+<pre><code>Bee is a Fast and Flexible tool for managing your Beego Web Application.
+
+Usage:
+
+    bee command [arguments]
+
+The commands are:
+
+    version     show the bee &amp; beego version
+    migrate     run database migrations
+    api         create an api application base on beego framework
+    bale        packs non-Go files to Go source files    
+    new         create an application base on beego framework
+    run         run the app which can hot compile
+    pack        compress an beego project
+    fix         Fixes your application by making it compatible with newer versions of Beego
+    dlv         Start a debugging session using Delve
+    dockerize   Generates a Dockerfile for your Beego application
+    generate    Source code generator
+    hprose      Creates an RPC application based on Hprose and Beego frameworks
+    pack        Compresses a Beego application into a single file
+    rs          Run customized scripts
+    run         Run the application by starting a local development server
+    server      serving static content over HTTP on port
+    
+Use bee help [command] for more information about a command.
+    
+</code></pre>
+
+<h3><code>new</code> 命令</h3>
+
+<p><code>new</code> 命令是新建一个 Web 项目，我们在命令行下执行 <code>bee new &lt;项目名&gt;</code> 就可以创建一个新的项目。但是注意该命令必须在 <code>$GOPATH/src</code> 下执行。最后会在 <code>$GOPATH/src</code> 相应目录下生成如下目录结构的项目：</p>
+
+<pre><code>bee new myproject
+[INFO] Creating application...
+/gopath/src/myproject/
+/gopath/src/myproject/conf/
+/gopath/src/myproject/controllers/
+/gopath/src/myproject/models/
+/gopath/src/myproject/static/
+/gopath/src/myproject/static/js/
+/gopath/src/myproject/static/css/
+/gopath/src/myproject/static/img/
+/gopath/src/myproject/views/
+/gopath/src/myproject/conf/app.conf
+/gopath/src/myproject/controllers/default.go
+/gopath/src/myproject/views/index.tpl
+/gopath/src/myproject/main.go
+13-11-25 09:50:39 [SUCC] New application successfully created!
+</code></pre>
+
+<pre><code>myproject
+├── conf
+│   └── app.conf
+├── controllers
+│   └── default.go
+├── main.go
+├── models
+├── routers
+│   └── router.go
+├── static
+│   ├── css
+│   ├── img
+│   └── js
+├── tests
+│   └── default_test.go
+└── views
+    └── index.tpl
+
+8 directories, 4 files
+</code></pre>
+
+<h3><code>api</code> 命令</h3>
+
+<p>上面的 <code>new</code> 命令是用来新建 Web 项目，不过很多用户使用 beego 来开发 API 应用。所以这个 <code>api</code> 命令就是用来创建 API 应用的，执行命令之后如下所示：</p>
+
+<pre><code>bee api apiproject
+create app folder: /gopath/src/apiproject
+create conf: /gopath/src/apiproject/conf
+create controllers: /gopath/src/apiproject/controllers
+create models: /gopath/src/apiproject/models
+create tests: /gopath/src/apiproject/tests
+create conf app.conf: /gopath/src/apiproject/conf/app.conf
+create controllers default.go: /gopath/src/apiproject/controllers/default.go
+create tests default.go: /gopath/src/apiproject/tests/default_test.go
+create models object.go: /gopath/src/apiproject/models/object.go
+create main.go: /gopath/src/apiproject/main.go
+</code></pre>
+
+<p>这个项目的目录结构如下：</p>
+
+<pre><code>apiproject
+├── conf
+│   └── app.conf
+├── controllers
+│   └── object.go
+│   └── user.go
+├── docs
+│   └── doc.go
+├── main.go
+├── models
+│   └── object.go
+│   └── user.go
+├── routers
+│   └── router.go
+└── tests
+    └── default_test.go
+</code></pre>
+
+<p>从上面的目录我们可以看到和 Web 项目相比，少了 static 和 views 目录，多了一个 test 模块，用来做单元测试的。</p>
+
+<p>同时，该命令还支持一些自定义参数自动连接数据库创建相关 model 和 controller:<br />
+<code>bee api [appname] [-tables=&quot;&quot;] [-driver=mysql] [-conn=&quot;root:&lt;password&gt;@tcp(127.0.0.1:3306)/test&quot;]</code><br />
+如果 conn 参数为空则创建一个示例项目，否则将基于链接信息链接数据库创建项目。</p>
+
+<h3><code>run</code> 命令</h3>
+
+<p>我们在开发 Go 项目的时候最大的问题是经常需要自己手动去编译再运行，<code>bee run</code> 命令是监控 beego 的项目，通过 <a href="https://github.com/howeyc/fsnotify">fsnotify</a>监控文件系统。但是注意该命令必须在 <code>$GOPATH/src/appname</code> 下执行。<br />
+这样我们在开发过程中就可以实时的看到项目修改之后的效果：</p>
+
+<pre><code>bee run
+13-11-25 09:53:04 [INFO] Uses 'myproject' as 'appname'
+13-11-25 09:53:04 [INFO] Initializing watcher...
+13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject/controllers)
+13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject/models)
+13-11-25 09:53:04 [TRAC] Directory(/gopath/src/myproject)
+13-11-25 09:53:04 [INFO] Start building...
+13-11-25 09:53:16 [SUCC] Build was successful
+13-11-25 09:53:16 [INFO] Restarting myproject ...
+13-11-25 09:53:16 [INFO] ./myproject is running...
+</code></pre>
+
+<p>我们打开浏览器就可以看到效果 <code>http://localhost:8080/</code>:</p>
+
+<p><img src="../images/beerun.png" alt="" />
+</p>
+
+<p>如果我们修改了 <code>Controller</code> 下面的 <code>default.go</code> 文件，我们就可以看到命令行输出：</p>
+
+<pre><code>13-11-25 10:11:20 [EVEN] &quot;/gopath/src/myproject/controllers/default.go&quot;: DELETE|MODIFY
+13-11-25 10:11:20 [INFO] Start building...
+13-11-25 10:11:20 [SKIP] &quot;/gopath/src/myproject/controllers/default.go&quot;: CREATE
+13-11-25 10:11:23 [SKIP] &quot;/gopath/src/myproject/controllers/default.go&quot;: MODIFY
+13-11-25 10:11:23 [SUCC] Build was successful
+13-11-25 10:11:23 [INFO] Restarting myproject ...
+13-11-25 10:11:23 [INFO] ./myproject is running...
+</code></pre>
+
+<p>刷新浏览器我们看到新的修改内容已经输出。</p>
+
+<h3><code>pack</code> 命令</h3>
+
+<p><code>pack</code> 目录用来发布应用的时候打包，会把项目打包成 zip 包，这样我们部署的时候直接把打包之后的项目上传，解压就可以部署了：</p>
+
+<pre><code>bee pack
+app path: /gopath/src/apiproject
+GOOS darwin GOARCH amd64
+build apiproject
+build success
+exclude prefix:
+exclude suffix: .go:.DS_Store:.tmp
+file write to `/gopath/src/apiproject/apiproject.tar.gz`
+</code></pre>
+
+<p>我们可以看到目录下有如下的压缩文件：</p>
+
+<pre><code>rwxr-xr-x  1 astaxie  staff  8995376 11 25 22:46 apiproject
+-rw-r--r--  1 astaxie  staff  2240288 11 25 22:58 apiproject.tar.gz
+drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 conf
+drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 controllers
+-rw-r--r--  1 astaxie  staff      509 11 25 22:31 main.go
+drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 models
+drwxr-xr-x  3 astaxie  staff      102 11 25 22:31 tests
+</code></pre>
+
+<h3><code>bale</code> 命令</h3>
+
+<p>这个命令目前仅限内部使用，具体实现方案未完善，主要用来压缩所有的静态文件变成一个变量申明文件，全部编译到二进制文件里面，用户发布的时候携带静态文件，包括 js、css、img 和 views。最后在启动运行时进行非覆盖式的自解压。</p>
+
+<h3><code>version</code> 命令</h3>
+
+<p>这个命令是动态获取 bee、beego 和 Go 的版本，这样一旦用户出现错误，可以通过该命令来查看当前的版本</p>
+
+<pre><code>$ bee version
+bee   :1.2.2
+beego :1.4.2
+Go    :go version go1.3.3 darwin/amd64
+</code></pre>
+
+<h3><code>generate</code> 命令</h3>
+
+<p>这个命令是用来自动化的生成代码的，包含了从数据库一键生成 model，还包含了 scaffold 的，通过这个命令，让大家开发代码不再慢</p>
+
+<pre><code>bee generate scaffold [scaffoldname] [-fields=&quot;&quot;] [-driver=mysql] [-conn=&quot;root:@tcp(127.0.0.1:3306)/test&quot;]
+    The generate scaffold command will do a number of things for you.
+    -fields: a list of table fields. Format: field:type, ...
+    -driver: [mysql | postgres | sqlite], the default is mysql
+    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+    example: bee generate scaffold post -fields=&quot;title:string,body:text&quot;
+
+bee generate model [modelname] [-fields=&quot;&quot;]
+    generate RESTful model based on fields
+    -fields: a list of table fields. Format: field:type, ...
+
+bee generate controller [controllerfile]
+    generate RESTful controllers
+
+bee generate view [viewpath]
+    generate CRUD view in viewpath
+
+bee generate migration [migrationfile] [-fields=&quot;&quot;]
+    generate migration file for making database schema update
+    -fields: a list of table fields. Format: field:type, ...
+
+bee generate docs
+    generate swagger doc file
+
+bee generate test [routerfile]
+    generate testcase
+
+bee generate appcode [-tables=&quot;&quot;] [-driver=mysql] [-conn=&quot;root:@tcp(127.0.0.1:3306)/test&quot;] [-level=3]
+    generate appcode based on an existing database
+    -tables: a list of table names separated by ',', default is empty, indicating all tables
+    -driver: [mysql | postgres | sqlite], the default is mysql
+    -conn:   the connection string used by the driver.
+             default for mysql:    root:@tcp(127.0.0.1:3306)/test
+             default for postgres: postgres://postgres:postgres@127.0.0.1:5432/postgres
+    -level:  [1 | 2 | 3], 1 = models; 2 = models,controllers; 3 = models,controllers,router
+</code></pre>
+
+<h3><code>migrate</code> 命令</h3>
+
+<p>这个命令是应用的数据库迁移命令，主要是用来每次应用升级，降级的SQL管理。</p>
+
+<pre><code>bee migrate [-driver=mysql] [-conn=&quot;root:@tcp(127.0.0.1:3306)/test&quot;]
+    run all outstanding migrations
+    -driver: [mysql | postgresql | sqlite], the default is mysql
+    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+
+bee migrate rollback [-driver=mysql] [-conn=&quot;root:@tcp(127.0.0.1:3306)/test&quot;]
+    rollback the last migration operation
+    -driver: [mysql | postgresql | sqlite], the default is mysql
+    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+
+bee migrate reset [-driver=mysql] [-conn=&quot;root:@tcp(127.0.0.1:3306)/test&quot;]
+    rollback all migrations
+    -driver: [mysql | postgresql | sqlite], the default is mysql
+    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+
+bee migrate refresh [-driver=mysql] [-conn=&quot;root:@tcp(127.0.0.1:3306)/test&quot;]
+    rollback all migrations and run them all again
+    -driver: [mysql | postgresql | sqlite], the default is mysql
+    -conn:   the connection string used by the driver, the default is root:@tcp(127.0.0.1:3306)/test
+</code></pre>
+
+<h3><code>dockerize</code> 命令</h3>
+
+<p>这个命令可以通过生成Dockerfile文件来实现docker化你的应用。</p>
+
+<p>例子:<br />
+生成一个以1.6.4版本Go环境为基础镜像的Dockerfile,并暴露9000端口:</p>
+
+<pre><code>$ bee dockerize -image=&quot;library/golang:1.6.4&quot; -expose=9000
+______
+| ___ \
+| |_/ /  ___   ___
+| ___ \ / _ \ / _ \
+| |_/ /|  __/|  __/
+\____/  \___| \___| v1.6.2
+2016/12/26 22:34:54 INFO     ▶ 0001 Generating Dockerfile...
+2016/12/26 22:34:54 SUCCESS  ▶ 0002 Dockerfile generated.
+</code></pre>
+
+<p>更多帮助信息可执行<code>bee help dockerize</code>.</p>
+
+<h2>bee 工具配置文件</h2>
+
+<p>您可能已经注意到，在 bee 工具的源码目录下有一个 <code>bee.json</code> 文件，这个文件是针对 bee 工具的一些行为进行配置。该功能还未完全开发完成，不过其中的一些选项已经可以使用：</p>
+
+<ul>
+<li><code>&quot;version&quot;: 0</code>：配置文件版本，用于对比是否发生不兼容的配置格式版本。<br /></li>
+<li><code>&quot;go_install&quot;: false</code>：如果您的包均使用完整的导入路径（例如：<code>github.com/user/repo/subpkg</code>）,则可以启用该选项来进行 <code>go install</code> 操作，加快构建操作。<br /></li>
+<li><code>&quot;watch_ext&quot;: []</code>：用于监控其它类型的文件（默认只监控后缀为 <code>.go</code> 的文件）。<br /></li>
+<li><code>&quot;dir_structure&quot;:{}</code>：如果您的目录名与默认的 MVC 架构的不同，则可以使用该选项进行修改。<br /></li>
+<li><code>&quot;cmd_args&quot;: []</code>：如果您需要在每次启动时加入启动参数，则可以使用该选项。<br /></li>
+<li><code>&quot;envs&quot;: []</code>：如果您需要在每次启动时设置临时环境变量参数，则可以使用该选项。<br /></li>
+</ul>
+
+</body>
+</html>
+
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                var disqus_url = 'http://beego.me/docs/' + 'install\/bee.md?lang=zh-CN';
+            </script>
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+     
+    var disqus_shortname = 'beego'; 
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+    </div>
+</div>
+
+		    </div>
+		    <div class="wrapper-push"></div>
+		</div>
+		<footer id="footer">
+    <div class="container">
+        <div class="row footer-wrap">
+            <div class="col-md-12 desc">
+                <div class="pull-right">
+                    <div class="btn-group dropup">
+                        <button type="button" class="btn btn-default btn-md dropdown-toggle" data-toggle="dropdown">当前语言:简体中文 <i class="caret"></i></button>
+                        <ul class="dropdown-menu">
+                            
+                                <li><a href="javascript::" data-lang="en-US" class="lang-changed">English</a></li>
+                            
+                                <li><a href="javascript::" data-lang="ru-RU" class="lang-changed">Russian</a></li>
+                            
+                        </ul>
+                    </div>
+                    
+                        <a class="btn btn-success" href="/donate"><i class="icon-dollar"></i> 捐赠我们</a>
+                    
+                    
+                </div>
+                
+                <p>
+                    <a href="/about"><strong>关于</strong></a>
+                    |
+                    <a href="/team"><strong>团队</strong></a>
+                    |
+                    <a target="_blank" href="https://github.com/astaxie/beego" target="_blank"><strong><i class="icon-github-sign"></i> Github</strong></a>
+                    - 23ms.
+                </p>
+
+                <p>
+                    版权所有 © 2012-2014 Beego 授权许可遵循 <a href="http://www.apache.org/licenses/LICENSE-2.0.html">apache 2.0 licence</a> Logo由 <a target="_blank" href="http://mdong.org">Tengfei</a> 设计
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39123845-1', 'beego.me');
+  ga('send', 'pageview');
+
+</script>
+
+<script>/* Beego Compress group `lib` begin */</script>
+	<script type="text/javascript" src="/static_source/js/jquery.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jquery.extend.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/bootstrap.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/lib.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/prettify.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jStorage.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jquery.jpanelmenu.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jRespond.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/jquery.clingify.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/imagesloaded.pkgd.min.js?ver=1409586500"></script>
+	<script type="text/javascript" src="/static_source/js/masonry.pkgd.min.js?ver=1409586500"></script>
+	<script>/* end */</script>
+<script>/* Beego Compress group `app` begin */</script>
+	<script type="text/javascript" src="/static_source/js/main.js?ver=1409586500"></script>
+	<script>/* end */</script>
+	</body>
+</html>
+
+
+

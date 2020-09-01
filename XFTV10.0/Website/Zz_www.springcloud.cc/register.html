@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Spring Cloud中文网</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/css/ionicons.min.css">
+    <link rel="stylesheet" href="static/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="static/css/blue.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition register-page">
+<div class="register-box">
+    <div class="register-logo">
+        <a href="index2.html"><b>Spring Cloud</b> 中文网</a>
+    </div>
+
+    <div class="register-box-body">
+        <p class="login-box-msg">会员注册</p>
+        <form action="/register" method="post">
+            <div class="form-group has-feedback">
+                
+                <input type="text" class="form-control" id="username" placeholder="用户名" name="username" value="">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                
+                <input type="email" class="form-control" id="email" placeholder="电子邮箱" name="email" value="">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                
+                <input type="password" class="form-control" id="password" placeholder="密码" name="password" value="">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="再次输入密码">
+                <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox" id="agree">我同意此<a href="#">协议</a>
+                        </label>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" disabled="">注册</button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+        <div class="social-auth-links text-center">
+            <p>其他登录</p>
+            <a href="authorize-2606296715_httpswww.sp.html" class="btn btn-block btn-social btn-weibo btn-flat"><i class="fa fa-weibo"></i> 使用新浪微博帐号登录</a>
+            <a href="login-cec21d3307e6af0eb551_2Flog.html" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i> 使用Github帐号登录</a>
+            <a href="authorize-21536399_httpswww.spri.html" class="btn btn-block btn-social btn-taobao btn-flat"><i class="fa icon-taobao"></i> 使用淘宝帐号登录</a>
+            <a href="authorize-6DXHV1DuGnwennLKBufHIa.html" class="btn btn-block btn-social btn-baidu btn-flat"><i class="fa icon-baidu"></i> 使用百度帐号登录</a>
+            <a href="show-Login_pc_101407081_httpswww.html" class="btn btn-block btn-social btn-qq btn-flat"><i class="fa icon-qq"></i> 使用QQ帐号登录</a>
+        </div>
+
+        <a href="login.html" class="text-center">已经有会员账号了</a>
+    </div>
+    <!-- /.form-box -->
+</div>
+<!-- /.register-box -->
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/icheck.min.js"></script>
+<script>
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+        var form = $('form'),
+            password = form.find('#confirmPassword'),
+            agree = form.find('#agree'),
+            email = form.find("#email"),
+            submit = form.find("button[type='submit']"),
+            render = function (id, errorMsg) {
+                var el = $("#" + id), labels = el.prev('label'),
+                    feedback = el.closest(".has-feedback"),
+                    label = errorMsg && $('<label class="control-label" for="' + id + '"><i class="fa fa-times-circle-o"></i>' + errorMsg + '</label>');
+                if (labels.size()) {
+                    labels.replaceWith(label);
+                    label || feedback.removeClass('has-error');
+                } else if (label) {
+                    feedback.addClass('has-error');
+                    label.insertBefore(el);
+                }
+            };
+        email.blur(function () {
+            var email = email.val();
+            email && $.get("users", {email: email}).done(function (data) {
+                if (data) {
+                    render("email", "该账号已存在");
+                } else {
+                    render("email");
+                }
+            });
+        });
+        agree.on("ifToggled", function (e) {
+            submit.attr("disabled", !agree.is(':checked'));
+        });
+        form.on('submit', function (e) {
+            if (form.find('#password').val() != password.val()) {
+                render("confirmPassword", "两次输入的密码不一致");
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+</body>
+</html>

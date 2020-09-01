@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.8">
+<meta name="author" content="Michael Minella, Glenn Renfro, Jay Bryant">
+<title>Spring Cloud Task Reference Guide</title>
+<link rel="stylesheet" href="css/spring.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Spring Cloud Task Reference Guide</h1>
+<div class="details">
+<span id="author" class="author">Michael Minella, Glenn Renfro, Jay Bryant</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#preface">Preface</a>
+<ul class="sectlevel1">
+<li><a href="#_about_the_documentation">1. About the documentation</a></li>
+<li><a href="#task-documentation-getting-help">2. Getting help</a></li>
+<li><a href="#task-documentation-first-steps">3. First Steps</a></li>
+</ul>
+</li>
+<li><a href="#getting-started">Getting started</a>
+<ul class="sectlevel1">
+<li><a href="#getting-started-introducing-spring-cloud-task">4. Introducing Spring Cloud Task</a></li>
+<li><a href="#getting-started-system-requirements">5. System Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_database_requirements">5.1. Database Requirements</a></li>
+</ul>
+</li>
+<li><a href="#getting-started-developing-first-task">6. Developing Your First Spring Cloud Task Application</a>
+<ul class="sectlevel2">
+<li><a href="#getting-started-creating-project">6.1. Creating the Spring Task Project using Spring Initializr</a></li>
+<li><a href="#getting-started-writing-the-code">6.2. Writing the Code</a>
+<ul class="sectlevel3">
+<li><a href="#getting-started-at-task">6.2.1. Task Auto Configuration</a></li>
+<li><a href="#getting-started-main-method">6.2.2. The main method</a></li>
+<li><a href="#getting-started-clr">6.2.3. The CommandLineRunner</a></li>
+</ul>
+</li>
+<li><a href="#getting-started-running-the-example">6.3. Running the Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#features">Features</a>
+<ul class="sectlevel1">
+<li><a href="#features-lifecycle">7. The lifecycle of a Spring Cloud Task</a>
+<ul class="sectlevel2">
+<li><a href="#features-task-execution-details">7.1. The TaskExecution</a></li>
+<li><a href="#features-lifecycle-exit-codes">7.2. Mapping Exit Codes</a></li>
+</ul>
+</li>
+<li><a href="#features-configuration">8. Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#features-data-source">8.1. DataSource</a></li>
+<li><a href="#features-table-prefix">8.2. Table Prefix</a></li>
+<li><a href="#features-table-initialization">8.3. Enable/Disable table initialization</a></li>
+<li><a href="#features-generated_task_id">8.4. Externally Generated Task ID</a></li>
+<li><a href="#features-external_task_id">8.5. External Task Id</a></li>
+<li><a href="#features-parent_task_id">8.6. Parent Task Id</a></li>
+<li><a href="#features-task-configurer">8.7. TaskConfigurer</a></li>
+<li><a href="#features-task-name">8.8. Task Name</a></li>
+<li><a href="#features-task-execution-listener">8.9. Task Execution Listener</a>
+<ul class="sectlevel3">
+<li><a href="#features-task-execution-listener-Exceptions">8.9.1. Exceptions Thrown by Task Execution Listener</a></li>
+<li><a href="#features-task-execution-listener-exit-messages">8.9.2. Exit Messages</a></li>
+</ul>
+</li>
+<li><a href="#features-single-instance-enabled">8.10. Restricting Spring Cloud Task Instances</a></li>
+<li><a href="#_disabling_spring_cloud_task_auto_configuration">8.11. Disabling Spring Cloud Task Auto Configuration</a></li>
+<li><a href="#closing-the-context">8.12. Closing the Context</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#batch">Batch</a>
+<ul class="sectlevel1">
+<li><a href="#batch-association">9. Associating a Job Execution to the Task in which It Was Executed</a>
+<ul class="sectlevel2">
+<li><a href="#batch-association-override">9.1. Overriding the TaskBatchExecutionListener</a></li>
+</ul>
+</li>
+<li><a href="#batch-partitioning">10. Remote Partitioning</a>
+<ul class="sectlevel2">
+<li><a href="#_notes_on_developing_a_batch_partitioned_application_for_the_kubernetes_platform">10.1. Notes on Developing a Batch-partitioned application for the Kubernetes Platform</a></li>
+<li><a href="#_notes_on_developing_a_batch_partitioned_application_for_the_cloud_foundry_platform">10.2. Notes on Developing a Batch-partitioned Application for the Cloud Foundry Platform</a></li>
+</ul>
+</li>
+<li><a href="#batch-informational-messages">11. Batch Informational Messages</a></li>
+<li><a href="#batch-failures-and-tasks">12. Batch Job Exit Codes</a></li>
+</ul>
+</li>
+<li><a href="#stream-integration">Spring Cloud Stream Integration</a>
+<ul class="sectlevel1">
+<li><a href="#stream-integration-launching-sink">13. Launching a Task from a Spring Cloud Stream</a>
+<ul class="sectlevel2">
+<li><a href="#stream-integration-launching-sink-dataflow">13.1. Spring Cloud Data Flow</a></li>
+</ul>
+</li>
+<li><a href="#stream-integration-events">14. Spring Cloud Task Events</a>
+<ul class="sectlevel2">
+<li><a href="#stream-integration-disable-task-events">14.1. Disabling Specific Task Events</a></li>
+</ul>
+</li>
+<li><a href="#stream-integration-batch-events">15. Spring Batch Events</a>
+<ul class="sectlevel2">
+<li><a href="#_sending_batch_events_to_different_channels">15.1. Sending Batch Events to Different Channels</a></li>
+<li><a href="#_disabling_batch_events">15.2. Disabling Batch Events</a></li>
+<li><a href="#_emit_order_for_batch_events">15.3. Emit Order for Batch Events</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#appendix">Appendices</a>
+<ul class="sectlevel1">
+<li><a href="#appendix-task-repository-schema">16. Task Repository Schema</a>
+<ul class="sectlevel2">
+<li><a href="#_table_information">16.1. Table Information</a></li>
+</ul>
+</li>
+<li><a href="#appendix-building-the-documentation">17. Building This Documentation</a></li>
+<li><a href="#appendix-cloud-foundry">18. Running a Task App on Cloud Foundry</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>&#169; 2009-2018 Pivotal Software, Inc. All rights reserved.</p>
+</div>
+<div class="paragraph">
+<p>Copies of this document may be made for your own use and for distribution to
+others, provided that you do not charge any fee for such copies and further
+provided that each copy contains this Copyright Notice, whether distributed in
+print or electronically.</p>
+</div>
+</div>
+</div>
+<h1 id="preface" class="sect0"><a class="anchor" href="#preface"></a>Preface</h1>
+<div id="task-documentation-about" class="openblock partintro">
+<div class="content">
+This section provides a brief overview of the Spring Cloud Task reference documentation.
+Think of it as a map for the rest of the document. You can read this reference guide in a
+linear fashion or you can skip sections if something does not interest you.
+</div>
+</div>
+<div class="sect1">
+<h2 id="_about_the_documentation"><a class="anchor" href="#_about_the_documentation"></a>1. About the documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Spring Cloud Task reference guide is available in <a href="https://docs.spring.io/spring-cloud-task/docs/{version}/reference/html">html</a>,
+<a href="https://docs.spring.io/spring-cloud-task/docs/{version}/reference/pdf/spring-cloud-task-reference.pdf">pdf</a>
+and <a href="https://docs.spring.io/spring-cloud-task/docs/{version}/reference/epub/spring-cloud-task-reference.epub">epub</a> formats. The
+latest copy is available at <a href="https://docs.spring.io/spring-cloud-task/docs/current-SNAPSHOT/reference/html/" class="bare">docs.spring.io/spring-cloud-task/docs/current-SNAPSHOT/reference/html/</a>.</p>
+</div>
+<div class="paragraph">
+<p>Copies of this document may be made for your own use and for distribution to others,
+provided that you do not charge any fee for such copies and further provided that each
+copy contains this Copyright Notice, whether distributed in print or electronically.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="task-documentation-getting-help"><a class="anchor" href="#task-documentation-getting-help"></a>2. Getting help</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Having trouble with Spring Cloud Task? We would like to help!</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ask a question. We monitor <a href="https://stackoverflow.com">stackoverflow.com</a> for questions
+tagged with <a href="https://stackoverflow.com/tags/spring-cloud-task"><code>spring-cloud-task</code></a>.</p>
+</li>
+<li>
+<p>Report bugs with Spring Cloud Task at
+<a href="https://github.com/spring-cloud/spring-cloud-task/issues" class="bare">github.com/spring-cloud/spring-cloud-task/issues</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+All of Spring Cloud Task is open source, including the documentation. If you find
+a problem with the docs or if you just want to improve them, please <a href="https://github.com/spring-cloud/spring-cloud-task/tree/master">get
+involved</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="task-documentation-first-steps"><a class="anchor" href="#task-documentation-first-steps"></a>3. First Steps</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you are just getting started with Spring Cloud Task or with 'Spring' in general, we
+suggesting reading the <a href="#getting-started">Getting started</a> chapter.</p>
+</div>
+<div class="paragraph">
+<p>To get started from scratch, read the following sections:
+* &#8220;<a href="#getting-started-introducing-spring-cloud-task">Introducing Spring Cloud Task</a>&#8221;
+* &#8220;<a href="#getting-started-system-requirements">System Requirements</a>&#8221;
+To follow the tutorial, read
+&#8220;<a href="#getting-started-developing-first-task">Developing Your First Spring Cloud Task Application</a>&#8221;
+To run your example, read
+&#8220;<a href="#getting-started-running-the-example">Running the Example</a>&#8221;</p>
+</div>
+</div>
+</div>
+<h1 id="getting-started" class="sect0"><a class="anchor" href="#getting-started"></a>Getting started</h1>
+<div class="openblock partintro">
+<div class="content">
+<div id="partintro" class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>If you are just getting started with Spring Cloud Task, you should read this section.
+Here, we answer the basic &#8220;what?&#8221;, &#8220;how?&#8221;, and &#8220;why?&#8221; questions. We start with a
+gentle introduction to Spring Cloud Task. We then build a Spring Cloud Task application,
+discussing some core principles as we go.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-started-introducing-spring-cloud-task"><a class="anchor" href="#getting-started-introducing-spring-cloud-task"></a>4. Introducing Spring Cloud Task</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Cloud Task makes it easy to create short-lived microservices. It provides
+capabilities that let short lived JVM processes be executed on demand in a production
+environment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-started-system-requirements"><a class="anchor" href="#getting-started-system-requirements"></a>5. System Requirements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You need to have Java installed (Java 8 or better). To build, you need to have Maven
+installed as well.</p>
+</div>
+<div class="sect2">
+<h3 id="_database_requirements"><a class="anchor" href="#_database_requirements"></a>5.1. Database Requirements</h3>
+<div class="paragraph">
+<p>Spring Cloud Task uses a relational database to store the results of an executed task.
+While you can begin developing a task without a database (the status of the task is logged
+as part of the task repository&#8217;s updates), for production environments, you want to
+use a supported database. Spring Cloud Task currently supports the following databases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DB2</p>
+</li>
+<li>
+<p>H2</p>
+</li>
+<li>
+<p>HSQLDB</p>
+</li>
+<li>
+<p>MySql</p>
+</li>
+<li>
+<p>Oracle</p>
+</li>
+<li>
+<p>Postgres</p>
+</li>
+<li>
+<p>SqlServer</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-started-developing-first-task"><a class="anchor" href="#getting-started-developing-first-task"></a>6. Developing Your First Spring Cloud Task Application</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A good place to start is with a simple &#8220;Hello, World!&#8221; application, so we create the
+Spring Cloud Task equivalent to highlight the features of the framework. Most IDEs have
+good support for Apache Maven, so we use it as the build tool for this project.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The spring.io web site contains many <a href="https://spring.io/guides">“<code>Getting Started</code>”
+guides</a> that use Spring Boot. If you need to solve a specific problem, check there first.
+You can shortcut the following steps by going to the
+<a href="https://start.spring.io/">Spring Initializr</a> and creating a new project. Doing so
+automatically generates a new project structure so that you can start coding right away.
+We recommend experimenting with the Spring Initializr to become familiar with it.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="getting-started-creating-project"><a class="anchor" href="#getting-started-creating-project"></a>6.1. Creating the Spring Task Project using Spring Initializr</h3>
+<div class="paragraph">
+<p>Now we can create and test an application that prints <code>Hello, World!</code> to the console.</p>
+</div>
+<div class="paragraph">
+<p>To do so:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Visit the <a href="https://start.spring.io/">Spring Initialzr</a> site.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Create a new Maven project with a <strong>Group</strong> name of <code>io.spring.demo</code> and an <strong>Artifact</strong> name of <code>helloworld</code>.</p>
+</li>
+<li>
+<p>In the Dependencies text box, type <code>task</code> and then select the <code>Cloud Task</code> dependency.</p>
+</li>
+<li>
+<p>In the Dependencies text box, type <code>jdbc</code> and then select the <code>JDBC</code> dependency.</p>
+</li>
+<li>
+<p>In the Dependencies text box, type <code>h2</code> and then select the <code>H2</code>. (or your favorite database)</p>
+</li>
+<li>
+<p>Click the <strong>Generate Project</strong> button</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Unzip the helloworld.zip file and import the project into your favorite IDE.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getting-started-writing-the-code"><a class="anchor" href="#getting-started-writing-the-code"></a>6.2. Writing the Code</h3>
+<div class="paragraph">
+<p>To finish our application, we need to update the generated <code>HelloworldApplication</code> with the following contents so that it launches a Task.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">package io.spring.demo.helloworld;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class HelloworldApplication {
+
+	@Bean
+	public CommandLineRunner commandLineRunner() {
+		return new HelloWorldCommandLineRunner();
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(HelloworldApplication.class, args);
+	}
+
+	public static class HelloWorldCommandLineRunner implements CommandLineRunner {
+
+		@Override
+		public void run(String... strings) throws Exception {
+			System.out.println("Hello, World!");
+		}
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>While it may seem small, quite a bit is going on. For more about Spring
+Boot specifics, see the
+<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/">Spring Boot reference documentation</a>.</p>
+</div>
+<div class="paragraph">
+<p>Now we can open the <code>application.properties</code> file in <code>src/main/resources</code>.
+We need to configure two properties in <code>application.properties</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application.name</code>: To set the application name (which is translated to the task name)</p>
+</li>
+<li>
+<p><code>logging.level</code>: To set the logging for Spring Cloud Task to <code>DEBUG</code> in order to
+get a view of what is going on.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following example shows how to do both:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>logging.level.org.springframework.cloud.task=DEBUG
+spring.application.name=helloWorld</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-started-at-task"><a class="anchor" href="#getting-started-at-task"></a>6.2.1. Task Auto Configuration</h4>
+<div class="paragraph">
+<p>When including Spring Cloud Task Starter dependency, Task auto configures all beans to bootstrap it&#8217;s functionality.
+Part of this configuration registers the <code>TaskRepository</code> and the infrastructure for its use.</p>
+</div>
+<div class="paragraph">
+<p>In our demo, the <code>TaskRepository</code> uses an embedded H2 database to record the results
+of a task. This H2 embedded database is not a practical solution for a production environment, since
+the H2 DB goes away once the task ends. However, for a quick getting-started
+experience, we can use this in our example as well as echoing to the logs what is being updated
+in that repository. In the <a href="#features-configuration">Configuration</a> section (later in this
+documentation), we cover how to customize the configuration of the pieces provided by
+Spring Cloud Task.</p>
+</div>
+<div class="paragraph">
+<p>When our sample application runs, Spring Boot launches our <code>HelloWorldCommandLineRunner</code>
+and outputs our &#8220;Hello, World!&#8221; message to standard out. The <code>TaskLifecycleListener</code>
+records the start of the task and the end of the task in the repository.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-started-main-method"><a class="anchor" href="#getting-started-main-method"></a>6.2.2. The main method</h4>
+<div class="paragraph">
+<p>The main method serves as the entry point to any java application. Our main method
+delegates to Spring Boot&#8217;s <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-spring-application.html">SpringApplication</a> class.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="getting-started-clr"><a class="anchor" href="#getting-started-clr"></a>6.2.3. The CommandLineRunner</h4>
+<div class="paragraph">
+<p>Spring includes many ways to bootstrap an application&#8217;s logic. Spring Boot provides
+a convenient method of doing so in an organized manner through its <code>*Runner</code> interfaces
+(<code>CommandLineRunner</code> or <code>ApplicationRunner</code>). A well behaved task can bootstrap any
+logic by using one of these two runners.</p>
+</div>
+<div class="paragraph">
+<p>The lifecycle of a task is considered from before the <code>*Runner#run</code> methods are executed
+to once they are all complete. Spring Boot lets an application use multiple
+<code>*Runner</code> implementations, as does Spring Cloud Task.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Any processing bootstrapped from mechanisms other than a <code>CommandLineRunner</code> or
+<code>ApplicationRunner</code> (by using <code>InitializingBean#afterPropertiesSet</code> for example) is not
+recorded by Spring Cloud Task.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="getting-started-running-the-example"><a class="anchor" href="#getting-started-running-the-example"></a>6.3. Running the Example</h3>
+<div class="paragraph">
+<p>At this point, our application should work. Since this application is Spring Boot-based,
+we can run it from the command line by using <code>$ mvn spring-boot:run</code> from the root
+of our application, as shown (with its output) in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ mvn clean spring-boot:run
+....... . . .
+....... . . . (Maven log output here)
+....... . . .
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.0.3.RELEASE)
+
+2018-07-23 17:44:34.426  INFO 1978 --- [           main] i.s.d.helloworld.HelloworldApplication   : Starting HelloworldApplication on Glenns-MBP-2.attlocal.net with PID 1978 (/Users/glennrenfro/project/helloworld/target/classes started by glennrenfro in /Users/glennrenfro/project/helloworld)
+2018-07-23 17:44:34.430  INFO 1978 --- [           main] i.s.d.helloworld.HelloworldApplication   : No active profile set, falling back to default profiles: default
+2018-07-23 17:44:34.472  INFO 1978 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.spring<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="711703101c14061e031a5f121e1f051409055f101f1f1e051005181e1f5f301f1f1e051005181e1f321e1f1718163001011d18121005181e1f321e1f0514090531">[email&#160;protected]</a>1d24f32d: startup date [Mon Jul 23 17:44:34 EDT 2018]; root of context hierarchy
+2018-07-23 17:44:35.280  INFO 1978 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-07-23 17:44:35.410  INFO 1978 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-07-23 17:44:35.419 DEBUG 1978 --- [           main] o.s.c.t.c.SimpleTaskConfiguration        : Using org.springframework.cloud.task.configuration.DefaultTaskConfigurer TaskConfigurer
+2018-07-23 17:44:35.420 DEBUG 1978 --- [           main] o.s.c.t.c.DefaultTaskConfigurer          : No EntityManager was found, using DataSourceTransactionManager
+2018-07-23 17:44:35.522 DEBUG 1978 --- [           main] o.s.c.t.r.s.TaskRepositoryInitializer    : Initializing task schema for h2 database
+2018-07-23 17:44:35.525  INFO 1978 --- [           main] o.s.jdbc.datasource.init.ScriptUtils     : Executing SQL script from class path resource [org/springframework/cloud/task/schema-h2.sql]
+2018-07-23 17:44:35.558  INFO 1978 --- [           main] o.s.jdbc.datasource.init.ScriptUtils     : Executed SQL script from class path resource [org/springframework/cloud/task/schema-h2.sql] in 33 ms.
+2018-07-23 17:44:35.728  INFO 1978 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-07-23 17:44:35.730  INFO 1978 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-07-23 17:44:35.733  INFO 1978 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-07-23 17:44:35.738  INFO 1978 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 0
+2018-07-23 17:44:35.762 DEBUG 1978 --- [           main] o.s.c.t.r.support.SimpleTaskRepository   : Creating: TaskExecution{executionId=0, parentExecutionId=null, exitCode=null, taskName='application', startTime=Mon Jul 23 17:44:35 EDT 2018, endTime=null, exitMessage='null', externalExecutionId='null', errorMessage='null', arguments=[]}
+2018-07-23 17:44:35.772  INFO 1978 --- [           main] i.s.d.helloworld.HelloworldApplication   : Started HelloworldApplication in 1.625 seconds (JVM running for 4.764)
+Hello, World!
+2018-07-23 17:44:35.782 DEBUG 1978 --- [           main] o.s.c.t.r.support.SimpleTaskRepository   : Updating: TaskExecution with executionId=1 with the following {exitCode=0, endTime=Mon Jul 23 17:44:35 EDT 2018, exitMessage='null', errorMessage='null'}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The preceding output has three lines that of interest to us here:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SimpleTaskRepository</code> logged the creation of the entry in the <code>TaskRepository</code>.</p>
+</li>
+<li>
+<p>The execution of our <code>CommandLineRunner</code>, demonstrated by the &#8220;Hello, World!&#8221; output.</p>
+</li>
+<li>
+<p><code>SimpleTaskRepository</code> logs the completion of the task in the <code>TaskRepository</code>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A simple task application can be found in the samples module of the Spring Cloud
+Task Project
+<a href="https://github.com/spring-cloud/spring-cloud-task/tree/master/spring-cloud-task-samples/timestamp">here</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<h1 id="features" class="sect0"><a class="anchor" href="#features"></a>Features</h1>
+<div class="openblock partintro">
+<div class="content">
+<div id="partintro" class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>This section goes into more detail about Spring Cloud Task, including how to use it, how
+to configure it, and the appropriate extension points.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="features-lifecycle"><a class="anchor" href="#features-lifecycle"></a>7. The lifecycle of a Spring Cloud Task</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In most cases, the modern cloud environment is designed around the execution of processes
+that are not expected to end. If they do end, they are typically restarted. While most
+platforms do have some way to run a process that is not restarted when it ends, the
+results of that run are typically not maintained in a consumable way. Spring Cloud
+Task offers the ability to execute short-lived processes in an environment and record the
+results. Doing so allows for a microservices architecture around short-lived processes as
+well as longer running services through the integration of tasks by messages.</p>
+</div>
+<div class="paragraph">
+<p>While this functionality is useful in a cloud environment, the same issues can arise in a
+traditional deployment model as well. When running Spring Boot applications with a
+scheduler such as cron, it can be useful to be able to monitor the results of the
+application after its completion.</p>
+</div>
+<div class="paragraph">
+<p>Spring Cloud Task takes the approach that a Spring Boot application can have a start and
+an end and still be successful. Batch applications are one example of how processes that
+are expected to end (and that are often short-lived) can be helpful.</p>
+</div>
+<div class="paragraph">
+<p>Spring Cloud Task records the lifecycle events of a given task. Most long-running
+processes, typified by most web applications, do not save their lifecycle events. The
+tasks at the heart of Spring Cloud Task do.</p>
+</div>
+<div class="paragraph">
+<p>The lifecycle consists of a single task execution. This is a physical execution of a
+Spring Boot application configured to be a task (that is, it has the Sprint Cloud Task dependencies).</p>
+</div>
+<div class="paragraph">
+<p>At the beginning of a task, before any <code>CommandLineRunner</code> or <code>ApplicationRunner</code>
+implementations have been run, an entry in the <code>TaskRepository</code> that records the start
+event is created. This event is triggered through <code>SmartLifecycle#start</code> being triggered
+by the Spring Framework. This indicates to the system that all beans are ready for use and
+comes before running any of the <code>CommandLineRunner</code> or <code>ApplicationRunner</code> implementations
+provided by Spring Boot.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The recording of a task only occurs upon the successful bootstrapping of an
+<code>ApplicationContext</code>. If the context fails to bootstrap at all, the task&#8217;s run is not
+recorded.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Upon completion of all of the <code>*Runner#run</code> calls from Spring Boot or the failure of an
+<code>ApplicationContext</code> (indicated by an <code>ApplicationFailedEvent</code>), the task execution is
+updated in the repository with the results.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the application requires the <code>ApplicationContext</code> to be closed at the
+completion of a task (all <code>*Runner#run</code> methods have been called and the task
+repository has been updated), set the property <code>spring.cloud.task.closecontextEnabled</code>
+to true.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="features-task-execution-details"><a class="anchor" href="#features-task-execution-details"></a>7.1. The TaskExecution</h3>
+<div class="paragraph">
+<p>The information stored in the <code>TaskRepository</code> is modeled in the <code>TaskExecution</code> class and
+consists of the following information:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>executionid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The unique ID for the task&#8217;s run.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exitCode</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The exit code generated from an <code>ExitCodeExceptionMapper</code> implementation. If there is no
+exit code generated but an <code>ApplicationFailedEvent</code> is thrown, 1 is set. Otherwise, it is
+assumed to be 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>taskName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name for the task, as determined by the configured <code>TaskNameResolver</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>startTime</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The time the task was started, as indicated by the <code>SmartLifecycle#start</code> call.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>endTime</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The time the task was completed, as indicated by the <code>ApplicationReadyEvent</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>exitMessage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any information available at the time of exit. This can programmatically be set by a
+<code>TaskExecutionListener</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>errorMessage</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If an exception is the cause of the end of the task (as indicated by an
+<code>ApplicationFailedEvent</code>), the stack trace for that exception is stored here.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>arguments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A <code>List</code> of the string command line arguments as they were passed into the executable
+boot application.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="features-lifecycle-exit-codes"><a class="anchor" href="#features-lifecycle-exit-codes"></a>7.2. Mapping Exit Codes</h3>
+<div class="paragraph">
+<p>When a task completes, it tries to return an exit code to the OS. If we take a look
+at our <a href="#getting-started-developing-first-task">original example</a>, we can see that we are
+not controlling that aspect of our application. So, if an exception is thrown, the JVM
+returns a code that may or may not be of any use to you in debugging.</p>
+</div>
+<div class="paragraph">
+<p>Consequently, Spring Boot provides an interface, <code>ExitCodeExceptionMapper</code>, that lets you
+map uncaught exceptions to exit codes. Doing so lets you indicate, at the level of exit
+codes, what went wrong. Also, by mapping exit codes in this manner, Spring Cloud Task
+records the returned exit code.</p>
+</div>
+<div class="paragraph">
+<p>If the task terminates with a SIG-INT or a SIG-TERM, the exit code is zero unless
+otherwise specified within the code.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+While the task is running, the exit code is stored as a null in the repository.
+Once the task completes, the appropriate exit code is stored based on the guidelines described
+earlier in this section.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="features-configuration"><a class="anchor" href="#features-configuration"></a>8. Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Cloud Task provides a ready-to-use configuration, as defined in the
+<code>DefaultTaskConfigurer</code> and <code>SimpleTaskConfiguration</code> classes. This section walks through
+the defaults and how to customize Spring Cloud Task for your needs.</p>
+</div>
+<div class="sect2">
+<h3 id="features-data-source"><a class="anchor" href="#features-data-source"></a>8.1. DataSource</h3>
+<div class="paragraph">
+<p>Spring Cloud Task uses a datasource for storing the results of task executions. By
+default, we provide an in-memory instance of H2 to provide a simple method of
+bootstrapping development. However, in a production environment, you probably want to
+configure your own <code>DataSource</code>.</p>
+</div>
+<div class="paragraph">
+<p>If your application uses only a single <code>DataSource</code> and that serves as both your business
+schema and the task repository, all you need to do is provide any <code>DataSource</code> (the
+easiest way to do so is through Spring Boot&#8217;s configuration conventions). This
+<code>DataSource</code> is automatically used by Spring Cloud Task for the repository.</p>
+</div>
+<div class="paragraph">
+<p>If your application uses more than one <code>DataSource</code>, you need to configure the task
+repository with the appropriate <code>DataSource</code>. This customization can be done through an
+implementation of <code>TaskConfigurer</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features-table-prefix"><a class="anchor" href="#features-table-prefix"></a>8.2. Table Prefix</h3>
+<div class="paragraph">
+<p>One modifiable property of <code>TaskRepository</code> is the table prefix for the task tables. By
+default, they are all prefaced with <code>TASK_</code>. <code>TASK_EXECUTION</code> and <code>TASK_EXECUTION_PARAMS</code>
+are two examples. However, there are potential reasons to modify this prefix. If the
+schema name needs to be prepended to the table names or if more than one set of task
+tables is needed within the same schema, you must change the table prefix. You can do so
+by setting the <code>spring.cloud.task.tablePrefix</code> to the prefix you need, as follows:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.task.tablePrefix=yourPrefix</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features-table-initialization"><a class="anchor" href="#features-table-initialization"></a>8.3. Enable/Disable table initialization</h3>
+<div class="paragraph">
+<p>In cases where you are creating the task tables and do not wish for Spring Cloud Task to
+create them at task startup, set the <code>spring.cloud.task.initialize-enabled</code> property to
+<code>false</code>, as follows:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.task.initialize-enabled=false</code></p>
+</div>
+<div class="paragraph">
+<p>It defaults to <code>true</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The property <code>spring.cloud.task.initialize.enable</code> has been deprecated.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features-generated_task_id"><a class="anchor" href="#features-generated_task_id"></a>8.4. Externally Generated Task ID</h3>
+<div class="paragraph">
+<p>In some cases, you may want to allow for the time difference between when a task is
+requested and when the infrastructure actually launches it. Spring Cloud Task lets you
+create a <code>TaskExecution</code> when the task is requested. Then pass the execution ID of the
+generated <code>TaskExecution</code> to the task so that it can update the <code>TaskExecution</code> through
+the task&#8217;s lifecycle.</p>
+</div>
+<div class="paragraph">
+<p>A <code>TaskExecution</code> can be created by calling the <code>createTaskExecution</code> method on an
+implementation of the <code>TaskRepository</code> that references the datastore that holds
+the <code>TaskExecution</code> objects.</p>
+</div>
+<div class="paragraph">
+<p>In order to configure your Task to use a generated <code>TaskExecutionId</code>, add the
+following property:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.task.executionid=yourtaskId</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features-external_task_id"><a class="anchor" href="#features-external_task_id"></a>8.5. External Task Id</h3>
+<div class="paragraph">
+<p>Spring Cloud Task lets you store an external task ID for each
+<code>TaskExecution</code>. An example of this would be a task ID provided by
+Cloud Foundry when a task is launched on the platform.
+In order to configure your Task to use a generated <code>TaskExecutionId</code>, add the
+following property:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.task.external-execution-id=&lt;externalTaskId&gt;</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features-parent_task_id"><a class="anchor" href="#features-parent_task_id"></a>8.6. Parent Task Id</h3>
+<div class="paragraph">
+<p>Spring Cloud Task lets you store a parent task ID for each <code>TaskExecution</code>. An example of
+this would be a task that executes another task or tasks and you want to record which task
+launched each of the child tasks. In order to configure your Task to set a parent
+<code>TaskExecutionId</code> add the following property on the child task:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.task.parent-execution-id=&lt;parentExecutionTaskId&gt;</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features-task-configurer"><a class="anchor" href="#features-task-configurer"></a>8.7. TaskConfigurer</h3>
+<div class="paragraph">
+<p>The <code>TaskConfigurer</code> is a strategy interface that lets you customize the way components of
+Spring Cloud Task are configured. By default, we provide the <code>DefaultTaskConfigurer</code> that
+provides logical defaults: <code>Map</code>-based in-memory components (useful for development if no
+<code>DataSource</code> is provided) and JDBC based components (useful if there is a <code>DataSource</code>
+available).</p>
+</div>
+<div class="paragraph">
+<p>The <code>TaskConfigurer</code> lets you configure three main components:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Component</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default (provided by <code>DefaultTaskConfigurer</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TaskRepository</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The implementation of the <code>TaskRepository</code> to be used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SimpleTaskRepository</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>TaskExplorer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The implementation of the <code>TaskExplorer</code> (a component for read-only access to the task
+repository) to be used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SimpleTaskExplorer</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PlatformTransactionManager</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A transaction manager to be used when running updates for tasks.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DataSourceTransactionManager</code> if a <code>DataSource</code> is used.
+<code>ResourcelessTransactionManager</code> if it is not.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>You can customize any of the components described in the preceding table by creating a
+custom implementation of the <code>TaskConfigurer</code> interface. Typically, extending the
+<code>DefaultTaskConfigurer</code> (which is provided if a <code>TaskConfigurer</code> is not found) and
+overriding the required getter is sufficient. However, implementing your own from scratch
+may be required.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Users should not directly use getter methods from a <code>TaskConfigurer</code> directly
+unless they are using it to supply implementations to be exposed as Spring Beans.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features-task-name"><a class="anchor" href="#features-task-name"></a>8.8. Task Name</h3>
+<div class="paragraph">
+<p>In most cases, the name of the task is the application name as configured in Spring
+Boot. However, there are some cases where you may want to map the run of a task to a
+different name. Spring Cloud Data Flow is an example of this (because you probably want
+the task to be run with the name of the task definition). Because of this, we offer the
+ability to customize how the task is named, through the <code>TaskNameResolver</code> interface.</p>
+</div>
+<div class="paragraph">
+<p>By default, Spring Cloud Task provides the <code>SimpleTaskNameResolver</code>, which uses the
+following options (in order of precedence):</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A Spring Boot property (configured in any of the ways Spring Boot allows) called
+<code>spring.cloud.task.name</code>.</p>
+</li>
+<li>
+<p>The application name as resolved using Spring Boot&#8217;s rules (obtained through
+<code>ApplicationContext#getId</code>).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features-task-execution-listener"><a class="anchor" href="#features-task-execution-listener"></a>8.9. Task Execution Listener</h3>
+<div class="paragraph">
+<p><code>TaskExecutionListener</code> lets you register listeners for specific events that occur during
+the task lifecycle. To do so, create a class that implements the
+<code>TaskExecutionListener</code> interface. The class that implements the <code>TaskExecutionListener</code>
+interface is notified of the following events:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>onTaskStartup</code>: Prior to storing the <code>TaskExecution</code> into the <code>TaskRepository</code>.</p>
+</li>
+<li>
+<p><code>onTaskEnd</code>: Prior to updating the <code>TaskExecution</code> entry in the <code>TaskRepository</code> and
+marking the final state of the task.</p>
+</li>
+<li>
+<p><code>onTaskFailed</code>: Prior to the <code>onTaskEnd</code> method being invoked when an unhandled
+exception is thrown by the task.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Spring Cloud Task also lets you add <code>TaskExecution</code> Listeners to methods within a bean
+by using the following method annotations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@BeforeTask</code>: Prior to the storing the <code>TaskExecution</code> into the <code>TaskRepository</code></p>
+</li>
+<li>
+<p><code>@AfterTask</code>: Prior to the updating of the <code>TaskExecution</code> entry in the <code>TaskRepository</code>
+marking the final state of the task.</p>
+</li>
+<li>
+<p><code>@FailedTask</code>: Prior to the <code>@AfterTask</code> method being invoked when an unhandled
+exception is thrown by the task.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following example shows the three annotations in use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java"> public class MyBean {
+
+	@BeforeTask
+	public void methodA(TaskExecution taskExecution) {
+	}
+
+	@AfterTask
+	public void methodB(TaskExecution taskExecution) {
+	}
+
+	@FailedTask
+	public void methodC(TaskExecution taskExecution, Throwable throwable) {
+	}
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Inserting an <code>ApplicationListener</code> earlier in the chain than <code>TaskLifecycleListener</code> exists may cause unexpected effects.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="features-task-execution-listener-Exceptions"><a class="anchor" href="#features-task-execution-listener-Exceptions"></a>8.9.1. Exceptions Thrown by Task Execution Listener</h4>
+<div class="paragraph">
+<p>If an exception is thrown by a <code>TaskExecutionListener</code> event handler, all listener
+processing for that event handler stops. For example, if three <code>onTaskStartup</code> listeners
+have started and the first <code>onTaskStartup</code> event handler throws an exception, the other
+two <code>onTaskStartup</code> methods are not called. However, the other event handlers (<code>onTaskEnd</code>
+and <code>onTaskFailed</code>) for the <code>TaskExecutionListeners</code> are called.</p>
+</div>
+<div class="paragraph">
+<p>The exit code returned when a exception is thrown by a <code>TaskExecutionListener</code>
+event handler is the exit code that was reported by the
+<a href="https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/ExitCodeEvent.html">ExitCodeEvent</a>.
+If no <code>ExitCodeEvent</code> is emitted, the Exception thrown is evaluated to see
+if it is of type
+<a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-application-exit">ExitCodeGenerator</a>.
+If so, it returns the exit code from the <code>ExitCodeGenerator</code>. Otherwise, <code>1</code>
+is returned.</p>
+</div>
+<div class="paragraph">
+<p>In the case that an exception is thrown in an <code>onTaskStartup</code> method, the exit code for the application will be <code>1</code>.
+If an exception is thrown in either a <code>onTaskEnd</code> or <code>onTaskFailed</code>
+method, the exit code for the application will be the one established using the rules enumerated above.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In the case of an exception being thrown in a <code>onTaskStartup</code>, <code>onTaskEnd</code>, or <code>onTaskFailed</code>
+you can not override the exit code for the application using <code>ExitCodeExceptionMapper</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="features-task-execution-listener-exit-messages"><a class="anchor" href="#features-task-execution-listener-exit-messages"></a>8.9.2. Exit Messages</h4>
+<div class="paragraph">
+<p>You can set the exit message for a task programmatically by using a
+<code>TaskExecutionListener</code>. This is done by setting the <code>TaskExecution&#8217;s</code> <code>exitMessage</code>,
+which then gets passed into the <code>TaskExecutionListener</code>. The following example shows
+a method that is annotated with the <code>@AfterTask</code> <code>ExecutionListener</code> :</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@AfterTask
+public void afterMe(TaskExecution taskExecution) {
+    taskExecution.setExitMessage("AFTER EXIT MESSAGE");
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An <code>ExitMessage</code> can be set at any of the listener events (<code>onTaskStartup</code>,
+<code>onTaskFailed</code>, and <code>onTaskEnd</code>). The order of precedence for the three listeners follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>onTaskEnd</code></p>
+</li>
+<li>
+<p><code>onTaskFailed</code></p>
+</li>
+<li>
+<p><code>onTaskStartup</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For example, if you set an <code>exitMessage</code> for the <code>onTaskStartup</code> and <code>onTaskFailed</code>
+listeners and the task ends without failing, the <code>exitMessage</code> from the <code>onTaskStartup</code>
+is stored in the repository. Otherwise, if a failure occurs, the <code>exitMessage</code> from
+the <code>onTaskFailed</code> is stored. Also if you set the <code>exitMessage</code> with an
+<code>onTaskEnd</code> listener, the <code>exitMessage</code> from the <code>onTaskEnd</code> supersedes
+the exit messages from both the <code>onTaskStartup</code> and <code>onTaskFailed</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="features-single-instance-enabled"><a class="anchor" href="#features-single-instance-enabled"></a>8.10. Restricting Spring Cloud Task Instances</h3>
+<div class="paragraph">
+<p>Spring Cloud Task lets you establish that only one task with a given task name can be run
+at a time. To do so, you need to establish the <a href="#features-task-name">task name</a> and set
+<code>spring.cloud.task.single-instance-enabled=true</code> for each task execution. While the first
+task execution is running, any other time you try to run a task with the same
+<a href="#features-task-name">task name</a> and`spring.cloud.task.single-instance-enabled=true`, the
+task fails with the following error message: <code>Task with name "application" is already
+running.</code> The default value for <code>spring.cloud.task.single-instance-enabled</code> is <code>false</code>. The
+following example shows how to set <code>spring.cloud.task.single-instance-enabled</code> to <code>true</code>:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.task.single-instance-enabled=true or false</code></p>
+</div>
+<div class="paragraph">
+<p>To use this feature, you must add the following Spring Integration dependencies to your
+application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.integration&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-integration-core&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.integration&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-integration-jdbc&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The exit code for the application will be 1 if the task fails because this feature
+is enabled and another task is running with the same task name.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_disabling_spring_cloud_task_auto_configuration"><a class="anchor" href="#_disabling_spring_cloud_task_auto_configuration"></a>8.11. Disabling Spring Cloud Task Auto Configuration</h3>
+<div class="paragraph">
+<p>In cases where Spring Cloud Task should not be auto configured for an implementation, you can disable Task&#8217;s auto configuration.
+This can be done either by adding the following annotation to your Task application:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>@EnableAutoConfiguration(exclude={SimpleTaskAutoConfiguration.class})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You may also disable Task auto configuration by setting the <code>spring.cloud.task.autoconfiguration.enabled</code> property to <code>false</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="closing-the-context"><a class="anchor" href="#closing-the-context"></a>8.12. Closing the Context</h3>
+<div class="paragraph">
+<p>If the application requires the <code>ApplicationContext</code> to be closed at the
+completion of a task (all <code>*Runner#run</code> methods have been called and the task
+repository has been updated), set the property <code>spring.cloud.task.closecontextEnabled</code>
+to <code>true</code>.</p>
+</div>
+<div class="paragraph">
+<p>Another case to close the context is when the Task Execution completes however the application does not terminate.
+In these cases the context is held open because a thread has been allocated
+(for example: if you are using a TaskExecutor). In these cases
+set the <code>spring.cloud.task.closecontextEnabled</code> property to <code>true</code> when launching your task.
+This will close the application&#8217;s context once the task is complete.
+Thus allowing the application to terminate.</p>
+</div>
+</div>
+</div>
+</div>
+<h1 id="batch" class="sect0"><a class="anchor" href="#batch"></a>Batch</h1>
+<div class="openblock partintro">
+<div class="content">
+<div id="partintro" class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>This section goes into more detail about Spring Cloud Task&#8217;s integration with Spring
+Batch. Tracking the association between a job execution and the task in which it was
+executed as well as remote partitioning through Spring Cloud Deployer are covered in
+this section.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="batch-association"><a class="anchor" href="#batch-association"></a>9. Associating a Job Execution to the Task in which It Was Executed</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Boot provides facilities for the execution of batch jobs within an über-jar.
+Spring Boot&#8217;s support of this functionality lets a developer execute multiple batch jobs
+within that execution. Spring Cloud Task provides the ability to associate the execution
+of a job (a job execution) with a task&#8217;s execution so that one can be traced back to the
+other.</p>
+</div>
+<div class="paragraph">
+<p>Spring Cloud Task achieves this functionality by using the <code>TaskBatchExecutionListener</code>.
+By default,
+this listener is auto configured in any context that has both a Spring Batch Job
+configured (by having a bean of type <code>Job</code> defined in the context) and the
+<code>spring-cloud-task-batch</code> jar on the classpath. The listener is injected into all jobs
+that meet those conditions.</p>
+</div>
+<div class="sect2">
+<h3 id="batch-association-override"><a class="anchor" href="#batch-association-override"></a>9.1. Overriding the TaskBatchExecutionListener</h3>
+<div class="paragraph">
+<p>To prevent the listener from being injected into any batch jobs within the current
+context, you can disable the autoconfiguration by using standard Spring Boot mechanisms.</p>
+</div>
+<div class="paragraph">
+<p>To only have the listener injected into particular jobs within the context, override the
+<code>batchTaskExecutionListenerBeanPostProcessor</code> and provide a list of job bean IDs, as shown
+in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">public TaskBatchExecutionListenerBeanPostProcessor batchTaskExecutionListenerBeanPostProcessor() {
+	TaskBatchExecutionListenerBeanPostProcessor postProcessor =
+		new TaskBatchExecutionListenerBeanPostProcessor();
+
+	postProcessor.setJobNames(Arrays.asList(new String[] {"job1", "job2"}));
+
+	return postProcessor;
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can find a sample batch application in the samples module of the Spring Cloud
+Task Project,
+<a href="https://github.com/spring-cloud/spring-cloud-task/tree/master/spring-cloud-task-samples/batch-job">here</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="batch-partitioning"><a class="anchor" href="#batch-partitioning"></a>10. Remote Partitioning</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Cloud Deployer provides facilities for launching Spring Boot-based applications on
+most cloud infrastructures. The <code>DeployerPartitionHandler</code> and
+<code>DeployerStepExecutionHandler</code> delegate the launching of worker step executions to Spring
+Cloud Deployer.</p>
+</div>
+<div class="paragraph">
+<p>To configure the <code>DeployerStepExecutionHandler</code>, you must provide a <code>Resource</code>
+representing the Spring Boot über-jar to be executed, a <code>TaskLauncher</code>, and a
+<code>JobExplorer</code>. You can configure any environment properties as well as the max number of
+workers to be executing at once, the interval to poll for the results (defaults to 10
+seconds), and a timeout (defaults to -1 or no timeout). The following example shows how
+configuring this <code>PartitionHandler</code> might look:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Bean
+public PartitionHandler partitionHandler(TaskLauncher taskLauncher,
+		JobExplorer jobExplorer) throws Exception {
+
+	MavenProperties mavenProperties = new MavenProperties();
+	mavenProperties.setRemoteRepositories(new HashMap&lt;&gt;(Collections.singletonMap("springRepo",
+		new MavenProperties.RemoteRepository(repository))));
+
+ 	Resource resource =
+		MavenResource.parse(String.format("%s:%s:%s",
+				"io.spring.cloud",
+				"partitioned-batch-job",
+				"1.1.0.RELEASE"), mavenProperties);
+
+	DeployerPartitionHandler partitionHandler =
+		new DeployerPartitionHandler(taskLauncher, jobExplorer, resource, "workerStep");
+
+	List&lt;String&gt; commandLineArgs = new ArrayList&lt;&gt;(3);
+	commandLineArgs.add("--spring.profiles.active=worker");
+	commandLineArgs.add("--spring.cloud.task.initialize.enable=false");
+	commandLineArgs.add("--spring.batch.initializer.enabled=false");
+
+	partitionHandler.setCommandLineArgsProvider(
+		new PassThroughCommandLineArgsProvider(commandLineArgs));
+	partitionHandler.setEnvironmentVariablesProvider(new NoOpEnvironmentVariablesProvider());
+	partitionHandler.setMaxWorkers(2);
+	partitionHandler.setApplicationName("PartitionedBatchJobTask");
+
+	return partitionHandler;
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When passing environment variables to partitions, each partition may
+be on a different machine with different environment settings.
+Consequently, you should pass only those environment variables that are required.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Notice in the example above that we have set the maximum number of workers to 2.
+Setting the maximum of workers establishes the maximum number of
+partitions that should be running at one time.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Resource</code> to be executed is expected to be a Spring Boot über-jar with a
+<code>DeployerStepExecutionHandler</code> configured as a <code>CommandLineRunner</code> in the current context.
+The repository enumerated in the preceding example should be the remote repository in
+which the über-jar is located. Both the manager and worker are expected to have visibility
+into the same data store being used as the job repository and task repository. Once the
+underlying infrastructure has bootstrapped the Spring Boot jar and Spring Boot has
+launched the <code>DeployerStepExecutionHandler</code>, the step handler executes the requested
+<code>Step</code>. The following example shows how to configure the <code>DefaultStepExecutionHandler</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@Bean
+public DeployerStepExecutionHandler stepExecutionHandler(JobExplorer jobExplorer) {
+	DeployerStepExecutionHandler handler =
+		new DeployerStepExecutionHandler(this.context, jobExplorer, this.jobRepository);
+
+	return handler;
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can find a sample remote partition application in the samples module of the
+Spring Cloud Task project,
+<a href="https://github.com/spring-cloud/spring-cloud-task/tree/master/spring-cloud-task-samples/partitioned-batch-job">here</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_notes_on_developing_a_batch_partitioned_application_for_the_kubernetes_platform"><a class="anchor" href="#_notes_on_developing_a_batch_partitioned_application_for_the_kubernetes_platform"></a>10.1. Notes on Developing a Batch-partitioned application for the Kubernetes Platform</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>When deploying partitioned apps on the Kubernetes platform, you must use the following
+dependency for the Spring Cloud Kubernetes Deployer:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-deployer-kubernetes&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The application name for the task application and its partitions need to follow
+the following regex pattern: <code>[a-z0-9]([-a-z0-9]*[a-z0-9])</code>.
+Otherwise, an exception is thrown.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_notes_on_developing_a_batch_partitioned_application_for_the_cloud_foundry_platform"><a class="anchor" href="#_notes_on_developing_a_batch_partitioned_application_for_the_cloud_foundry_platform"></a>10.2. Notes on Developing a Batch-partitioned Application for the Cloud Foundry Platform</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>When deploying partitioned apps on the Cloud Foundry platform, you must use the
+following dependencies for the Spring Cloud Foundry Deployer:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-xml hljs" data-lang="xml">&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-deployer-cloudfoundry&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.projectreactor&lt;/groupId&gt;
+    &lt;artifactId&gt;reactor-core&lt;/artifactId&gt;
+    &lt;version&gt;3.1.5.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;io.projectreactor.ipc&lt;/groupId&gt;
+    &lt;artifactId&gt;reactor-netty&lt;/artifactId&gt;
+    &lt;version&gt;0.7.5.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>When configuring the partition handler, Cloud Foundry Deployment
+environment variables need to be established so that the partition handler
+can start the partitions. The following list shows the required environment
+variables:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spring_cloud_deployer_cloudfoundry_url</code></p>
+</li>
+<li>
+<p><code>spring_cloud_deployer_cloudfoundry_org</code></p>
+</li>
+<li>
+<p><code>spring_cloud_deployer_cloudfoundry_space</code></p>
+</li>
+<li>
+<p><code>spring_cloud_deployer_cloudfoundry_domain</code></p>
+</li>
+<li>
+<p><code>spring_cloud_deployer_cloudfoundry_username</code></p>
+</li>
+<li>
+<p><code>spring_cloud_deployer_cloudfoundry_password</code></p>
+</li>
+<li>
+<p><code>spring_cloud_deployer_cloudfoundry_services</code></p>
+</li>
+<li>
+<p><code>spring_cloud_deployer_cloudfoundry_taskTimeout</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>An example set of deployment environment variables for a partitioned task that
+uses a <code>mysql</code> database service might resemble the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">spring_cloud_deployer_cloudfoundry_url=https://api.local.pcfdev.io
+spring_cloud_deployer_cloudfoundry_org=pcfdev-org
+spring_cloud_deployer_cloudfoundry_space=pcfdev-space
+spring_cloud_deployer_cloudfoundry_domain=local.pcfdev.io
+spring_cloud_deployer_cloudfoundry_username=admin
+spring_cloud_deployer_cloudfoundry_password=admin
+spring_cloud_deployer_cloudfoundry_services=mysql
+spring_cloud_deployer_cloudfoundry_taskTimeout=300</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When using PCF-Dev, the following environment variable is also required:
+<code>spring_cloud_deployer_cloudfoundry_skipSslValidation=true</code>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="batch-informational-messages"><a class="anchor" href="#batch-informational-messages"></a>11. Batch Informational Messages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Cloud Task provides the ability for batch jobs to emit informational messages. The
+&#8220;<a href="#stream-integration-batch-events">Spring Batch Events</a>&#8221; section covers this feature in detail.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="batch-failures-and-tasks"><a class="anchor" href="#batch-failures-and-tasks"></a>12. Batch Job Exit Codes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As discussed <a href="#features-lifecycle-exit-codes">earlier</a>, Spring Cloud Task
+applications support the ability to record the exit code of a task execution. However, in
+cases where you run a Spring Batch Job within a task, regardless of how the Batch Job
+Execution completes, the result of the task is always zero when using the default
+Batch/Boot behavior. Keep in mind that a task is a boot application and that the exit code
+returned from the task is the same as a boot application.
+To override this behavior and allow the task to return an exit code other than zero when a
+batch job returns an
+<a href="https://docs.spring.io/spring-batch/4.0.x/reference/html/step.html#batchStatusVsExitStatus">BatchStatus</a>
+of <code>FAILED</code>, set <code>spring.cloud.task.batch.fail-on-job-failure</code> to <code>true</code>. Then the exit code
+can be 1 (the default) or be based on the
+<a href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-spring-application.html#boot-features-application-exit">specified
+<code>ExitCodeGenerator</code></a>)</p>
+</div>
+<div class="paragraph">
+<p>This functionality uses a new <code>CommandLineRunner</code> that replaces the one provided by Spring
+Boot. By default, it is configured with the same order. However, if you want to customize
+the order in which the <code>CommandLineRunner</code> is run, you can set its order by setting the
+<code>spring.cloud.task.batch.commandLineRunnerOrder</code> property. To have your task return the
+exit code based on the result of the batch job execution, you need to write your own
+<code>CommandLineRunner</code>.</p>
+</div>
+</div>
+</div>
+<h1 id="stream-integration" class="sect0"><a class="anchor" href="#stream-integration"></a>Spring Cloud Stream Integration</h1>
+<div class="openblock partintro">
+<div class="content">
+<div id="partintro" class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>A task by itself can be useful, but integration of a task into a larger ecosystem lets it
+be useful for more complex processing and orchestration. This section
+covers the integration options for Spring Cloud Task with Spring Cloud Stream.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stream-integration-launching-sink"><a class="anchor" href="#stream-integration-launching-sink"></a>13. Launching a Task from a Spring Cloud Stream</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can launch tasks from a stream. To do so, create a sink that listens for a message
+that contains a <code>TaskLaunchRequest</code> as its payload. The <code>TaskLaunchRequest</code> contains:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>uri</code>: To the task artifact that is to be executed.</p>
+</li>
+<li>
+<p><code>applicationName</code>: The name that is associated with the task. If no
+applicationName is set, the <code>TaskLaunchRequest</code> generates a task name
+comprised of the following: <code>Task-&lt;UUID&gt;</code>.</p>
+</li>
+<li>
+<p><code>commandLineArguments</code>: A list containing the command line arguments for the task.</p>
+</li>
+<li>
+<p><code>environmentProperties</code>: A map containing the environment variables to be used by the
+task.</p>
+</li>
+<li>
+<p><code>deploymentProperties</code>: A map containing the properties that are used by the deployer to
+deploy the task.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the payload is of a different type, the sink throws an exception.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For example, a stream can be created that has a processor that takes in data from an
+HTTP source and creates a <code>GenericMessage</code> that contains the <code>TaskLaunchRequest</code> and sends
+the message to its output channel. The task sink would then receive the message from its
+input channnel and then launch the task.</p>
+</div>
+<div class="paragraph">
+<p>To create a taskSink, you need only create a Spring Boot application that includes the
+<code>EnableTaskLauncher</code> annotation, as shown in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@SpringBootApplication
+@EnableTaskLauncher
+public class TaskSinkApplication {
+	public static void main(String[] args) {
+		SpringApplication.run(TaskSinkApplication.class, args);
+	}
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="https://github.com/spring-cloud/spring-cloud-task/tree/master/spring-cloud-task-samples">samples
+module</a> of the Spring Cloud Task project contains a sample Sink and Processor. To install
+these samples into your local maven repository, run a maven build from the
+<code>spring-cloud-task-samples</code> directory with the <code>skipInstall</code> property set to <code>false</code>, as
+shown in the following example:</p>
+</div>
+<div class="paragraph">
+<p><code>mvn clean install</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>maven.remoteRepositories.springRepo.url</code> property must be set to the location
+of the remote repository in which the über-jar is located. If not set, there is no remote
+repository, so it relies upon the local repository only.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="stream-integration-launching-sink-dataflow"><a class="anchor" href="#stream-integration-launching-sink-dataflow"></a>13.1. Spring Cloud Data Flow</h3>
+<div class="paragraph">
+<p>To create a stream in Spring Cloud Data Flow, you must first register the Task Sink
+Application we created. In the following example, we are registering the Processor and
+Sink sample applications by using the Spring Cloud Data Flow shell:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">app register --name taskSink --type sink --uri maven://io.spring.cloud:tasksink:&lt;version&gt;
+app register --name taskProcessor --type processor --uri maven:io.spring.cloud:taskprocessor:&lt;version&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example shows how to create a stream from the Spring Cloud Data Flow shell:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stream create foo --definition "http --server.port=9000|taskProcessor|taskSink" --deploy</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stream-integration-events"><a class="anchor" href="#stream-integration-events"></a>14. Spring Cloud Task Events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Cloud Task provides the ability to emit events through a Spring Cloud Stream
+channel when the task is run through a Spring Cloud Stream channel. A task listener is
+used to publish the <code>TaskExecution</code> on a message channel named <code>task-events</code>. This feature
+is autowired into any task that has <code>spring-cloud-stream</code>, <code>spring-cloud-stream-&lt;binder&gt;</code>,
+and a defined task on its classpath.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+To disable the event emitting listener, set the <code>spring.cloud.task.events.enabled</code>
+property to <code>false</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>With the appropriate classpath defined, the following task emits the <code>TaskExecution</code> as an
+event on the <code>task-events</code> channel (at both the start and the end of the task):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-java hljs" data-lang="java">@SpringBootApplication
+public class TaskEventsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(TaskEventsApplication.class, args);
+	}
+
+	@Configuration
+	public static class TaskConfiguration {
+
+		@Bean
+		public CommandLineRunner commandLineRunner() {
+			return new CommandLineRunner() {
+				@Override
+				public void run(String... args) throws Exception {
+					System.out.println("The CommandLineRunner was executed");
+				}
+			};
+		}
+	}
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A binder implementation is also required to be on the classpath.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A sample task event application can be found in the samples module
+of the Spring Cloud Task Project,
+<a href="https://github.com/spring-cloud/spring-cloud-task/tree/master/spring-cloud-task-samples/task-events">here</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="stream-integration-disable-task-events"><a class="anchor" href="#stream-integration-disable-task-events"></a>14.1. Disabling Specific Task Events</h3>
+<div class="paragraph">
+<p>To disable task events, you can set the <code>spring.cloud.task.events.enabled</code> property to
+<code>false</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stream-integration-batch-events"><a class="anchor" href="#stream-integration-batch-events"></a>15. Spring Batch Events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When executing a Spring Batch job through a task, Spring Cloud Task can be configured to
+emit informational messages based on the Spring Batch listeners available in Spring Batch.
+Specifically, the following Spring Batch listeners are autoconfigured into each batch job
+and emit messages on the associated Spring Cloud Stream channels when run through Spring
+Cloud Task:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>JobExecutionListener</code> listens for <code>job-execution-events</code></p>
+</li>
+<li>
+<p><code>StepExecutionListener</code> listens for <code>step-execution-events</code></p>
+</li>
+<li>
+<p><code>ChunkListener</code> listens for <code>chunk-events</code></p>
+</li>
+<li>
+<p><code>ItemReadListener</code> listens for <code>item-read-events</code></p>
+</li>
+<li>
+<p><code>ItemProcessListener</code> listens for <code>item-process-events</code></p>
+</li>
+<li>
+<p><code>ItemWriteListener</code> listens for <code>item-write-events</code></p>
+</li>
+<li>
+<p><code>SkipListener</code> listens for <code>skip-events</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These listeners are autoconfigured into any <code>AbstractJob</code> when the appropriate
+beans (a <code>Job</code> and a <code>TaskLifecycleListener</code>) exist in the context. Configuration to
+listen to these events is handled the same way binding to any other Spring
+Cloud Stream channel is done. Our task (the one running the batch job) serves as a
+<code>Source</code>, with the listening applications serving as either a <code>Processor</code> or a <code>Sink</code>.</p>
+</div>
+<div class="paragraph">
+<p>An example could be to have an application listening to the <code>job-execution-events</code> channel
+for the start and stop of a job. To configure the listening application, you would
+configure the input to be <code>job-execution-events</code> as follows:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.stream.bindings.input.destination=job-execution-events</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A binder implementation is also required to be on the classpath.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+A sample batch event application can be found in the samples module
+of the Spring Cloud Task Project,
+<a href="https://github.com/spring-cloud/spring-cloud-task/tree/master/spring-cloud-task-samples/batch-events">here</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_sending_batch_events_to_different_channels"><a class="anchor" href="#_sending_batch_events_to_different_channels"></a>15.1. Sending Batch Events to Different Channels</h3>
+<div class="paragraph">
+<p>One of the options that Spring Cloud Task offers for batch events is the ability to alter
+the channel to which a specific listener can emit its messages. To do so, use the
+following configuration:
+<code>spring.cloud.stream.bindings.&lt;the channel&gt;.destination=&lt;new destination&gt;</code>. For example,
+if <code>StepExecutionListener</code> needs to emit its messages to another channel called
+<code>my-step-execution-events</code> instead of the default <code>step-execution-events</code>, you can add the
+following configuration:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.stream.bindings.step-execution-events.destination=my-step-execution-events</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_disabling_batch_events"><a class="anchor" href="#_disabling_batch_events"></a>15.2. Disabling Batch Events</h3>
+<div class="paragraph">
+<p>To disable the listener functionality for all batch events, use the following
+configuration:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.task.batch.events.enabled=false</code></p>
+</div>
+<div class="paragraph">
+<p>To disable a specific batch event, use the following configuration:</p>
+</div>
+<div class="paragraph">
+<p><code>spring.cloud.task.batch.events.&lt;batch event listener&gt;.enabled=false</code>:</p>
+</div>
+<div class="paragraph">
+<p>The following listing shows individual listeners that you can disable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">spring.cloud.task.batch.events.job-execution.enabled=false
+spring.cloud.task.batch.events.step-execution.enabled=false
+spring.cloud.task.batch.events.chunk.enabled=false
+spring.cloud.task.batch.events.item-read.enabled=false
+spring.cloud.task.batch.events.item-process.enabled=false
+spring.cloud.task.batch.events.item-write.enabled=false
+spring.cloud.task.batch.events.skip.enabled=false</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_emit_order_for_batch_events"><a class="anchor" href="#_emit_order_for_batch_events"></a>15.3. Emit Order for Batch Events</h3>
+<div class="paragraph">
+<p>By default, batch events have <code>Ordered.LOWEST_PRECEDENCE</code>. To change this value (for
+example, to 5 ), use the following configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">spring.cloud.task.batch.events.job-execution-order=5
+spring.cloud.task.batch.events.step-execution-order=5
+spring.cloud.task.batch.events.chunk-order=5
+spring.cloud.task.batch.events.item-read-order=5
+spring.cloud.task.batch.events.item-process-order=5
+spring.cloud.task.batch.events.item-write-order=5
+spring.cloud.task.batch.events.skip-order=5</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="appendix" class="sect0"><a class="anchor" href="#appendix"></a>Appendices</h1>
+<div class="sect1">
+<h2 id="appendix-task-repository-schema"><a class="anchor" href="#appendix-task-repository-schema"></a>16. Task Repository Schema</h2>
+<div class="sectionbody">
+<div id="partintro" class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>This appendix provides an ERD for the database schema used in the task repository.</p>
+</div>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/task_schema.png" alt="task schema">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_table_information"><a class="anchor" href="#_table_information"></a>16.1. Table Information</h3>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<div class="title">TASK_EXECUTION</div>
+<p>Stores the task execution information.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 7.1428%;">
+<col style="width: 7.1428%;">
+<col style="width: 7.1428%;">
+<col style="width: 7.1428%;">
+<col style="width: 71.4288%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column Name</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Field Length</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TASK_EXECUTION_ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BIGINT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring Cloud Task Framework at app startup establishes the next available id as obtained from the <code>TASK_SEQ</code>. Or if the record is created outside of task then the value must be populated at record creation time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">START_TIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FALSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATETIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring Cloud Task Framework at app startup establishes the value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">END_TIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FALSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATETIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring Cloud Task Framework at app exit establishes the value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TASK_NAME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FALSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring Cloud Task Framework at app startup will set this to "Application" unless user establish the name using the spring.cloud.task.name as discussed <a href="#features-task-name">here</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EXIT_CODE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FALSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Follows Spring Boot defaults unless overridden by the user as discussed <a href="https://docs.spring.io/spring-cloud-task/docs/current/reference/#features-lifecycle-exit-codes">here</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EXIT_MESSAGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FALSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2500</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User Defined as discussed <a href="https://docs.spring.io/spring-cloud-task/docs/current/reference/#features-task-execution-listener-exit-messages">here</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ERROR_MESSAGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FALSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2500</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring Cloud Task Framework at app exit establishes the value.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LAST_UPDATED</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATETIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Spring Cloud Task Framework at app startup establishes the value. Or if the record is created outside of task then the value must be populated at record creation time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EXTERNAL_EXECUTION_ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FALSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">250</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the <code>spring.cloud.task.external-execution-id</code> property is set then Spring Cloud Task Framework at app startup will set this to the value specified. More information can be found <a href="#features-external_task_id">here</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PARENT_TASK_EXECUTION_ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FALSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BIGINT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the <code>spring.cloud.task.parent-execution-id</code> property is set then Spring Cloud Task Framework at app startup will set this to the value specified. More information can be found <a href="#features-parent_task_id">here</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<div class="title">TASK_EXECUTION_PARAMS</div>
+<p>Stores the parameters used for a task execution</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column Name</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Field Length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TASK_EXECUTION_ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BIGINT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TASK_PARAM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FALSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<div class="title">TASK_TASK_BATCH</div>
+<p>Used to link the task execution to the batch execution.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column Name</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Field Length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TASK_EXECUTION_ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BIGINT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JOB_EXECUTION_ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BIGINT</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<div class="title">TASK_LOCK</div>
+<p>Used for the <code>single-instance-enabled</code> feature discussed <a href="#features-single-instance-enabled">here</a>.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 80%;">
+<colgroup>
+<col style="width: 7.1428%;">
+<col style="width: 7.1428%;">
+<col style="width: 7.1428%;">
+<col style="width: 7.1428%;">
+<col style="width: 71.4288%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Column Name</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Field Length</th>
+<th class="tableblock halign-left valign-top">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOCK_KEY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">36</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UUID for the this lock</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REGION</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User can establish a group of locks using this field.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLIENT_ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CHAR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">36</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The task execution id that contains the name of the app to lock.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CREATED_DATE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TRUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATETIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The date that the entry was created</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The DDL for setting up tables for each database type can be found <a href="https://github.com/spring-cloud/spring-cloud-task/tree/master/spring-cloud-task-core/src/main/resources/org/springframework/cloud/task">here</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="appendix-building-the-documentation"><a class="anchor" href="#appendix-building-the-documentation"></a>17. Building This Documentation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project uses Maven to generate this documentation. To generate it for yourself,
+run the following command: <code>$ ./mvnw clean package -P full</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="appendix-cloud-foundry"><a class="anchor" href="#appendix-cloud-foundry"></a>18. Running a Task App on Cloud Foundry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The simplest way to launch a Spring Cloud Task application as a task on Cloud Foundry
+is to use Spring Cloud Data Flow. Via Spring Cloud Data Flow you can register your task application,
+create a definition for it and then launch it. You then can track the task execution(s)
+via a RESTful API, the Spring Cloud Data Flow Shell, or the UI. To learn out to get started installing Data Flow
+follow the instructions in the
+<a href="https://docs.spring.io/spring-cloud-dataflow/docs/current/reference/htmlsingle/#getting-started">Getting Started</a>
+section of the reference documentation. For info on how to register and launch tasks, see the <a href="https://docs.spring.io/spring-cloud-dataflow/docs/current/reference/htmlsingle/#_the_lifecycle_of_a_task">Lifecycle of a Task</a> documentation.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-03-03 19:10:55 UTC
+</div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript" src="js/tocbot/tocbot.min.js"></script>
+<script type="text/javascript" src="js/toc.js"></script>
+<link rel="stylesheet" href="js/highlight/styles/atom-one-dark-reasonable.min.css">
+<script src="js/highlight/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>if(window.parent==window){(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-2728886-23','auto',{'siteSpeedSampleRate':100});ga('send','pageview');}</script></body>
+</html>

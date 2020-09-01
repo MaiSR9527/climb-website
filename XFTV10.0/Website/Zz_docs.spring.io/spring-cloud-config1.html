@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+<title>Spring Cloud Config</title>
+<meta content="width=device-width,initial-scale=1,shrink-to-fit=no" id="Viewport" name="viewport">
+<link media="all" rel="stylesheet" type="text/css" href="static/css/main-223d469db63e945f615f4af44ee.css">
+
+<meta content="Level up your Java code and explore what Spring can do for you." name="description">
+<link rel="manifest" href="https://spring.io/manifest-0e3065c2bbd1ef7a320e80861393f1a6.json">
+<meta content="#6db33f" name="theme-color">
+<meta content="spring" name="apple-mobile-web-app-title">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="default" name="apple-mobile-web-app-status-bar-style">
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KZM7GF6');</script>
+
+<script src="static/js/run_prettify-b8b4abd61389be25d52.js"></script>
+<meta property="og:title" content="Spring Cloud Config">
+<link media="all" rel="stylesheet" type="text/css" href="static/css/project-1ff2d3a7e85cceabfb1df199.css">
+</head>
+<body>
+<script src="static/js/theme-f367e6936a70ad2e6b3dcb91c6.js"></script>
+<header>
+<nav id="nav">
+<div class="container flex jc-between ai-center" id="nav-inner">
+<a href="javascript:window.open('https://spring.io/');" id="logo-focus" tabindex="1">
+<img alt="Spring" class="block" id="springlogo" src="static/picture/spring-logo-9146a4d3298760c2e7e4.svg">
+</a>
+<ul class="flex jc-between" id="nav-items">
+<li><div class="has-menu" id="why-hov"><span tabindex="2">Why Spring</span><div class="nav-arrow"></div></div></li>
+<li><div class="has-menu" id="learn-hov"><span tabindex="11">Learn</span><div class="nav-arrow"></div></div></li>
+<li><div class="has-menu" id="projects-hov"><span tabindex="17">Projects</span><div class="nav-arrow"></div></div></li>
+<li><a class="z-5 rel" href="javascript:window.open('https://spring.io/training');" tabindex="30">Training</a></li>
+<li><a class="z-5 rel" href="javascript:window.open('https://spring.io/support');" tabindex="31">Support</a></li>
+<li><a class="has-menu" id="community-hov"><span tabindex="32">Community</span><div class="nav-arrow"></div></a></li>
+<li>
+<a class="theme-switch" id="switch-theme">
+<span>
+<i class="fas fa-moon"></i>
+<i class="fas fa-sun"></i>
+</span>
+</a>
+</li>
+
+</ul>
+</div>
+<div class="container rel" id="dropdown-menus">
+<div class="abs rad-5" id="scope"></div>
+<div class="drop-menu" id="why-items">
+<div class="drop-target" id="why-target"></div>
+<ul>
+<li><a href="javascript:window.open('https://spring.io/why-spring');" tabindex="3">Overview</a></li>
+<li><a href="javascript:window.open('https://spring.io/microservices');" tabindex="4">Microservices</a></li>
+<li><a href="javascript:window.open('https://spring.io/reactive');" tabindex="5">Reactive</a></li>
+<li><a href="javascript:window.open('https://spring.io/event-driven');" tabindex="6">Event Driven</a></li>
+<li><a href="javascript:window.open('https://spring.io/cloud');" tabindex="7">Cloud</a></li>
+<li><a href="javascript:window.open('https://spring.io/web-applications');" tabindex="8">Web Applications</a></li>
+<li><a href="javascript:window.open('https://spring.io/serverless');" tabindex="9">Serverless</a></li>
+<li><a href="javascript:window.open('https://spring.io/batch');" tabindex="10">Batch</a></li>
+</ul>
+</div>
+<div class="drop-menu" id="learn-items">
+<div class="drop-target" id="learn-target"></div>
+<ul>
+<li><a href="javascript:window.open('https://spring.io/learn');" tabindex="12">Overview</a></li>
+<li><a href="javascript:window.open('https://spring.io/quickstart');" tabindex="13">Quickstart</a></li>
+<li><a href="guides.html" tabindex="14">Guides</a></li>
+
+<li><a href="javascript:window.open('https://spring.io/blog');" tabindex="16">Blog</a></li>
+</ul>
+</div>
+<div class="drop-menu" id="project-items">
+<div class="drop-target" id="project-target"></div>
+<ul>
+<li><a href="javascript:window.open('https://spring.io/projects');" tabindex="18">Overview</a></li>
+<li><a href="spring-boot.html" tabindex="19">Spring Boot</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-framework');" tabindex="20">Spring Framework</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-cloud');" tabindex="21">Spring Cloud</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-cloud-dataflow');" tabindex="22">Spring Cloud Data Flow</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-data');" tabindex="23">Spring Data</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-integration');" tabindex="24">Spring Integration</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-batch');" tabindex="25">Spring Batch</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-security');" tabindex="26">Spring Security</a></li>
+<li><a class="blue mb-2 inline-block" href="javascript:window.open('https://spring.io/projects');" tabindex="27">View all projects</a></li>
+<li class="uppercase smallest">Development Tools</li>
+<li><a href="javascript:window.open('https://spring.io/tools');" tabindex="28">Spring Tools 4</a></li>
+<li><a href="index15.html" tabindex="29">Spring Initializr <svg class="external-link-icon" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" points="15 10.94 15 15 1 15 1 1 5.06 1" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><polyline fill="none" points="8.93 1 15 1 15 7.07" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><line fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" x1="15" x2="8" y1="1" y2="8"></line></svg></a></li>
+</ul>
+</div>
+<div class="drop-menu" id="community-items">
+<div class="drop-target" id="community-target"></div>
+<ul>
+<li><a href="javascript:window.open('https://spring.io/community');" tabindex="33">Overview</a></li>
+<li><a href="javascript:window.open('https://spring.io/events');" tabindex="34">Events</a></li>
+<li><a href="javascript:window.open('https://spring.io/team');" tabindex="35">Team</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<div class="pointer" id="mobile-nav-open">
+<div id="hamburger">
+<div class="burger-bar"></div>
+<div class="burger-bar"></div>
+<div class="burger-bar"></div>
+</div>
+<svg class="mobile-close pointer" id="Layer_1" style="enable-background:new 0 0 14.6 14.6;" version="1.1" viewbox="0 0 14.6 14.6" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px"><style type="text/css">.st0{fill:none;stroke:#000000;stroke-width:3;stroke-miterlimit:10;}</style><title>close</title><line class="st0" x1="1.5" x2="13.1" y1="1.5" y2="13.1"></line><line class="st0" x1="13.1" x2="1.5" y1="1.5" y2="13.1"></line></svg>
+</div>
+<nav class="border-box rel" id="mobile-nav">
+<div class="rel">
+<div class="mobile-category flex jc-between ai-center" id="mobile-why">
+<div class="mobile-title antialiased cursor-d">Why Spring</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-why-items">
+<ul>
+<li><a href="javascript:window.open('https://spring.io/why-spring');">Overview</a></li>
+<li><a href="javascript:window.open('https://spring.io/microservices');">Microservices</a></li>
+<li><a href="javascript:window.open('https://spring.io/reactive');">Reactive</a></li>
+<li><a href="javascript:window.open('https://spring.io/event-driven');">Event Driven</a></li>
+<li><a href="javascript:window.open('https://spring.io/cloud');">Cloud</a></li>
+<li><a href="javascript:window.open('https://spring.io/web-applications');">Web Applications</a></li>
+<li><a href="javascript:window.open('https://spring.io/serverless');">Serverless</a></li>
+<li><a href="javascript:window.open('https://spring.io/batch');">Batch</a></li>
+</ul>
+</div>
+<div class="mobile-category flex jc-between ai-center" id="mobile-learn">
+<div class="mobile-title antialiased cursor-d">Learn</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-learn-items">
+<ul>
+<li><a href="javascript:window.open('https://spring.io/learn');">Overview</a></li>
+<li><a href="javascript:window.open('https://spring.io/quickstart');">Quickstart</a></li>
+<li><a href="guides.html">Guides</a></li>
+
+<li><a href="javascript:window.open('https://spring.io/blog');">Blog</a></li>
+</ul>
+</div>
+<div class="mobile-category flex jc-between ai-center" id="mobile-projects">
+<div class="mobile-title antialiased cursor-d">Projects</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-project-items">
+<ul>
+<li><a href="javascript:window.open('https://spring.io/projects');">Overview</a></li>
+<li><a href="spring-boot.html">Spring Boot</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-framework');">Spring Framework</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-cloud');">Spring Cloud</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-cloud-dataflow');">Spring Cloud Data Flow</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-data');">Spring Data</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-integration');">Spring Integration</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-batch');">Spring Batch</a></li>
+<li><a href="javascript:window.open('https://spring.io/projects/spring-security');">Spring Security</a></li>
+<li><a class="blue mb-2 inline-block" href="javascript:window.open('https://spring.io/projects');">View all projects</a></li>
+<p class="uppercase smallest white">Development Tools</p>
+<li><a href="javascript:window.open('https://spring.io/tools');">Spring Tools 4</a></li>
+<li><a href="index15.html">Spring Initializr <svg class="external-link-icon" viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><polyline fill="none" points="15 10.94 15 15 1 15 1 1 5.06 1" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><polyline fill="none" points="8.93 1 15 1 15 7.07" stroke="currentColor" stroke-miterlimit="10" stroke-width="2"></polyline><line fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="2" x1="15" x2="8" y1="1" y2="8"></line></svg></a></li>
+</ul>
+</div>
+<a class="mobile-link block" href="javascript:window.open('https://spring.io/training');"><div class="mobile-title antialiased">Training</div></a>
+<a class="mobile-link block" href="javascript:window.open('https://spring.io/support');"><div class="mobile-title antialiased">Support</div></a>
+<div class="mobile-category flex jc-between ai-center" id="mobile-community">
+<div class="mobile-title antialiased cursor-d">Community</div>
+<div class="mobile-nav-arrow"></div>
+</div>
+<div class="mobile-expanded-category" id="mobile-community-items">
+<ul>
+<li><a href="javascript:window.open('https://spring.io/community');">Overview</a></li>
+<li><a href="javascript:window.open('https://spring.io/events');">Events</a></li>
+<li><a href="javascript:window.open('https://spring.io/team');">Team</a></li>
+</ul>
+</div>
+
+</div>
+</nav>
+<div id="search-nav" role="search">
+<div class="container relative">
+<form accept-charset="UTF-8" action="/search" id="searchheaderform" method="get"><input name="utf8" type="hidden" value="✓">
+<input autocomplete="off" id="searchheaderinput" name="q" placeholder="Search for documentation, guides, and posts..." type="text">
+<input data-disable-with="" id="searchheadersubmit" type="submit" value="">
+</form>
+
+</div>
+</div>
+</header>
+<div id="main">
+<div class="container-fluid"></div>
+<div></div>
+<div class="compass body--container container-fluid">
+<div class="row">
+<div class="sidebar hide-sm col-md-3">
+<ul class="sidebar_main">
+<li class="sidebar_head">Projects</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="spring-boot.html">Spring Boot</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-framework');">Spring Framework</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-data');">Spring Data</a>
+<i aria-hidden="true" class="fas fa-chevron-right"></i>
+</div>
+</li>
+<li class="sidebar_project child-active">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud');">Spring Cloud</a>
+<i aria-hidden="true" class="fas fa-chevron-down"></i>
+</div>
+<ul class="sidebar_children">
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-azure');">
+<span>Spring Cloud Azure</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-alibaba');">
+<span>Spring Cloud Alibaba</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-aws');">
+<span>Spring Cloud for Amazon Web Services</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="spring-cloud-bus.html">
+<span>Spring Cloud Bus</span>
+</a>
+</li>
+ <li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-cli');">
+<span>Spring Cloud CLI</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-cloudfoundry');">
+<span>Spring Cloud for Cloud Foundry</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-cloudfoundry-service-broker');">
+<span>Spring Cloud - Cloud Foundry Service Broker</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-cluster');">
+<span>Spring Cloud Cluster</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-commons');">
+<span>Spring Cloud Commons</span>
+</a>
+</li>
+<li class="sidebar_child active">
+<a href="">
+<span>Spring Cloud Config</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-connectors');">
+<span>Spring Cloud Connectors</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-consul');">
+<span>Spring Cloud Consul</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-contract');">
+<span>Spring Cloud Contract</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-function');">
+<span>Spring Cloud Function</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-gateway');">
+<span>Spring Cloud Gateway</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-gcp');">
+<span>Spring Cloud GCP</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-netflix');">
+<span>Spring Cloud Netflix</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-open-service-broker');">
+<span>Spring Cloud Open Service Broker</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-pipelines');">
+<span>Spring Cloud Pipelines</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-schema-registry');">
+<span>Spring Cloud Schema Registry</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-security');">
+<span>Spring Cloud Security</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://cloud.spring.io/spring-cloud-skipper');">
+<span>Spring Cloud Skipper</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-sleuth');">
+<span>Spring Cloud Sleuth</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="index2.html">
+<span>Spring Cloud Stream</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-stream-applications');">
+<span>Spring Cloud Stream Applications</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-stream-app-starters');">
+<span>Spring Cloud Stream App Starters</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-task');">
+<span>Spring Cloud Task</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-task-app-starters');">
+<span>Spring Cloud Task App Starters</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-vault');">
+<span>Spring Cloud Vault</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-zookeeper');">
+<span>Spring Cloud Zookeeper</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-app-broker');">
+<span>Spring Cloud App Broker</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-circuitbreaker');">
+<span>Spring Cloud Circuit Breaker</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-kubernetes');">
+<span>Spring Cloud Kubernetes</span>
+</a>
+</li>
+<li class="sidebar_child">
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-openfeign');">
+<span>Spring Cloud OpenFeign</span>
+</a>
+</li>
+</ul>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-cloud-dataflow');">Spring Cloud Data Flow</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-security');">Spring Security</a>
+<i aria-hidden="true" class="fas fa-chevron-right"></i>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-session');">Spring Session</a>
+<i aria-hidden="true" class="fas fa-chevron-right"></i>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-integration');">Spring Integration</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="spring-hateoas.html">Spring HATEOAS</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-restdocs');">Spring REST Docs</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-batch');">Spring Batch</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://projects.spring.io/spring-amqp');">Spring AMQP</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-android');">Spring for Android</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="spring-credhub.html">Spring CredHub</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-flo');">Spring Flo</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-kafka');">Spring for Apache Kafka</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-ldap');">Spring LDAP</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-mobile');">Spring Mobile</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://projects.spring.io/spring-roo');">Spring Roo</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-shell');">Spring Shell</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-statemachine');">Spring Statemachine</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-vault');">Spring Vault</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-webflow');">Spring Web Flow</a>
+</div>
+</li>
+<li class="sidebar_project child-inactive">
+<div>
+<a href="javascript:window.open('https://spring.io/projects/spring-ws');">Spring Web Services</a>
+</div>
+</li>
+</ul>
+</div>
+<article class="col-xs-12 col-md-9 col-project-content">
+<div class="box project-content">
+<div class="">
+<div class="project--header">
+<h1>Spring Cloud Config</h1>
+<span class="version label current">2.2.4</span>
+<div class="social-links">
+<a class="link--github" target="_blank" href="javascript:window.open('https://github.com/spring-cloud/spring-cloud-config');">
+<svg class="svg replaced-svg" height="438.549px" id="Capa_1" style="enable-background:new 0 0 438.549 438.549;" version="1.1" viewbox="0 0 438.549 438.549" width="438.549px" x="0px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" y="0px">
+<g>
+<path d="M409.132,114.573c-19.608-33.596-46.205-60.194-79.798-79.8C295.736,15.166,259.057,5.365,219.271,5.365   c-39.781,0-76.472,9.804-110.063,29.408c-33.596,19.605-60.192,46.204-79.8,79.8C9.803,148.168,0,184.854,0,224.63   c0,47.78,13.94,90.745,41.827,128.906c27.884,38.164,63.906,64.572,108.063,79.227c5.14,0.954,8.945,0.283,11.419-1.996   c2.475-2.282,3.711-5.14,3.711-8.562c0-0.571-0.049-5.708-0.144-15.417c-0.098-9.709-0.144-18.179-0.144-25.406l-6.567,1.136   c-4.187,0.767-9.469,1.092-15.846,1c-6.374-0.089-12.991-0.757-19.842-1.999c-6.854-1.231-13.229-4.086-19.13-8.559   c-5.898-4.473-10.085-10.328-12.56-17.556l-2.855-6.57c-1.903-4.374-4.899-9.233-8.992-14.559   c-4.093-5.331-8.232-8.945-12.419-10.848l-1.999-1.431c-1.332-0.951-2.568-2.098-3.711-3.429c-1.142-1.331-1.997-2.663-2.568-3.997   c-0.572-1.335-0.098-2.43,1.427-3.289c1.525-0.859,4.281-1.276,8.28-1.276l5.708,0.853c3.807,0.763,8.516,3.042,14.133,6.851   c5.614,3.806,10.229,8.754,13.846,14.842c4.38,7.806,9.657,13.754,15.846,17.847c6.184,4.093,12.419,6.136,18.699,6.136   c6.28,0,11.704-0.476,16.274-1.423c4.565-0.952,8.848-2.383,12.847-4.285c1.713-12.758,6.377-22.559,13.988-29.41   c-10.848-1.14-20.601-2.857-29.264-5.14c-8.658-2.286-17.605-5.996-26.835-11.14c-9.235-5.137-16.896-11.516-22.985-19.126   c-6.09-7.614-11.088-17.61-14.987-29.979c-3.901-12.374-5.852-26.648-5.852-42.826c0-23.035,7.52-42.637,22.557-58.817   c-7.044-17.318-6.379-36.732,1.997-58.24c5.52-1.715,13.706-0.428,24.554,3.853c10.85,4.283,18.794,7.952,23.84,10.994   c5.046,3.041,9.089,5.618,12.135,7.708c17.705-4.947,35.976-7.421,54.818-7.421s37.117,2.474,54.823,7.421l10.849-6.849   c7.419-4.57,16.18-8.758,26.262-12.565c10.088-3.805,17.802-4.853,23.134-3.138c8.562,21.509,9.325,40.922,2.279,58.24   c15.036,16.18,22.559,35.787,22.559,58.817c0,16.178-1.958,30.497-5.853,42.966c-3.9,12.471-8.941,22.457-15.125,29.979   c-6.191,7.521-13.901,13.85-23.131,18.986c-9.232,5.14-18.182,8.85-26.84,11.136c-8.662,2.286-18.415,4.004-29.263,5.146   c9.894,8.562,14.842,22.077,14.842,40.539v60.237c0,3.422,1.19,6.279,3.572,8.562c2.379,2.279,6.136,2.95,11.276,1.995   c44.163-14.653,80.185-41.062,108.068-79.226c27.88-38.161,41.825-81.126,41.825-128.906   C438.536,184.851,428.728,148.168,409.132,114.573z"></path>
+</g>
+</svg>
+</a>
+<a class="link--stackoverflow" target="_blank" href="javascript:window.open('https://stackoverflow.com/questions/tagged/spring-cloud');">
+<svg viewbox="0 0 30.2 30.2" xmlns="http://www.w3.org/2000/svg">
+<circle cx="15.1" cy="15.1" r="15.1"></circle>
+<g>
+<path class="shape-color-2" d="M20.27,22.39V17.64h1.58V24H7.62V17.64H9.19v4.75Z"></path>
+<path class="shape-color-2" d="M10.93,17.19l7.74,1.62L19,17.25l-7.74-1.62Zm1-3.69,7.16,3.34.66-1.43-7.17-3.36Zm2-3.52L20,15l1-1.21L15,8.77Zm3.94-3.75-1.27.95,4.71,6.34,1.26-.94ZM10.77,20.79h7.9V19.22h-7.9Z"></path>
+</g>
+</svg>
+</a>
+</div>
+</div>
+<ul class="nav nav-tabs" id="nav-project">
+<li class="active">
+<a data-toggle="tab" href="#overview">
+<i class="icon-eye-open"></i>
+<span class="hide-sm">Overview</span>
+</a>
+</li>
+<li class="">
+<a data-toggle="tab" href="#learn">
+<i class="icon-file-text-alt"></i>
+<span class="hide-sm">Learn</span>
+</a>
+</li>
+<li class="">
+<a data-toggle="tab" href="#samples">
+<i class="icon-code"></i>
+<span class="hide-sm">Samples</span>
+</a>
+</li>
+</ul>
+<div class="tab-content" id="content-project">
+<div class="tab-pane active" id="overview">
+<div class="compass-section">
+<div class="project-overview">
+<div><div class="paragraph">
+<p>Spring Cloud Config provides server and client-side support for externalized configuration in a distributed system. With the Config Server you have a central place to manage external properties for applications across all environments. The concepts on both client and server map identically to the Spring <code>Environment</code> and <code>PropertySource</code> abstractions, so they fit very well with Spring applications, but can be used with any application running in any language. As an application moves through the deployment pipeline from dev to test and into production you can manage the configuration between those environments and be certain that applications have everything they need to run when they migrate. The default implementation of the server storage backend uses git so it easily supports labelled versions of configuration environments, as well as being accessible to a wide range of tooling for managing the content. It is easy to add alternative implementations and plug them in with Spring configuration.</p>
+</div>
+<div class="sect1">
+<h2 id="features"><a class="anchor" href="#features"></a>Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Cloud Config Server features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>HTTP, resource-based API for external configuration (name-value pairs, or equivalent YAML content)</p>
+</li>
+<li>
+<p>Encrypt and decrypt property values (symmetric or asymmetric)</p>
+</li>
+<li>
+<p>Embeddable easily in a Spring Boot application using <code>@EnableConfigServer</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Config Client features (for Spring applications):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Bind to the Config Server and initialize Spring <code>Environment</code> with remote property sources</p>
+</li>
+<li>
+<p>Encrypt and decrypt property values (symmetric or asymmetric)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-started"><a class="anchor" href="#getting-started"></a>Getting Started</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As long as Spring Boot Actuator and Spring Config Client are on the
+classpath any Spring Boot application will try to contact a config
+server on <code><a href="javascript:window.open('http://localhost:8888/');" class="bare">http://localhost:8888</a></code>, the default value of
+<code>spring.cloud.config.uri</code>. If you would like to change this default,
+you can set <code>spring.cloud.config.uri</code> in <code>bootstrap.[yml | properties]</code>
+or via system properties or environment variables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">@Configuration
+@EnableAutoConfiguration
+@RestController
+public class Application {
+
+  @Value("${config.name}")
+  String name = "World";
+
+  @RequestMapping("/")
+  public String home() {
+    return "Hello " + name;
+  }
+
+  public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+  }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The value of <code>config.name</code> in the sample (or any other values you bind to in the normal Spring Boot way) can come from local configuration or from the remote Config Server. The Config Server will take precedence by default. To see this look at the <code>/env</code> endpoint in the application and see the <code>configServer</code> property sources.</p>
+</div>
+<div class="paragraph">
+<p>To run your own server use the <code>spring-cloud-config-server</code> dependency and <code>@EnableConfigServer</code>. If you set <code>spring.config.name=configserver</code> the app will run on port 8888 and serve data from a sample repository. You need a <code>spring.cloud.config.server.git.uri</code> to locate the configuration data for your own needs (by default it is the location of a git repository, and can be a local <code>file:..</code> URL).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="quickstart">
+<img alt="Spring Initializr" src="static/picture/spring-initializr-4291cc0115eb10.svg">
+<h2>Quickstart Your Project</h2>
+<div>
+Bootstrap your application with
+<a class="quickstart--button" href="index15.html" target="_blank">
+Spring Initializr</a>.
+</div>
+</div>
+</div>
+</div>
+<div class="tab-pane" id="learn">
+<div class="project--documentation compass-section">
+<h2>Documentation</h2>
+<div class="project--documentation--subtitle compass-subtitle">
+Each <strong>Spring project</strong> has its own; it explains in great details
+how
+you can use <strong>project features</strong> and what you can achieve with
+them.
+</div>
+<table class="table table--documentation">
+<tbody>
+<tr>
+<td>
+<span class="release-display-name">2.2.4</span>
+<span class="version label current">CURRENT</span>
+<span class="version label ga">GA</span>
+</td>
+<td>
+<a href="javascript:window.open('https://docs.spring.io/spring-cloud-config/docs/2.2.4.RELEASE/reference/html/');">
+Reference Doc.
+</a>
+</td>
+<td>
+<a href="javascript:window.open('https://docs.spring.io/spring-cloud-config/docs/2.2.4.RELEASE/reference/html/');">
+API Doc.
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="release-display-name">3.0</span>
+<span class="version label snapshot">SNAPSHOT</span>
+</td>
+<td>
+<a href="javascript:window.open('https://docs.spring.io/spring-cloud-config/docs/3.0.0-SNAPSHOT/reference/html/');">
+Reference Doc.
+</a>
+</td>
+<td>
+<a href="javascript:window.open('https://docs.spring.io/spring-cloud-config/docs/3.0.0-SNAPSHOT/reference/html/');">
+API Doc.
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="release-display-name">3.0 0-M3</span>
+<span class="version label pre">PRE</span>
+</td>
+<td>
+<a href="javascript:window.open('https://docs.spring.io/spring-cloud-config/docs/3.0.0-M3/reference/html/');">
+Reference Doc.
+</a>
+</td>
+<td>
+<a href="javascript:window.open('https://docs.spring.io/spring-cloud-config/docs/3.0.0-M3/reference/html/');">
+API Doc.
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="release-display-name">2.2.5</span>
+<span class="version label snapshot">SNAPSHOT</span>
+</td>
+<td>
+<a href="javascript:window.open('https://docs.spring.io/spring-cloud-config/docs/2.2.5.BUILD-SNAPSHOT/reference/html/');">
+Reference Doc.
+</a>
+</td>
+<td>
+<a href="javascript:window.open('https://docs.spring.io/spring-cloud-config/docs/2.2.5.BUILD-SNAPSHOT/reference/html/');">
+API Doc.
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<span class="release-display-name">2.1.8</span>
+<span class="version label ga">GA</span>
+</td>
+<td>
+<a href="javascript:window.open('https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.1.8.RELEASE/');">
+Reference Doc.
+</a>
+</td>
+ <td>
+<a href="javascript:window.open('https://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.1.8.RELEASE/');">
+API Doc.
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="tab-pane" id="samples">
+<div class="project--samples compass-section">
+<h2>A few examples to try out:</h2>
+<ul class="project--list-links">
+<li>
+<a target="_blank" href="javascript:window.open('https://github.com/spring-cloud-samples/configserver');">
+<span class="icon">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-tutorial" data-icon="icon-guides-tutorial" focusable="false" role="img" viewbox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 		"></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+			L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0
+			l5-2.9c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7
+			L4.4,3.2L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<path class="shape-color-5" d="M10.3,25.4c-1.4-0.9-2.3-2.5-2.4-4.2c0-1.6,1.1-2.2,2.4-1.4c1.4,0.9,2.3,2.5,2.4,4.2
+			C12.7,25.5,11.6,26.1,10.3,25.4 M11.5,15.5L9,14l-0.1,1.7c-0.4-0.1-0.9-0.2-1.4-0.1l-1.2-1.8l-1.8,1l1,2c-0.2,0.4-0.4,0.8-0.5,1.2
+			l-1.6-0.8v2.9l1.6,1c0.1,0.7,0.3,1.3,0.6,1.9l-1,0.8l1.8,3l1.2-0.4c0.4,0.5,0.9,1,1.4,1.4L9,29.6l2.5,1.5l0.1-1.7
+			c0.5,0.1,1,0.2,1.5,0.1l1.1,1.8l1.8-1L15,28.5c0.3-0.4,0.5-0.9,0.6-1.3l1.5,0.7V25l-1.4-0.9c-0.1-0.7-0.3-1.4-0.6-2l0.9-0.7
+			l-1.8-3l-1.1,0.5c-0.4-0.6-0.9-1.1-1.5-1.5L11.5,15.5"></path>
+</svg>
+</div>
+</span>
+<strong class="project--sample--title">Config Server</strong>
+<span class="project--sample--description"></span>
+</a>
+</li>
+<li>
+<a target="_blank" href="javascript:window.open('https://github.com/spring-cloud-samples/customers-stores');">
+<span class="icon">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-tutorial" data-icon="icon-guides-tutorial" focusable="false" role="img" viewbox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 		"></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+			L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0
+			l5-2.9c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7
+			L4.4,3.2L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<path class="shape-color-5" d="M10.3,25.4c-1.4-0.9-2.3-2.5-2.4-4.2c0-1.6,1.1-2.2,2.4-1.4c1.4,0.9,2.3,2.5,2.4,4.2
+			C12.7,25.5,11.6,26.1,10.3,25.4 M11.5,15.5L9,14l-0.1,1.7c-0.4-0.1-0.9-0.2-1.4-0.1l-1.2-1.8l-1.8,1l1,2c-0.2,0.4-0.4,0.8-0.5,1.2
+			l-1.6-0.8v2.9l1.6,1c0.1,0.7,0.3,1.3,0.6,1.9l-1,0.8l1.8,3l1.2-0.4c0.4,0.5,0.9,1,1.4,1.4L9,29.6l2.5,1.5l0.1-1.7
+			c0.5,0.1,1,0.2,1.5,0.1l1.1,1.8l1.8-1L15,28.5c0.3-0.4,0.5-0.9,0.6-1.3l1.5,0.7V25l-1.4-0.9c-0.1-0.7-0.3-1.4-0.6-2l0.9-0.7
+			l-1.8-3l-1.1,0.5c-0.4-0.6-0.9-1.1-1.5-1.5L11.5,15.5"></path>
+</svg>
+</div>
+</span>
+<strong class="project--sample--title">Config Clients</strong>
+<span class="project--sample--description"></span>
+</a>
+</li>
+<li>
+<a target="_blank" href="javascript:window.open('https://github.com/spring-cloud-samples/scripts/blob/master/demo/app.groovy');">
+<span class="icon">
+<div class="guide-icon">
+<svg aria-hidden="true" class="icon-guides-tutorial" data-icon="icon-guides-tutorial" focusable="false" role="img" viewbox="0 0 25.4 43.6" xmlns="http://www.w3.org/2000/svg">
+<polygon class="shape-color-5" points="19.8,13 24.7,10.1 24.6,40 19.7,42.8 		"></polygon>
+<path class="shape-color-5" d="M9.3,1.2C8.5,0.7,7.6,0.6,6.7,1L1.8,3.8c0.8-0.4,1.8-0.3,2.5,0.2L19.8,13l4.9-2.9L9.3,1.2z"></path>
+<path class="shape-color-6" d="M25.4,10.1c0-0.1,0-0.2-0.1-0.2c0-0.1,0-0.1,0-0.1c-0.1-0.1-0.2-0.2-0.3-0.3L9.7,0.6c-1-0.7-2.2-0.8-3.3-0.2
+			L1.5,3.2C1.3,3.3,1.2,3.4,1.2,3.5C0.4,4.2,0,5.2,0.1,6.2L0,27.8c0.1,2.8,1.6,5.3,3.9,6.8l15.4,8.9c0.2,0.1,0.5,0.1,0.7,0l0,0
+			l5-2.9c0.2-0.1,0.4-0.4,0.4-0.6L25.4,10.1L25.4,10.1z M7.1,1.6c0.6-0.2,1.3-0.1,1.8,0.2l14.3,8.2l-0.3,0.2l-3.1,1.8l-15-8.7
+			L4.4,3.2L7.1,1.6z M20.4,41.5l0.1-28.1l1.3-0.8l2.1-1.2l-0.1,28.1L20.4,41.5z"></path>
+<path class="shape-color-5" d="M10.3,25.4c-1.4-0.9-2.3-2.5-2.4-4.2c0-1.6,1.1-2.2,2.4-1.4c1.4,0.9,2.3,2.5,2.4,4.2
+			C12.7,25.5,11.6,26.1,10.3,25.4 M11.5,15.5L9,14l-0.1,1.7c-0.4-0.1-0.9-0.2-1.4-0.1l-1.2-1.8l-1.8,1l1,2c-0.2,0.4-0.4,0.8-0.5,1.2
+			l-1.6-0.8v2.9l1.6,1c0.1,0.7,0.3,1.3,0.6,1.9l-1,0.8l1.8,3l1.2-0.4c0.4,0.5,0.9,1,1.4,1.4L9,29.6l2.5,1.5l0.1-1.7
+			c0.5,0.1,1,0.2,1.5,0.1l1.1,1.8l1.8-1L15,28.5c0.3-0.4,0.5-0.9,0.6-1.3l1.5,0.7V25l-1.4-0.9c-0.1-0.7-0.3-1.4-0.6-2l0.9-0.7
+			l-1.8-3l-1.1,0.5c-0.4-0.6-0.9-1.1-1.5-1.5L11.5,15.5"></path>
+</svg>
+</div>
+</span>
+<strong class="project--sample--title">Minimal (Groovy) Client</strong>
+<span class="project--sample--description"></span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<script src="static/js/project-f41f05ad5ffa295dafaae5ed.js"></script>
+</div>
+</div>
+</div>
+<footer>
+<div id="top">
+<div class="container flex jc-between mx-auto">
+<div id="green-circle-sm"></div>
+
+<img alt="" id="circle-grid" src="static/picture/footer-circles-dc4b03d4edc1f3b7b.svg">
+<div class="third">
+<h2 class="bold h3 antialiased">Get ahead</h2>
+<p>VMware offers training and certification to turbo-charge your progress.</p>
+<a class="blue link-animate" href="javascript:window.open('https://spring.io/training');">Learn more</a>
+</div>
+<div class="third">
+<h2 class="bold h3 antialiased">Get support</h2>
+<p>Spring Runtime offers support and binaries for OpenJDK&trade;, Spring, and Apache Tomcat&reg; in one simple subscription.</p>
+<a class="blue link-animate" href="javascript:window.open('https://spring.io/support');">Learn more</a>
+</div>
+<div class="third">
+<h2 class="bold h3 antialiased">Upcoming events</h2>
+<div class="footer-event">
+<a class="blue link-animate" href="javascript:window.open('https://springone.io/');">SpringOne</a>
+<p>All virtual. All free.</p>
+</div>
+<br>
+<div class="footer-event">
+<a class="blue link-animate" href="javascript:window.open('https://springonetour.io/');">SpringOne Tour</a>
+<p>The best Cloud-Native Java content brought directly to you.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="bottom">
+<div id="bottom-top">
+<div class="mx-auto" id="footer-over">
+<div class="container flex jc-between mx-auto">
+<div class="left">
+<div class="flex jc-between">
+<div class="footer-column">
+<p><strong><a href="javascript:window.open('https://spring.io/why-spring');">Why Spring</a></strong></p>
+<ul>
+<li><a href="javascript:window.open('https://spring.io/microservices');">Microservices</a></li>
+<li><a href="javascript:window.open('https://spring.io/reactive');">Reactive</a></li>
+<li><a href="javascript:window.open('https://spring.io/event-driven');">Event Driven</a></li>
+<li><a href="javascript:window.open('https://spring.io/cloud');">Cloud</a></li>
+<li><a href="javascript:window.open('https://spring.io/web-applications');">Web Applications</a></li>
+<li><a href="javascript:window.open('https://spring.io/serverless');">Serverless</a></li>
+<li><a href="javascript:window.open('https://spring.io/batch');">Batch</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<p><strong><a href="javascript:window.open('https://spring.io/learn');">Learn</a></strong></p>
+<ul>
+<li><a href="javascript:window.open('https://spring.io/quickstart');">Quickstart</a></li>
+<li><a href="guides.html">Guides</a></li>
+<li><a href="javascript:window.open('https://spring.io/blog');">Blog</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<p><strong><a href="javascript:window.open('https://spring.io/community');">Community</a></strong></p>
+<ul>
+<li><a href="javascript:window.open('https://spring.io/events');">Events</a></li>
+<li><a href="javascript:window.open('https://spring.io/team');">Team</a></li>
+</ul>
+</div>
+<div class="footer-column">
+<p><strong><a href="javascript:window.open('https://spring.io/projects');">Projects</a></strong></p>
+<p><strong><a href="javascript:window.open('https://spring.io/training');">Training</a></strong></p>
+<p><strong><a href="javascript:window.open('https://spring.io/support');">Support</a></strong></p>
+<p><strong><a href="javascript:window.open('https://spring.io/thank-you');">Thank You</a></strong></p>
+</div>
+</div>
+</div>
+<div class="right">
+<h2 class="h3 mb-2 antialiased hide">Get the Spring newsletter</h2>
+<h2 class="h3 mb-2 antialiased confirmation">Thank you!</h2>
+<script src="static/js/forms2.min.js"></script>
+<form id="mktoForm_4723"></form>
+<script>
+                            MktoForms2.loadForm("https://app-sj05.marketo.com", "625-IUJ-009", 4723 , function(form){
+                                form.onSuccess(function(values, followUpUrl){
+                                    form.getFormElem().hide();
+                                    $('.hide').hide();
+                                    $('.confirmation').show();
+                                    return false;
+                                });
+                            });
+                        </script>
+</div>
+</div>
+</div>
+</div>
+<div id="bottom-bottom">
+<div class="flex container jc-between">
+<div id="spring-links">
+<img alt="Spring" id="springlogo-foot" src="static/picture/spring-logo-9146a4d3298760c2e7e4.svg">
+<p class="smallest antialiased">© <script>var d = new Date();
+                    document.write(d.getFullYear());</script> <a href="javascript:window.open('https://www.vmware.com/');">VMware</a>, Inc. or its affiliates. <a href="javascript:window.open('https://www.vmware.com/help/legal.html');">Terms of Use</a> • <a href="javascript:window.open('https://www.vmware.com/help/privacy.html');" rel="noopener noreferrer">Privacy</a> • <a href="javascript:window.open('https://spring.io/trademarks');">Trademark Guidelines</a> <span id="thank-you-mobile">• <a href="javascript:window.open('https://spring.io/thank-you');">Thank you</a></span> <span id="teconsent"></span></p>
+<p class="smallest antialiased">Apache®, Apache Tomcat®, Apache Kafka®, Apache Cassandra&trade;, and Apache Geode&trade; are trademarks or registered trademarks of the Apache Software Foundation in the United States and/or other countries. Java&trade;, Java&trade; SE, Java&trade; EE, and OpenJDK&trade; are trademarks of Oracle and/or its affiliates. Kubernetes® is a registered trademark of the Linux Foundation in the United States and other countries. Linux® is the registered trademark of Linus Torvalds in the United States and other countries. Windows® and Microsoft® Azure are registered trademarks of Microsoft Corporation. “AWS” and “Amazon Web Services” are trademarks or registered trademarks of Amazon.com Inc. or its affiliates. All other trademarks and copyrights are property of their respective owners and are only mentioned for informative purposes. Other names may be trademarks of their respective owners.</p>
+</div>
+<div class="flex jc-between" id="social-icons">
+<a href="javascript:window.open('https://www.youtube.com/user/SpringSourceDev');" title="Youtube"><svg id="youtube-icon" viewbox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle class="cls-1" cx="20" cy="20" r="20"></circle><path class="cls-2" d="M30.91,14.53a2.89,2.89,0,0,0-2-2C27.12,12,20,12,20,12s-7.12,0-8.9.47a2.9,2.9,0,0,0-2,2A30.56,30.56,0,0,0,8.63,20a30.44,30.44,0,0,0,.46,5.47,2.89,2.89,0,0,0,2,2C12.9,28,20,28,20,28s7.12,0,8.9-.47a2.87,2.87,0,0,0,2-2A30.56,30.56,0,0,0,31.37,20,28.88,28.88,0,0,0,30.91,14.53ZM17.73,23.41V16.59L23.65,20Z"></path></svg></a>
+<a href="javascript:window.open('https://github.com/spring-projects');" title="Github"><svg id="github-icon" viewbox="0 0 75.93 75.93" xmlns="http://www.w3.org/2000/svg"><path class="cls-1" d="M38,0a38,38,0,1,0,38,38A38,38,0,0,0,38,0Z"></path><path class="cls-2" d="M38,15.59A22.95,22.95,0,0,0,30.71,60.3c1.15.21,1.57-.5,1.57-1.11s0-2,0-3.9c-6.38,1.39-7.73-3.07-7.73-3.07A6.09,6.09,0,0,0,22,48.86c-2.09-1.42.15-1.39.15-1.39a4.81,4.81,0,0,1,3.52,2.36c2,3.5,5.37,2.49,6.67,1.91a4.87,4.87,0,0,1,1.46-3.07c-5.09-.58-10.45-2.55-10.45-11.34a8.84,8.84,0,0,1,2.36-6.15,8.29,8.29,0,0,1,.23-6.07s1.92-.62,6.3,2.35a21.82,21.82,0,0,1,11.49,0c4.38-3,6.3-2.35,6.3-2.35a8.29,8.29,0,0,1,.23,6.07,8.84,8.84,0,0,1,2.36,6.15c0,8.81-5.37,10.75-10.48,11.32a5.46,5.46,0,0,1,1.56,4.25c0,3.07,0,5.54,0,6.29s.42,1.33,1.58,1.1A22.94,22.94,0,0,0,38,15.59Z"></path></svg></a>
+<a href="javascript:window.open('https://twitter.com/springcentral');" title="Twitter"><svg id="twitter-icon" viewbox="0 0 75.93 75.93" xmlns="http://www.w3.org/2000/svg"><circle class="cls-1" cx="37.97" cy="37.97" r="37.97"></circle><path class="cls-2" d="M55.2,22.73a15.43,15.43,0,0,1-4.88,1.91,7.56,7.56,0,0,0-5.61-2.49A7.78,7.78,0,0,0,37,30a7.56,7.56,0,0,0,.2,1.79,21.63,21.63,0,0,1-15.84-8.23,8,8,0,0,0,2.37,10.52,7.66,7.66,0,0,1-3.48-1v.09A7.84,7.84,0,0,0,26.45,41a7.54,7.54,0,0,1-2,.28A7.64,7.64,0,0,1,23,41.09a7.71,7.71,0,0,0,7.18,5.47,15.21,15.21,0,0,1-9.55,3.37,15.78,15.78,0,0,1-1.83-.11,21.41,21.41,0,0,0,11.78,3.54c14.13,0,21.86-12,21.86-22.42,0-.34,0-.68,0-1a15.67,15.67,0,0,0,3.83-4.08,14.9,14.9,0,0,1-4.41,1.24A7.8,7.8,0,0,0,55.2,22.73Z" data-name="Twitter" id="Twitter-2"></path></svg></a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<script src="static/js/main-0c8620f9bfc02ced83daef5cff6.js"></script>
+</body></html>
